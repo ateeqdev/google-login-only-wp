@@ -57,17 +57,13 @@ class GLO_GoogleLoginOnly
      */
     private function defineHooks()
     {
-        // Add custom user profile fields
         add_action('show_user_profile', [$this, 'addCustomUserProfileFields']);
         add_action('edit_user_profile', [$this, 'addCustomUserProfileFields']);
 
-        // Add Google profile picture to user list
         add_filter('get_avatar', [$this, 'useGoogleProfilePicture'], 10, 6);
 
-        // Security enhancements
         add_action('init', [$this, 'securityEnhancements']);
 
-        // REST API security
         add_filter('rest_authentication_errors', [$this, 'restrictRestApiAccess']);
     }
 
@@ -80,17 +76,17 @@ class GLO_GoogleLoginOnly
 
         if ($google_picture) {
 ?>
-            <h3>Google Account Information</h3>
+            <h3><?php esc_html_e('Google Account Information', 'google-login-only'); ?></h3>
             <table class="form-table">
                 <tr>
-                    <th><label>Google Profile Picture</label></th>
+                    <th><label><?php esc_html_e('Google Profile Picture', 'google-login-only'); ?></label></th>
                     <td>
-                        <img src="<?php echo esc_url($google_picture); ?>" alt="Google Profile Picture" style="width: 96px; height: 96px; border-radius: 50%; object-fit: cover;">
-                        <p class="description">This profile picture is synced from your Google account.</p>
+                        <img src="<?php echo esc_url($google_picture); ?>" alt="<?php esc_attr_e('Google Profile Picture', 'google-login-only'); ?>" style="width: 96px; height: 96px; border-radius: 50%; object-fit: cover;">
+                        <p class="description"><?php esc_html_e('This profile picture is synced from your Google account.', 'google-login-only'); ?></p>
                     </td>
                 </tr>
                 <tr>
-                    <th><label>Authentication Method</label></th>
+                    <th><label><?php esc_html_e('Authentication Method', 'google-login-only'); ?></label></th>
                     <td>
                         <span style="display: inline-flex; align-items: center; gap: 8px; background: #4285F4; color: white; padding: 6px 12px; border-radius: 20px; font-size: 12px;">
                             <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
@@ -99,9 +95,9 @@ class GLO_GoogleLoginOnly
                                 <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" />
                                 <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" />
                             </svg>
-                            Google Sign-In
+                            <?php esc_html_e('Google Sign-In', 'google-login-only'); ?>
                         </span>
-                        <p class="description">This user authenticates via Google OAuth.</p>
+                        <p class="description"><?php esc_html_e('This user authenticates via Google OAuth.', 'google-login-only'); ?></p>
                     </td>
                 </tr>
             </table>
@@ -155,13 +151,10 @@ class GLO_GoogleLoginOnly
      */
     public function securityEnhancements()
     {
-        // Disable XML-RPC
         add_filter('xmlrpc_enabled', '__return_false');
 
-        // Remove version numbers
         remove_action('wp_head', 'wp_generator');
 
-        // Disable file editing in admin
         if (!defined('DISALLOW_FILE_EDIT')) {
             define('DISALLOW_FILE_EDIT', true);
         }
@@ -188,7 +181,7 @@ class GLO_GoogleLoginOnly
         foreach ($sensitive_files as $file) {
             if (strpos($request_uri, $file) !== false) {
                 status_header(403);
-                die('Access denied');
+                die(esc_html__('Access denied', 'google-login-only'));
             }
         }
     }
@@ -205,7 +198,7 @@ class GLO_GoogleLoginOnly
         if (!is_user_logged_in()) {
             return new WP_Error(
                 'rest_not_logged_in',
-                'You are not currently logged in.',
+                esc_html__('You are not currently logged in.', 'google-login-only'),
                 array('status' => 401)
             );
         }

@@ -11,6 +11,7 @@ class GLO_FrontendHooks
         add_action('login_enqueue_scripts', [$this, 'loginStyles']);
         add_action('login_form', [$this, 'addGoogleLoginButton']);
         add_action('login_footer', [$this, 'addOneTapScript']);
+        add_action('login_footer', [$this, 'addCustomLoginFooter'], 99); // Added custom footer
         add_filter('authenticate', [$this, 'disablePasswordLogin'], 20, 3);
         add_filter('allow_password_reset', '__return_false');
         add_filter('lostpassword_url', '__return_false');
@@ -230,6 +231,22 @@ class GLO_FrontendHooks
             .google-login-button.loading .glo-loading {
                 display: inline-block;
             }
+
+            /* Custom Login Footer Styling */
+            .glo-login-footer {
+                margin-top: 25px;
+                text-align: center;
+                font-size: 13px;
+                color: rgba(255, 255, 255, 0.7);
+            }
+            .glo-login-footer a {
+                color: rgba(255, 255, 255, 0.9);
+                text-decoration: underline;
+                font-weight: bold;
+            }
+            .glo-login-footer a:hover {
+                color: white;
+            }
         </style>';
     }
 
@@ -241,8 +258,8 @@ class GLO_FrontendHooks
         $auth_url = $this->google_auth->getAuthUrl();
 
         echo '<div class="glo-login-header">';
-        echo '<h2 class="glo-login-title">' . __('Welcome Back', 'google-login-only') . '</h2>';
-        echo '<p class="glo-login-subtitle">' . __('Sign in to continue to your account', 'google-login-only') . '</p>';
+        echo '<h2 class="glo-login-title">' . esc_html__('Welcome Back', 'google-login-only') . '</h2>';
+        echo '<p class="glo-login-subtitle">' . esc_html__('Sign in to continue to your account', 'google-login-only') . '</p>';
         echo '</div>';
 
         echo '<div class="google-login-container">';
@@ -254,13 +271,13 @@ class GLO_FrontendHooks
         echo '<path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>';
         echo '</svg>';
         echo '<div class="glo-loading"></div>';
-        echo '<span>' . __('Continue with Google', 'google-login-only') . '</span>';
+        echo '<span>' . esc_html__('Continue with Google', 'google-login-only') . '</span>';
         echo '</a>';
         echo '</div>';
 
         // One Tap section - only for one tap, no duplicate button
         echo '<div class="one-tap-section">';
-        echo '<div class="one-tap-info">' . __('Or wait for One Tap to appear automatically', 'google-login-only') . '</div>';
+        echo '<div class="one-tap-info">' . esc_html__('Or wait for One Tap to appear automatically', 'google-login-only') . '</div>';
         echo '<div id="g_id_onload"></div>';
         echo '</div>';
 
@@ -332,6 +349,21 @@ class GLO_FrontendHooks
     }
 
     /**
+     * Adds a custom footer message to the login page.
+     */
+    public function addCustomLoginFooter()
+    {
+        echo '<div class="glo-login-footer">';
+        echo '<p>' . sprintf(
+            /* translators: %1$s is opening anchor tag, %2$s is closing anchor tag */
+            esc_html__('Login With Google is Powered by %1$sHardToSkip.com%2$s', 'google-login-only'),
+            '<a href="https://hardtoskip.com" target="_blank">',
+            '</a>'
+        ) . '</p>';
+        echo '</div>';
+    }
+
+    /**
      * Completely block password-based logins.
      */
     public function disablePasswordLogin($user, $username, $password)
@@ -341,7 +373,7 @@ class GLO_FrontendHooks
             if (isset($_GET['login_error'])) {
                 return $user;
             }
-            return new WP_Error('authentication_disabled', '<strong>' . __('Error:', 'google-login-only') . '</strong> ' . __('Password-based authentication is disabled. Please use Google Sign-In.', 'google-login-only'));
+            return new WP_Error('authentication_disabled', '<strong>' . esc_html__('Error:', 'google-login-only') . '</strong> ' . esc_html__('Password-based authentication is disabled. Please use Google Sign-In.', 'google-login-only'));
         }
         return $user;
     }
@@ -354,15 +386,15 @@ class GLO_FrontendHooks
         if (isset($_GET['login_error'])) {
             $error_code = sanitize_key($_GET['login_error']);
             $messages = [
-                'not_allowed' => __('Your email is not authorized to access this site. Please contact an administrator.', 'google-login-only'),
-                'token_exchange_failed' => __('Could not connect to Google. Please try again.', 'google-login-only'),
-                'user_creation_failed' => __('Could not create a user account for you. Please try again.', 'google-login-only'),
-                'email_missing' => __('Could not retrieve your email from Google. Please try again.', 'google-login-only'),
-                'token_missing' => __('Authentication failed. No access token received from Google.', 'google-login-only'),
-                'userinfo_failed' => __('Could not retrieve your user information from Google.', 'google-login-only'),
-                'invalid_credential' => __('Invalid Google credential received. Please try again.', 'google-login-only')
+                'not_allowed' => esc_html__('Your email is not authorized to access this site. Please contact an administrator.', 'google-login-only'),
+                'token_exchange_failed' => esc_html__('Could not connect to Google. Please try again.', 'google-login-only'),
+                'user_creation_failed' => esc_html__('Could not create a user account for you. Please try again.', 'google-login-only'),
+                'email_missing' => esc_html__('Could not retrieve your email from Google. Please try again.', 'google-login-only'),
+                'token_missing' => esc_html__('Authentication failed. No access token received from Google.', 'google-login-only'),
+                'userinfo_failed' => esc_html__('Could not retrieve your user information from Google.', 'google-login-only'),
+                'invalid_credential' => esc_html__('Invalid Google credential received. Please try again.', 'google-login-only')
             ];
-            $message = $messages[$error_code] ?? __('An unknown authentication error occurred.', 'google-login-only');
+            $message = $messages[$error_code] ?? esc_html__('An unknown authentication error occurred.', 'google-login-only');
 
             // Return a new WP_Error object to be displayed.
             return new WP_Error('google_login_error', $message, 'error');

@@ -69,7 +69,6 @@ class GLO_GoogleAuth
             return;
         }
 
-        // Convert the JWT data to match our expected format
         $google_user = [
             'email' => $user_data['email'],
             'given_name' => $user_data['given_name'] ?? '',
@@ -78,7 +77,6 @@ class GLO_GoogleAuth
             'picture' => $user_data['picture'] ?? ''
         ];
 
-        // Authenticate or create user
         $this->loginOrRegisterUser($google_user);
     }
 
@@ -103,7 +101,6 @@ class GLO_GoogleAuth
             $payload .= str_repeat('=', $padlen);
         }
 
-        // Decode base64url
         $payload = str_replace(['-', '_'], ['+', '/'], $payload);
         $decoded = base64_decode($payload);
 
@@ -113,7 +110,6 @@ class GLO_GoogleAuth
 
         $data = json_decode($decoded, true);
 
-        // Verify the token is from Google and for our client
         if (
             !$data ||
             !isset($data['iss']) ||
@@ -187,18 +183,14 @@ class GLO_GoogleAuth
     {
         $user_email = strtolower(trim($google_user['email']));
 
-        // First, check if user already exists in WordPress
         $existing_user = get_user_by('email', $user_email);
 
         if ($existing_user) {
-            // User exists in WordPress, log them in directly
-            // Remove user from allowed_users settings if they exist there
             $this->removeUserFromSettings($user_email);
             $this->loginUser($existing_user);
             return;
         }
 
-        // User doesn't exist in WordPress, check if they're in allowed users
         $allowed_users_list = $this->settings['allowed_users'] ?? [];
         $allowed_users = array_column($allowed_users_list, 'role', 'email');
         $allowed_users = array_change_key_case($allowed_users, CASE_LOWER);
@@ -208,12 +200,10 @@ class GLO_GoogleAuth
             return;
         }
 
-        // Create new user
         $user_role = $allowed_users[$user_email];
         $new_user = $this->createUser($google_user, $user_role);
 
         if ($new_user) {
-            // Remove from allowed_users settings since they're now a WordPress user
             $this->removeUserFromSettings($user_email);
             $this->loginUser($new_user);
         } else {
@@ -228,7 +218,6 @@ class GLO_GoogleAuth
     {
         $user_email = strtolower(trim($google_user['email']));
 
-        // Generate username from email
         $username = sanitize_user(explode('@', $user_email)[0], true);
 
         if (username_exists($username)) {
@@ -269,7 +258,6 @@ class GLO_GoogleAuth
         wp_set_current_user($user->ID);
         wp_set_auth_cookie($user->ID, true);
 
-        // Redirect to admin dashboard
         wp_redirect(admin_url());
         exit;
     }
@@ -283,17 +271,14 @@ class GLO_GoogleAuth
         $current_settings = get_option('glo_settings', []);
         $allowed_users = $current_settings['allowed_users'] ?? [];
 
-        // Filter out the user with matching email (case-insensitive)
         $updated_users = array_filter($allowed_users, function ($user) use ($email) {
             return strtolower(trim($user['email'])) !== $email;
         });
 
-        // Only update if there was a change
         if (count($updated_users) !== count($allowed_users)) {
             $current_settings['allowed_users'] = array_values($updated_users); // Reset array indexes
             update_option('glo_settings', $current_settings);
 
-            // Clear any caches
             if (function_exists('wp_cache_flush')) {
                 wp_cache_flush();
             }

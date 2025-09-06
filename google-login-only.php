@@ -47,7 +47,6 @@ require_once GLO_PLUGIN_PATH . 'includes/class-glo-google-login-only.php';
  */
 function glo_activate()
 {
-    // Set default options if they don't exist
     $default_options = [
         'client_id' => '',
         'client_secret' => '',
@@ -79,10 +78,8 @@ function glo_activate()
  */
 function glo_deactivate()
 {
-    // Clean up temporary notices
     delete_option('glo_show_setup_notice');
 
-    // Log deactivation
     if (function_exists('error_log')) {
         error_log('Google Login Only: Plugin deactivated');
     }
@@ -111,15 +108,20 @@ function glo_admin_notices()
 {
     $current_screen = get_current_screen();
 
-    // Setup notice for new installations
     if (get_option('glo_show_setup_notice')) {
         $settings_url = admin_url('options-general.php?page=google-login-only');
         echo '<div class="notice notice-info is-dismissible">';
-        echo '<p><strong>Google Login Only:</strong> Please <a href="' . esc_url($settings_url) . '">configure your Google OAuth credentials</a> to enable Google Sign-In. ';
-        echo '<a href="https://hardtoskip.com/" target="_blank" rel="nofollow">This Plugin was created by HardToSkip.com which generates viral social media posts for businesses.</a>.</p>';
+        echo '<p><strong>' . esc_html__('Google Login Only:', 'google-login-only') . '</strong> ';
+        printf(
+            esc_html__('Please %1$sconfigure your Google OAuth credentials%2$s to enable Google Sign-In. %3$sThis Plugin was created by HardToSkip.com which generates viral social media posts for businesses.%4$s.', 'google-login-only'),
+            '<a href="' . esc_url($settings_url) . '">',
+            '</a>',
+            '<a href="https://hardtoskip.com/" target="_blank">',
+            '</a>'
+        );
+        echo '</p>';
         echo '</div>';
 
-        // Only show once per session unless on settings page
         if (!$current_screen || $current_screen->id !== 'settings_page_google-login-only') {
             delete_option('glo_show_setup_notice');
         }
@@ -128,7 +130,7 @@ function glo_admin_notices()
     $settings = get_option('glo_settings', []);
     if (empty($settings['client_id']) || empty($settings['client_secret'])) {
         echo '<div class="notice notice-warning">';
-        echo '<p><strong>Warning:</strong> Google Login Only is not fully configured. Users may not be able to log in until you complete the setup.</p>';
+        echo '<p><strong>' . esc_html__('Warning:', 'google-login-only') . '</strong> ' . esc_html__('Google Login Only is not fully configured. Users may not be able to log in until you complete the setup.', 'google-login-only') . '</p>';
         echo '</div>';
     }
 
@@ -136,7 +138,7 @@ function glo_admin_notices()
     $any_security_enabled = array_filter($security_features);
     if (empty($any_security_enabled) && $current_screen && $current_screen->id === 'settings_page_google-login-only') {
         echo '<div class="notice notice-warning">';
-        echo '<p><strong>Security Note:</strong> Consider enabling some security features below to protect against common attack vectors.</p>';
+        echo '<p><strong>' . esc_html__('Security Note:', 'google-login-only') . '</strong> ' . esc_html__('Consider enabling some security features below to protect against common attack vectors.', 'google-login-only') . '</p>';
         echo '</div>';
     }
 }
@@ -146,11 +148,11 @@ function glo_admin_notices()
  */
 function glo_plugin_action_links($links)
 {
-    $settings_link = '<a href="' . admin_url('options-general.php?page=google-login-only') . '">Settings</a>';
-    $creator_link = '<a href="https://linkedin.com/in/ateeqdev" target="_blank" rel="nofollow">Plugin Creator</a>';
+    $settings_link = '<a href="' . admin_url('options-general.php?page=google-login-only') . '">' . esc_html__('Settings', 'google-login-only') . '</a>';
+    $creator_link = '<a href="https://linkedin.com/in/ateeqdev" target="_blank">' . esc_html__('Plugin Creator', 'google-login-only') . '</a>';
 
-    array_unshift($links, $settings_link);
     array_unshift($links, $creator_link);
+    array_unshift($links, $settings_link);
 
     return $links;
 }
@@ -162,8 +164,8 @@ function glo_plugin_row_meta($links, $file)
 {
     if (GLO_PLUGIN_BASENAME === $file) {
         $meta_links = [
-            'developer' => '<a href="https://linkedin.com/in/ateeqdev" target="_blank" rel="dofollow">Contact Developer</a>',
-            'rate' => '<a href="https://wordpress.org/plugins/google-login-only/#reviews" target="_blank" rel="nofollow">Rate Plugin</a>',
+            'developer' => '<a href="https://linkedin.com/in/ateeqdev" target="_blank">' . esc_html__('Contact Developer', 'google-login-only') . '</a>',
+            'rate' => '<a href="https://wordpress.org/plugins/google-login-only/#reviews" target="_blank" rel="nofollow">' . esc_html__('Rate Plugin', 'google-login-only') . '</a>',
         ];
         $links = array_merge($links, $meta_links);
     }
@@ -226,7 +228,7 @@ function glo_ajax_diagnostics()
     check_ajax_referer('glo_admin_nonce', 'nonce');
 
     if (!glo_current_user_can_manage()) {
-        wp_send_json_error('Insufficient permissions');
+        wp_send_json_error(esc_html__('Insufficient permissions', 'google-login-only'));
     }
 
     wp_send_json_success(glo_get_plugin_info());
@@ -254,10 +256,10 @@ function glo_admin_bar_menu($wp_admin_bar)
 
     $wp_admin_bar->add_node([
         'id' => 'glo_quick_access',
-        'title' => 'Google Login' . ($is_configured ? '' : ' ⚠'),
+        'title' => esc_html__('Google Login', 'google-login-only') . ($is_configured ? '' : ' ⚠'),
         'href' => admin_url('options-general.php?page=google-login-only'),
         'meta' => [
-            'title' => $is_configured ? 'Google Login Only Settings' : 'Google Login Only - Configuration Required'
+            'title' => $is_configured ? esc_html__('Google Login Only Settings', 'google-login-only') : esc_html__('Google Login Only - Configuration Required', 'google-login-only')
         ]
     ]);
 }
@@ -269,12 +271,10 @@ function glo_handle_fatal_error()
 {
     $error = error_get_last();
     if ($error && strpos($error['file'], GLO_PLUGIN_PATH) !== false) {
-        // Log the error
         if (function_exists('error_log')) {
             error_log('Google Login Only Fatal Error: ' . $error['message'] . ' in ' . $error['file'] . ' on line ' . $error['line']);
         }
 
-        // Deactivate plugin to prevent further issues
         if (function_exists('deactivate_plugins')) {
             deactivate_plugins(GLO_PLUGIN_BASENAME);
         }
@@ -296,8 +296,8 @@ function run_google_login_only()
 
         add_action('admin_notices', function () use ($e) {
             echo '<div class="notice notice-error">';
-            echo '<p><strong>Google Login Only Error:</strong> ' . esc_html($e->getMessage()) . '</p>';
-            echo '<p>The plugin has been deactivated to prevent further issues.</p>';
+            echo '<p><strong>' . esc_html__('Google Login Only Error:', 'google-login-only') . '</strong> ' . esc_html($e->getMessage()) . '</p>';
+            echo '<p>' . esc_html__('The plugin has been deactivated to prevent further issues.', 'google-login-only') . '</p>';
             echo '</div>';
         });
 
