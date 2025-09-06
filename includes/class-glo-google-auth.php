@@ -61,8 +61,8 @@ class GLO_GoogleAuth
 
         $credential = sanitize_text_field($_POST['credential']);
 
-        // Decode the JWT token to get user information
-        $user_data = $this->decodeJWT($credential);
+        // Decode AND VERIFY the JWT token using the secure, lightweight function
+        $user_data = $this->decodeJWT_secure_lightweight($credential);
 
         if (!$user_data || empty($user_data['email'])) {
             $this->redirectWithError('invalid_credential');
@@ -81,47 +81,44 @@ class GLO_GoogleAuth
     }
 
     /**
-     * Decode JWT token from Google One Tap.
+     * Securely decodes and VERIFIES the JWT token using Google's tokeninfo endpoint.
+     * This is a lightweight and secure alternative to using a full library.
+     *
+     * @param string $jwt The ID token from Google.
+     * @return array|false The user payload if the token is valid, otherwise false.
      */
-    private function decodeJWT($jwt)
+    private function decodeJWT_secure_lightweight($jwt)
     {
-        // Split the JWT into its three parts
-        $parts = explode('.', $jwt);
-        if (count($parts) !== 3) {
+        if (empty($this->settings['client_id'])) {
+            error_log('Google Login Only Error: Google Client ID is not configured.');
             return false;
         }
 
-        // Decode the payload (middle part)
-        $payload = $parts[1];
+        $url = 'https://oauth2.googleapis.com/tokeninfo?id_token=' . urlencode($jwt);
+        $response = wp_remote_get($url);
 
-        // Add padding if needed
-        $remainder = strlen($payload) % 4;
-        if ($remainder) {
-            $padlen = 4 - $remainder;
-            $payload .= str_repeat('=', $padlen);
-        }
-
-        $payload = str_replace(['-', '_'], ['+', '/'], $payload);
-        $decoded = base64_decode($payload);
-
-        if (!$decoded) {
+        if (is_wp_error($response)) {
+            error_log('Google Login Only Error: Failed to connect to Google tokeninfo endpoint. ' . $response->get_error_message());
             return false;
         }
 
-        $data = json_decode($decoded, true);
-
-        if (
-            !$data ||
-            !isset($data['iss']) ||
-            !isset($data['aud']) ||
-            $data['iss'] !== 'https://accounts.google.com' ||
-            $data['aud'] !== $this->settings['client_id']
-        ) {
+        $status_code = wp_remote_retrieve_response_code($response);
+        if ($status_code !== 200) {
+            error_log('Google Login Only Error: Invalid ID token. Google responded with status ' . $status_code);
             return false;
         }
 
-        return $data;
+        $payload = json_decode(wp_remote_retrieve_body($response), true);
+
+        // Final security check: ensure the token was issued to our app.
+        if (empty($payload['aud']) || $payload['aud'] !== $this->settings['client_id']) {
+            error_log('Google Login Only Error: Token audience (aud) does not match Client ID.');
+            return false;
+        }
+
+        return $payload;
     }
+
 
     /**
      * Handles the callback from Google after user authentication.

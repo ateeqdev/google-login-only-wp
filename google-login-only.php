@@ -270,14 +270,36 @@ function glo_admin_bar_menu($wp_admin_bar)
 function glo_handle_fatal_error()
 {
     $error = error_get_last();
+
     if ($error && strpos($error['file'], GLO_PLUGIN_PATH) !== false) {
         if (function_exists('error_log')) {
-            error_log('Google Login Only Fatal Error: ' . $error['message'] . ' in ' . $error['file'] . ' on line ' . $error['line']);
+            error_log(
+                sprintf(
+                    '[Google Login Only] Fatal error: %s in %s on line %d',
+                    $error['message'],
+                    $error['file'],
+                    $error['line']
+                )
+            );
         }
 
-        if (function_exists('deactivate_plugins')) {
-            deactivate_plugins(GLO_PLUGIN_BASENAME);
-        }
+        set_transient('glo_plugin_last_error', $error, 60);
+    }
+}
+
+/**
+ * Show an admin notice if the plugin caused a fatal error.
+ */
+function glo_show_admin_error_notice()
+{
+    if (get_transient('glo_plugin_last_error')) {
+?>
+        <div class="notice notice-error is-dismissible">
+            <p><strong>Google Login Only:</strong>
+                A fatal error was detected and logged. Please check your PHP error log for details.</p>
+        </div>
+        <?php
+        delete_transient('glo_plugin_last_error');
     }
 }
 
@@ -290,23 +312,37 @@ function run_google_login_only()
         $plugin = new GLO_GoogleLoginOnly();
         $plugin->run();
     } catch (Exception $e) {
+        // Log the error for debugging
         if (function_exists('error_log')) {
-            error_log('Google Login Only Error: ' . $e->getMessage());
+            error_log(
+                sprintf(
+                    '[Google Login Only] Initialization error: %s in %s on line %d',
+                    $e->getMessage(),
+                    $e->getFile(),
+                    $e->getLine()
+                )
+            );
         }
 
-        add_action('admin_notices', function () use ($e) {
-            echo '<div class="notice notice-error">';
-            echo '<p><strong>' . esc_html__('Google Login Only Error:', 'google-login-only') . '</strong> ' . esc_html($e->getMessage()) . '</p>';
-            echo '<p>' . esc_html__('The plugin has been deactivated to prevent further issues.', 'google-login-only') . '</p>';
-            echo '</div>';
+        set_transient('glo_plugin_init_error', $e->getMessage(), 60);
+
+        add_action('admin_notices', function () {
+            if ($error_message = get_transient('glo_plugin_init_error')) {
+        ?>
+                <div class="notice notice-error is-dismissible">
+                    <p>
+                        <strong><?php echo esc_html__('Google Login Only Error:', 'google-login-only'); ?></strong>
+                        <?php echo esc_html($error_message); ?>
+                    </p>
+                    <p><?php echo esc_html__('Please check your PHP error log for details. The plugin may not function correctly until this issue is resolved.', 'google-login-only'); ?></p>
+                </div>
+<?php
+                delete_transient('glo_plugin_init_error');
+            }
         });
-
-        if (function_exists('deactivate_plugins')) {
-            deactivate_plugins(GLO_PLUGIN_BASENAME);
-        }
-        return;
     }
 }
+
 
 // Register hooks
 register_activation_hook(__FILE__, 'glo_activate');
@@ -326,6 +362,7 @@ add_action('plugins_loaded', 'glo_load_plugin_textdomain');
 
 // Error handling
 register_shutdown_function('glo_handle_fatal_error');
+add_action('admin_notices', 'glo_show_admin_error_notice');
 
 // Start the plugin
 run_google_login_only();
