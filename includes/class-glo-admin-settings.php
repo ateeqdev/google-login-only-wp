@@ -511,14 +511,6 @@ class GLO_AdminSettings
             <div class="glo-hero-content">
                 <h1 class="glo-hero-title"><?php _e('Google Login Only', 'google-login-only'); ?></h1>
                 <p class="glo-hero-subtitle"><?php _e('Secure, beautiful, and user-friendly Google authentication for WordPress', 'google-login-only'); ?></p>
-                <div class="glo-hero-credit">
-                    <?php printf(
-                        __('Proudly developed by %s', 'google-login-only'),
-                        '<a href="https://hardtoskip.com" target="_blank" rel="dofollow">HardToSkip.com</a>'
-                    ); ?>
-                    <br>
-                    <small><?php _e('AI-Powered Viral Content Generator', 'google-login-only'); ?></small>
-                </div>
             </div>
         </div>
     <?php
@@ -619,7 +611,7 @@ class GLO_AdminSettings
             <h4><?php _e('🎯 About This Plugin', 'google-login-only'); ?></h4>
             <p><?php printf(
                     __('This plugin was created by %1$s after a successful brute-force attack demonstrated the vulnerabilities of password-based authentication. By enforcing Google OAuth, we eliminate password-related security risks while providing a superior user experience.', 'google-login-only'),
-                    '<a href="https://hardtoskip.com" target="_blank" rel="dofollow"><strong>HardToSkip.com</strong></a>'
+                    '<a href="https://hardtoskip.com" target="_blank"><strong>HardToSkip.com</strong></a>'
                 ); ?></p>
         </div>
 
@@ -750,9 +742,9 @@ class GLO_AdminSettings
 
         <div class="glo-info-card warning">
             <h4><?php _e('⚠️ Important Security Notice', 'google-login-only'); ?></h4>
-            <p><?php printf(
-                    __('This plugin was created after %1$s experienced a successful brute-force attack. These security features help prevent similar attacks but are not a complete security solution. Always keep WordPress updated and use quality hosting.', 'google-login-only'),
-                    '<a href="https://hardtoskip.com" target="_blank" rel="dofollow"><strong>HardToSkip.com</strong></a>'
+            <p><?php _e(
+                    'This plugin was developed in response to real-world brute-force attacks on WordPress sites. The included security features help reduce such risks, but they are not a complete security solution. Always keep WordPress updated and use reliable hosting for maximum protection.',
+                    'google-login-only'
                 ); ?></p>
         </div>
 
@@ -991,7 +983,7 @@ class GLO_AdminSettings
             <ul>
                 <li><a href="<?php echo wp_login_url(); ?>" target="_blank"><?php _e('Test Your Login Page', 'google-login-only'); ?></a></li>
                 <li><a href="<?php echo admin_url('users.php'); ?>"><?php _e('Manage WordPress Users', 'google-login-only'); ?></a></li>
-                <li><a href="https://hardtoskip.com" target="_blank" rel="dofollow"><?php _e('Visit HardToSkip.com (Plugin Creator)', 'google-login-only'); ?></a></li>
+                <li><a href="https://hardtoskip.com" target="_blank"><?php _e('Visit HardToSkip.com (Plugin Creator)', 'google-login-only'); ?></a></li>
             </ul>
         </div>
 

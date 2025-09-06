@@ -596,9 +596,6 @@ class GLO_FrontendHooks
             <div class="glo-developer-credit">
                 <div class="credit-title"><?php _e('Secure Authentication Powered by', 'google-login-only'); ?></div>
                 <a href="https://hardtoskip.com" target="_blank" rel="dofollow" class="credit-link">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M12 2L13.09 7.26L19.5 3L16.75 9.38L23 7L17.74 12L23 17L16.75 14.62L19.5 21L13.09 16.74L12 22L10.91 16.74L4.5 21L7.25 14.62L1 17L6.26 12L1 7L7.25 9.38L4.5 3L10.91 7.26L12 2Z" />
-                    </svg>
                     HardToSkip.com
                 </a>
                 <div class="credit-description"><?php _e('AI-Powered Viral Content Generator', 'google-login-only'); ?></div>
