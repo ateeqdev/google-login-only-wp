@@ -28,12 +28,18 @@ function handleCredentialResponse(response) {
   credentialInput.name = "credential";
   credentialInput.value = response.credential;
 
+  const csrfInput = document.createElement("input");
+  csrfInput.type = "hidden";
+  csrfInput.name = "glo_csrf_token";
+  csrfInput.value = glo_login_params.csrf_token;
+
   const nonceInput = document.createElement("input");
   nonceInput.type = "hidden";
   nonceInput.name = "nonce";
   nonceInput.value = glo_login_params.nonce;
 
   form.appendChild(credentialInput);
+  form.appendChild(csrfInput);
   form.appendChild(nonceInput);
   document.body.appendChild(form);
   form.submit();

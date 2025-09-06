@@ -11,8 +11,19 @@ class GLO_GoogleAuth
     public function __construct($plugin_name, $version)
     {
         $this->settings = get_option('glo_settings');
+        add_action('init', [$this, 'startSession'], 1);
         add_action('init', [$this, 'handleGoogleCallback']);
         add_action('init', [$this, 'handleOneTapCallback']);
+    }
+
+    /**
+     * Ensures session is started for OAuth state parameter.
+     */
+    public function startSession()
+    {
+        if (!session_id()) {
+            session_start();
+        }
     }
 
     /**
@@ -24,12 +35,16 @@ class GLO_GoogleAuth
             return '#'; // Or some error state
         }
 
+        $state_token = bin2hex(random_bytes(32));
+        $_SESSION['glo_oauth_state'] = $state_token;
+
         $params = [
             'response_type' => 'code',
             'client_id' => $this->settings['client_id'],
             'redirect_uri' => home_url('?action=google_login_callback'),
             'scope' => 'email profile',
             'access_type' => 'online',
+            'state' => $state_token, // Add state to the request
         ];
 
         if (!empty($email_hint)) {
@@ -53,11 +68,16 @@ class GLO_GoogleAuth
             return;
         }
 
-        // Verify nonce
-        if (!wp_verify_nonce($_POST['nonce'] ?? '', 'google_one_tap_nonce')) {
-            $this->redirectWithError('invalid_credential');
+        if (
+            !isset($_POST['glo_csrf_token'], $_COOKIE['glo_csrf_token']) ||
+            !hash_equals($_COOKIE['glo_csrf_token'], $_POST['glo_csrf_token'])
+        ) {
+            $this->redirectWithError('invalid_state');
             return;
         }
+
+        // Clear the CSRF cookie after successful validation
+        setcookie('glo_csrf_token', '', time() - 3600, '/', COOKIE_DOMAIN, is_ssl(), true);
 
         $credential = sanitize_text_field($_POST['credential']);
 
@@ -128,6 +148,23 @@ class GLO_GoogleAuth
         if (!isset($_GET['action']) || $_GET['action'] !== 'google_login_callback' || !isset($_GET['code'])) {
             return;
         }
+
+        if (!isset($_POST['nonce']) || !wp_verify_nonce($_POST['nonce'], 'google_one_tap_nonce')) {
+            $this->redirectWithError('invalid_state');
+            return;
+        }
+
+        if (
+            empty($_GET['state']) ||
+            !isset($_SESSION['glo_oauth_state']) ||
+            !hash_equals($_SESSION['glo_oauth_state'], $_GET['state'])
+        ) {
+            $this->redirectWithError('invalid_state');
+            return;
+        }
+
+        unset($_SESSION['glo_oauth_state']);
+
 
         // 1. Exchange authorization code for an access token
         $token_response = wp_remote_post('https://oauth2.googleapis.com/token', [

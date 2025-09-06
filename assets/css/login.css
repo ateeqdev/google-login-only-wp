@@ -225,6 +225,20 @@ body.login::before {
   font-style: italic;
 }
 
+#login_error {
+  background: rgba(248, 215, 218, 0.95) !important;
+  border-left: 4px solid #dc3545 !important;
+  box-shadow: 0 4px 12px rgba(220, 53, 69, 0.15);
+  color: #721c24;
+  width: 100%;
+  padding: 12px !important;
+}
+
+#login_error a {
+  color: #721c24;
+  font-weight: bold;
+}
+
 /* --- Animations & Messages --- */
 @keyframes fadeInUp {
   from {

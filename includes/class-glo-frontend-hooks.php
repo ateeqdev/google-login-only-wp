@@ -65,11 +65,25 @@ class GLO_FrontendHooks
         // Enqueue our local login script, making it dependent on the GSI client
         wp_enqueue_script('glo-login', GLO_PLUGIN_URL . 'assets/js/login.js', ['google-gsi'], filemtime(GLO_PLUGIN_PATH . 'assets/js/login.js'), true);
 
-        // Pass PHP variables to our JavaScript file
+        $csrf_token = bin2hex(random_bytes(32));
+        setcookie(
+            'glo_csrf_token',
+            $csrf_token,
+            [
+                'expires' => time() + HOUR_IN_SECONDS,
+                'path' => '/',
+                'domain' => COOKIE_DOMAIN,
+                'secure' => is_ssl(),
+                'httponly' => true,
+                'samesite' => 'Lax'
+            ]
+        );
+
         wp_localize_script('glo-login', 'glo_login_params', [
             'client_id'    => $client_id,
             'callback_url' => home_url('?action=google_one_tap_callback'),
             'nonce'        => wp_create_nonce('google_one_tap_nonce'),
+            'csrf_token'   => $csrf_token, // The new CSRF token
             'context'      => $context,
             'show_prompt'  => $show_prompt,
         ]);
@@ -153,6 +167,7 @@ class GLO_FrontendHooks
                 'user_creation_failed'  => __('Could not create a user account. Please contact an administrator.', 'google-login-only'),
                 'invalid_credential'    => __('Invalid Google credential received. Please try again.', 'google-login-only'),
                 'userinfo_failed'       => __('Could not retrieve your user information from Google. Please try again.', 'google-login-only'),
+                'invalid_state'         => __('Invalid authentication session. Please try logging in again.', 'google-login-only'),
             ];
             $message = $messages[$error_code] ?? __('An unknown authentication error occurred.', 'google-login-only');
             return new WP_Error('google_login_error', $message);

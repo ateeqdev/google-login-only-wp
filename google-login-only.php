@@ -4,7 +4,7 @@
  * Plugin Name:       Google Login Only
  * Plugin URI:        https://hardtoskip.com/
  * Description:       Replaces standard WordPress password authentication with Google Sign-In and One Tap. Features beautiful UI, automatic user management, and enhanced security options. Born from necessity after a successful brute-force attack on hardtoskip, this plugin enforces Google-only authentication to keep your site secure.
- * Version:           2.0.0
+ * Version:           2.0.1
  * Author:            HardToSkip
  * Author URI:        https://hardtoskip.com/
  * License:           GPL v2 or later
@@ -27,7 +27,7 @@ if (!defined('WPINC')) {
 /**
  * Plugin version.
  */
-define('GLO_VERSION', '2.0.0');
+define('GLO_VERSION', '2.0.1');
 
 /**
  * Plugin paths and URLs.
@@ -94,6 +94,7 @@ function glo_uninstall()
 {
     delete_option('glo_settings');
     delete_option('glo_show_setup_notice');
+    delete_option('glo_wizard_progress');
 
     $users = get_users(['meta_key' => 'google_profile_picture']);
     foreach ($users as $user) {

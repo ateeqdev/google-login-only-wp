@@ -113,6 +113,10 @@ class GLO_GoogleLoginOnly
         $this->blockSensitiveFiles();
     }
 
+    /**
+     * Important Notice:
+     * This check can be easily bypassed, so it is necessary to handle it on server level (via nginx, caddy or apache configurations) 
+     */
     private function blockSensitiveFiles()
     {
         $request_uri = $_SERVER['REQUEST_URI'] ?? '';
