@@ -1,5 +1,4 @@
 <?php
-// === ./includes/class-glo-admin-settings.php ===
 
 class GLO_AdminSettings
 {
@@ -22,452 +21,44 @@ class GLO_AdminSettings
 
     public function enqueueAdminAssets($hook)
     {
-        if ($hook !== 'settings_page_' . $this->plugin_name) {
+        if (!in_array($hook, ['settings_page_' . $this->plugin_name, 'profile.php', 'user-edit.php'])) {
             return;
         }
 
-        wp_enqueue_script('glo-admin', GLO_PLUGIN_URL . 'assets/js/admin.js', ['jquery'], $this->version, true);
+        wp_enqueue_style('glo-admin', GLO_PLUGIN_URL . 'assets/css/admin.css', [], filemtime(GLO_PLUGIN_PATH . 'assets/css/admin.css'));
+
+        wp_enqueue_script('glo-admin', GLO_PLUGIN_URL . 'assets/js/admin.js', ['jquery'], filemtime(GLO_PLUGIN_PATH . 'assets/js/admin.js'), true);
+
+        $settings = get_option($this->option_name, []);
+        $allowed_users = $settings['allowed_users'] ?? [];
+
+        $user_template = '
+            <input type="email" name="' . esc_attr($this->option_name) . '[allowed_users][__INDEX__][email]" placeholder="' . esc_attr__('user@example.com', 'google-login-only') . '" required>
+            <select name="' . esc_attr($this->option_name) . '[allowed_users][__INDEX__][role]">
+                <option value="administrator">' . esc_html__('Administrator', 'google-login-only') . '</option>
+                <option value="editor">' . esc_html__('Editor', 'google-login-only') . '</option>
+                <option value="author">' . esc_html__('Author', 'google-login-only') . '</option>
+                <option value="contributor">' . esc_html__('Contributor', 'google-login-only') . '</option>
+                <option value="subscriber" selected>' . esc_html__('Subscriber', 'google-login-only') . '</option>
+            </select>
+            <button type="button" class="glo-remove-user">' . esc_html__('Remove', 'google-login-only') . '</button>';
+
         wp_localize_script('glo-admin', 'glo_admin', [
             'nonce' => wp_create_nonce('glo_admin_nonce'),
             'ajax_url' => admin_url('admin-ajax.php'),
+            'initial_user_count' => count($allowed_users),
+            'user_template' => $user_template,
             'strings' => [
                 'saving' => __('Saving...', 'google-login-only'),
-                'saved' => __('Saved!', 'google-login-only'),
+                'saved' => __('Settings Saved!', 'google-login-only'),
                 'error' => __('Error occurred', 'google-login-only'),
                 'testing' => __('Testing...', 'google-login-only'),
                 'connection_success' => __('Connection successful!', 'google-login-only'),
                 'connection_failed' => __('Connection failed', 'google-login-only'),
-                'confirm_reset' => __('Are you sure you want to reset this step? All current settings will be lost.', 'google-login-only')
+                'confirm_remove_user' => __('Are you sure you want to remove this user?', 'google-login-only'),
+                'fill_both_fields' => __('Please fill in both Client ID and Client Secret.', 'google-login-only'),
             ]
         ]);
-
-        add_action('admin_head', [$this, 'addAdminStyles']);
-    }
-
-    public function addAdminStyles()
-    {
-?>
-        <style>
-            .glo-wizard-container {
-                max-width: 1200px;
-                margin: 20px 0;
-            }
-
-            .glo-hero-section {
-                background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-                color: white;
-                padding: 40px;
-                border-radius: 12px;
-                text-align: center;
-                margin-bottom: 30px;
-                position: relative;
-                overflow: hidden;
-            }
-
-            .glo-hero-section::before {
-                content: '';
-                position: absolute;
-                top: 0;
-                left: 0;
-                right: 0;
-                bottom: 0;
-                background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 100" fill="rgba(255,255,255,0.1)"><polygon points="1000,0 1000,100 0,100"/></svg>') no-repeat;
-                background-size: cover;
-            }
-
-            .glo-hero-content {
-                position: relative;
-                z-index: 1;
-            }
-
-            .glo-hero-title {
-                font-size: 32px;
-                margin-bottom: 10px;
-                font-weight: 600;
-            }
-
-            .glo-hero-subtitle {
-                font-size: 18px;
-                opacity: 0.9;
-                margin-bottom: 20px;
-            }
-
-            .glo-hero-credit {
-                background: rgba(255, 255, 255, 0.15);
-                border-radius: 25px;
-                padding: 10px 20px;
-                display: inline-block;
-                backdrop-filter: blur(10px);
-            }
-
-            .glo-hero-credit a {
-                color: white;
-                text-decoration: none;
-                font-weight: bold;
-                font-size: 16px;
-            }
-
-            .glo-hero-credit a:hover {
-                text-decoration: underline;
-            }
-
-            .glo-wizard-nav {
-                background: white;
-                border-radius: 12px;
-                padding: 20px;
-                margin-bottom: 30px;
-                box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            }
-
-            .glo-progress-bar {
-                background: #f0f0f0;
-                height: 8px;
-                border-radius: 4px;
-                margin-bottom: 25px;
-                overflow: hidden;
-            }
-
-            .glo-progress-fill {
-                background: linear-gradient(90deg, #4285F4, #34A853);
-                height: 100%;
-                border-radius: 4px;
-                transition: width 0.3s ease;
-            }
-
-            .glo-steps {
-                display: flex;
-                justify-content: space-between;
-                flex-wrap: wrap;
-                gap: 10px;
-            }
-
-            .glo-step {
-                flex: 1;
-                text-align: center;
-                padding: 15px 10px;
-                border-radius: 8px;
-                cursor: pointer;
-                transition: all 0.3s ease;
-                min-width: 120px;
-                position: relative;
-            }
-
-            .glo-step.active {
-                background: #e3f2fd;
-                border: 2px solid #2196f3;
-            }
-
-            .glo-step.completed {
-                background: #e8f5e8;
-                border: 2px solid #4caf50;
-            }
-
-            .glo-step.pending {
-                background: #fafafa;
-                border: 2px solid #e0e0e0;
-                opacity: 0.7;
-            }
-
-            .glo-step-icon {
-                width: 32px;
-                height: 32px;
-                margin: 0 auto 8px;
-                border-radius: 50%;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                font-weight: bold;
-                color: white;
-            }
-
-            .glo-step.active .glo-step-icon {
-                background: #2196f3;
-            }
-
-            .glo-step.completed .glo-step-icon {
-                background: #4caf50;
-            }
-
-            .glo-step.pending .glo-step-icon {
-                background: #ccc;
-            }
-
-            .glo-step-title {
-                font-weight: 600;
-                margin-bottom: 5px;
-                font-size: 14px;
-            }
-
-            .glo-step-description {
-                font-size: 12px;
-                color: #666;
-                line-height: 1.3;
-            }
-
-            .glo-wizard-content {
-                background: white;
-                border-radius: 12px;
-                padding: 40px;
-                box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            }
-
-            .glo-step-header {
-                text-align: center;
-                margin-bottom: 40px;
-            }
-
-            .glo-step-header h2 {
-                font-size: 28px;
-                margin-bottom: 10px;
-                color: #333;
-            }
-
-            .glo-step-header p {
-                font-size: 16px;
-                color: #666;
-                max-width: 600px;
-                margin: 0 auto;
-                line-height: 1.5;
-            }
-
-            .glo-wizard-actions {
-                margin-top: 40px;
-                padding-top: 30px;
-                border-top: 1px solid #eee;
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-            }
-
-            .glo-btn {
-                padding: 12px 24px;
-                border-radius: 6px;
-                text-decoration: none;
-                font-weight: 600;
-                transition: all 0.3s ease;
-                border: none;
-                cursor: pointer;
-                display: inline-flex;
-                align-items: center;
-                gap: 8px;
-            }
-
-            .glo-btn-primary {
-                background: #4285F4;
-                color: white;
-            }
-
-            .glo-btn-primary:hover {
-                background: #3367D6;
-                transform: translateY(-1px);
-            }
-
-            .glo-btn-secondary {
-                background: #f5f5f5;
-                color: #333;
-                border: 1px solid #ddd;
-            }
-
-            .glo-btn-secondary:hover {
-                background: #e9e9e9;
-            }
-
-            .glo-btn-success {
-                background: #34A853;
-                color: white;
-            }
-
-            .glo-btn-success:hover {
-                background: #2e7d32;
-            }
-
-            .glo-form-group {
-                margin-bottom: 25px;
-            }
-
-            .glo-form-group label {
-                display: block;
-                margin-bottom: 8px;
-                font-weight: 600;
-                color: #333;
-            }
-
-            .glo-form-group input,
-            .glo-form-group select,
-            .glo-form-group textarea {
-                width: 100%;
-                padding: 12px 16px;
-                border: 2px solid #e1e5e9;
-                border-radius: 6px;
-                font-size: 14px;
-                transition: border-color 0.3s ease;
-            }
-
-            .glo-form-group input:focus,
-            .glo-form-group select:focus,
-            .glo-form-group textarea:focus {
-                outline: none;
-                border-color: #4285F4;
-                box-shadow: 0 0 0 3px rgba(66, 133, 244, 0.1);
-            }
-
-            .glo-info-card {
-                background: #f8f9fa;
-                border: 1px solid #e9ecef;
-                border-radius: 8px;
-                padding: 20px;
-                margin-bottom: 20px;
-            }
-
-            .glo-info-card.success {
-                background: #d4edda;
-                border-color: #c3e6cb;
-                color: #155724;
-            }
-
-            .glo-info-card.warning {
-                background: #fff3cd;
-                border-color: #ffeaa7;
-                color: #856404;
-            }
-
-            .glo-info-card.error {
-                background: #f8d7da;
-                border-color: #f5c6cb;
-                color: #721c24;
-            }
-
-            .glo-copy-field {
-                display: flex;
-                gap: 10px;
-                align-items: stretch;
-            }
-
-            .glo-copy-field input {
-                flex: 1;
-                font-family: monospace;
-                background: #f8f9fa;
-            }
-
-            .glo-copy-btn {
-                padding: 12px 16px;
-                background: #6c757d;
-                color: white;
-                border: none;
-                border-radius: 6px;
-                cursor: pointer;
-                white-space: nowrap;
-            }
-
-            .glo-copy-btn:hover {
-                background: #5a6268;
-            }
-
-            .glo-security-grid {
-                display: grid;
-                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-                gap: 20px;
-                margin-top: 20px;
-            }
-
-            .glo-security-card {
-                background: #f8f9fa;
-                border: 2px solid #e9ecef;
-                border-radius: 8px;
-                padding: 20px;
-                transition: border-color 0.3s ease;
-            }
-
-            .glo-security-card.enabled {
-                border-color: #28a745;
-                background: #d4edda;
-            }
-
-            .glo-security-card h4 {
-                margin-top: 0;
-                margin-bottom: 10px;
-                display: flex;
-                align-items: center;
-                gap: 10px;
-            }
-
-            .glo-security-toggle {
-                width: 20px;
-                height: 20px;
-            }
-
-            .glo-user-list {
-                margin-top: 20px;
-            }
-
-            .glo-user-item {
-                display: flex;
-                align-items: center;
-                gap: 15px;
-                padding: 15px;
-                background: #f8f9fa;
-                border-radius: 8px;
-                margin-bottom: 10px;
-            }
-
-            .glo-user-item input {
-                flex: 1;
-                margin: 0;
-            }
-
-            .glo-remove-user {
-                background: #dc3545;
-                color: white;
-                border: none;
-                padding: 8px 12px;
-                border-radius: 4px;
-                cursor: pointer;
-            }
-
-            .glo-loading {
-                display: inline-block;
-                width: 16px;
-                height: 16px;
-                border: 2px solid #f3f3f3;
-                border-top: 2px solid #4285F4;
-                border-radius: 50%;
-                animation: spin 1s linear infinite;
-            }
-
-            @keyframes spin {
-                0% {
-                    transform: rotate(0deg);
-                }
-
-                100% {
-                    transform: rotate(360deg);
-                }
-            }
-
-            .glo-hidden {
-                display: none !important;
-            }
-
-            @media (max-width: 768px) {
-                .glo-steps {
-                    flex-direction: column;
-                }
-
-                .glo-step {
-                    min-width: auto;
-                }
-
-                .glo-wizard-actions {
-                    flex-direction: column;
-                    gap: 15px;
-                }
-
-                .glo-security-grid {
-                    grid-template-columns: 1fr;
-                }
-            }
-        </style>
-    <?php
     }
 
     public function addPluginPage()
@@ -495,7 +86,7 @@ class GLO_AdminSettings
         $current_step = isset($_GET['step']) ? sanitize_key($_GET['step']) : 'overview';
         $progress = get_option($this->wizard_progress_option, []);
 
-    ?>
+?>
         <div class="wrap glo-wizard-container">
             <?php $this->renderHeroSection(); ?>
             <?php $this->renderWizardNavigation($current_step, $progress); ?>
@@ -632,14 +223,14 @@ class GLO_AdminSettings
     ?>
         <div class="glo-step-header">
             <h2><?php _e('Google API Configuration', 'google-login-only'); ?></h2>
-            <p><?php _e('Set up your Google OAuth credentials to enable secure authentication. This is the foundation of the entire system.', 'google-login-only'); ?></p>
+            <p><?php _e('Set up your Google OAuth credentials to enable secure authentication.', 'google-login-only'); ?></p>
         </div>
 
         <form method="post" action="options.php" id="google-api-form">
             <?php settings_fields($this->plugin_name); ?>
 
             <div class="glo-info-card">
-                <h4><?php _e('📋 Step-by-Step Instructions', 'google-login-only'); ?></h4>
+                <h4><?php _e('Step-by-Step Instructions', 'google-login-only'); ?></h4>
                 <ol>
                     <li><?php printf(__('Go to the %s', 'google-login-only'), '<a href="https://console.cloud.google.com/" target="_blank">' . __('Google Cloud Console', 'google-login-only') . '</a>'); ?></li>
                     <li><?php _e('Create a new project or select an existing one', 'google-login-only'); ?></li>
@@ -654,11 +245,9 @@ class GLO_AdminSettings
                 <label><?php _e('Authorized Redirect URIs (copy these exactly)', 'google-login-only'); ?></label>
                 <div class="glo-copy-field">
                     <input type="text" readonly value="<?php echo esc_attr(home_url('?action=google_login_callback')); ?>">
-                    <button type="button" class="glo-copy-btn" onclick="copyToClipboard(this)"><?php _e('Copy', 'google-login-only'); ?></button>
-                </div>
-                <div class="glo-copy-field" style="margin-top: 10px;">
+                    <button type="button" class="glo-copy-btn"><?php _e('Copy', 'google-login-only'); ?></button>
                     <input type="text" readonly value="<?php echo esc_attr(home_url('?action=google_one_tap_callback')); ?>">
-                    <button type="button" class="glo-copy-btn" onclick="copyToClipboard(this)"><?php _e('Copy', 'google-login-only'); ?></button>
+                    <button type="button" class="glo-copy-btn"><?php _e('Copy', 'google-login-only'); ?></button>
                 </div>
             </div>
 
@@ -666,66 +255,28 @@ class GLO_AdminSettings
                 <label><?php _e('Authorized JavaScript Origins', 'google-login-only'); ?></label>
                 <div class="glo-copy-field">
                     <input type="text" readonly value="<?php echo esc_attr(home_url()); ?>">
-                    <button type="button" class="glo-copy-btn" onclick="copyToClipboard(this)"><?php _e('Copy', 'google-login-only'); ?></button>
+                    <button type="button" class="glo-copy-btn"><?php _e('Copy', 'google-login-only'); ?></button>
                 </div>
             </div>
 
             <div class="glo-form-group">
                 <label for="client_id"><?php _e('Google Client ID', 'google-login-only'); ?></label>
-                <input type="text" id="client_id" name="<?php echo esc_attr($this->option_name); ?>[client_id]" value="<?php echo esc_attr($settings['client_id'] ?? ''); ?>" placeholder="<?php esc_attr_e('Your Google OAuth Client ID', 'google-login-only'); ?>" required>
+                <input type="text" id="client_id" name="<?php echo esc_attr($this->option_name); ?>[client_id]" value="<?php echo esc_attr($settings['client_id'] ?? ''); ?>" required>
             </div>
 
             <div class="glo-form-group">
                 <label for="client_secret"><?php _e('Google Client Secret', 'google-login-only'); ?></label>
-                <input type="password" id="client_secret" name="<?php echo esc_attr($this->option_name); ?>[client_secret]" value="<?php echo esc_attr($settings['client_secret'] ?? ''); ?>" placeholder="<?php esc_attr_e('Your Google OAuth Client Secret', 'google-login-only'); ?>" required>
+                <input type="password" id="client_secret" name="<?php echo esc_attr($this->option_name); ?>[client_secret]" value="<?php echo esc_attr($settings['client_secret'] ?? ''); ?>" required>
             </div>
 
             <div class="glo-wizard-actions">
-                <a href="<?php echo esc_url(admin_url('options-general.php?page=' . $this->plugin_name . '&step=overview')); ?>" class="glo-btn glo-btn-secondary">
-                    <span>←</span>
-                    <?php _e('Back', 'google-login-only'); ?>
-                </a>
-                <div style="display: flex; gap: 10px;">
-                    <button type="button" class="glo-btn glo-btn-secondary" onclick="testConnection()"><?php _e('Test Connection', 'google-login-only'); ?></button>
-                    <button type="submit" class="glo-btn glo-btn-primary">
-                        <?php _e('Save & Continue', 'google-login-only'); ?>
-                        <span>→</span>
-                    </button>
+                <a href="<?php echo esc_url(admin_url('options-general.php?page=' . $this->plugin_name . '&step=overview')); ?>" class="glo-btn glo-btn-secondary">&larr; <?php _e('Back', 'google-login-only'); ?></a>
+                <div>
+                    <button type="button" id="glo-test-connection-btn" class="glo-btn glo-btn-secondary"><?php _e('Test Connection', 'google-login-only'); ?></button>
+                    <button type="submit" class="glo-btn glo-btn-primary"><?php _e('Save & Continue', 'google-login-only'); ?> &rarr;</button>
                 </div>
             </div>
         </form>
-
-        <script>
-            function copyToClipboard(button) {
-                const input = button.previousElementSibling;
-                input.select();
-                document.execCommand('copy');
-
-                const originalText = button.textContent;
-                button.textContent = '<?php esc_js('Copied!', 'google-login-only'); ?>';
-                button.style.background = '#28a745';
-
-                setTimeout(() => {
-                    button.textContent = originalText;
-                    button.style.background = '';
-                }, 2000);
-            }
-
-            function testConnection() {
-                // Implementation for testing Google API connection
-                alert('<?php esc_js('Connection test functionality coming soon!', 'google-login-only'); ?>');
-            }
-
-            document.getElementById('google-api-form').addEventListener('submit', function(e) {
-                const clientId = document.getElementById('client_id').value;
-                const clientSecret = document.getElementById('client_secret').value;
-
-                if (!clientId || !clientSecret) {
-                    e.preventDefault();
-                    alert('<?php esc_js('Please fill in both Client ID and Client Secret', 'google-login-only'); ?>');
-                }
-            });
-        </script>
     <?php
     }
 
@@ -819,14 +370,8 @@ class GLO_AdminSettings
     ?>
         <div class="glo-step-header">
             <h2><?php _e('User Management', 'google-login-only'); ?></h2>
-            <p><?php _e('Manage who can access your site. Add users who should be able to log in with their Google accounts.', 'google-login-only'); ?></p>
+            <p><?php _e('Manage who can access your site by adding their Google email addresses.', 'google-login-only'); ?></p>
         </div>
-
-        <div class="glo-info-card">
-            <h4><?php _e('📝 How User Management Works', 'google-login-only'); ?></h4>
-            <p><?php _e('Add email addresses for users who should be able to access your site. When they sign in with Google for the first time, they\'ll automatically be created as WordPress users with the role you specify.', 'google-login-only'); ?></p>
-        </div>
-
         <form method="post" action="options.php">
             <?php settings_fields($this->plugin_name); ?>
             <input type="hidden" name="<?php echo esc_attr($this->option_name); ?>[client_id]" value="<?php echo esc_attr($settings['client_id'] ?? ''); ?>">
@@ -845,7 +390,7 @@ class GLO_AdminSettings
                                 <option value="contributor"><?php _e('Contributor', 'google-login-only'); ?></option>
                                 <option value="subscriber" selected><?php _e('Subscriber', 'google-login-only'); ?></option>
                             </select>
-                            <button type="button" class="glo-remove-user" onclick="removeUser(this)"><?php _e('Remove', 'google-login-only'); ?></button>
+                            <button type="button" class="glo-remove-user"><?php _e('Remove', 'google-login-only'); ?></button>
                         </div>
                     <?php else: ?>
                         <?php foreach ($allowed_users as $index => $user): ?>
@@ -858,56 +403,19 @@ class GLO_AdminSettings
                                     <option value="contributor" <?php selected($user['role'], 'contributor'); ?>><?php _e('Contributor', 'google-login-only'); ?></option>
                                     <option value="subscriber" <?php selected($user['role'], 'subscriber'); ?>><?php _e('Subscriber', 'google-login-only'); ?></option>
                                 </select>
-                                <button type="button" class="glo-remove-user" onclick="removeUser(this)"><?php _e('Remove', 'google-login-only'); ?></button>
+                                <button type="button" class="glo-remove-user"><?php _e('Remove', 'google-login-only'); ?></button>
                             </div>
                         <?php endforeach; ?>
                     <?php endif; ?>
                 </div>
-                <button type="button" class="glo-btn glo-btn-secondary" onclick="addUser()" style="margin-top: 15px;">
-                    <?php _e('+ Add User', 'google-login-only'); ?>
-                </button>
+                <button type="button" id="glo-add-user-btn" class="glo-btn glo-btn-secondary" style="margin-top: 15px;">+ <?php _e('Add User', 'google-login-only'); ?></button>
             </div>
 
             <div class="glo-wizard-actions">
-                <a href="<?php echo esc_url(admin_url('options-general.php?page=' . $this->plugin_name . '&step=security')); ?>" class="glo-btn glo-btn-secondary">
-                    <span>←</span>
-                    <?php _e('Back', 'google-login-only'); ?>
-                </a>
-                <button type="submit" class="glo-btn glo-btn-primary">
-                    <?php _e('Save & Continue', 'google-login-only'); ?>
-                    <span>→</span>
-                </button>
+                <a href="<?php echo esc_url(admin_url('options-general.php?page=' . $this->plugin_name . '&step=security')); ?>" class="glo-btn glo-btn-secondary">&larr; <?php _e('Back', 'google-login-only'); ?></a>
+                <button type="submit" class="glo-btn glo-btn-primary"><?php _e('Save & Continue', 'google-login-only'); ?> &rarr;</button>
             </div>
         </form>
-
-        <script>
-            let userIndex = <?php echo count($allowed_users); ?>;
-
-            function addUser() {
-                const userList = document.getElementById('user-list');
-                const newUser = document.createElement('div');
-                newUser.className = 'glo-user-item';
-                newUser.innerHTML = `
-                <input type="email" name="<?php echo esc_attr($this->option_name); ?>[allowed_users][${userIndex}][email]" placeholder="<?php esc_attr_e('user@example.com', 'google-login-only'); ?>" required>
-                <select name="<?php echo esc_attr($this->option_name); ?>[allowed_users][${userIndex}][role]">
-                    <option value="administrator"><?php _e('Administrator', 'google-login-only'); ?></option>
-                    <option value="editor"><?php _e('Editor', 'google-login-only'); ?></option>
-                    <option value="author"><?php _e('Author', 'google-login-only'); ?></option>
-                    <option value="contributor"><?php _e('Contributor', 'google-login-only'); ?></option>
-                    <option value="subscriber" selected><?php _e('Subscriber', 'google-login-only'); ?></option>
-                </select>
-                <button type="button" class="glo-remove-user" onclick="removeUser(this)"><?php _e('Remove', 'google-login-only'); ?></button>
-            `;
-                userList.appendChild(newUser);
-                userIndex++;
-            }
-
-            function removeUser(button) {
-                if (confirm('<?php esc_js('Are you sure you want to remove this user?', 'google-login-only'); ?>')) {
-                    button.closest('.glo-user-item').remove();
-                }
-            }
-        </script>
     <?php
     }
 
@@ -1158,20 +666,24 @@ class GLO_AdminSettings
             wp_send_json_error(__('Insufficient permissions', 'google-login-only'));
         }
 
-        $settings = get_option($this->option_name, []);
-        $client_id = $settings['client_id'] ?? '';
+        $client_id = isset($_POST['client_id']) ? sanitize_text_field($_POST['client_id']) : '';
+        $client_secret = isset($_POST['client_secret']) ? sanitize_text_field($_POST['client_secret']) : '';
 
-        if (empty($client_id)) {
-            wp_send_json_error(__('Client ID is required for testing', 'google-login-only'));
+        if (empty($client_id) || empty($client_secret)) {
+            wp_send_json_error(__('Please enter both Client ID and Client Secret before testing.', 'google-login-only'));
         }
 
-        // Simple test to check if the client ID format looks valid
-        if (strpos($client_id, 'googleusercontent.com') === false) {
-            wp_send_json_error(__('Client ID format appears invalid', 'google-login-only'));
+        // Simple validation checks on the format
+        if (strpos($client_id, '.apps.googleusercontent.com') === false) {
+            wp_send_json_error(__('The Client ID does not appear to be in the correct format.', 'google-login-only'));
+        }
+
+        if (strlen($client_secret) < 10) { // Google secrets are typically much longer
+            wp_send_json_error(__('The Client Secret appears to be too short.', 'google-login-only'));
         }
 
         wp_send_json_success([
-            'message' => __('Basic validation passed. Full testing requires user authentication.', 'google-login-only')
+            'message' => __('Credentials format validation passed. Save your settings to apply them.', 'google-login-only')
         ]);
     }
 }

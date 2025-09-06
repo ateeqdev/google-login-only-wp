@@ -1,0 +1,441 @@
+/* --- Wizard Container --- */
+.glo-wizard-container {
+  max-width: 1200px;
+  margin: 20px 0;
+}
+
+/* --- Hero Section --- */
+.glo-hero-section {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 40px;
+  border-radius: 12px;
+  text-align: center;
+  margin-bottom: 30px;
+  position: relative;
+  overflow: hidden;
+}
+
+.glo-hero-section::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 100" fill="rgba(255,255,255,0.1)"><polygon points="1000,0 1000,100 0,100"/></svg>')
+    no-repeat;
+  background-size: cover;
+}
+
+.glo-hero-content {
+  position: relative;
+  z-index: 1;
+}
+
+.glo-hero-title {
+  font-size: 32px;
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+
+.glo-hero-subtitle {
+  font-size: 18px;
+  opacity: 0.9;
+  margin-bottom: 20px;
+}
+
+/* --- Wizard Navigation --- */
+.glo-wizard-nav {
+  background: white;
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 30px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.glo-progress-bar {
+  background: #f0f0f0;
+  height: 8px;
+  border-radius: 4px;
+  margin-bottom: 25px;
+  overflow: hidden;
+}
+
+.glo-progress-fill {
+  background: linear-gradient(90deg, #4285f4, #34a853);
+  height: 100%;
+  border-radius: 4px;
+  transition: width 0.3s ease;
+}
+
+.glo-steps {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.glo-step {
+  flex: 1;
+  text-align: center;
+  padding: 15px 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  min-width: 120px;
+  position: relative;
+}
+
+.glo-step.active {
+  background: #e3f2fd;
+  border: 2px solid #2196f3;
+}
+
+.glo-step.completed {
+  background: #e8f5e8;
+  border: 2px solid #4caf50;
+}
+
+.glo-step.pending {
+  background: #fafafa;
+  border: 2px solid #e0e0e0;
+  opacity: 0.7;
+}
+
+.glo-step-icon {
+  width: 32px;
+  height: 32px;
+  margin: 0 auto 8px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  color: white;
+}
+
+.glo-step.active .glo-step-icon {
+  background: #2196f3;
+}
+
+.glo-step.completed .glo-step-icon {
+  background: #4caf50;
+}
+
+.glo-step.pending .glo-step-icon {
+  background: #ccc;
+}
+
+.glo-step-title {
+  font-weight: 600;
+  margin-bottom: 5px;
+  font-size: 14px;
+}
+
+.glo-step-description {
+  font-size: 12px;
+  color: #666;
+  line-height: 1.3;
+}
+
+/* --- Wizard Content --- */
+.glo-wizard-content {
+  background: white;
+  border-radius: 12px;
+  padding: 40px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.glo-step-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.glo-step-header h2 {
+  font-size: 28px;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.glo-step-header p {
+  font-size: 16px;
+  color: #666;
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.5;
+}
+
+.glo-wizard-actions {
+  margin-top: 40px;
+  padding-top: 30px;
+  border-top: 1px solid #eee;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* --- Form Elements & Buttons --- */
+.glo-btn {
+  padding: 12px 24px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  border: none;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.glo-btn-primary {
+  background: #4285f4;
+  color: white;
+}
+
+.glo-btn-primary:hover {
+  background: #3367d6;
+  transform: translateY(-1px);
+}
+
+.glo-btn-secondary {
+  background: #f5f5f5;
+  color: #333;
+  border: 1px solid #ddd;
+}
+
+.glo-btn-secondary:hover {
+  background: #e9e9e9;
+}
+
+.glo-btn-success {
+  background: #34a853;
+  color: white;
+}
+
+.glo-btn-success:hover {
+  background: #2e7d32;
+}
+
+.glo-form-group {
+  margin-bottom: 25px;
+}
+
+.glo-form-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
+  color: #333;
+}
+
+.glo-form-group input,
+.glo-form-group select,
+.glo-form-group textarea {
+  width: 100%;
+  padding: 12px 16px;
+  border: 2px solid #e1e5e9;
+  border-radius: 6px;
+  font-size: 14px;
+  transition: border-color 0.3s ease;
+}
+
+.glo-form-group input:focus,
+.glo-form-group select:focus,
+.glo-form-group textarea:focus {
+  outline: none;
+  border-color: #4285f4;
+  box-shadow: 0 0 0 3px rgba(66, 133, 244, 0.1);
+}
+
+/* --- Cards & Info --- */
+.glo-info-card {
+  background: #f8f9fa;
+  border: 1px solid #e9ecef;
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.glo-info-card.success {
+  background: #d4edda;
+  border-color: #c3e6cb;
+  color: #155724;
+}
+
+.glo-info-card.warning {
+  background: #fff3cd;
+  border-color: #ffeaa7;
+  color: #856404;
+}
+
+.glo-info-card.error {
+  background: #f8d7da;
+  border-color: #f5c6cb;
+  color: #721c24;
+}
+
+.glo-copy-field {
+  display: flex;
+  gap: 10px;
+  align-items: stretch;
+}
+
+.glo-copy-field input {
+  flex: 1;
+  font-family: monospace;
+  background: #f8f9fa;
+}
+
+.glo-copy-btn {
+  padding: 12px 16px;
+  background: #6c757d;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.glo-copy-btn:hover {
+  background: #5a6268;
+}
+
+/* --- Security & Users --- */
+.glo-security-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.glo-security-card {
+  background: #f8f9fa;
+  border: 2px solid #e9ecef;
+  border-radius: 8px;
+  padding: 20px;
+  transition: border-color 0.3s ease;
+}
+
+.glo-security-card.enabled {
+  border-color: #28a745;
+  background: #d4edda;
+}
+
+.glo-security-card h4 {
+  margin-top: 0;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.glo-security-toggle {
+  width: 20px;
+  height: 20px;
+}
+
+.glo-user-list {
+  margin-top: 20px;
+}
+
+.glo-user-item {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 15px;
+  background: #f8f9fa;
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+
+.glo-user-item input {
+  flex: 1;
+  margin: 0;
+}
+
+.glo-remove-user {
+  background: #dc3545;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+/* --- Utility --- */
+.glo-loading {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(0, 0, 0, 0.1);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: glo-spin 1s linear infinite;
+}
+
+@keyframes glo-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.glo-hidden {
+  display: none !important;
+}
+
+/* --- User Profile Page Styles --- */
+.glo-profile-picture {
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #ddd;
+}
+
+.glo-auth-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #4285f4;
+  color: white;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+}
+
+.glo-auth-badge svg {
+  width: 16px;
+  height: 16px;
+  fill: currentColor;
+}
+
+/* --- Responsive --- */
+@media (max-width: 768px) {
+  .glo-steps {
+    flex-direction: column;
+  }
+
+  .glo-step {
+    min-width: auto;
+  }
+
+  .glo-wizard-actions {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .glo-security-grid {
+    grid-template-columns: 1fr;
+  }
+}
+.notice,
+.notice p,
+.notice strong,
+.notice a {
+  color: #000 !important;
+}
+
+.notice a {
+  text-decoration: underline;
+}

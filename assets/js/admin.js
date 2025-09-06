@@ -1,77 +1,105 @@
+let userIndex = 0;
+
 document.addEventListener("DOMContentLoaded", function () {
-  // Initialize wizard functionality
   initWizardProgress();
   initSecurityToggles();
-  initTestConnection();
+  initCopyButtons();
+  initTestConnectionButton();
+  initUserManagement();
+  initApiFormValidation();
 
-  // Show success messages
   if (new URLSearchParams(window.location.search).has("updated")) {
     showNotification(glo_admin.strings.saved, "success");
   }
 });
 
 function initWizardProgress() {
-  // Update progress bar based on completed steps
   const completedSteps = document.querySelectorAll(
     ".glo-step.completed"
   ).length;
   const totalSteps = document.querySelectorAll(".glo-step").length;
   const progressBar = document.querySelector(".glo-progress-fill");
-
   if (progressBar) {
-    const percentage = (completedSteps / totalSteps) * 100;
-    progressBar.style.width = percentage + "%";
+    progressBar.style.width = `${(completedSteps / totalSteps) * 100}%`;
   }
 }
 
 function initSecurityToggles() {
-  const securityCards = document.querySelectorAll(".glo-security-card");
-
-  securityCards.forEach((card) => {
-    const checkbox = card.querySelector(".glo-security-toggle");
-    if (checkbox) {
+  document
+    .querySelectorAll(".glo-security-card .glo-security-toggle")
+    .forEach((checkbox) => {
       checkbox.addEventListener("change", function () {
-        if (this.checked) {
-          card.classList.add("enabled");
-        } else {
-          card.classList.remove("enabled");
-        }
+        this.closest(".glo-security-card").classList.toggle(
+          "enabled",
+          this.checked
+        );
       });
+    });
+}
+
+function initCopyButtons() {
+  document.querySelectorAll(".glo-copy-btn").forEach((button) => {
+    button.addEventListener("click", () => copyToClipboard(button));
+  });
+}
+
+function initTestConnectionButton() {
+  const testButton = document.getElementById("glo-test-connection-btn");
+  if (testButton) {
+    testButton.addEventListener("click", testGoogleConnection);
+  }
+}
+
+function initUserManagement() {
+  const userList = document.getElementById("user-list");
+  if (!userList) return;
+
+  userIndex = glo_admin.initial_user_count;
+
+  const addUserBtn = document.getElementById("glo-add-user-btn");
+  if (addUserBtn) {
+    addUserBtn.addEventListener("click", addUser);
+  }
+
+  userList.addEventListener("click", function (e) {
+    if (e.target && e.target.classList.contains("glo-remove-user")) {
+      removeUser(e.target);
     }
   });
 }
 
-function initTestConnection() {
-  const testButton = document.querySelector('[onclick="testConnection()"]');
-  if (testButton) {
-    testButton.onclick = function () {
-      testGoogleConnection();
-    };
+function initApiFormValidation() {
+  const form = document.getElementById("google-api-form");
+  if (form) {
+    form.addEventListener("submit", function (e) {
+      if (
+        !document.getElementById("client_id").value ||
+        !document.getElementById("client_secret").value
+      ) {
+        e.preventDefault();
+        alert(glo_admin.strings.fill_both_fields);
+      }
+    });
   }
 }
 
-function testGoogleConnection() {
+function testGoogleConnection(event) {
+  const button = event.target;
+  const originalText = button.textContent;
   const clientId = document.getElementById("client_id").value;
   const clientSecret = document.getElementById("client_secret").value;
 
   if (!clientId || !clientSecret) {
-    showNotification(
-      glo_admin.strings.error + ": Both Client ID and Secret are required",
-      "error"
-    );
+    showNotification(glo_admin.strings.fill_both_fields, "error");
     return;
   }
 
-  const button = event.target;
-  const originalText = button.textContent;
-  button.textContent = glo_admin.strings.testing;
+  button.innerHTML = `<span class="glo-loading"></span> ${glo_admin.strings.testing}`;
   button.disabled = true;
 
   fetch(glo_admin.ajax_url, {
     method: "POST",
-    headers: {
-      "Content-Type": "application/x-www-form-urlencoded",
-    },
+    headers: { "Content-Type": "application/x-www-form-urlencoded" },
     body: new URLSearchParams({
       action: "glo_test_connection",
       nonce: glo_admin.nonce,
@@ -82,108 +110,75 @@ function testGoogleConnection() {
     .then((response) => response.json())
     .then((data) => {
       if (data.success) {
-        showNotification(glo_admin.strings.connection_success, "success");
+        showNotification(data.data.message, "success");
       } else {
         showNotification(
-          glo_admin.strings.connection_failed + ": " + data.data,
+          `${glo_admin.strings.connection_failed}: ${data.data}`,
           "error"
         );
       }
     })
-    .catch((error) => {
-      showNotification(glo_admin.strings.connection_failed, "error");
-    })
+    .catch(() => showNotification(glo_admin.strings.connection_failed, "error"))
     .finally(() => {
       button.textContent = originalText;
       button.disabled = false;
     });
 }
 
-function showNotification(message, type = "info") {
-  // Create notification element
-  const notification = document.createElement("div");
-  notification.className = `glo-notification glo-notification-${type}`;
-  notification.style.cssText = `
-        position: fixed;
-        top: 20px;
-        right: 20px;
-        background: ${type === "success" ? "#d4edda" : type === "error" ? "#f8d7da" : "#d1ecf1"};
-        color: ${type === "success" ? "#155724" : type === "error" ? "#721c24" : "#0c5460"};
-        padding: 15px 20px;
-        border-radius: 8px;
-        border: 1px solid ${type === "success" ? "#c3e6cb" : type === "error" ? "#f5c6cb" : "#bee5eb"};
-        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-        z-index: 9999;
-        max-width: 400px;
-        opacity: 0;
-        transform: translateX(100%);
-        transition: all 0.3s ease;
-    `;
-
-  notification.textContent = message;
-  document.body.appendChild(notification);
-
-  // Animate in
-  setTimeout(() => {
-    notification.style.opacity = "1";
-    notification.style.transform = "translateX(0)";
-  }, 100);
-
-  // Remove after 5 seconds
-  setTimeout(() => {
-    notification.style.opacity = "0";
-    notification.style.transform = "translateX(100%)";
-    setTimeout(() => {
-      if (notification.parentNode) {
-        notification.parentNode.removeChild(notification);
-      }
-    }, 300);
-  }, 5000);
+function addUser() {
+  const userList = document.getElementById("user-list");
+  const newUser = document.createElement("div");
+  newUser.className = "glo-user-item";
+  newUser.innerHTML = glo_admin.user_template.replace(/__INDEX__/g, userIndex);
+  userList.appendChild(newUser);
+  userIndex++;
 }
 
-// Copy to clipboard functionality
+function removeUser(button) {
+  if (confirm(glo_admin.strings.confirm_remove_user)) {
+    button.closest(".glo-user-item").remove();
+  }
+}
+
 function copyToClipboard(button) {
   const input = button.previousElementSibling;
-
-  if (navigator.clipboard && window.isSecureContext) {
-    navigator.clipboard
-      .writeText(input.value)
-      .then(() => {
-        showCopySuccess(button);
-      })
-      .catch(() => {
-        fallbackCopy(input, button);
-      });
-  } else {
-    fallbackCopy(input, button);
-  }
-}
-
-function fallbackCopy(input, button) {
-  input.select();
-  input.setSelectionRange(0, 99999);
-
-  try {
-    const successful = document.execCommand("copy");
-    if (successful) {
-      showCopySuccess(button);
-    } else {
-      showNotification("Failed to copy to clipboard", "error");
-    }
-  } catch (err) {
-    showNotification("Failed to copy to clipboard", "error");
-  }
+  navigator.clipboard.writeText(input.value).then(
+    () => showCopySuccess(button),
+    () => showNotification("Failed to copy.", "error")
+  );
 }
 
 function showCopySuccess(button) {
   const originalText = button.textContent;
-  const originalBg = button.style.backgroundColor;
-
   button.textContent = "Copied!";
   button.style.backgroundColor = "#28a745";
-
   setTimeout(() => {
     button.textContent = originalText;
-    button.style.backgroundColor = originalBg;
+    button.style.backgroundColor = "";
   }, 2000);
+}
+
+function showNotification(message, type = "info") {
+  const notification = document.createElement("div");
+  notification.className = `glo-notification glo-notification-${type}`;
+  notification.textContent = message;
+  notification.style.cssText = `
+        position: fixed; top: 40px; right: 20px; z-index: 9999;
+        background: ${type === "success" ? "#d4edda" : "#f8d7da"};
+        color: ${type === "success" ? "#155724" : "#721c24"};
+        padding: 15px 20px; border-radius: 8px;
+        border-left: 5px solid ${type === "success" ? "#28a745" : "#dc3545"};
+        box-shadow: 0 4px 12px rgba(0,0,0,0.15); opacity: 0;
+        transform: translateX(100%); transition: all 0.4s ease;
+    `;
+  document.body.appendChild(notification);
+  setTimeout(() => {
+    notification.style.opacity = "1";
+    notification.style.transform = "translateX(0)";
+  }, 10);
+  setTimeout(() => {
+    notification.style.opacity = "0";
+    notification.style.transform = "translateX(100%)";
+    setTimeout(() => notification.remove(), 400);
+  }, 5000);
 }
