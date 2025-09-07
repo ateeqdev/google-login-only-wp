@@ -125,10 +125,9 @@ class GLO_FrontendHooks
     {
     ?>
         <div class="glo-login-footer">
-            <div class="glo-developer-credit">
-                <div class="credit-title"><?php _e('Secure Authentication by', 'google-login-only'); ?></div>
+            <div class="glo-credit"><?php _e('Secure Authentication by', 'google-login-only'); ?>
                 <a href="https://hardtoskip.com" target="_blank" rel="dofollow" class="credit-link">HardToSkip.com</a>
-                <div class="credit-description"><?php _e('AI-Powered Viral Content Generator', 'google-login-only'); ?></div>
+                <?php _e('AI-Powered Viral Content Generator', 'google-login-only'); ?>
             </div>
         </div>
 <?php
@@ -170,7 +169,15 @@ class GLO_FrontendHooks
                 'invalid_state'         => __('Invalid authentication session. Please try logging in again.', 'google-login-only'),
             ];
             $message = $messages[$error_code] ?? __('An unknown authentication error occurred.', 'google-login-only');
-            return new WP_Error('google_login_error', $message);
+
+            $error_message = '<strong>' . __('Authentication Error:', 'google-login-only') . '</strong> ' . $message;
+
+            if (is_wp_error($errors)) {
+                $errors->add('google_login_error', $error_message);
+                return $errors;
+            } else {
+                return new WP_Error('google_login_error', $error_message);
+            }
         }
         return $errors;
     }

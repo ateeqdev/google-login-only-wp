@@ -149,11 +149,6 @@ class GLO_GoogleAuth
             return;
         }
 
-        if (!isset($_POST['nonce']) || !wp_verify_nonce($_POST['nonce'], 'google_one_tap_nonce')) {
-            $this->redirectWithError('invalid_state');
-            return;
-        }
-
         if (
             empty($_GET['state']) ||
             !isset($_SESSION['glo_oauth_state']) ||
@@ -164,7 +159,6 @@ class GLO_GoogleAuth
         }
 
         unset($_SESSION['glo_oauth_state']);
-
 
         // 1. Exchange authorization code for an access token
         $token_response = wp_remote_post('https://oauth2.googleapis.com/token', [
