@@ -58,7 +58,7 @@ function showAuthenticationLoading() {
   overlay.innerHTML = `
     <div class="loading-content">
       <div class="spinner"></div>
-      <p>Authenticating with Google...</p>
+      <p>${glo_login_params.authenticating}</p>
     </div>
   `;
 
@@ -98,11 +98,14 @@ window.addEventListener("load", function () {
         google.accounts.id.prompt((notification) => {
           if (notification.isNotDisplayed()) {
             console.log(
-              "One Tap not displayed:",
+              glo_login_params.one_tap_not_displayed,
               notification.getNotDisplayedReason()
             );
           } else if (notification.isSkippedMoment()) {
-            console.log("One Tap skipped:", notification.getSkippedReason());
+            console.log(
+              glo_login_params.one_tap_skipped,
+              notification.getSkippedReason()
+            );
           }
         });
       }, promptDelay);

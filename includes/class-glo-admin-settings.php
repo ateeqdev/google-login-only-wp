@@ -34,13 +34,9 @@ class GLO_AdminSettings
 
         $user_template = '
             <input type="email" name="' . esc_attr($this->option_name) . '[allowed_users][__INDEX__][email]" placeholder="' . esc_attr__('user@example.com', 'google-login-only') . '" required>
-            <select name="' . esc_attr($this->option_name) . '[allowed_users][__INDEX__][role]">
-                <option value="administrator">' . esc_html__('Administrator', 'google-login-only') . '</option>
-                <option value="editor">' . esc_html__('Editor', 'google-login-only') . '</option>
-                <option value="author">' . esc_html__('Author', 'google-login-only') . '</option>
-                <option value="contributor">' . esc_html__('Contributor', 'google-login-only') . '</option>
-                <option value="subscriber" selected>' . esc_html__('Subscriber', 'google-login-only') . '</option>
-            </select>
+            <select name="' . esc_attr($this->option_name) . '[allowed_users][__INDEX__][role]">' .
+            $this->getRoleOptions('subscriber') .
+            '</select>
             <button type="button" class="glo-remove-user">' . esc_html__('Remove', 'google-login-only') . '</button>';
 
         wp_localize_script('glo-admin', 'glo_admin', [
@@ -57,6 +53,8 @@ class GLO_AdminSettings
                 'connection_failed' => __('Connection failed', 'google-login-only'),
                 'confirm_remove_user' => __('Are you sure you want to remove this user?', 'google-login-only'),
                 'fill_both_fields' => __('Please fill in both Client ID and Client Secret.', 'google-login-only'),
+                'copied' => __('Copied!', 'google-login-only'),
+                'copy_failed' => __('Failed to copy.', 'google-login-only'),
             ]
         ]);
     }
@@ -129,7 +127,7 @@ class GLO_AdminSettings
                     <div class="glo-step <?php echo esc_attr($step_class); ?>" onclick="window.location.href='<?php echo esc_url(admin_url('options-general.php?page=' . $this->plugin_name . '&step=' . $key)); ?>'">
                         <div class="glo-step-icon">
                             <?php if ($is_completed): ?>
-                                ✓
+                                <span class="glo-checkmark"></span>
                             <?php else: ?>
                                 <?php echo esc_html($step['number']); ?>
                             <?php endif; ?>
@@ -384,11 +382,7 @@ class GLO_AdminSettings
                         <div class="glo-user-item">
                             <input type="email" name="<?php echo esc_attr($this->option_name); ?>[allowed_users][0][email]" placeholder="<?php esc_attr_e('user@example.com', 'google-login-only'); ?>" required>
                             <select name="<?php echo esc_attr($this->option_name); ?>[allowed_users][0][role]">
-                                <option value="administrator"><?php _e('Administrator', 'google-login-only'); ?></option>
-                                <option value="editor"><?php _e('Editor', 'google-login-only'); ?></option>
-                                <option value="author"><?php _e('Author', 'google-login-only'); ?></option>
-                                <option value="contributor"><?php _e('Contributor', 'google-login-only'); ?></option>
-                                <option value="subscriber" selected><?php _e('Subscriber', 'google-login-only'); ?></option>
+                                <?php echo $this->getRoleOptions('subscriber'); ?>
                             </select>
                             <button type="button" class="glo-remove-user"><?php _e('Remove', 'google-login-only'); ?></button>
                         </div>
@@ -397,11 +391,7 @@ class GLO_AdminSettings
                             <div class="glo-user-item">
                                 <input type="email" name="<?php echo esc_attr($this->option_name); ?>[allowed_users][<?php echo esc_attr($index); ?>][email]" value="<?php echo esc_attr($user['email']); ?>" required>
                                 <select name="<?php echo esc_attr($this->option_name); ?>[allowed_users][<?php echo esc_attr($index); ?>][role]">
-                                    <option value="administrator" <?php selected($user['role'], 'administrator'); ?>><?php _e('Administrator', 'google-login-only'); ?></option>
-                                    <option value="editor" <?php selected($user['role'], 'editor'); ?>><?php _e('Editor', 'google-login-only'); ?></option>
-                                    <option value="author" <?php selected($user['role'], 'author'); ?>><?php _e('Author', 'google-login-only'); ?></option>
-                                    <option value="contributor" <?php selected($user['role'], 'contributor'); ?>><?php _e('Contributor', 'google-login-only'); ?></option>
-                                    <option value="subscriber" <?php selected($user['role'], 'subscriber'); ?>><?php _e('Subscriber', 'google-login-only'); ?></option>
+                                    <?php echo $this->getRoleOptions($user['role']); ?>
                                 </select>
                                 <button type="button" class="glo-remove-user"><?php _e('Remove', 'google-login-only'); ?></button>
                             </div>
@@ -685,5 +675,33 @@ class GLO_AdminSettings
         wp_send_json_success([
             'message' => __('Credentials format validation passed. Save your settings to apply them.', 'google-login-only')
         ]);
+    }
+
+    /**
+     * Generates HTML options for a user role select dropdown.
+     *
+     * @param string $selected_role The role that should be pre-selected.
+     * @return string The generated HTML <option> tags.
+     */
+    private function getRoleOptions($selected_role = 'subscriber')
+    {
+        $roles = [
+            'administrator' => __('Administrator', 'google-login-only'),
+            'editor'        => __('Editor', 'google-login-only'),
+            'author'        => __('Author', 'google-login-only'),
+            'contributor'   => __('Contributor', 'google-login-only'),
+            'subscriber'    => __('Subscriber', 'google-login-only'),
+        ];
+
+        $options_html = '';
+        foreach ($roles as $value => $label) {
+            $options_html .= sprintf(
+                '<option value="%s" %s>%s</option>',
+                esc_attr($value),
+                selected($selected_role, $value, false),
+                esc_html($label)
+            );
+        }
+        return $options_html;
     }
 }

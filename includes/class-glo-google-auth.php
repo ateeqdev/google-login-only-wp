@@ -110,7 +110,7 @@ class GLO_GoogleAuth
     private function decodeJWT_secure_lightweight($jwt)
     {
         if (empty($this->settings['client_id'])) {
-            error_log('Google Login Only Error: Google Client ID is not configured.');
+            error_log(sprintf('[%s] %s', 'google-login-only', __('Google Client ID is not configured.', 'google-login-only')));
             return false;
         }
 
@@ -118,13 +118,23 @@ class GLO_GoogleAuth
         $response = wp_remote_get($url);
 
         if (is_wp_error($response)) {
-            error_log('Google Login Only Error: Failed to connect to Google tokeninfo endpoint. ' . $response->get_error_message());
+            error_log(sprintf(
+                '[%s] %s: %s',
+                'google-login-only',
+                __('Failed to connect to Google tokeninfo endpoint.', 'google-login-only'),
+                $response->get_error_message()
+            ));
             return false;
         }
 
         $status_code = wp_remote_retrieve_response_code($response);
         if ($status_code !== 200) {
-            error_log('Google Login Only Error: Invalid ID token. Google responded with status ' . $status_code);
+            error_log(sprintf(
+                '[%s] %s: %s %d',
+                'google-login-only',
+                __('Invalid ID token. Google responded with status', 'google-login-only'),
+                $status_code
+            ));
             return false;
         }
 
@@ -132,7 +142,7 @@ class GLO_GoogleAuth
 
         // Final security check: ensure the token was issued to our app.
         if (empty($payload['aud']) || $payload['aud'] !== $this->settings['client_id']) {
-            error_log('Google Login Only Error: Token audience (aud) does not match Client ID.');
+            error_log(sprintf('[%s] %s', 'google-login-only', __('Token audience (aud) does not match Client ID.', 'google-login-only')));
             return false;
         }
 
@@ -340,19 +350,7 @@ class GLO_GoogleAuth
      */
     private function storeErrorAndRedirect($error_code)
     {
-        // Get user-friendly error messages
-        $messages = [
-            'not_allowed'           => __('Your Google account is not authorized to access this site. Please contact an administrator to request access.', 'google-login-only'),
-            'token_exchange_failed' => __('Authentication failed: Could not connect to Google servers. Please try again in a moment.', 'google-login-only'),
-            'token_missing'         => __('Authentication failed: No access token received from Google. Please try again.', 'google-login-only'),
-            'user_creation_failed'  => __('Authentication successful, but account creation failed. Please contact an administrator for assistance.', 'google-login-only'),
-            'invalid_credential'    => __('Invalid authentication data received from Google. Please try signing in again.', 'google-login-only'),
-            'userinfo_failed'       => __('Could not retrieve your user information from Google. Please check your Google account permissions and try again.', 'google-login-only'),
-            'email_missing'         => __('No email address was provided by Google. Please ensure your Google account has a verified email address.', 'google-login-only'),
-            'invalid_state'         => __('Authentication session expired or invalid. Please try logging in again.', 'google-login-only'),
-        ];
-
-        $message = $messages[$error_code] ?? __('An unknown authentication error occurred. Please try again.', 'google-login-only');
+        $message = GLO_ErrorHandler::getMessage($error_code);
 
         // Format the error message with styling
         $formatted_message = '<div class="glo-error-message"><strong>' .
@@ -366,14 +364,5 @@ class GLO_GoogleAuth
         // Redirect to login page without error parameters in URL
         wp_redirect(wp_login_url());
         exit;
-    }
-
-    /**
-     * Legacy method for backward compatibility.
-     * @deprecated Use storeErrorAndRedirect() instead.
-     */
-    private function redirectWithError($error_code)
-    {
-        $this->storeErrorAndRedirect($error_code);
     }
 }

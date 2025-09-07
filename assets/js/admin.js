@@ -144,13 +144,13 @@ function copyToClipboard(button) {
   const input = button.previousElementSibling;
   navigator.clipboard.writeText(input.value).then(
     () => showCopySuccess(button),
-    () => showNotification("Failed to copy.", "error")
+    () => showNotification(glo_admin.strings.copy_failed, "error")
   );
 }
 
 function showCopySuccess(button) {
   const originalText = button.textContent;
-  button.textContent = "Copied!";
+  button.textContent = glo_admin.strings.copied;
   button.style.backgroundColor = "#28a745";
   setTimeout(() => {
     button.textContent = originalText;

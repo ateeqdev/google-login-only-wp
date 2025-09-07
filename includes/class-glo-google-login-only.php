@@ -24,6 +24,7 @@ class GLO_GoogleLoginOnly
         require_once GLO_PLUGIN_PATH . 'includes/class-glo-admin-settings.php';
         require_once GLO_PLUGIN_PATH . 'includes/class-glo-google-auth.php';
         require_once GLO_PLUGIN_PATH . 'includes/class-glo-frontend-hooks.php';
+        require_once GLO_PLUGIN_PATH . 'includes/class-glo-error-handler.php';
     }
 
     private function initializeClasses()
