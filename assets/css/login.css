@@ -324,3 +324,77 @@ body.login::before {
     font-size: 15px;
   }
 }
+
+.glo-error-message {
+  background: #f8d7da !important;
+  border: 1px solid #f5c6cb !important;
+  border-left: 4px solid #dc3545 !important;
+  color: #721c24 !important;
+  padding: 16px !important;
+  margin-bottom: 20px !important;
+  border-radius: 8px !important;
+  box-shadow: 0 4px 12px rgba(220, 53, 69, 0.15) !important;
+  animation: slideInDown 0.4s ease-out !important;
+}
+
+.glo-error-message strong {
+  color: #721c24 !important;
+}
+
+@keyframes slideInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+#glo-auth-loading {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 99999;
+  backdrop-filter: blur(5px);
+}
+
+#glo-auth-loading .loading-content {
+  background: white;
+  padding: 30px;
+  border-radius: 12px;
+  text-align: center;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+#glo-auth-loading .spinner {
+  width: 40px;
+  height: 40px;
+  border: 3px solid #f3f3f3;
+  border-top: 3px solid #4285f4;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin: 0 auto 15px;
+}
+
+#glo-auth-loading p {
+  margin: 0;
+  font-size: 16px;
+  color: #333;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

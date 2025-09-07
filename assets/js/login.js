@@ -19,6 +19,9 @@ document.addEventListener("DOMContentLoaded", function () {
  * @param {object} response - The credential response object from Google.
  */
 function handleCredentialResponse(response) {
+  // Show loading indicator
+  showAuthenticationLoading();
+
   const form = document.createElement("form");
   form.method = "POST";
   form.action = glo_login_params.callback_url;
@@ -45,6 +48,29 @@ function handleCredentialResponse(response) {
   form.submit();
 }
 
+/**
+ * Show loading indicator during authentication
+ */
+function showAuthenticationLoading() {
+  const overlay = document.createElement("div");
+  overlay.id = "glo-auth-loading";
+
+  overlay.innerHTML = `
+    <div class="loading-content">
+      <div class="spinner"></div>
+      <p>Authenticating with Google...</p>
+    </div>
+  `;
+
+  document.body.appendChild(overlay);
+
+  setTimeout(() => {
+    const loadingElement = document.getElementById("glo-auth-loading");
+    if (loadingElement) {
+      loadingElement.remove();
+    }
+  }, 10000);
+}
 window.addEventListener("load", function () {
   // Check if Google's library and our localized parameters are available.
   if (
@@ -60,7 +86,12 @@ window.addEventListener("load", function () {
       context: glo_login_params.context, // 'signin' or 'use'
     });
 
-    if (glo_login_params.show_prompt) {
+    // Only show One Tap prompt if there are no login errors on the page
+    const hasLoginError =
+      window.location.search.includes("login_error") ||
+      document.getElementById("login_error") !== null;
+
+    if (glo_login_params.show_prompt && !hasLoginError) {
       // Delay prompt for better user experience
       const promptDelay = glo_login_params.context === "signin" ? 1000 : 2000;
       setTimeout(() => {

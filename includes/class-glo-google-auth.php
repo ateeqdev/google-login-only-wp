@@ -64,7 +64,7 @@ class GLO_GoogleAuth
         }
 
         if (!isset($_POST['credential'])) {
-            $this->redirectWithError('invalid_credential');
+            $this->storeErrorAndRedirect('invalid_credential');
             return;
         }
 
@@ -72,7 +72,7 @@ class GLO_GoogleAuth
             !isset($_POST['glo_csrf_token'], $_COOKIE['glo_csrf_token']) ||
             !hash_equals($_COOKIE['glo_csrf_token'], $_POST['glo_csrf_token'])
         ) {
-            $this->redirectWithError('invalid_state');
+            $this->storeErrorAndRedirect('invalid_state');
             return;
         }
 
@@ -85,7 +85,7 @@ class GLO_GoogleAuth
         $user_data = $this->decodeJWT_secure_lightweight($credential);
 
         if (!$user_data || empty($user_data['email'])) {
-            $this->redirectWithError('invalid_credential');
+            $this->storeErrorAndRedirect('invalid_credential');
             return;
         }
 
@@ -154,7 +154,7 @@ class GLO_GoogleAuth
             !isset($_SESSION['glo_oauth_state']) ||
             !hash_equals($_SESSION['glo_oauth_state'], $_GET['state'])
         ) {
-            $this->redirectWithError('invalid_state');
+            $this->storeErrorAndRedirect('invalid_state');
             return;
         }
 
@@ -173,13 +173,13 @@ class GLO_GoogleAuth
         ]);
 
         if (is_wp_error($token_response)) {
-            $this->redirectWithError('token_exchange_failed');
+            $this->storeErrorAndRedirect('token_exchange_failed');
             return;
         }
 
         $token_data = json_decode(wp_remote_retrieve_body($token_response), true);
         if (empty($token_data['access_token'])) {
-            $this->redirectWithError('token_missing');
+            $this->storeErrorAndRedirect('token_missing');
             return;
         }
 
@@ -190,13 +190,13 @@ class GLO_GoogleAuth
         ]);
 
         if (is_wp_error($user_info_response)) {
-            $this->redirectWithError('userinfo_failed');
+            $this->storeErrorAndRedirect('userinfo_failed');
             return;
         }
 
         $user_data = json_decode(wp_remote_retrieve_body($user_info_response), true);
         if (empty($user_data['email'])) {
-            $this->redirectWithError('email_missing');
+            $this->storeErrorAndRedirect('email_missing');
             return;
         }
 
@@ -224,7 +224,7 @@ class GLO_GoogleAuth
         $allowed_users = array_change_key_case($allowed_users, CASE_LOWER);
 
         if (!array_key_exists($user_email, $allowed_users)) {
-            $this->redirectWithError('not_allowed');
+            $this->storeErrorAndRedirect('not_allowed');
             return;
         }
 
@@ -235,7 +235,7 @@ class GLO_GoogleAuth
             $this->removeUserFromSettings($user_email);
             $this->loginUser($new_user);
         } else {
-            $this->redirectWithError('user_creation_failed');
+            $this->storeErrorAndRedirect('user_creation_failed');
         }
     }
 
@@ -335,11 +335,45 @@ class GLO_GoogleAuth
     }
 
     /**
-     * Redirects to login page with an error code.
+     * Store error message in transient and redirect to login page.
+     * @param string $error_code The error code to store and display.
+     */
+    private function storeErrorAndRedirect($error_code)
+    {
+        // Get user-friendly error messages
+        $messages = [
+            'not_allowed'           => __('Your Google account is not authorized to access this site. Please contact an administrator to request access.', 'google-login-only'),
+            'token_exchange_failed' => __('Authentication failed: Could not connect to Google servers. Please try again in a moment.', 'google-login-only'),
+            'token_missing'         => __('Authentication failed: No access token received from Google. Please try again.', 'google-login-only'),
+            'user_creation_failed'  => __('Authentication successful, but account creation failed. Please contact an administrator for assistance.', 'google-login-only'),
+            'invalid_credential'    => __('Invalid authentication data received from Google. Please try signing in again.', 'google-login-only'),
+            'userinfo_failed'       => __('Could not retrieve your user information from Google. Please check your Google account permissions and try again.', 'google-login-only'),
+            'email_missing'         => __('No email address was provided by Google. Please ensure your Google account has a verified email address.', 'google-login-only'),
+            'invalid_state'         => __('Authentication session expired or invalid. Please try logging in again.', 'google-login-only'),
+        ];
+
+        $message = $messages[$error_code] ?? __('An unknown authentication error occurred. Please try again.', 'google-login-only');
+
+        // Format the error message with styling
+        $formatted_message = '<div class="glo-error-message"><strong>' .
+            __('Google Authentication Error:', 'google-login-only') .
+            '</strong><br>' . $message . '</div>';
+
+        // Store error in transient using session ID as key
+        $transient_key = 'glo_login_error_' . session_id();
+        set_transient($transient_key, $formatted_message, 5 * MINUTE_IN_SECONDS);
+
+        // Redirect to login page without error parameters in URL
+        wp_redirect(wp_login_url());
+        exit;
+    }
+
+    /**
+     * Legacy method for backward compatibility.
+     * @deprecated Use storeErrorAndRedirect() instead.
      */
     private function redirectWithError($error_code)
     {
-        wp_redirect(wp_login_url() . '?login_error=' . $error_code);
-        exit;
+        $this->storeErrorAndRedirect($error_code);
     }
 }

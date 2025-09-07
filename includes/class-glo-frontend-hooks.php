@@ -25,6 +25,9 @@ class GLO_FrontendHooks
         add_filter('allow_password_reset', '__return_false');
         add_filter('lostpassword_url', '__return_false');
         add_action('login_errors', [$this, 'customLoginErrors']);
+
+        // Additional hooks for better error handling
+        add_action('wp_login_errors', [$this, 'processStoredErrors']);
     }
 
     /**
@@ -83,7 +86,7 @@ class GLO_FrontendHooks
             'client_id'    => $client_id,
             'callback_url' => home_url('?action=google_one_tap_callback'),
             'nonce'        => wp_create_nonce('google_one_tap_nonce'),
-            'csrf_token'   => $csrf_token, // The new CSRF token
+            'csrf_token'   => $csrf_token,
             'context'      => $context,
             'show_prompt'  => $show_prompt,
         ]);
@@ -154,23 +157,60 @@ class GLO_FrontendHooks
     }
 
     /**
+     * Process and display stored login errors
+     */
+    public function processStoredErrors($errors)
+    {
+        // Check for transient error messages (more reliable than URL parameters)
+        $stored_error = get_transient('glo_login_error_' . session_id());
+        if ($stored_error) {
+            delete_transient('glo_login_error_' . session_id());
+
+            if (!is_wp_error($errors)) {
+                $errors = new WP_Error();
+            }
+
+            $errors->add('google_login_error', $stored_error);
+        }
+
+        return $errors;
+    }
+
+    /**
      * Provide clear, user-friendly error messages on the login screen.
      */
     public function customLoginErrors($errors)
     {
+        // First check for stored errors in transients
+        $stored_error = get_transient('glo_login_error_' . session_id());
+        if ($stored_error) {
+            delete_transient('glo_login_error_' . session_id());
+
+            if (!is_wp_error($errors)) {
+                $errors = new WP_Error();
+            }
+
+            $errors->add('google_login_error', $stored_error);
+            return $errors;
+        }
+
+        // Then check URL parameters as fallback
         if (isset($_GET['login_error'])) {
             $error_code = sanitize_key($_GET['login_error']);
             $messages = [
-                'not_allowed'           => __('Your email is not authorized to access this site. Please contact an administrator.', 'google-login-only'),
-                'token_exchange_failed' => __('Could not connect to Google. Please try again.', 'google-login-only'),
-                'user_creation_failed'  => __('Could not create a user account. Please contact an administrator.', 'google-login-only'),
-                'invalid_credential'    => __('Invalid Google credential received. Please try again.', 'google-login-only'),
-                'userinfo_failed'       => __('Could not retrieve your user information from Google. Please try again.', 'google-login-only'),
-                'invalid_state'         => __('Invalid authentication session. Please try logging in again.', 'google-login-only'),
+                'not_allowed'           => __('Your Google account is not authorized to access this site. Please contact an administrator to request access.', 'google-login-only'),
+                'token_exchange_failed' => __('Authentication failed: Could not connect to Google servers. Please try again in a moment.', 'google-login-only'),
+                'user_creation_failed'  => __('Authentication successful, but account creation failed. Please contact an administrator for assistance.', 'google-login-only'),
+                'invalid_credential'    => __('Invalid authentication data received from Google. Please try signing in again.', 'google-login-only'),
+                'userinfo_failed'       => __('Could not retrieve your user information from Google. Please check your Google account permissions and try again.', 'google-login-only'),
+                'invalid_state'         => __('Authentication session expired or invalid. Please try logging in again.', 'google-login-only'),
             ];
-            $message = $messages[$error_code] ?? __('An unknown authentication error occurred.', 'google-login-only');
 
-            $error_message = '<strong>' . __('Authentication Error:', 'google-login-only') . '</strong> ' . $message;
+            $message = $messages[$error_code] ?? __('An unknown authentication error occurred. Please try again.', 'google-login-only');
+
+            $error_message = '<div class="glo-error-message"><strong>' .
+                __('Google Authentication Error:', 'google-login-only') .
+                '</strong><br>' . $message . '</div>';
 
             if (is_wp_error($errors)) {
                 $errors->add('google_login_error', $error_message);
@@ -179,6 +219,7 @@ class GLO_FrontendHooks
                 return new WP_Error('google_login_error', $error_message);
             }
         }
+
         return $errors;
     }
 }
