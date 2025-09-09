@@ -110,7 +110,7 @@ function wpsl_admin_notices()
     $current_screen = get_current_screen();
 
     if (get_option('wpsl_show_setup_notice')) {
-        $settings_url = admin_url('options-general.php?page=wp-social-login');
+        $settings_url = admin_url('admin.php?page=wp-social-login');
         echo '<div class="notice notice-info is-dismissible">';
         echo '<p><strong>' . esc_html__('WP Social Login:', 'wp-social-login') . '</strong> ';
         printf(
@@ -123,7 +123,7 @@ function wpsl_admin_notices()
         echo '</p>';
         echo '</div>';
 
-        if (!$current_screen || $current_screen->id !== 'settings_page_wp-social-login') {
+        if (!$current_screen || $current_screen->id !== 'toplevel_page_wp-social-login') {
             delete_option('wpsl_show_setup_notice');
         }
     }
@@ -137,7 +137,7 @@ function wpsl_admin_notices()
 
     $security_features = $settings['security_features'] ?? [];
     $any_security_enabled = array_filter($security_features);
-    if (empty($any_security_enabled) && $current_screen && $current_screen->id === 'settings_page_wp-social-login') {
+    if (empty($any_security_enabled) && $current_screen && $current_screen->id === 'toplevel_page_wp-social-login') {
         echo '<div class="notice notice-warning">';
         echo '<p><strong>' . esc_html__('Security Note:', 'wp-social-login') . '</strong> ' . esc_html__('Consider enabling some security features below to protect against common attack vectors.', 'wp-social-login') . '</p>';
         echo '</div>';
@@ -149,7 +149,7 @@ function wpsl_admin_notices()
  */
 function wpsl_plugin_action_links($links)
 {
-    $settings_link = '<a href="' . admin_url('options-general.php?page=wp-social-login') . '">' . esc_html__('Settings', 'wp-social-login') . '</a>';
+    $settings_link = '<a href="' . admin_url('admin.php?page=wp-social-login') . '">' . esc_html__('Settings', 'wp-social-login') . '</a>';
     $creator_link = '<a href="https://linkedin.com/in/ateeqdev" target="_blank">' . esc_html__('Plugin Creator', 'wp-social-login') . '</a>';
 
     array_unshift($links, $creator_link);
@@ -258,7 +258,7 @@ function wpsl_admin_bar_menu($wp_admin_bar)
     $wp_admin_bar->add_node([
         'id' => 'wpsl_quick_access',
         'title' => esc_html__('Social Login', 'wp-social-login') . ($is_configured ? '' : ' ⚠'),
-        'href' => admin_url('options-general.php?page=wp-social-login'),
+        'href' => admin_url('admin.php?page=wp-social-login'),
         'meta' => [
             'title' => $is_configured ? esc_html__('WP Social Login Settings', 'wp-social-login') : esc_html__('WP Social Login - Configuration Required', 'wp-social-login')
         ]

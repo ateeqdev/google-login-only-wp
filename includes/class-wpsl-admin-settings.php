@@ -21,7 +21,7 @@ class WPSL_AdminSettings
 
     public function enqueueAdminAssets($hook)
     {
-        if (!in_array($hook, ['settings_page_' . $this->plugin_name, 'profile.php', 'user-edit.php'])) {
+        if (!in_array($hook, ['toplevel_page_' . $this->plugin_name, 'profile.php', 'user-edit.php'])) {
             return;
         }
 
@@ -61,12 +61,14 @@ class WPSL_AdminSettings
 
     public function addPluginPage()
     {
-        add_options_page(
-            __('WP Social Login Settings', 'wp-social-login'),
+        add_menu_page(
             __('WP Social Login', 'wp-social-login'),
+            __('Social Login', 'wp-social-login'),
             'manage_options',
             $this->plugin_name,
-            [$this, 'createAdminPage']
+            [$this, 'createAdminPage'],
+            'data:image/svg+xml;base64,' . base64_encode('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>'),
+            30
         );
     }
 
@@ -85,27 +87,45 @@ class WPSL_AdminSettings
         $progress = get_option($this->wizard_progress_option, []);
 
 ?>
-        <div class="wrap wpsl-wizard-container">
-            <?php $this->renderHeroSection(); ?>
-            <?php $this->renderWizardNavigation($current_step, $progress); ?>
-            <?php $this->renderWizardContent($current_step, $progress); ?>
-        </div>
-    <?php
-    }
+        <div class="wpsl-admin-wrap">
+            <?php $this->renderHeader(); ?>
+            <?php $this->renderProgressBar($current_step, $progress); ?>
 
-    private function renderHeroSection()
-    {
-    ?>
-        <div class="wpsl-hero-section">
-            <div class="wpsl-hero-content">
-                <h1 class="wpsl-hero-title"><?php _e('WP Social Login', 'wp-social-login'); ?></h1>
-                <p class="wpsl-hero-subtitle"><?php _e('Secure, beautiful, and user-friendly social authentication for WordPress', 'wp-social-login'); ?></p>
+            <div class="wpsl-content-wrapper">
+                <div class="wpsl-main-content">
+                    <?php $this->renderWizardContent($current_step, $progress); ?>
+                </div>
+                <div class="wpsl-sidebar">
+                    <?php $this->renderSidebar(); ?>
+                </div>
             </div>
         </div>
     <?php
     }
 
-    private function renderWizardNavigation($current_step, $progress)
+    private function renderHeader()
+    {
+    ?>
+        <div class="wpsl-header">
+            <div class="wpsl-header-content">
+                <div class="wpsl-header-icon">
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" />
+                        <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" />
+                        <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" />
+                        <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" />
+                    </svg>
+                </div>
+                <div class="wpsl-header-text">
+                    <h1><?php _e('WP Social Login', 'wp-social-login'); ?></h1>
+                    <p><?php _e('Premium Google Authentication for WordPress', 'wp-social-login'); ?></p>
+                </div>
+            </div>
+        </div>
+    <?php
+    }
+
+    private function renderProgressBar($current_step, $progress)
     {
         $steps = $this->getWizardSteps();
         $completed_steps = array_keys(array_filter($progress));
@@ -113,29 +133,66 @@ class WPSL_AdminSettings
         $progress_percentage = (count($completed_steps) / $total_steps) * 100;
 
     ?>
-        <div class="wpsl-wizard-nav">
+        <div class="wpsl-progress-container">
             <div class="wpsl-progress-bar">
                 <div class="wpsl-progress-fill" style="width: <?php echo esc_attr($progress_percentage); ?>%"></div>
             </div>
-            <div class="wpsl-steps">
+            <div class="wpsl-steps-nav">
                 <?php foreach ($steps as $key => $step): ?>
                     <?php
                     $is_current = ($current_step === $key);
                     $is_completed = in_array($key, $completed_steps);
-                    $step_class = $is_current ? 'active' : ($is_completed ? 'completed' : 'pending');
+                    $step_class = $is_current ? 'current' : ($is_completed ? 'completed' : 'pending');
                     ?>
-                    <div class="wpsl-step <?php echo esc_attr($step_class); ?>" onclick="window.location.href='<?php echo esc_url(admin_url('options-general.php?page=' . $this->plugin_name . '&step=' . $key)); ?>'">
-                        <div class="wpsl-step-icon">
-                            <?php if ($is_completed): ?>
-                                <span class="wpsl-checkmark"></span>
-                            <?php else: ?>
-                                <?php echo esc_html($step['number']); ?>
-                            <?php endif; ?>
-                        </div>
-                        <div class="wpsl-step-title"><?php echo esc_html($step['title']); ?></div>
-                        <div class="wpsl-step-description"><?php echo esc_html($step['description']); ?></div>
-                    </div>
+                    <a href="<?php echo esc_url(admin_url('admin.php?page=' . $this->plugin_name . '&step=' . $key)); ?>"
+                        class="wpsl-step-nav <?php echo esc_attr($step_class); ?>">
+                        <span class="wpsl-step-number"><?php echo esc_html($step['number']); ?></span>
+                        <span class="wpsl-step-label"><?php echo esc_html($step['title']); ?></span>
+                    </a>
                 <?php endforeach; ?>
+            </div>
+        </div>
+    <?php
+    }
+
+    private function renderSidebar()
+    {
+        $settings = get_option($this->option_name, []);
+        $is_configured = !empty($settings['client_id']) && !empty($settings['client_secret']);
+    ?>
+        <div class="wpsl-sidebar-card">
+            <h3><?php _e('Quick Status', 'wp-social-login'); ?></h3>
+            <div class="wpsl-status-item">
+                <span class="wpsl-status-label"><?php _e('Configuration:', 'wp-social-login'); ?></span>
+                <span class="wpsl-status-value <?php echo $is_configured ? 'success' : 'warning'; ?>">
+                    <?php echo $is_configured ? __('Complete', 'wp-social-login') : __('Pending', 'wp-social-login'); ?>
+                </span>
+            </div>
+            <div class="wpsl-status-item">
+                <span class="wpsl-status-label"><?php _e('Authorized Users:', 'wp-social-login'); ?></span>
+                <span class="wpsl-status-value"><?php echo count($settings['allowed_users'] ?? []); ?></span>
+            </div>
+            <div class="wpsl-status-item">
+                <span class="wpsl-status-label"><?php _e('Security Features:', 'wp-social-login'); ?></span>
+                <span class="wpsl-status-value"><?php echo count(array_filter($settings['security_features'] ?? [])); ?>/5</span>
+            </div>
+        </div>
+
+        <div class="wpsl-sidebar-card">
+            <h3><?php _e('Quick Links', 'wp-social-login'); ?></h3>
+            <div class="wpsl-quick-links">
+                <a href="<?php echo wp_login_url(); ?>" target="_blank" class="wpsl-quick-link">
+                    <span class="dashicons dashicons-external"></span>
+                    <?php _e('Test Login Page', 'wp-social-login'); ?>
+                </a>
+                <a href="https://console.cloud.google.com/" target="_blank" class="wpsl-quick-link">
+                    <span class="dashicons dashicons-cloud"></span>
+                    <?php _e('Google Console', 'wp-social-login'); ?>
+                </a>
+                <a href="https://hardtoskip.com/" target="_blank" class="wpsl-quick-link">
+                    <span class="dashicons dashicons-heart"></span>
+                    <?php _e('Plugin Creator', 'wp-social-login'); ?>
+                </a>
             </div>
         </div>
     <?php
@@ -143,34 +200,28 @@ class WPSL_AdminSettings
 
     private function renderWizardContent($current_step, $progress)
     {
-    ?>
-        <div class="wpsl-wizard-content">
-            <?php
-            switch ($current_step) {
-                case 'overview':
-                    $this->renderOverviewStep($progress);
-                    break;
-                case 'google_api':
-                    $this->renderGoogleApiStep();
-                    break;
-                case 'security':
-                    $this->renderSecurityStep();
-                    break;
-                case 'users':
-                    $this->renderUsersStep();
-                    break;
-                case 'one_tap':
-                    $this->renderOneTapStep();
-                    break;
-                case 'complete':
-                    $this->renderCompleteStep();
-                    break;
-                default:
-                    $this->renderOverviewStep($progress);
-            }
-            ?>
-        </div>
-    <?php
+        switch ($current_step) {
+            case 'overview':
+                $this->renderOverviewStep($progress);
+                break;
+            case 'google_api':
+                $this->renderGoogleApiStep();
+                break;
+            case 'security':
+                $this->renderSecurityStep();
+                break;
+            case 'users':
+                $this->renderUsersStep();
+                break;
+            case 'one_tap':
+                $this->renderOneTapStep();
+                break;
+            case 'complete':
+                $this->renderCompleteStep();
+                break;
+            default:
+                $this->renderOverviewStep($progress);
+        }
     }
 
     private function renderOverviewStep($progress)
@@ -179,37 +230,66 @@ class WPSL_AdminSettings
         $is_configured = !empty($settings['client_id']) && !empty($settings['client_secret']);
 
     ?>
-        <div class="wpsl-step-header">
-            <h2><?php _e('Welcome to WP Social Login', 'wp-social-login'); ?></h2>
-            <p><?php _e('This setup wizard will guide you through configuring secure Google authentication for your WordPress site. Each step builds upon the previous one to ensure a complete and secure setup.', 'wp-social-login'); ?></p>
-        </div>
-
-        <?php if (!$is_configured): ?>
-            <div class="wpsl-info-card warning">
-                <h4><?php _e('⚠️ Setup Required', 'wp-social-login'); ?></h4>
-                <p><?php _e('Your plugin is not yet configured. Users cannot log in until you complete the Google API setup.', 'wp-social-login'); ?></p>
+        <div class="wpsl-step-content">
+            <div class="wpsl-step-header">
+                <h2><?php _e('Welcome to WP Social Login', 'wp-social-login'); ?></h2>
+                <p><?php _e('Transform your WordPress authentication with secure Google Sign-In. This setup wizard will guide you through each step to ensure optimal security and user experience.', 'wp-social-login'); ?></p>
             </div>
-        <?php else: ?>
-            <div class="wpsl-info-card success">
-                <h4><?php _e('✅ Plugin is Active', 'wp-social-login'); ?></h4>
-                <p><?php _e('WP Social Login is configured and working. You can still modify settings or enable additional features.', 'wp-social-login'); ?></p>
+
+            <div class="wpsl-cards-grid">
+                <div class="wpsl-feature-card">
+                    <div class="wpsl-feature-icon security">
+                        <span class="dashicons dashicons-shield-alt"></span>
+                    </div>
+                    <h3><?php _e('Enhanced Security', 'wp-social-login'); ?></h3>
+                    <p><?php _e('Eliminate password-based vulnerabilities with Google\'s robust OAuth authentication system.', 'wp-social-login'); ?></p>
+                </div>
+
+                <div class="wpsl-feature-card">
+                    <div class="wpsl-feature-icon user">
+                        <span class="dashicons dashicons-admin-users"></span>
+                    </div>
+                    <h3><?php _e('User Management', 'wp-social-login'); ?></h3>
+                    <p><?php _e('Control exactly who can access your site with email-based authorization and role assignment.', 'wp-social-login'); ?></p>
+                </div>
+
+                <div class="wpsl-feature-card">
+                    <div class="wpsl-feature-icon experience">
+                        <span class="dashicons dashicons-thumbs-up"></span>
+                    </div>
+                    <h3><?php _e('Seamless Experience', 'wp-social-login'); ?></h3>
+                    <p><?php _e('Google One Tap provides instant authentication for users already signed into Google.', 'wp-social-login'); ?></p>
+                </div>
             </div>
-        <?php endif; ?>
 
-        <div class="wpsl-info-card">
-            <h4><?php _e('🎯 About This Plugin', 'wp-social-login'); ?></h4>
-            <p><?php printf(
-                    __('This plugin was created by %1$s after a successful brute-force attack demonstrated the vulnerabilities of password-based authentication. By enforcing Google OAuth, we eliminate password-related security risks while providing a superior user experience.', 'wp-social-login'),
-                    '<a href="https://hardtoskip.com" target="_blank"><strong>HardToSkip.com</strong></a>'
-                ); ?></p>
-        </div>
+            <?php if (!$is_configured): ?>
+                <div class="wpsl-alert warning">
+                    <div class="wpsl-alert-icon">
+                        <span class="dashicons dashicons-warning"></span>
+                    </div>
+                    <div class="wpsl-alert-content">
+                        <h4><?php _e('Setup Required', 'wp-social-login'); ?></h4>
+                        <p><?php _e('Your plugin is not yet configured. Users cannot log in until you complete the Google API setup.', 'wp-social-login'); ?></p>
+                    </div>
+                </div>
+            <?php else: ?>
+                <div class="wpsl-alert success">
+                    <div class="wpsl-alert-icon">
+                        <span class="dashicons dashicons-yes-alt"></span>
+                    </div>
+                    <div class="wpsl-alert-content">
+                        <h4><?php _e('Plugin is Active', 'wp-social-login'); ?></h4>
+                        <p><?php _e('WP Social Login is configured and working. You can still modify settings or enable additional features.', 'wp-social-login'); ?></p>
+                    </div>
+                </div>
+            <?php endif; ?>
 
-        <div class="wpsl-wizard-actions">
-            <div></div>
-            <a href="<?php echo esc_url(admin_url('options-general.php?page=' . $this->plugin_name . '&step=google_api')); ?>" class="wpsl-btn wpsl-btn-primary">
-                <?php _e('Start Setup', 'wp-social-login'); ?>
-                <span>→</span>
-            </a>
+            <div class="wpsl-step-actions">
+                <a href="<?php echo esc_url(admin_url('admin.php?page=' . $this->plugin_name . '&step=google_api')); ?>" class="wpsl-btn primary large">
+                    <?php _e('Start Configuration', 'wp-social-login'); ?>
+                    <span class="dashicons dashicons-arrow-right-alt"></span>
+                </a>
+            </div>
         </div>
     <?php
     }
@@ -219,62 +299,84 @@ class WPSL_AdminSettings
         $settings = get_option($this->option_name, []);
 
     ?>
-        <div class="wpsl-step-header">
-            <h2><?php _e('Google API Configuration', 'wp-social-login'); ?></h2>
-            <p><?php _e('Set up your Google OAuth credentials to enable secure authentication.', 'wp-social-login'); ?></p>
+        <div class="wpsl-step-content">
+            <div class="wpsl-step-header">
+                <h2><?php _e('Google API Configuration', 'wp-social-login'); ?></h2>
+                <p><?php _e('Set up your Google OAuth credentials to enable secure authentication.', 'wp-social-login'); ?></p>
+            </div>
+
+            <form method="post" action="options.php" id="wpsl-google-api-form" class="wpsl-form">
+                <?php settings_fields($this->plugin_name); ?>
+
+                <div class="wpsl-setup-instructions">
+                    <h3><?php _e('Setup Instructions', 'wp-social-login'); ?></h3>
+                    <ol>
+                        <li><?php printf(__('Visit the %s', 'wp-social-login'), '<a href="https://console.cloud.google.com/" target="_blank" class="wpsl-external-link">' . __('Google Cloud Console', 'wp-social-login') . ' <span class="dashicons dashicons-external"></span></a>'); ?></li>
+                        <li><?php _e('Create a new project or select an existing one', 'wp-social-login'); ?></li>
+                        <li><?php _e('Navigate to "APIs & Services" → "Credentials"', 'wp-social-login'); ?></li>
+                        <li><?php _e('Click "Create Credentials" → "OAuth client ID"', 'wp-social-login'); ?></li>
+                        <li><?php _e('Choose "Web application" as the application type', 'wp-social-login'); ?></li>
+                        <li><?php _e('Add the redirect URIs and origins below', 'wp-social-login'); ?></li>
+                    </ol>
+                </div>
+
+                <div class="wpsl-form-section">
+                    <h3><?php _e('Required URLs for Google Console', 'wp-social-login'); ?></h3>
+
+                    <div class="wpsl-url-group">
+                        <label><?php _e('Authorized Redirect URIs', 'wp-social-login'); ?></label>
+                        <div class="wpsl-copy-field">
+                            <input type="text" readonly value="<?php echo esc_attr(home_url('?action=google_login_callback')); ?>">
+                            <button type="button" class="wpsl-copy-btn"><?php _e('Copy', 'wp-social-login'); ?></button>
+                        </div>
+                        <div class="wpsl-copy-field">
+                            <input type="text" readonly value="<?php echo esc_attr(home_url('?action=google_one_tap_callback')); ?>">
+                            <button type="button" class="wpsl-copy-btn"><?php _e('Copy', 'wp-social-login'); ?></button>
+                        </div>
+                    </div>
+
+                    <div class="wpsl-url-group">
+                        <label><?php _e('Authorized JavaScript Origins', 'wp-social-login'); ?></label>
+                        <div class="wpsl-copy-field">
+                            <input type="text" readonly value="<?php echo esc_attr(home_url()); ?>">
+                            <button type="button" class="wpsl-copy-btn"><?php _e('Copy', 'wp-social-login'); ?></button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="wpsl-form-section">
+                    <h3><?php _e('Google OAuth Credentials', 'wp-social-login'); ?></h3>
+
+                    <div class="wpsl-form-group">
+                        <label for="client_id"><?php _e('Google Client ID', 'wp-social-login'); ?></label>
+                        <input type="text" id="client_id" name="<?php echo esc_attr($this->option_name); ?>[client_id]"
+                            value="<?php echo esc_attr($settings['client_id'] ?? ''); ?>"
+                            placeholder="<?php esc_attr_e('123456789.apps.googleusercontent.com', 'wp-social-login'); ?>" required>
+                    </div>
+
+                    <div class="wpsl-form-group">
+                        <label for="client_secret"><?php _e('Google Client Secret', 'wp-social-login'); ?></label>
+                        <input type="password" id="client_secret" name="<?php echo esc_attr($this->option_name); ?>[client_secret]"
+                            value="<?php echo esc_attr($settings['client_secret'] ?? ''); ?>"
+                            placeholder="<?php esc_attr_e('GOCSPX-...', 'wp-social-login'); ?>" required>
+                    </div>
+                </div>
+
+                <div class="wpsl-step-actions">
+                    <a href="<?php echo esc_url(admin_url('admin.php?page=' . $this->plugin_name . '&step=overview')); ?>" class="wpsl-btn secondary">
+                        <span class="dashicons dashicons-arrow-left-alt"></span>
+                        <?php _e('Back', 'wp-social-login'); ?>
+                    </a>
+                    <div class="wpsl-actions-right">
+                        <button type="button" id="wpsl-test-connection-btn" class="wpsl-btn outline"><?php _e('Test Connection', 'wp-social-login'); ?></button>
+                        <button type="submit" class="wpsl-btn primary">
+                            <?php _e('Save & Continue', 'wp-social-login'); ?>
+                            <span class="dashicons dashicons-arrow-right-alt"></span>
+                        </button>
+                    </div>
+                </div>
+            </form>
         </div>
-
-        <form method="post" action="options.php" id="wpsl-google-api-form">
-            <?php settings_fields($this->plugin_name); ?>
-
-            <div class="wpsl-info-card">
-                <h4><?php _e('Step-by-Step Instructions', 'wp-social-login'); ?></h4>
-                <ol>
-                    <li><?php printf(__('Go to the %s', 'wp-social-login'), '<a href="https://console.cloud.google.com/" target="_blank">' . __('Google Cloud Console', 'wp-social-login') . '</a>'); ?></li>
-                    <li><?php _e('Create a new project or select an existing one', 'wp-social-login'); ?></li>
-                    <li><?php _e('Navigate to "APIs & Services" → "Credentials"', 'wp-social-login'); ?></li>
-                    <li><?php _e('Click "Create Credentials" → "OAuth client ID"', 'wp-social-login'); ?></li>
-                    <li><?php _e('Choose "Web application" as the application type', 'wp-social-login'); ?></li>
-                    <li><?php _e('Add the redirect URIs below to your OAuth client', 'wp-social-login'); ?></li>
-                </ol>
-            </div>
-
-            <div class="wpsl-form-group">
-                <label><?php _e('Authorized Redirect URIs (copy these exactly)', 'wp-social-login'); ?></label>
-                <div class="wpsl-copy-field">
-                    <input type="text" readonly value="<?php echo esc_attr(home_url('?action=google_login_callback')); ?>">
-                    <button type="button" class="wpsl-copy-btn"><?php _e('Copy', 'wp-social-login'); ?></button>
-                    <input type="text" readonly value="<?php echo esc_attr(home_url('?action=google_one_tap_callback')); ?>">
-                    <button type="button" class="wpsl-copy-btn"><?php _e('Copy', 'wp-social-login'); ?></button>
-                </div>
-            </div>
-
-            <div class="wpsl-form-group">
-                <label><?php _e('Authorized JavaScript Origins', 'wp-social-login'); ?></label>
-                <div class="wpsl-copy-field">
-                    <input type="text" readonly value="<?php echo esc_attr(home_url()); ?>">
-                    <button type="button" class="wpsl-copy-btn"><?php _e('Copy', 'wp-social-login'); ?></button>
-                </div>
-            </div>
-
-            <div class="wpsl-form-group">
-                <label for="client_id"><?php _e('Google Client ID', 'wp-social-login'); ?></label>
-                <input type="text" id="client_id" name="<?php echo esc_attr($this->option_name); ?>[client_id]" value="<?php echo esc_attr($settings['client_id'] ?? ''); ?>" required>
-            </div>
-
-            <div class="wpsl-form-group">
-                <label for="client_secret"><?php _e('Google Client Secret', 'wp-social-login'); ?></label>
-                <input type="password" id="client_secret" name="<?php echo esc_attr($this->option_name); ?>[client_secret]" value="<?php echo esc_attr($settings['client_secret'] ?? ''); ?>" required>
-            </div>
-
-            <div class="wpsl-wizard-actions">
-                <a href="<?php echo esc_url(admin_url('options-general.php?page=' . $this->plugin_name . '&step=overview')); ?>" class="wpsl-btn wpsl-btn-secondary">&larr; <?php _e('Back', 'wp-social-login'); ?></a>
-                <div>
-                    <button type="button" id="wpsl-test-connection-btn" class="wpsl-btn wpsl-btn-secondary"><?php _e('Test Connection', 'wp-social-login'); ?></button>
-                    <button type="submit" class="wpsl-btn wpsl-btn-primary"><?php _e('Save & Continue', 'wp-social-login'); ?> &rarr;</button>
-                </div>
-            </div>
-        </form>
     <?php
     }
 
@@ -284,79 +386,97 @@ class WPSL_AdminSettings
         $security = $settings['security_features'] ?? [];
 
     ?>
-        <div class="wpsl-step-header">
-            <h2><?php _e('Security Features', 'wp-social-login'); ?></h2>
-            <p><?php _e('Enable additional security measures to protect your site from common attack vectors. These features were implemented based on real-world security incidents.', 'wp-social-login'); ?></p>
-        </div>
+        <div class="wpsl-step-content">
+            <div class="wpsl-step-header">
+                <h2><?php _e('Security Features', 'wp-social-login'); ?></h2>
+                <p><?php _e('Enable additional security measures to protect your site from common attack vectors.', 'wp-social-login'); ?></p>
+            </div>
 
-        <div class="wpsl-info-card warning">
-            <h4><?php _e('⚠️ Important Security Notice', 'wp-social-login'); ?></h4>
-            <p><?php _e(
-                    'This plugin was developed in response to real-world brute-force attacks on WordPress sites. The included security features help reduce such risks, but they are not a complete security solution. Always keep WordPress updated and use reliable hosting for maximum protection.',
-                    'wp-social-login'
-                ); ?></p>
-        </div>
+            <form method="post" action="options.php" class="wpsl-form">
+                <?php settings_fields($this->plugin_name); ?>
+                <input type="hidden" name="<?php echo esc_attr($this->option_name); ?>[client_id]" value="<?php echo esc_attr($settings['client_id'] ?? ''); ?>">
+                <input type="hidden" name="<?php echo esc_attr($this->option_name); ?>[client_secret]" value="<?php echo esc_attr($settings['client_secret'] ?? ''); ?>">
 
-        <form method="post" action="options.php">
-            <?php settings_fields($this->plugin_name); ?>
-            <input type="hidden" name="<?php echo esc_attr($this->option_name); ?>[client_id]" value="<?php echo esc_attr($settings['client_id'] ?? ''); ?>">
-            <input type="hidden" name="<?php echo esc_attr($this->option_name); ?>[client_secret]" value="<?php echo esc_attr($settings['client_secret'] ?? ''); ?>">
-
-            <div class="wpsl-security-grid">
-                <?php
-                $security_features = [
-                    'disable_xmlrpc' => [
-                        'title' => __('Disable XML-RPC', 'wp-social-login'),
-                        'description' => __('Prevents brute-force attacks via XML-RPC protocol', 'wp-social-login'),
-                        'impact' => __('May break: Mobile apps, Jetpack features, some backup plugins', 'wp-social-login')
-                    ],
-                    'disable_file_editing' => [
-                        'title' => __('Disable File Editing', 'wp-social-login'),
-                        'description' => __('Prevents code injection if admin account is compromised', 'wp-social-login'),
-                        'impact' => __('May break: Theme/plugin editors in admin dashboard', 'wp-social-login')
-                    ],
-                    'hide_wp_version' => [
-                        'title' => __('Hide WordPress Version', 'wp-social-login'),
-                        'description' => __('Makes it harder for attackers to identify vulnerabilities', 'wp-social-login'),
-                        'impact' => __('Generally safe, no functionality impact', 'wp-social-login')
-                    ],
-                    'restrict_rest_api' => [
-                        'title' => __('Restrict REST API', 'wp-social-login'),
-                        'description' => __('Prevents unauthorized data access via REST API', 'wp-social-login'),
-                        'impact' => __('May break: Public API access, some plugins, headless setups', 'wp-social-login')
-                    ],
-                    'block_sensitive_files' => [
-                        'title' => __('Block Sensitive Files', 'wp-social-login'),
-                        'description' => __('Prevents direct access to wp-config.php, .htaccess, etc.', 'wp-social-login'),
-                        'impact' => __('Generally safe, blocks direct file access', 'wp-social-login')
-                    ]
-                ];
-
-                foreach ($security_features as $key => $feature):
-                    $is_enabled = !empty($security[$key]);
-                ?>
-                    <div class="wpsl-security-card <?php echo $is_enabled ? 'enabled' : ''; ?>">
-                        <h4>
-                            <input type="checkbox" class="wpsl-security-toggle" name="<?php echo esc_attr($this->option_name); ?>[security_features][<?php echo esc_attr($key); ?>]" value="1" <?php checked($is_enabled); ?>>
-                            <?php echo esc_html($feature['title']); ?>
-                        </h4>
-                        <p><?php echo esc_html($feature['description']); ?></p>
-                        <small style="color: #666;"><strong><?php _e('Impact:', 'wp-social-login'); ?></strong> <?php echo esc_html($feature['impact']); ?></small>
+                <div class="wpsl-alert info">
+                    <div class="wpsl-alert-icon">
+                        <span class="dashicons dashicons-info"></span>
                     </div>
-                <?php endforeach; ?>
-            </div>
+                    <div class="wpsl-alert-content">
+                        <h4><?php _e('Security Notice', 'wp-social-login'); ?></h4>
+                        <p><?php _e('This plugin was developed in response to real brute-force attacks. These features help reduce common risks but should be part of a comprehensive security strategy.', 'wp-social-login'); ?></p>
+                    </div>
+                </div>
 
-            <div class="wpsl-wizard-actions">
-                <a href="<?php echo esc_url(admin_url('options-general.php?page=' . $this->plugin_name . '&step=google_api')); ?>" class="wpsl-btn wpsl-btn-secondary">
-                    <span>←</span>
-                    <?php _e('Back', 'wp-social-login'); ?>
-                </a>
-                <button type="submit" class="wpsl-btn wpsl-btn-primary">
-                    <?php _e('Save & Continue', 'wp-social-login'); ?>
-                    <span>→</span>
-                </button>
-            </div>
-        </form>
+                <div class="wpsl-security-grid">
+                    <?php
+                    $security_features = [
+                        'disable_xmlrpc' => [
+                            'title' => __('Disable XML-RPC', 'wp-social-login'),
+                            'description' => __('Prevents brute-force attacks via XML-RPC protocol', 'wp-social-login'),
+                            'impact' => __('May affect mobile apps, Jetpack features, some backup plugins', 'wp-social-login'),
+                            'icon' => 'shield-alt'
+                        ],
+                        'disable_file_editing' => [
+                            'title' => __('Disable File Editing', 'wp-social-login'),
+                            'description' => __('Prevents code injection if admin account is compromised', 'wp-social-login'),
+                            'impact' => __('Disables theme/plugin editors in admin dashboard', 'wp-social-login'),
+                            'icon' => 'edit'
+                        ],
+                        'hide_wp_version' => [
+                            'title' => __('Hide WordPress Version', 'wp-social-login'),
+                            'description' => __('Makes it harder for attackers to identify vulnerabilities', 'wp-social-login'),
+                            'impact' => __('Generally safe, no functionality impact', 'wp-social-login'),
+                            'icon' => 'hidden'
+                        ],
+                        'restrict_rest_api' => [
+                            'title' => __('Restrict REST API', 'wp-social-login'),
+                            'description' => __('Prevents unauthorized data access via REST API', 'wp-social-login'),
+                            'impact' => __('May affect public API access, some plugins, headless setups', 'wp-social-login'),
+                            'icon' => 'rest-api'
+                        ],
+                        'block_sensitive_files' => [
+                            'title' => __('Block Sensitive Files', 'wp-social-login'),
+                            'description' => __('Prevents direct access to wp-config.php, .htaccess, etc.', 'wp-social-login'),
+                            'impact' => __('Generally safe, blocks direct file access attempts', 'wp-social-login'),
+                            'icon' => 'lock'
+                        ]
+                    ];
+
+                    foreach ($security_features as $key => $feature):
+                        $is_enabled = !empty($security[$key]);
+                    ?>
+                        <div class="wpsl-security-card <?php echo $is_enabled ? 'enabled' : ''; ?>">
+                            <div class="wpsl-security-header">
+                                <div class="wpsl-security-icon">
+                                    <span class="dashicons dashicons-<?php echo esc_attr($feature['icon']); ?>"></span>
+                                </div>
+                                <label class="wpsl-toggle">
+                                    <input type="checkbox" name="<?php echo esc_attr($this->option_name); ?>[security_features][<?php echo esc_attr($key); ?>]"
+                                        value="1" <?php checked($is_enabled); ?> class="wpsl-toggle-input">
+                                    <span class="wpsl-toggle-slider"></span>
+                                </label>
+                            </div>
+                            <h4><?php echo esc_html($feature['title']); ?></h4>
+                            <p class="wpsl-security-description"><?php echo esc_html($feature['description']); ?></p>
+                            <div class="wpsl-security-impact">
+                                <strong><?php _e('Impact:', 'wp-social-login'); ?></strong> <?php echo esc_html($feature['impact']); ?>
+                            </div>
+                        </div>
+                    <?php endforeach; ?>
+                </div>
+
+                <div class="wpsl-step-actions">
+                    <a href="<?php echo esc_url(admin_url('admin.php?page=' . $this->plugin_name . '&step=google_api')); ?>" class="wpsl-btn secondary">
+                        <span class="dashicons dashicons-arrow-left-alt"></span>
+                        <?php _e('Back', 'wp-social-login'); ?>
+                    </a>
+                    <button type="submit" class="wpsl-btn primary">
+                        <?php _e('Save & Continue', 'wp-social-login'); ?>
+                        <span class="dashicons dashicons-arrow-right-alt"></span>
+                    </button>
+                </div>
+            </form>
+        </div>
     <?php
     }
 
@@ -366,46 +486,81 @@ class WPSL_AdminSettings
         $allowed_users = $settings['allowed_users'] ?? [];
 
     ?>
-        <div class="wpsl-step-header">
-            <h2><?php _e('User Management', 'wp-social-login'); ?></h2>
-            <p><?php _e('Manage who can access your site by adding their Google email addresses.', 'wp-social-login'); ?></p>
-        </div>
-        <form method="post" action="options.php">
-            <?php settings_fields($this->plugin_name); ?>
-            <input type="hidden" name="<?php echo esc_attr($this->option_name); ?>[client_id]" value="<?php echo esc_attr($settings['client_id'] ?? ''); ?>">
-            <input type="hidden" name="<?php echo esc_attr($this->option_name); ?>[client_secret]" value="<?php echo esc_attr($settings['client_secret'] ?? ''); ?>">
+        <div class="wpsl-step-content">
+            <div class="wpsl-step-header">
+                <h2><?php _e('User Management', 'wp-social-login'); ?></h2>
+                <p><?php _e('Control who can access your site by adding their Google email addresses and assigning appropriate roles.', 'wp-social-login'); ?></p>
+            </div>
 
-            <div class="wpsl-form-group">
-                <label><?php _e('Authorized Users', 'wp-social-login'); ?></label>
-                <div class="wpsl-user-list" id="user-list">
-                    <?php if (empty($allowed_users)): ?>
-                        <div class="wpsl-user-item">
-                            <input type="email" name="<?php echo esc_attr($this->option_name); ?>[allowed_users][0][email]" placeholder="<?php esc_attr_e('user@example.com', 'wp-social-login'); ?>" required>
-                            <select name="<?php echo esc_attr($this->option_name); ?>[allowed_users][0][role]">
-                                <?php echo $this->getRoleOptions('subscriber'); ?>
-                            </select>
-                            <button type="button" class="wpsl-remove-user"><?php _e('Remove', 'wp-social-login'); ?></button>
-                        </div>
-                    <?php else: ?>
-                        <?php foreach ($allowed_users as $index => $user): ?>
+            <form method="post" action="options.php" class="wpsl-form">
+                <?php settings_fields($this->plugin_name); ?>
+                <input type="hidden" name="<?php echo esc_attr($this->option_name); ?>[client_id]" value="<?php echo esc_attr($settings['client_id'] ?? ''); ?>">
+                <input type="hidden" name="<?php echo esc_attr($this->option_name); ?>[client_secret]" value="<?php echo esc_attr($settings['client_secret'] ?? ''); ?>">
+
+                <div class="wpsl-form-section">
+                    <div class="wpsl-section-header">
+                        <h3><?php _e('Authorized Users', 'wp-social-login'); ?></h3>
+                        <button type="button" id="wpsl-add-user-btn" class="wpsl-btn outline small">
+                            <span class="dashicons dashicons-plus-alt"></span>
+                            <?php _e('Add User', 'wp-social-login'); ?>
+                        </button>
+                    </div>
+
+                    <div class="wpsl-user-list" id="user-list">
+                        <?php if (empty($allowed_users)): ?>
                             <div class="wpsl-user-item">
-                                <input type="email" name="<?php echo esc_attr($this->option_name); ?>[allowed_users][<?php echo esc_attr($index); ?>][email]" value="<?php echo esc_attr($user['email']); ?>" required>
-                                <select name="<?php echo esc_attr($this->option_name); ?>[allowed_users][<?php echo esc_attr($index); ?>][role]">
-                                    <?php echo $this->getRoleOptions($user['role']); ?>
-                                </select>
-                                <button type="button" class="wpsl-remove-user"><?php _e('Remove', 'wp-social-login'); ?></button>
+                                <div class="wpsl-user-fields">
+                                    <input type="email" name="<?php echo esc_attr($this->option_name); ?>[allowed_users][0][email]"
+                                        placeholder="<?php esc_attr_e('user@example.com', 'wp-social-login'); ?>" required>
+                                    <select name="<?php echo esc_attr($this->option_name); ?>[allowed_users][0][role]">
+                                        <?php echo $this->getRoleOptions('subscriber'); ?>
+                                    </select>
+                                </div>
+                                <button type="button" class="wpsl-remove-user">
+                                    <span class="dashicons dashicons-trash"></span>
+                                </button>
                             </div>
-                        <?php endforeach; ?>
+                        <?php else: ?>
+                            <?php foreach ($allowed_users as $index => $user): ?>
+                                <div class="wpsl-user-item">
+                                    <div class="wpsl-user-fields">
+                                        <input type="email" name="<?php echo esc_attr($this->option_name); ?>[allowed_users][<?php echo esc_attr($index); ?>][email]"
+                                            value="<?php echo esc_attr($user['email']); ?>" required>
+                                        <select name="<?php echo esc_attr($this->option_name); ?>[allowed_users][<?php echo esc_attr($index); ?>][role]">
+                                            <?php echo $this->getRoleOptions($user['role']); ?>
+                                        </select>
+                                    </div>
+                                    <button type="button" class="wpsl-remove-user">
+                                        <span class="dashicons dashicons-trash"></span>
+                                    </button>
+                                </div>
+                            <?php endforeach; ?>
+                        <?php endif; ?>
+                    </div>
+
+                    <?php if (empty($allowed_users)): ?>
+                        <div class="wpsl-empty-state">
+                            <div class="wpsl-empty-icon">
+                                <span class="dashicons dashicons-groups"></span>
+                            </div>
+                            <h4><?php _e('No users configured yet', 'wp-social-login'); ?></h4>
+                            <p><?php _e('Add email addresses of users who should be able to access your site.', 'wp-social-login'); ?></p>
+                        </div>
                     <?php endif; ?>
                 </div>
-                <button type="button" id="wpsl-add-user-btn" class="wpsl-btn wpsl-btn-secondary" style="margin-top: 15px;">+ <?php _e('Add User', 'wp-social-login'); ?></button>
-            </div>
 
-            <div class="wpsl-wizard-actions">
-                <a href="<?php echo esc_url(admin_url('options-general.php?page=' . $this->plugin_name . '&step=security')); ?>" class="wpsl-btn wpsl-btn-secondary">&larr; <?php _e('Back', 'wp-social-login'); ?></a>
-                <button type="submit" class="wpsl-btn wpsl-btn-primary"><?php _e('Save & Continue', 'wp-social-login'); ?> &rarr;</button>
-            </div>
-        </form>
+                <div class="wpsl-step-actions">
+                    <a href="<?php echo esc_url(admin_url('admin.php?page=' . $this->plugin_name . '&step=security')); ?>" class="wpsl-btn secondary">
+                        <span class="dashicons dashicons-arrow-left-alt"></span>
+                        <?php _e('Back', 'wp-social-login'); ?>
+                    </a>
+                    <button type="submit" class="wpsl-btn primary">
+                        <?php _e('Save & Continue', 'wp-social-login'); ?>
+                        <span class="dashicons dashicons-arrow-right-alt"></span>
+                    </button>
+                </div>
+            </form>
+        </div>
     <?php
     }
 
@@ -414,42 +569,69 @@ class WPSL_AdminSettings
         $settings = get_option($this->option_name, []);
 
     ?>
-        <div class="wpsl-step-header">
-            <h2><?php _e('Google One Tap Configuration', 'wp-social-login'); ?></h2>
-            <p><?php _e('Configure Google One Tap for seamless user authentication. One Tap allows users to sign in with a single click if they\'re already logged into their Google account.', 'wp-social-login'); ?></p>
+        <div class="wpsl-step-content">
+            <div class="wpsl-step-header">
+                <h2><?php _e('Google One Tap Configuration', 'wp-social-login'); ?></h2>
+                <p><?php _e('Configure Google One Tap for seamless user authentication with a single click.', 'wp-social-login'); ?></p>
+            </div>
+
+            <form method="post" action="options.php" class="wpsl-form">
+                <?php settings_fields($this->plugin_name); ?>
+                <input type="hidden" name="<?php echo esc_attr($this->option_name); ?>[client_id]" value="<?php echo esc_attr($settings['client_id'] ?? ''); ?>">
+                <input type="hidden" name="<?php echo esc_attr($this->option_name); ?>[client_secret]" value="<?php echo esc_attr($settings['client_secret'] ?? ''); ?>">
+
+                <div class="wpsl-one-tap-preview">
+                    <div class="wpsl-preview-content">
+                        <h3><?php _e('About Google One Tap', 'wp-social-login'); ?></h3>
+                        <p><?php _e('One Tap allows users who are already signed into Google to authenticate with your site instantly. It\'s always enabled on the login page for the best user experience.', 'wp-social-login'); ?></p>
+
+                        <div class="wpsl-one-tap-demo">
+                            <div class="wpsl-demo-popup">
+                                <div class="wpsl-demo-header">
+                                    <span class="wpsl-google-logo">G</span>
+                                    <span><?php _e('Sign in with Google', 'wp-social-login'); ?></span>
+                                </div>
+                                <div class="wpsl-demo-content">
+                                    <div class="wpsl-demo-avatar"></div>
+                                    <div class="wpsl-demo-text">
+                                        <div><?php _e('John Doe', 'wp-social-login'); ?></div>
+                                        <div class="wpsl-demo-email">john@example.com</div>
+                                    </div>
+                                    <button class="wpsl-demo-btn"><?php _e('Continue as John', 'wp-social-login'); ?></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="wpsl-form-section">
+                    <h3><?php _e('One Tap Settings', 'wp-social-login'); ?></h3>
+
+                    <div class="wpsl-toggle-group">
+                        <label class="wpsl-toggle-label">
+                            <input type="checkbox" name="<?php echo esc_attr($this->option_name); ?>[one_tap_homepage]"
+                                value="1" <?php checked(!empty($settings['one_tap_homepage'])); ?> class="wpsl-toggle-input">
+                            <span class="wpsl-toggle-slider"></span>
+                            <div class="wpsl-toggle-content">
+                                <div class="wpsl-toggle-title"><?php _e('Enable One Tap on Homepage', 'wp-social-login'); ?></div>
+                                <div class="wpsl-toggle-description"><?php _e('Show the One Tap prompt to visitors on your homepage and public pages. Some prefer to keep the homepage clean for other purposes.', 'wp-social-login'); ?></div>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="wpsl-step-actions">
+                    <a href="<?php echo esc_url(admin_url('admin.php?page=' . $this->plugin_name . '&step=users')); ?>" class="wpsl-btn secondary">
+                        <span class="dashicons dashicons-arrow-left-alt"></span>
+                        <?php _e('Back', 'wp-social-login'); ?>
+                    </a>
+                    <button type="submit" class="wpsl-btn primary">
+                        <?php _e('Save & Continue', 'wp-social-login'); ?>
+                        <span class="dashicons dashicons-arrow-right-alt"></span>
+                    </button>
+                </div>
+            </form>
         </div>
-
-        <form method="post" action="options.php">
-            <?php settings_fields($this->plugin_name); ?>
-            <input type="hidden" name="<?php echo esc_attr($this->option_name); ?>[client_id]" value="<?php echo esc_attr($settings['client_id'] ?? ''); ?>">
-            <input type="hidden" name="<?php echo esc_attr($this->option_name); ?>[client_secret]" value="<?php echo esc_attr($settings['client_secret'] ?? ''); ?>">
-
-            <div class="wpsl-info-card">
-                <h4><?php _e('🚀 About Google One Tap', 'wp-social-login'); ?></h4>
-                <p><?php _e('One Tap is always enabled on the login page for the best user experience. Here you can choose whether to enable it on public pages like your homepage.', 'wp-social-login'); ?></p>
-            </div>
-
-            <div class="wpsl-form-group">
-                <label>
-                    <input type="checkbox" name="<?php echo esc_attr($this->option_name); ?>[one_tap_homepage]" value="1" <?php checked(!empty($settings['one_tap_homepage'])); ?>>
-                    <?php _e('Enable One Tap on Homepage and Public Pages', 'wp-social-login'); ?>
-                </label>
-                <p style="color: #666; margin-top: 8px; font-size: 14px;">
-                    <?php _e('When enabled, visitors to your homepage will see the Google One Tap prompt if they\'re signed into Google. This can improve user experience but some prefer to keep the homepage clean for other purposes.', 'wp-social-login'); ?>
-                </p>
-            </div>
-
-            <div class="wpsl-wizard-actions">
-                <a href="<?php echo esc_url(admin_url('options-general.php?page=' . $this->plugin_name . '&step=users')); ?>" class="wpsl-btn wpsl-btn-secondary">
-                    <span>←</span>
-                    <?php _e('Back', 'wp-social-login'); ?>
-                </a>
-                <button type="submit" class="wpsl-btn wpsl-btn-primary">
-                    <?php _e('Save & Continue', 'wp-social-login'); ?>
-                    <span>→</span>
-                </button>
-            </div>
-        </form>
     <?php
     }
 
@@ -459,52 +641,99 @@ class WPSL_AdminSettings
         $is_fully_configured = !empty($settings['client_id']) && !empty($settings['client_secret']);
 
     ?>
-        <div class="wpsl-step-header">
-            <h2><?php _e('🎉 Setup Complete!', 'wp-social-login'); ?></h2>
-            <p><?php _e('Congratulations! Your WP Social Login plugin is now configured and ready to use.', 'wp-social-login'); ?></p>
-        </div>
-
-        <?php if ($is_fully_configured): ?>
-            <div class="wpsl-info-card success">
-                <h4><?php _e('✅ Plugin is Active and Ready', 'wp-social-login'); ?></h4>
-                <p><?php _e('Users can now sign in with their Google accounts. Password-based authentication has been disabled for enhanced security.', 'wp-social-login'); ?></p>
+        <div class="wpsl-step-content">
+            <div class="wpsl-completion-header">
+                <div class="wpsl-completion-icon">
+                    <span class="dashicons dashicons-yes-alt"></span>
+                </div>
+                <h2><?php _e('Setup Complete!', 'wp-social-login'); ?></h2>
+                <p><?php _e('Congratulations! Your WP Social Login plugin is now configured and ready to secure your WordPress site.', 'wp-social-login'); ?></p>
             </div>
-        <?php else: ?>
-            <div class="wpsl-info-card error">
-                <h4><?php _e('❌ Configuration Incomplete', 'wp-social-login'); ?></h4>
-                <p><?php _e('Some required settings are missing. Please complete the Google API configuration before users can log in.', 'wp-social-login'); ?></p>
+
+            <?php if ($is_fully_configured): ?>
+                <div class="wpsl-alert success large">
+                    <div class="wpsl-alert-icon">
+                        <span class="dashicons dashicons-shield-alt"></span>
+                    </div>
+                    <div class="wpsl-alert-content">
+                        <h4><?php _e('Your Site is Now Secured', 'wp-social-login'); ?></h4>
+                        <p><?php _e('Password-based authentication has been disabled. All users must now authenticate through Google, significantly reducing security risks.', 'wp-social-login'); ?></p>
+                    </div>
+                </div>
+            <?php else: ?>
+                <div class="wpsl-alert error large">
+                    <div class="wpsl-alert-icon">
+                        <span class="dashicons dashicons-warning"></span>
+                    </div>
+                    <div class="wpsl-alert-content">
+                        <h4><?php _e('Configuration Incomplete', 'wp-social-login'); ?></h4>
+                        <p><?php _e('Some required settings are missing. Please complete the Google API configuration before users can log in.', 'wp-social-login'); ?></p>
+                    </div>
+                </div>
+            <?php endif; ?>
+
+            <div class="wpsl-completion-actions">
+                <div class="wpsl-action-cards">
+                    <a href="<?php echo wp_login_url(); ?>" target="_blank" class="wpsl-action-card primary">
+                        <div class="wpsl-action-icon">
+                            <span class="dashicons dashicons-external"></span>
+                        </div>
+                        <div class="wpsl-action-content">
+                            <h4><?php _e('Test Login', 'wp-social-login'); ?></h4>
+                            <p><?php _e('Try the new login experience', 'wp-social-login'); ?></p>
+                        </div>
+                    </a>
+
+                    <a href="<?php echo admin_url('users.php'); ?>" class="wpsl-action-card">
+                        <div class="wpsl-action-icon">
+                            <span class="dashicons dashicons-admin-users"></span>
+                        </div>
+                        <div class="wpsl-action-content">
+                            <h4><?php _e('Manage Users', 'wp-social-login'); ?></h4>
+                            <p><?php _e('View your WordPress users', 'wp-social-login'); ?></p>
+                        </div>
+                    </a>
+
+                    <a href="https://hardtoskip.com/" target="_blank" class="wpsl-action-card">
+                        <div class="wpsl-action-icon">
+                            <span class="dashicons dashicons-heart"></span>
+                        </div>
+                        <div class="wpsl-action-content">
+                            <h4><?php _e('Plugin Creator', 'wp-social-login'); ?></h4>
+                            <p><?php _e('Visit HardToSkip.com', 'wp-social-login'); ?></p>
+                        </div>
+                    </a>
+                </div>
             </div>
-        <?php endif; ?>
 
-        <div class="wpsl-info-card">
-            <h4><?php _e('🔗 Important Links', 'wp-social-login'); ?></h4>
-            <ul>
-                <li><a href="<?php echo wp_login_url(); ?>" target="_blank"><?php _e('Test Your Login Page', 'wp-social-login'); ?></a></li>
-                <li><a href="<?php echo admin_url('users.php'); ?>"><?php _e('Manage WordPress Users', 'wp-social-login'); ?></a></li>
-                <li><a href="https://hardtoskip.com" target="_blank"><?php _e('Visit HardToSkip.com (Plugin Creator)', 'wp-social-login'); ?></a></li>
-            </ul>
-        </div>
+            <div class="wpsl-next-steps">
+                <h3><?php _e('Next Steps', 'wp-social-login'); ?></h3>
+                <ul class="wpsl-checklist">
+                    <li>
+                        <span class="dashicons dashicons-yes-alt"></span>
+                        <?php _e('Test the login functionality with an authorized email address', 'wp-social-login'); ?>
+                    </li>
+                    <li>
+                        <span class="dashicons dashicons-yes-alt"></span>
+                        <?php _e('Add more authorized users as your team grows', 'wp-social-login'); ?>
+                    </li>
+                    <li>
+                        <span class="dashicons dashicons-yes-alt"></span>
+                        <?php _e('Monitor your site for any compatibility issues', 'wp-social-login'); ?>
+                    </li>
+                    <li>
+                        <span class="dashicons dashicons-yes-alt"></span>
+                        <?php _e('Keep your WordPress installation updated for optimal security', 'wp-social-login'); ?>
+                    </li>
+                </ul>
+            </div>
 
-        <div class="wpsl-info-card">
-            <h4><?php _e('💡 Next Steps', 'wp-social-login'); ?></h4>
-            <ul>
-                <li><?php _e('Test the login functionality with an authorized email address', 'wp-social-login'); ?></li>
-                <li><?php _e('Add more authorized users as needed', 'wp-social-login'); ?></li>
-                <li><?php _e('Review and adjust security features based on your needs', 'wp-social-login'); ?></li>
-                <li><?php _e('Monitor your site for any compatibility issues', 'wp-social-login'); ?></li>
-            </ul>
-        </div>
-
-        <div class="wpsl-wizard-actions">
-            <a href="<?php echo esc_url(admin_url('options-general.php?page=' . $this->plugin_name . '&step=one_tap')); ?>" class="wpsl-btn wpsl-btn-secondary">
-                <span>←</span>
-                <?php _e('Back', 'wp-social-login'); ?>
-            </a>
-            <div style="display: flex; gap: 10px;">
-                <a href="<?php echo wp_login_url(); ?>" target="_blank" class="wpsl-btn wpsl-btn-success">
-                    <?php _e('Test Login Page', 'wp-social-login'); ?>
+            <div class="wpsl-step-actions">
+                <a href="<?php echo esc_url(admin_url('admin.php?page=' . $this->plugin_name . '&step=one_tap')); ?>" class="wpsl-btn secondary">
+                    <span class="dashicons dashicons-arrow-left-alt"></span>
+                    <?php _e('Back', 'wp-social-login'); ?>
                 </a>
-                <a href="<?php echo esc_url(admin_url('options-general.php?page=' . $this->plugin_name . '&step=overview')); ?>" class="wpsl-btn wpsl-btn-primary">
+                <a href="<?php echo esc_url(admin_url('admin.php?page=' . $this->plugin_name . '&step=overview')); ?>" class="wpsl-btn outline">
                     <?php _e('Return to Overview', 'wp-social-login'); ?>
                 </a>
             </div>
@@ -512,6 +741,7 @@ class WPSL_AdminSettings
 <?php
     }
 
+    // Keep the rest of the methods unchanged but update menu references
     private function getWizardSteps()
     {
         return [
@@ -591,7 +821,7 @@ class WPSL_AdminSettings
             $current_step = isset($_GET['step']) ? sanitize_key($_GET['step']) : 'overview';
             $next_step = $this->getNextStep($current_step);
             if ($next_step) {
-                wp_redirect(admin_url('options-general.php?page=' . $this->plugin_name . '&step=' . $next_step . '&updated=1'));
+                wp_redirect(admin_url('admin.php?page=' . $this->plugin_name . '&step=' . $next_step . '&updated=1'));
                 exit;
             }
         }
