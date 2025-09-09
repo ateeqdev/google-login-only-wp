@@ -1,308 +1,198 @@
-let userIndex = 0;
-
 document.addEventListener("DOMContentLoaded", function () {
-  initWizardProgress();
-  initSecurityToggles();
-  initCopyButtons();
-  initTestConnectionButton();
-  initUserManagement();
-  initApiFormValidation();
-  initSimpleAnimations();
+  "use strict";
 
-  if (new URLSearchParams(window.location.search).has("updated")) {
-    showNotification(wpsl_admin.strings.saved, "success");
-  }
-});
+  // Global state
+  let userIndex = wpsl_admin.initial_user_count || 0;
 
-function initWizardProgress() {
-  const completedSteps = document.querySelectorAll(
-    ".wpsl-step-nav.completed"
-  ).length;
-  const totalSteps = document.querySelectorAll(".wpsl-step-nav").length;
-  const progressBar = document.querySelector(".wpsl-progress-fill");
-  if (progressBar) {
-    const progress = (completedSteps / totalSteps) * 100;
-    setTimeout(() => {
-      progressBar.style.width = `${progress}%`;
-    }, 500);
-  }
-}
+  // Initializers
+  const init = () => {
+    initUserManagement();
+    initCopyButtons();
+    initTestConnection();
+    initFormSubmissions();
+    initConditionalFields();
+    initSecurityCards();
 
-function initSecurityToggles() {
-  document
-    .querySelectorAll(".wpsl-security-card .wpsl-toggle-input")
-    .forEach((checkbox) => {
-      checkbox.addEventListener("change", function () {
-        const card = this.closest(".wpsl-security-card");
-        card.classList.toggle("enabled", this.checked);
-      });
-    });
-}
+    if (new URLSearchParams(window.location.search).has("settings-updated")) {
+      showNotification(wpsl_admin.strings.saved, "success");
+    }
+  };
 
-function initCopyButtons() {
-  document.querySelectorAll(".wpsl-copy-btn").forEach((button) => {
-    button.addEventListener("click", () => copyToClipboard(button));
-  });
-}
+  const initUserManagement = () => {
+    const userList = document.getElementById("user-list");
+    const addUserBtn = document.getElementById("wpsl-add-user-btn");
+    if (!userList || !addUserBtn) return;
 
-function initTestConnectionButton() {
-  const testButton = document.getElementById("wpsl-test-connection-btn");
-  if (testButton) {
-    testButton.addEventListener("click", testGoogleConnection);
-  }
-}
-
-function initUserManagement() {
-  const userList = document.getElementById("user-list");
-  if (!userList) return;
-
-  userIndex = wpsl_admin.initial_user_count;
-
-  const addUserBtn = document.getElementById("wpsl-add-user-btn");
-  if (addUserBtn) {
     addUserBtn.addEventListener("click", addUser);
-  }
 
-  userList.addEventListener("click", function (e) {
-    if (
-      e.target &&
-      (e.target.classList.contains("wpsl-remove-user") ||
-        e.target.closest(".wpsl-remove-user"))
-    ) {
-      const button = e.target.classList.contains("wpsl-remove-user")
-        ? e.target
-        : e.target.closest(".wpsl-remove-user");
-      removeUser(button);
-    }
-  });
-
-  initSimpleSignupManagement();
-}
-
-function initSimpleSignupManagement() {
-  const allowSignupsToggle = document.getElementById("wpsl-allow-signups");
-  const roleSection = document.getElementById("wpsl-signup-role-section");
-
-  if (allowSignupsToggle && roleSection) {
-    allowSignupsToggle.addEventListener("change", function () {
-      roleSection.style.display = this.checked ? "block" : "none";
-    });
-  }
-}
-
-function initApiFormValidation() {
-  const form = document.getElementById("wpsl-google-api-form");
-  if (form) {
-    const clientIdInput = document.getElementById("client_id");
-    const clientSecretInput = document.getElementById("client_secret");
-
-    if (clientIdInput && clientSecretInput) {
-      [clientIdInput, clientSecretInput].forEach((input) => {
-        input.addEventListener("blur", validateField);
-      });
-    }
-
-    form.addEventListener("submit", function (e) {
-      if (!clientIdInput?.value || !clientSecretInput?.value) {
-        e.preventDefault();
-        showNotification(wpsl_admin.strings.fill_both_fields, "error");
+    userList.addEventListener("click", (e) => {
+      const removeBtn = e.target.closest(".wpsl-remove-user");
+      if (removeBtn) {
+        removeUser(removeBtn);
       }
     });
-  }
-}
+  };
 
-function initSimpleAnimations() {
-  // Simple fade-in for main content
-  const stepContent = document.querySelector(".wpsl-step-content");
-  if (stepContent) {
-    stepContent.style.opacity = "0";
-    setTimeout(() => {
-      stepContent.style.transition = "opacity 0.5s ease";
-      stepContent.style.opacity = "1";
-    }, 100);
-  }
-}
+  const initCopyButtons = () => {
+    document.querySelectorAll(".wpsl-copy-btn").forEach((button) => {
+      button.addEventListener("click", () => copyToClipboard(button));
+    });
+  };
 
-function validateField(event) {
-  const input = event.target;
-  const isClientId = input.id === "client_id";
-  const isClientSecret = input.id === "client_secret";
-
-  input.classList.remove("error", "success");
-
-  if (isClientId && input.value) {
-    if (input.value.includes(".apps.googleusercontent.com")) {
-      input.classList.add("success");
-    } else if (input.value.length > 10) {
-      input.classList.add("error");
+  const initTestConnection = () => {
+    const testBtn = document.getElementById("wpsl-test-connection-btn");
+    if (testBtn) {
+      testBtn.addEventListener("click", testGoogleConnection);
     }
-  }
+  };
 
-  if (isClientSecret && input.value) {
-    if (input.value.length > 20) {
-      input.classList.add("success");
-    } else if (input.value.length > 5) {
-      input.classList.add("error");
+  const initFormSubmissions = () => {
+    document.querySelectorAll(".wpsl-form").forEach((form) => {
+      form.addEventListener("submit", (e) => {
+        const submitBtn = e.submitter;
+        if (submitBtn) {
+          submitBtn.classList.add("loading");
+          submitBtn.disabled = true;
+        }
+      });
+    });
+  };
+
+  const initConditionalFields = () => {
+    const allowSignupsToggle = document.getElementById("wpsl-allow-signups");
+    const roleSection = document.getElementById("wpsl-signup-role-section");
+
+    if (allowSignupsToggle && roleSection) {
+      allowSignupsToggle.addEventListener("change", () => {
+        roleSection.style.display = allowSignupsToggle.checked
+          ? "block"
+          : "none";
+      });
     }
-  }
-}
+  };
 
-function testGoogleConnection(event) {
-  const button = event.target;
-  const originalContent = button.innerHTML;
-  const clientId = document.getElementById("client_id")?.value;
-  const clientSecret = document.getElementById("client_secret")?.value;
+  const initSecurityCards = () => {
+    document
+      .querySelectorAll(".wpsl-security-card .wpsl-toggle-input")
+      .forEach((checkbox) => {
+        checkbox.addEventListener("change", (e) => {
+          e.target
+            .closest(".wpsl-security-card")
+            .classList.toggle("enabled", e.target.checked);
+        });
+      });
+  };
 
-  if (!clientId || !clientSecret) {
-    showNotification(wpsl_admin.strings.fill_both_fields, "error");
-    return;
-  }
+  // Functions
+  const addUser = () => {
+    const userList = document.getElementById("user-list");
+    const template = wpsl_admin.user_template.replace(
+      /__INDEX__/g,
+      userIndex++
+    );
+    userList.insertAdjacentHTML("beforeend", template);
+    userList.lastElementChild.querySelector('input[type="email"]').focus();
+  };
 
-  button.innerHTML = `<span class="wpsl-loading"></span> ${wpsl_admin.strings.testing}`;
-  button.disabled = true;
+  const removeUser = (button) => {
+    if (confirm(wpsl_admin.strings.confirm_remove_user)) {
+      const userItem = button.closest(".wpsl-user-item");
+      userItem.remove();
+      const userList = document.getElementById("user-list");
+      if (userList.children.length === 0) {
+        addUser();
+      }
+    }
+  };
 
-  fetch(wpsl_admin.ajax_url, {
-    method: "POST",
-    headers: { "Content-Type": "application/x-www-form-urlencoded" },
-    body: new URLSearchParams({
-      action: "wpsl_test_connection",
-      nonce: wpsl_admin.nonce,
-      client_id: clientId,
-      client_secret: clientSecret,
-    }),
-  })
-    .then((response) => response.json())
-    .then((data) => {
+  const testGoogleConnection = async (e) => {
+    const button = e.target;
+    const originalText = button.textContent;
+    const clientId = document.getElementById("client_id")?.value;
+    const clientSecret = document.getElementById("client_secret")?.value;
+
+    if (!clientId || !clientSecret) {
+      return showNotification(wpsl_admin.strings.fill_both_fields, "error");
+    }
+
+    button.innerHTML = `<span class="wpsl-loading"></span> ${wpsl_admin.strings.testing}`;
+    button.disabled = true;
+
+    try {
+      const response = await fetch(wpsl_admin.ajax_url, {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: new URLSearchParams({
+          action: "wpsl_test_connection",
+          nonce: wpsl_admin.nonce,
+          client_id: clientId,
+          client_secret: clientSecret,
+        }),
+      });
+      const data = await response.json();
       if (data.success) {
         showNotification(data.data.message, "success");
       } else {
-        showNotification(
-          `${wpsl_admin.strings.connection_failed}: ${data.data}`,
-          "error"
-        );
+        throw new Error(data.data);
       }
-    })
-    .catch(() => {
-      showNotification(wpsl_admin.strings.connection_failed, "error");
-    })
-    .finally(() => {
-      setTimeout(() => {
-        button.innerHTML = originalContent;
-        button.disabled = false;
-      }, 1000);
-    });
-}
-
-function addUser() {
-  const userList = document.getElementById("user-list");
-
-  const newUser = document.createElement("div");
-  newUser.className = "wpsl-user-item";
-  newUser.innerHTML = wpsl_admin.user_template.replace(/__INDEX__/g, userIndex);
-
-  userList.appendChild(newUser);
-  userIndex++;
-
-  // Focus the email input
-  const emailInput = newUser.querySelector('input[type="email"]');
-  if (emailInput) {
-    emailInput.focus();
-  }
-}
-
-function removeUser(button) {
-  const userItem = button.closest(".wpsl-user-item");
-  const userList = document.getElementById("user-list");
-
-  if (confirm(wpsl_admin.strings.confirm_remove_user)) {
-    userItem.remove();
-
-    // Add a new empty user if no users left
-    const remainingUsers = userList.querySelectorAll(".wpsl-user-item");
-    if (remainingUsers.length === 0) {
-      addUser();
+    } catch (error) {
+      showNotification(
+        `${wpsl_admin.strings.connection_failed}: ${error.message}`,
+        "error"
+      );
+    } finally {
+      button.innerHTML = originalText;
+      button.disabled = false;
     }
-  }
-}
-
-function copyToClipboard(button) {
-  const input = button.previousElementSibling;
-
-  if (navigator.clipboard && navigator.clipboard.writeText) {
-    navigator.clipboard.writeText(input.value).then(
-      () => showCopySuccess(button),
-      () => fallbackCopy(input, button)
-    );
-  } else {
-    fallbackCopy(input, button);
-  }
-}
-
-function fallbackCopy(input, button) {
-  try {
-    input.select();
-    input.setSelectionRange(0, 99999);
-    document.execCommand("copy");
-    showCopySuccess(button);
-  } catch (err) {
-    showNotification(wpsl_admin.strings.copy_failed, "error");
-  }
-}
-
-function showCopySuccess(button) {
-  const originalText = button.textContent;
-  button.textContent = wpsl_admin.strings.copied;
-  button.classList.add("success");
-
-  setTimeout(() => {
-    button.textContent = originalText;
-    button.classList.remove("success");
-  }, 2000);
-}
-
-function showNotification(message, type = "info") {
-  // Remove any existing notifications
-  document.querySelectorAll(".wpsl-notification").forEach((n) => n.remove());
-
-  const notification = document.createElement("div");
-  notification.className = `wpsl-notification wpsl-notification-${type}`;
-
-  const iconMap = {
-    success: "✓",
-    error: "✗",
-    warning: "⚠",
-    info: "ℹ",
   };
 
-  notification.innerHTML = `
-    <div class="wpsl-notification-content">
-      <span class="wpsl-notification-icon">${iconMap[type] || iconMap.info}</span>
+  const copyToClipboard = async (button) => {
+    const input = button.previousElementSibling;
+    const originalText = button.textContent;
+    try {
+      await navigator.clipboard.writeText(input.value);
+      button.textContent = wpsl_admin.strings.copied;
+      button.classList.add("success");
+    } catch (err) {
+      showNotification(wpsl_admin.strings.copy_failed, "error");
+    } finally {
+      setTimeout(() => {
+        button.textContent = originalText;
+        button.classList.remove("success");
+      }, 2000);
+    }
+  };
+
+  const showNotification = (message, type = "info") => {
+    document.querySelectorAll(".wpsl-notification").forEach((n) => n.remove());
+
+    const notification = document.createElement("div");
+    notification.className = `wpsl-notification wpsl-notification-${type}`;
+    const iconMap = { success: "✓", error: "✗", warning: "!", info: "ℹ" };
+
+    notification.innerHTML = `
+      <span class="wpsl-notification-icon">${iconMap[type]}</span>
       <span class="wpsl-notification-message">${message}</span>
-      <button class="wpsl-notification-close">×</button>
-    </div>
-  `;
+      <button class="wpsl-notification-close">&times;</button>
+    `;
 
-  document.body.appendChild(notification);
+    document.body.appendChild(notification);
+    setTimeout(() => notification.classList.add("show"), 10);
 
-  setTimeout(() => {
-    notification.classList.add("show");
-  }, 10);
-
-  // Auto-remove
-  const timeoutId = setTimeout(
-    () => {
+    const removeNotif = () => {
       notification.classList.remove("show");
-      setTimeout(() => notification.remove(), 300);
-    },
-    type === "error" ? 8000 : 5000
-  );
+      setTimeout(() => notification.remove(), 400);
+    };
 
-  // Manual close
-  notification
-    .querySelector(".wpsl-notification-close")
-    .addEventListener("click", () => {
-      clearTimeout(timeoutId);
-      notification.classList.remove("show");
-      setTimeout(() => notification.remove(), 300);
-    });
-}
+    const timer = setTimeout(removeNotif, 5000);
+    notification
+      .querySelector(".wpsl-notification-close")
+      .addEventListener("click", () => {
+        clearTimeout(timer);
+        removeNotif();
+      });
+  };
+
+  // Run it
+  init();
+});

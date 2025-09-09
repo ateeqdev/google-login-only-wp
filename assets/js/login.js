@@ -1,14 +1,15 @@
 document.addEventListener("DOMContentLoaded", function () {
+  "use strict";
+
   const loginBtn = document.getElementById("google-login-btn");
   if (loginBtn) {
-    loginBtn.addEventListener("click", function () {
+    loginBtn.addEventListener("click", function (e) {
       this.classList.add("loading");
       this.style.pointerEvents = "none";
-      // Re-enable after a timeout in case redirection fails
       setTimeout(() => {
         this.classList.remove("loading");
         this.style.pointerEvents = "auto";
-      }, 5000);
+      }, 5000); // Failsafe
     });
   }
 });
@@ -19,96 +20,75 @@ document.addEventListener("DOMContentLoaded", function () {
  * @param {object} response - The credential response object from Google.
  */
 function handleCredentialResponse(response) {
-  // Show loading indicator
   showAuthenticationLoading();
 
   const form = document.createElement("form");
   form.method = "POST";
   form.action = wpsl_login_params.callback_url;
+  form.style.display = "none";
 
-  const credentialInput = document.createElement("input");
-  credentialInput.type = "hidden";
-  credentialInput.name = "credential";
-  credentialInput.value = response.credential;
+  const createInput = (name, value) => {
+    const input = document.createElement("input");
+    input.type = "hidden";
+    input.name = name;
+    input.value = value;
+    return input;
+  };
 
-  const csrfInput = document.createElement("input");
-  csrfInput.type = "hidden";
-  csrfInput.name = "wpsl_csrf_token";
-  csrfInput.value = wpsl_login_params.csrf_token;
+  form.appendChild(createInput("credential", response.credential));
+  form.appendChild(
+    createInput("wpsl_csrf_token", wpsl_login_params.csrf_token)
+  );
+  form.appendChild(createInput("nonce", wpsl_login_params.nonce));
 
-  const nonceInput = document.createElement("input");
-  nonceInput.type = "hidden";
-  nonceInput.name = "nonce";
-  nonceInput.value = wpsl_login_params.nonce;
-
-  form.appendChild(credentialInput);
-  form.appendChild(csrfInput);
-  form.appendChild(nonceInput);
   document.body.appendChild(form);
   form.submit();
 }
 
-/**
- * Show loading indicator during authentication
- */
 function showAuthenticationLoading() {
-  const overlay = document.createElement("div");
-  overlay.id = "wpsl-auth-loading";
-
-  overlay.innerHTML = `
-    <div class="loading-content">
-      <div class="spinner"></div>
-      <p>${wpsl_login_params.authenticating}</p>
-    </div>
-  `;
-
-  document.body.appendChild(overlay);
-
-  setTimeout(() => {
-    const loadingElement = document.getElementById("wpsl-auth-loading");
-    if (loadingElement) {
-      loadingElement.remove();
-    }
-  }, 10000);
-}
-window.addEventListener("load", function () {
-  // Check if Google's library and our localized parameters are available.
-  if (
-    typeof google !== "undefined" &&
-    google.accounts &&
-    typeof wpsl_login_params !== "undefined"
-  ) {
-    google.accounts.id.initialize({
-      client_id: wpsl_login_params.client_id,
-      callback: handleCredentialResponse,
-      auto_select: false,
-      cancel_on_tap_outside: true,
-      context: wpsl_login_params.context, // 'signin' or 'use'
-    });
-
-    // Only show One Tap prompt if there are no login errors on the page
-    const hasLoginError =
-      window.location.search.includes("login_error") ||
-      document.getElementById("login_error") !== null;
-
-    if (wpsl_login_params.show_prompt && !hasLoginError) {
-      // Delay prompt for better user experience
-      const promptDelay = wpsl_login_params.context === "signin" ? 1000 : 2000;
-      setTimeout(() => {
-        google.accounts.id.prompt((notification) => {
-          if (notification.isNotDisplayed()) {
-            console.log(
-              wpsl_login_params.one_tap_not_displayed,
-              notification.getNotDisplayedReason()
-            );
-          } else if (notification.isSkippedMoment()) {
-            console.log(
-              wpsl_login_params.one_tap_skipped,
-              notification.getSkippedReason()
-            );
-          }
-        });
-      }, promptDelay);
-    }
+  let overlay = document.getElementById("wpsl-auth-loading");
+  if (!overlay) {
+    overlay = document.createElement("div");
+    overlay.id = "wpsl-auth-loading";
+    overlay.innerHTML = `
+      <div class="wpsl-auth-content">
+        <div class="wpsl-spinner"></div>
+        <p>${wpsl_login_params.authenticating}</p>
+      </div>
+    `;
+    document.body.appendChild(overlay);
   }
-});
+  overlay.classList.add("show");
+}
+
+window.onload = function () {
+  if (
+    typeof google === "undefined" ||
+    !google.accounts ||
+    typeof wpsl_login_params === "undefined"
+  ) {
+    return;
+  }
+
+  google.accounts.id.initialize({
+    client_id: wpsl_login_params.client_id,
+    callback: handleCredentialResponse,
+    auto_select: false,
+    cancel_on_tap_outside: true,
+    context: wpsl_login_params.context,
+  });
+
+  const hasLoginError =
+    document.getElementById("login_error") !== null ||
+    window.location.search.includes("wpsl_error_key");
+
+  if (wpsl_login_params.show_prompt && !hasLoginError) {
+    google.accounts.id.prompt((notification) => {
+      if (notification.isNotDisplayed() || notification.isSkippedMoment()) {
+        console.log(
+          "WPSL: Google One Tap prompt was not displayed or was skipped."
+        );
+      }
+    });
+  }
+};
