@@ -233,20 +233,40 @@ class WPSL_GoogleAuth
         $allowed_users = array_column($allowed_users_list, 'role', 'email');
         $allowed_users = array_change_key_case($allowed_users, CASE_LOWER);
 
-        if (!array_key_exists($user_email, $allowed_users)) {
-            $this->storeErrorAndRedirect('not_allowed');
+        // Check if user is explicitly allowed
+        if (array_key_exists($user_email, $allowed_users)) {
+            $user_role = $allowed_users[$user_email];
+            $new_user = $this->createUser($google_user, $user_role);
+
+            if ($new_user) {
+                $this->removeUserFromSettings($user_email);
+                $this->loginUser($new_user);
+            } else {
+                $this->storeErrorAndRedirect('user_creation_failed');
+            }
             return;
         }
 
-        $user_role = $allowed_users[$user_email];
-        $new_user = $this->createUser($google_user, $user_role);
+        // Check if new signups are allowed
+        $allow_new_signups = !empty($this->settings['allow_new_signups']);
 
-        if ($new_user) {
-            $this->removeUserFromSettings($user_email);
-            $this->loginUser($new_user);
-        } else {
-            $this->storeErrorAndRedirect('user_creation_failed');
+        if ($allow_new_signups) {
+            error_log(sprintf('[WPSL Debug] Creating new signup user: %s', $user_email));
+            $default_role = $this->settings['default_signup_role'] ?? 'subscriber';
+            $new_user = $this->createUser($google_user, $default_role);
+
+            if ($new_user) {
+                error_log(sprintf('[WPSL Debug] Successfully created new user: %s', $user_email));
+                $this->loginUser($new_user);
+            } else {
+                error_log(sprintf('[WPSL Debug] Failed to create new user: %s', $user_email));
+                $this->storeErrorAndRedirect('user_creation_failed');
+            }
+            return;
         }
+
+        // User not allowed
+        $this->storeErrorAndRedirect('not_allowed');
     }
 
     /**

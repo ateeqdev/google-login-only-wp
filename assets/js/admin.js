@@ -7,8 +7,7 @@ document.addEventListener("DOMContentLoaded", function () {
   initTestConnectionButton();
   initUserManagement();
   initApiFormValidation();
-  initTooltips();
-  initAnimations();
+  initSimpleAnimations();
 
   if (new URLSearchParams(window.location.search).has("updated")) {
     showNotification(wpsl_admin.strings.saved, "success");
@@ -36,12 +35,6 @@ function initSecurityToggles() {
       checkbox.addEventListener("change", function () {
         const card = this.closest(".wpsl-security-card");
         card.classList.toggle("enabled", this.checked);
-
-        // Add a subtle animation
-        card.style.transform = "scale(1.02)";
-        setTimeout(() => {
-          card.style.transform = "";
-        }, 200);
       });
     });
 }
@@ -82,6 +75,19 @@ function initUserManagement() {
       removeUser(button);
     }
   });
+
+  initSimpleSignupManagement();
+}
+
+function initSimpleSignupManagement() {
+  const allowSignupsToggle = document.getElementById("wpsl-allow-signups");
+  const roleSection = document.getElementById("wpsl-signup-role-section");
+
+  if (allowSignupsToggle && roleSection) {
+    allowSignupsToggle.addEventListener("change", function () {
+      roleSection.style.display = this.checked ? "block" : "none";
+    });
+  }
 }
 
 function initApiFormValidation() {
@@ -92,7 +98,6 @@ function initApiFormValidation() {
 
     if (clientIdInput && clientSecretInput) {
       [clientIdInput, clientSecretInput].forEach((input) => {
-        input.addEventListener("input", validateField);
         input.addEventListener("blur", validateField);
       });
     }
@@ -106,42 +111,16 @@ function initApiFormValidation() {
   }
 }
 
-function initTooltips() {
-  // Simple tooltip implementation for copy buttons
-  document.querySelectorAll(".wpsl-copy-btn").forEach((btn) => {
-    btn.addEventListener("mouseenter", function () {
-      if (!this.dataset.tooltip) {
-        this.dataset.tooltip = "true";
-        this.setAttribute("title", "Click to copy");
-      }
-    });
-  });
-}
-
-function initAnimations() {
-  // Animate cards on scroll
-  const observerOptions = {
-    threshold: 0.1,
-    rootMargin: "0px 0px -50px 0px",
-  };
-
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        entry.target.style.opacity = "1";
-        entry.target.style.transform = "translateY(0)";
-      }
-    });
-  }, observerOptions);
-
-  document
-    .querySelectorAll(".wpsl-feature-card, .wpsl-security-card")
-    .forEach((card) => {
-      card.style.opacity = "0";
-      card.style.transform = "translateY(20px)";
-      card.style.transition = "opacity 0.6s ease, transform 0.6s ease";
-      observer.observe(card);
-    });
+function initSimpleAnimations() {
+  // Simple fade-in for main content
+  const stepContent = document.querySelector(".wpsl-step-content");
+  if (stepContent) {
+    stepContent.style.opacity = "0";
+    setTimeout(() => {
+      stepContent.style.transition = "opacity 0.5s ease";
+      stepContent.style.opacity = "1";
+    }, 100);
+  }
 }
 
 function validateField(event) {
@@ -181,7 +160,6 @@ function testGoogleConnection(event) {
 
   button.innerHTML = `<span class="wpsl-loading"></span> ${wpsl_admin.strings.testing}`;
   button.disabled = true;
-  button.classList.add("loading");
 
   fetch(wpsl_admin.ajax_url, {
     method: "POST",
@@ -197,60 +175,38 @@ function testGoogleConnection(event) {
     .then((data) => {
       if (data.success) {
         showNotification(data.data.message, "success");
-        button.classList.add("success");
-        setTimeout(() => button.classList.remove("success"), 3000);
       } else {
         showNotification(
           `${wpsl_admin.strings.connection_failed}: ${data.data}`,
           "error"
         );
-        button.classList.add("error");
-        setTimeout(() => button.classList.remove("error"), 3000);
       }
     })
     .catch(() => {
       showNotification(wpsl_admin.strings.connection_failed, "error");
-      button.classList.add("error");
-      setTimeout(() => button.classList.remove("error"), 3000);
     })
     .finally(() => {
       setTimeout(() => {
         button.innerHTML = originalContent;
         button.disabled = false;
-        button.classList.remove("loading");
       }, 1000);
     });
 }
 
 function addUser() {
   const userList = document.getElementById("user-list");
-  const emptyState = userList.querySelector(".wpsl-empty-state");
-
-  if (emptyState) {
-    emptyState.remove();
-  }
 
   const newUser = document.createElement("div");
   newUser.className = "wpsl-user-item";
-  newUser.style.opacity = "0";
-  newUser.style.transform = "translateY(-20px)";
   newUser.innerHTML = wpsl_admin.user_template.replace(/__INDEX__/g, userIndex);
 
   userList.appendChild(newUser);
-
-  // Animate in
-  setTimeout(() => {
-    newUser.style.transition = "opacity 0.3s ease, transform 0.3s ease";
-    newUser.style.opacity = "1";
-    newUser.style.transform = "translateY(0)";
-  }, 10);
-
   userIndex++;
 
   // Focus the email input
   const emailInput = newUser.querySelector('input[type="email"]');
   if (emailInput) {
-    setTimeout(() => emailInput.focus(), 300);
+    emailInput.focus();
   }
 }
 
@@ -259,29 +215,13 @@ function removeUser(button) {
   const userList = document.getElementById("user-list");
 
   if (confirm(wpsl_admin.strings.confirm_remove_user)) {
-    // Animate out
-    userItem.style.transition = "opacity 0.3s ease, transform 0.3s ease";
-    userItem.style.opacity = "0";
-    userItem.style.transform = "translateX(100%)";
+    userItem.remove();
 
-    setTimeout(() => {
-      userItem.remove();
-
-      // Show empty state if no users left
-      const remainingUsers = userList.querySelectorAll(".wpsl-user-item");
-      if (remainingUsers.length === 0) {
-        const emptyState = document.createElement("div");
-        emptyState.className = "wpsl-empty-state";
-        emptyState.innerHTML = `
-          <div class="wpsl-empty-icon">
-            <span class="dashicons dashicons-groups"></span>
-          </div>
-          <h4>No users configured yet</h4>
-          <p>Add email addresses of users who should be able to access your site.</p>
-        `;
-        userList.appendChild(emptyState);
-      }
-    }, 300);
+    // Add a new empty user if no users left
+    const remainingUsers = userList.querySelectorAll(".wpsl-user-item");
+    if (remainingUsers.length === 0) {
+      addUser();
+    }
   }
 }
 
@@ -301,7 +241,7 @@ function copyToClipboard(button) {
 function fallbackCopy(input, button) {
   try {
     input.select();
-    input.setSelectionRange(0, 99999); // For mobile devices
+    input.setSelectionRange(0, 99999);
     document.execCommand("copy");
     showCopySuccess(button);
   } catch (err) {
@@ -311,21 +251,17 @@ function fallbackCopy(input, button) {
 
 function showCopySuccess(button) {
   const originalText = button.textContent;
-  const originalBg = button.style.backgroundColor;
-
   button.textContent = wpsl_admin.strings.copied;
-  button.style.backgroundColor = "#10b981";
-  button.style.transform = "scale(1.05)";
+  button.classList.add("success");
 
   setTimeout(() => {
     button.textContent = originalText;
-    button.style.backgroundColor = originalBg;
-    button.style.transform = "";
+    button.classList.remove("success");
   }, 2000);
 }
 
 function showNotification(message, type = "info") {
-  // Remove any existing notifications to prevent stacking
+  // Remove any existing notifications
   document.querySelectorAll(".wpsl-notification").forEach((n) => n.remove());
 
   const notification = document.createElement("div");
@@ -342,40 +278,31 @@ function showNotification(message, type = "info") {
     <div class="wpsl-notification-content">
       <span class="wpsl-notification-icon">${iconMap[type] || iconMap.info}</span>
       <span class="wpsl-notification-message">${message}</span>
-      <button class="wpsl-notification-close" aria-label="Close">×</button>
+      <button class="wpsl-notification-close">×</button>
     </div>
   `;
 
   document.body.appendChild(notification);
 
-  // Trigger the transition by adding the 'show' class after a brief moment
   setTimeout(() => {
     notification.classList.add("show");
   }, 10);
 
-  // Auto-remove after a delay
-  const autoRemoveDelay = type === "error" ? 8000 : 5000;
-  const timeoutId = setTimeout(() => {
-    notification.classList.remove("show");
-  }, autoRemoveDelay);
+  // Auto-remove
+  const timeoutId = setTimeout(
+    () => {
+      notification.classList.remove("show");
+      setTimeout(() => notification.remove(), 300);
+    },
+    type === "error" ? 8000 : 5000
+  );
 
-  // Function to remove the element from the DOM
-  const removeElement = () => {
-    notification.remove();
-    clearTimeout(timeoutId); // Clear the auto-remove timeout if closed manually
-  };
-
-  // Remove the element after the fade-out transition is complete
-  notification.addEventListener("transitionend", () => {
-    if (!notification.classList.contains("show")) {
-      removeElement();
-    }
-  });
-
-  // Handle manual closing
+  // Manual close
   notification
     .querySelector(".wpsl-notification-close")
     .addEventListener("click", () => {
+      clearTimeout(timeoutId);
       notification.classList.remove("show");
+      setTimeout(() => notification.remove(), 300);
     });
 }

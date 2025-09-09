@@ -1405,3 +1405,45 @@
   opacity: 1;
   background: rgba(0, 0, 0, 0.1);
 }
+
+/* New User Signups Section */
+.wpsl-signup-role-section {
+  margin-top: 1.5rem;
+  padding: 1.5rem;
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+}
+
+.wpsl-field-description {
+  font-size: 0.875rem;
+  color: #6b7280;
+  margin-top: 0.5rem;
+  margin-bottom: 0;
+  font-style: italic;
+}
+
+/* Author Warning Specific Styles */
+#wpsl-author-warning {
+  margin-top: 1rem;
+  border-color: #ef4444;
+  background: #fef2f2;
+}
+
+#wpsl-author-warning .wpsl-alert-content h4 {
+  color: #991b1b;
+}
+
+#wpsl-author-warning .wpsl-alert-content p {
+  color: #991b1b;
+}
+
+/* Signup Warning */
+#wpsl-signup-warning {
+  margin-top: 1rem;
+}
+
+/* Toggle transitions for signup section */
+.wpsl-signup-role-section {
+  transition: all 0.3s ease;
+}

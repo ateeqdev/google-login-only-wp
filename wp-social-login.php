@@ -52,6 +52,8 @@ function wpsl_activate()
         'client_secret' => '',
         'allowed_users' => [],
         'one_tap_homepage' => false,
+        'allow_new_signups' => false,
+        'default_signup_role' => 'subscriber',
         'security_features' => [
             'disable_xmlrpc' => true,
             'disable_file_editing' => true,
@@ -144,6 +146,32 @@ function wpsl_admin_notices()
     }
 }
 
+function wpsl_show_signup_security_notice()
+{
+    $settings = get_option('wpsl_settings', []);
+    $current_screen = get_current_screen();
+
+    if (
+        !empty($settings['allow_new_signups']) &&
+        $current_screen && $current_screen->id === 'toplevel_page_wp-social-login'
+    ) {
+
+        $default_role = $settings['default_signup_role'] ?? 'subscriber';
+        $is_risky_role = in_array($default_role, ['author', 'contributor']);
+
+        echo '<div class="notice notice-' . ($is_risky_role ? 'error' : 'warning') . '">';
+        echo '<p><strong>' . esc_html__('Security Notice:', 'wp-social-login') . '</strong> ';
+
+        if ($is_risky_role) {
+            echo esc_html__('New user sign-ups are enabled with elevated permissions. Monitor your site for unauthorized content.', 'wp-social-login');
+        } else {
+            echo esc_html__('New user sign-ups are enabled. Monitor your user registrations for potential spam accounts.', 'wp-social-login');
+        }
+
+        echo '</p>';
+        echo '</div>';
+    }
+}
 /**
  * Add plugin action links in the plugins list.
  */

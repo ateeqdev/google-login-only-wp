@@ -489,7 +489,7 @@ class WPSL_AdminSettings
         <div class="wpsl-step-content">
             <div class="wpsl-step-header">
                 <h2><?php _e('User Management', 'wp-social-login'); ?></h2>
-                <p><?php _e('Control who can access your site by adding their Google email addresses and assigning appropriate roles.', 'wp-social-login'); ?></p>
+                <p><?php _e('Control who can access your site by adding their Google email addresses.', 'wp-social-login'); ?></p>
             </div>
 
             <form method="post" action="options.php" class="wpsl-form">
@@ -509,13 +509,11 @@ class WPSL_AdminSettings
                     <div class="wpsl-user-list" id="user-list">
                         <?php if (empty($allowed_users)): ?>
                             <div class="wpsl-user-item">
-                                <div class="wpsl-user-fields">
-                                    <input type="email" name="<?php echo esc_attr($this->option_name); ?>[allowed_users][0][email]"
-                                        placeholder="<?php esc_attr_e('user@example.com', 'wp-social-login'); ?>" required>
-                                    <select name="<?php echo esc_attr($this->option_name); ?>[allowed_users][0][role]">
-                                        <?php echo $this->getRoleOptions('subscriber'); ?>
-                                    </select>
-                                </div>
+                                <input type="email" name="<?php echo esc_attr($this->option_name); ?>[allowed_users][0][email]"
+                                    placeholder="<?php esc_attr_e('user@example.com', 'wp-social-login'); ?>" required>
+                                <select name="<?php echo esc_attr($this->option_name); ?>[allowed_users][0][role]">
+                                    <?php echo $this->getRoleOptions('subscriber'); ?>
+                                </select>
                                 <button type="button" class="wpsl-remove-user">
                                     <span class="dashicons dashicons-trash"></span>
                                 </button>
@@ -523,13 +521,11 @@ class WPSL_AdminSettings
                         <?php else: ?>
                             <?php foreach ($allowed_users as $index => $user): ?>
                                 <div class="wpsl-user-item">
-                                    <div class="wpsl-user-fields">
-                                        <input type="email" name="<?php echo esc_attr($this->option_name); ?>[allowed_users][<?php echo esc_attr($index); ?>][email]"
-                                            value="<?php echo esc_attr($user['email']); ?>" required>
-                                        <select name="<?php echo esc_attr($this->option_name); ?>[allowed_users][<?php echo esc_attr($index); ?>][role]">
-                                            <?php echo $this->getRoleOptions($user['role']); ?>
-                                        </select>
-                                    </div>
+                                    <input type="email" name="<?php echo esc_attr($this->option_name); ?>[allowed_users][<?php echo esc_attr($index); ?>][email]"
+                                        value="<?php echo esc_attr($user['email']); ?>" required>
+                                    <select name="<?php echo esc_attr($this->option_name); ?>[allowed_users][<?php echo esc_attr($index); ?>][role]">
+                                        <?php echo $this->getRoleOptions($user['role']); ?>
+                                    </select>
                                     <button type="button" class="wpsl-remove-user">
                                         <span class="dashicons dashicons-trash"></span>
                                     </button>
@@ -537,16 +533,39 @@ class WPSL_AdminSettings
                             <?php endforeach; ?>
                         <?php endif; ?>
                     </div>
+                </div>
 
-                    <?php if (empty($allowed_users)): ?>
-                        <div class="wpsl-empty-state">
-                            <div class="wpsl-empty-icon">
-                                <span class="dashicons dashicons-groups"></span>
-                            </div>
-                            <h4><?php _e('No users configured yet', 'wp-social-login'); ?></h4>
-                            <p><?php _e('Add email addresses of users who should be able to access your site.', 'wp-social-login'); ?></p>
+                <div class="wpsl-form-section">
+                    <h3><?php _e('New User Registration', 'wp-social-login'); ?></h3>
+
+                    <div class="wpsl-form-group">
+                        <label class="wpsl-checkbox-label">
+                            <input type="checkbox" name="<?php echo esc_attr($this->option_name); ?>[allow_new_signups]"
+                                value="1" <?php checked(!empty($settings['allow_new_signups'])); ?> id="wpsl-allow-signups">
+                            <span class="wpsl-checkmark"></span>
+                            <?php _e('Allow New User Sign-Ups', 'wp-social-login'); ?>
+                        </label>
+                        <p class="wpsl-field-description"><?php _e('Allow unknown users to create accounts automatically. This bypasses the authorized users list above.', 'wp-social-login'); ?></p>
+                    </div>
+
+                    <div class="wpsl-conditional-section" id="wpsl-signup-role-section" style="<?php echo empty($settings['allow_new_signups']) ? 'display: none;' : ''; ?>">
+                        <div class="wpsl-form-group">
+                            <label for="default_signup_role"><?php _e('Default Role for New Users', 'wp-social-login'); ?></label>
+                            <select id="default_signup_role" name="<?php echo esc_attr($this->option_name); ?>[default_signup_role]">
+                                <option value="subscriber" <?php selected($settings['default_signup_role'] ?? 'subscriber', 'subscriber'); ?>><?php _e('Subscriber (Recommended)', 'wp-social-login'); ?></option>
+                                <option value="contributor" <?php selected($settings['default_signup_role'] ?? 'subscriber', 'contributor'); ?>><?php _e('Contributor', 'wp-social-login'); ?></option>
+                                <option value="author" <?php selected($settings['default_signup_role'] ?? 'subscriber', 'author'); ?>><?php _e('Author', 'wp-social-login'); ?></option>
+                            </select>
+                            <p class="wpsl-field-description"><?php _e('Subscriber is the safest option for new users.', 'wp-social-login'); ?></p>
                         </div>
-                    <?php endif; ?>
+
+                        <div class="wpsl-alert warning" id="wpsl-signup-warning">
+                            <div class="wpsl-alert-content">
+                                <strong><?php _e('Security Warning:', 'wp-social-login'); ?></strong>
+                                <?php _e('Open registration increases security risks. Only enable if you need public access.', 'wp-social-login'); ?>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="wpsl-step-actions">
@@ -572,7 +591,7 @@ class WPSL_AdminSettings
         <div class="wpsl-step-content">
             <div class="wpsl-step-header">
                 <h2><?php _e('Google One Tap Configuration', 'wp-social-login'); ?></h2>
-                <p><?php _e('Configure Google One Tap for seamless user authentication with a single click.', 'wp-social-login'); ?></p>
+                <p><?php _e('Configure Google One Tap for seamless user authentication.', 'wp-social-login'); ?></p>
             </div>
 
             <form method="post" action="options.php" class="wpsl-form">
@@ -580,43 +599,20 @@ class WPSL_AdminSettings
                 <input type="hidden" name="<?php echo esc_attr($this->option_name); ?>[client_id]" value="<?php echo esc_attr($settings['client_id'] ?? ''); ?>">
                 <input type="hidden" name="<?php echo esc_attr($this->option_name); ?>[client_secret]" value="<?php echo esc_attr($settings['client_secret'] ?? ''); ?>">
 
-                <div class="wpsl-one-tap-preview">
-                    <div class="wpsl-preview-content">
-                        <h3><?php _e('About Google One Tap', 'wp-social-login'); ?></h3>
-                        <p><?php _e('One Tap allows users who are already signed into Google to authenticate with your site instantly. It\'s always enabled on the login page for the best user experience.', 'wp-social-login'); ?></p>
-
-                        <div class="wpsl-one-tap-demo">
-                            <div class="wpsl-demo-popup">
-                                <div class="wpsl-demo-header">
-                                    <span class="wpsl-google-logo">G</span>
-                                    <span><?php _e('Sign in with Google', 'wp-social-login'); ?></span>
-                                </div>
-                                <div class="wpsl-demo-content">
-                                    <div class="wpsl-demo-avatar"></div>
-                                    <div class="wpsl-demo-text">
-                                        <div><?php _e('John Doe', 'wp-social-login'); ?></div>
-                                        <div class="wpsl-demo-email">john@example.com</div>
-                                    </div>
-                                    <button class="wpsl-demo-btn"><?php _e('Continue as John', 'wp-social-login'); ?></button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                <div class="wpsl-form-section">
+                    <h3><?php _e('What is Google One Tap?', 'wp-social-login'); ?></h3>
+                    <p><?php _e('One Tap allows users already signed into Google to authenticate instantly. It\'s automatically enabled on login pages for the best experience.', 'wp-social-login'); ?></p>
                 </div>
 
                 <div class="wpsl-form-section">
-                    <h3><?php _e('One Tap Settings', 'wp-social-login'); ?></h3>
-
-                    <div class="wpsl-toggle-group">
-                        <label class="wpsl-toggle-label">
+                    <div class="wpsl-form-group">
+                        <label class="wpsl-checkbox-label">
                             <input type="checkbox" name="<?php echo esc_attr($this->option_name); ?>[one_tap_homepage]"
-                                value="1" <?php checked(!empty($settings['one_tap_homepage'])); ?> class="wpsl-toggle-input">
-                            <span class="wpsl-toggle-slider"></span>
-                            <div class="wpsl-toggle-content">
-                                <div class="wpsl-toggle-title"><?php _e('Enable One Tap on Homepage', 'wp-social-login'); ?></div>
-                                <div class="wpsl-toggle-description"><?php _e('Show the One Tap prompt to visitors on your homepage and public pages. Some prefer to keep the homepage clean for other purposes.', 'wp-social-login'); ?></div>
-                            </div>
+                                value="1" <?php checked(!empty($settings['one_tap_homepage'])); ?>>
+                            <span class="wpsl-checkmark"></span>
+                            <?php _e('Enable One Tap on Homepage', 'wp-social-login'); ?>
                         </label>
+                        <p class="wpsl-field-description"><?php _e('Show One Tap prompt to visitors on your homepage and public pages.', 'wp-social-login'); ?></p>
                     </div>
                 </div>
 
@@ -791,6 +787,13 @@ class WPSL_AdminSettings
         }
 
         $sanitized_input['one_tap_homepage'] = isset($input['one_tap_homepage']) ? 1 : 0;
+        $sanitized_input['allow_new_signups'] = isset($input['allow_new_signups']) ? 1 : 0;
+
+        if (isset($input['default_signup_role']) && in_array($input['default_signup_role'], ['subscriber', 'contributor', 'author'])) {
+            $sanitized_input['default_signup_role'] = sanitize_key($input['default_signup_role']);
+        } else {
+            $sanitized_input['default_signup_role'] = 'subscriber';
+        }
 
         if (isset($input['security_features']) && is_array($input['security_features'])) {
             $allowed_features = ['disable_xmlrpc', 'disable_file_editing', 'hide_wp_version', 'restrict_rest_api', 'block_sensitive_files'];
