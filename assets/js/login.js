@@ -24,7 +24,7 @@ function handleCredentialResponse(response) {
 
   const form = document.createElement("form");
   form.method = "POST";
-  form.action = glo_login_params.callback_url;
+  form.action = wpsl_login_params.callback_url;
 
   const credentialInput = document.createElement("input");
   credentialInput.type = "hidden";
@@ -33,13 +33,13 @@ function handleCredentialResponse(response) {
 
   const csrfInput = document.createElement("input");
   csrfInput.type = "hidden";
-  csrfInput.name = "glo_csrf_token";
-  csrfInput.value = glo_login_params.csrf_token;
+  csrfInput.name = "wpsl_csrf_token";
+  csrfInput.value = wpsl_login_params.csrf_token;
 
   const nonceInput = document.createElement("input");
   nonceInput.type = "hidden";
   nonceInput.name = "nonce";
-  nonceInput.value = glo_login_params.nonce;
+  nonceInput.value = wpsl_login_params.nonce;
 
   form.appendChild(credentialInput);
   form.appendChild(csrfInput);
@@ -53,19 +53,19 @@ function handleCredentialResponse(response) {
  */
 function showAuthenticationLoading() {
   const overlay = document.createElement("div");
-  overlay.id = "glo-auth-loading";
+  overlay.id = "wpsl-auth-loading";
 
   overlay.innerHTML = `
     <div class="loading-content">
       <div class="spinner"></div>
-      <p>${glo_login_params.authenticating}</p>
+      <p>${wpsl_login_params.authenticating}</p>
     </div>
   `;
 
   document.body.appendChild(overlay);
 
   setTimeout(() => {
-    const loadingElement = document.getElementById("glo-auth-loading");
+    const loadingElement = document.getElementById("wpsl-auth-loading");
     if (loadingElement) {
       loadingElement.remove();
     }
@@ -76,14 +76,14 @@ window.addEventListener("load", function () {
   if (
     typeof google !== "undefined" &&
     google.accounts &&
-    typeof glo_login_params !== "undefined"
+    typeof wpsl_login_params !== "undefined"
   ) {
     google.accounts.id.initialize({
-      client_id: glo_login_params.client_id,
+      client_id: wpsl_login_params.client_id,
       callback: handleCredentialResponse,
       auto_select: false,
       cancel_on_tap_outside: true,
-      context: glo_login_params.context, // 'signin' or 'use'
+      context: wpsl_login_params.context, // 'signin' or 'use'
     });
 
     // Only show One Tap prompt if there are no login errors on the page
@@ -91,19 +91,19 @@ window.addEventListener("load", function () {
       window.location.search.includes("login_error") ||
       document.getElementById("login_error") !== null;
 
-    if (glo_login_params.show_prompt && !hasLoginError) {
+    if (wpsl_login_params.show_prompt && !hasLoginError) {
       // Delay prompt for better user experience
-      const promptDelay = glo_login_params.context === "signin" ? 1000 : 2000;
+      const promptDelay = wpsl_login_params.context === "signin" ? 1000 : 2000;
       setTimeout(() => {
         google.accounts.id.prompt((notification) => {
           if (notification.isNotDisplayed()) {
             console.log(
-              glo_login_params.one_tap_not_displayed,
+              wpsl_login_params.one_tap_not_displayed,
               notification.getNotDisplayedReason()
             );
           } else if (notification.isSkippedMoment()) {
             console.log(
-              glo_login_params.one_tap_skipped,
+              wpsl_login_params.one_tap_skipped,
               notification.getSkippedReason()
             );
           }

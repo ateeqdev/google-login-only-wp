@@ -1,14 +1,14 @@
 <?php
 
-class GLO_FrontendHooks
+class WPSL_FrontendHooks
 {
     private $google_auth;
     private $settings;
 
     public function __construct($plugin_name, $version)
     {
-        $this->google_auth = new GLO_GoogleAuth($plugin_name, $version);
-        $this->settings = get_option('glo_settings', []);
+        $this->google_auth = new WPSL_GoogleAuth($plugin_name, $version);
+        $this->settings = get_option('wpsl_settings', []);
 
         // Login Page Hooks
         add_action('login_enqueue_scripts', [$this, 'enqueueLoginAssets']);
@@ -35,7 +35,7 @@ class GLO_FrontendHooks
      */
     public function enqueueLoginAssets()
     {
-        wp_enqueue_style('glo-login', GLO_PLUGIN_URL . 'assets/css/login.css', [], filemtime(GLO_PLUGIN_PATH . 'assets/css/login.css'));
+        wp_enqueue_style('wpsl-login', WPSL_PLUGIN_URL . 'assets/css/login.css', [], filemtime(WPSL_PLUGIN_PATH . 'assets/css/login.css'));
 
         $this->prepareGoogleSignInScripts('signin', true);
     }
@@ -66,11 +66,11 @@ class GLO_FrontendHooks
         // Enqueue the remote Google GSI client library
         wp_enqueue_script('google-gsi', 'https://accounts.google.com/gsi/client', [], null, true);
         // Enqueue our local login script, making it dependent on the GSI client
-        wp_enqueue_script('glo-login', GLO_PLUGIN_URL . 'assets/js/login.js', ['google-gsi'], filemtime(GLO_PLUGIN_PATH . 'assets/js/login.js'), true);
+        wp_enqueue_script('wpsl-login', WPSL_PLUGIN_URL . 'assets/js/login.js', ['google-gsi'], filemtime(WPSL_PLUGIN_PATH . 'assets/js/login.js'), true);
 
         $csrf_token = bin2hex(random_bytes(32));
         setcookie(
-            'glo_csrf_token',
+            'wpsl_csrf_token',
             $csrf_token,
             [
                 'expires' => time() + HOUR_IN_SECONDS,
@@ -82,16 +82,16 @@ class GLO_FrontendHooks
             ]
         );
 
-        wp_localize_script('glo-login', 'glo_login_params', [
+        wp_localize_script('wpsl-login', 'wpsl_login_params', [
             'client_id'             => $client_id,
             'callback_url'          => home_url('?action=google_one_tap_callback'),
             'nonce'                 => wp_create_nonce('google_one_tap_nonce'),
             'csrf_token'            => $csrf_token,
             'context'               => $context,
             'show_prompt'           => $show_prompt,
-            'authenticating'        => __('Authenticating with Google...', 'google-login-only'),
-            'one_tap_not_displayed' => __('One Tap not displayed:', 'google-login-only'),
-            'one_tap_skipped'       => __('One Tap skipped:', 'google-login-only'),
+            'authenticating'        => __('Authenticating with Google...', 'wp-social-login'),
+            'one_tap_not_displayed' => __('One Tap not displayed:', 'wp-social-login'),
+            'one_tap_skipped'       => __('One Tap skipped:', 'wp-social-login'),
         ]);
     }
 
@@ -102,9 +102,9 @@ class GLO_FrontendHooks
     {
         $auth_url = $this->google_auth->getAuthUrl();
 ?>
-        <div class="glo-login-header">
-            <h2 class="glo-login-title"><?php _e('Welcome Back', 'google-login-only'); ?></h2>
-            <p class="glo-login-subtitle"><?php _e('Sign in to continue to your account', 'google-login-only'); ?></p>
+        <div class="wpsl-login-header">
+            <h2 class="wpsl-login-title"><?php _e('Welcome Back', 'wp-social-login'); ?></h2>
+            <p class="wpsl-login-subtitle"><?php _e('Sign in to continue to your account', 'wp-social-login'); ?></p>
         </div>
         <div class="google-login-container">
             <a href="<?php echo esc_url($auth_url); ?>" class="google-login-button" id="google-login-btn">
@@ -114,12 +114,12 @@ class GLO_FrontendHooks
                     <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" />
                     <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" />
                 </svg>
-                <div class="glo-loading"></div>
-                <span><?php _e('Continue with Google', 'google-login-only'); ?></span>
+                <div class="wpsl-loading"></div>
+                <span><?php _e('Continue with Google', 'wp-social-login'); ?></span>
             </a>
         </div>
         <div class="one-tap-section">
-            <p class="one-tap-info"><?php _e('Or wait for One Tap to appear automatically', 'google-login-only'); ?></p>
+            <p class="one-tap-info"><?php _e('Or wait for One Tap to appear automatically', 'wp-social-login'); ?></p>
         </div>
     <?php
     }
@@ -130,10 +130,10 @@ class GLO_FrontendHooks
     public function addCustomLoginFooter()
     {
     ?>
-        <div class="glo-login-footer">
-            <div class="glo-credit"><?php _e('Secure Authentication by', 'google-login-only'); ?>
+        <div class="wpsl-login-footer">
+            <div class="wpsl-credit"><?php _e('Secure Authentication by', 'wp-social-login'); ?>
                 <a href="https://hardtoskip.com" target="_blank" rel="dofollow" class="credit-link">HardToSkip.com</a>
-                <?php _e('AI-Powered Viral Content Generator', 'google-login-only'); ?>
+                <?php _e('AI-Powered Viral Content Generator', 'wp-social-login'); ?>
             </div>
         </div>
 <?php
@@ -152,8 +152,8 @@ class GLO_FrontendHooks
         if (!empty($username) || !empty($password)) {
             return new WP_Error(
                 'authentication_disabled',
-                '<strong>' . __('Login Disabled:', 'google-login-only') . '</strong> ' .
-                    __('Password-based login is disabled. Please use the Google Sign-In button.', 'google-login-only')
+                '<strong>' . __('Login Disabled:', 'wp-social-login') . '</strong> ' .
+                    __('Password-based login is disabled. Please use the Google Sign-In button.', 'wp-social-login')
             );
         }
         return $user;
@@ -165,9 +165,9 @@ class GLO_FrontendHooks
     public function processStoredErrors($errors)
     {
         // Check for transient error messages (more reliable than URL parameters)
-        $stored_error = get_transient('glo_login_error_' . session_id());
+        $stored_error = get_transient('wpsl_login_error_' . session_id());
         if ($stored_error) {
-            delete_transient('glo_login_error_' . session_id());
+            delete_transient('wpsl_login_error_' . session_id());
 
             if (!is_wp_error($errors)) {
                 $errors = new WP_Error();
@@ -187,10 +187,10 @@ class GLO_FrontendHooks
         // Check URL parameters as a fallback (transient is handled by `processStoredErrors`)
         if (isset($_GET['login_error'])) {
             $error_code = sanitize_key($_GET['login_error']);
-            $message = GLO_ErrorHandler::getMessage($error_code);
+            $message = WPSL_ErrorHandler::getMessage($error_code);
 
-            $error_message = '<div class="glo-error-message"><strong>' .
-                __('Google Authentication Error:', 'google-login-only') .
+            $error_message = '<div class="wpsl-error-message"><strong>' .
+                __('Google Authentication Error:', 'wp-social-login') .
                 '</strong><br>' . $message . '</div>';
 
             if (is_wp_error($errors)) {

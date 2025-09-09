@@ -1,6 +1,6 @@
 <?php
 
-class GLO_GoogleAuth
+class WPSL_GoogleAuth
 {
 
     private $settings;
@@ -10,7 +10,7 @@ class GLO_GoogleAuth
      */
     public function __construct($plugin_name, $version)
     {
-        $this->settings = get_option('glo_settings');
+        $this->settings = get_option('wpsl_settings');
         add_action('init', [$this, 'startSession'], 1);
         add_action('init', [$this, 'handleGoogleCallback']);
         add_action('init', [$this, 'handleOneTapCallback']);
@@ -36,7 +36,7 @@ class GLO_GoogleAuth
         }
 
         $state_token = bin2hex(random_bytes(32));
-        $_SESSION['glo_oauth_state'] = $state_token;
+        $_SESSION['wpsl_oauth_state'] = $state_token;
 
         $params = [
             'response_type' => 'code',
@@ -69,15 +69,15 @@ class GLO_GoogleAuth
         }
 
         if (
-            !isset($_POST['glo_csrf_token'], $_COOKIE['glo_csrf_token']) ||
-            !hash_equals($_COOKIE['glo_csrf_token'], $_POST['glo_csrf_token'])
+            !isset($_POST['wpsl_csrf_token'], $_COOKIE['wpsl_csrf_token']) ||
+            !hash_equals($_COOKIE['wpsl_csrf_token'], $_POST['wpsl_csrf_token'])
         ) {
             $this->storeErrorAndRedirect('invalid_state');
             return;
         }
 
         // Clear the CSRF cookie after successful validation
-        setcookie('glo_csrf_token', '', time() - 3600, '/', COOKIE_DOMAIN, is_ssl(), true);
+        setcookie('wpsl_csrf_token', '', time() - 3600, '/', COOKIE_DOMAIN, is_ssl(), true);
 
         $credential = sanitize_text_field($_POST['credential']);
 
@@ -110,7 +110,7 @@ class GLO_GoogleAuth
     private function decodeJWT_secure_lightweight($jwt)
     {
         if (empty($this->settings['client_id'])) {
-            error_log(sprintf('[%s] %s', 'google-login-only', __('Google Client ID is not configured.', 'google-login-only')));
+            error_log(sprintf('[%s] %s', 'wp-social-login', __('Google Client ID is not configured.', 'wp-social-login')));
             return false;
         }
 
@@ -120,8 +120,8 @@ class GLO_GoogleAuth
         if (is_wp_error($response)) {
             error_log(sprintf(
                 '[%s] %s: %s',
-                'google-login-only',
-                __('Failed to connect to Google tokeninfo endpoint.', 'google-login-only'),
+                'wp-social-login',
+                __('Failed to connect to Google tokeninfo endpoint.', 'wp-social-login'),
                 $response->get_error_message()
             ));
             return false;
@@ -131,8 +131,8 @@ class GLO_GoogleAuth
         if ($status_code !== 200) {
             error_log(sprintf(
                 '[%s] %s: %s %d',
-                'google-login-only',
-                __('Invalid ID token. Google responded with status', 'google-login-only'),
+                'wp-social-login',
+                __('Invalid ID token. Google responded with status', 'wp-social-login'),
                 $status_code
             ));
             return false;
@@ -142,7 +142,7 @@ class GLO_GoogleAuth
 
         // Final security check: ensure the token was issued to our app.
         if (empty($payload['aud']) || $payload['aud'] !== $this->settings['client_id']) {
-            error_log(sprintf('[%s] %s', 'google-login-only', __('Token audience (aud) does not match Client ID.', 'google-login-only')));
+            error_log(sprintf('[%s] %s', 'wp-social-login', __('Token audience (aud) does not match Client ID.', 'wp-social-login')));
             return false;
         }
 
@@ -161,14 +161,14 @@ class GLO_GoogleAuth
 
         if (
             empty($_GET['state']) ||
-            !isset($_SESSION['glo_oauth_state']) ||
-            !hash_equals($_SESSION['glo_oauth_state'], $_GET['state'])
+            !isset($_SESSION['wpsl_oauth_state']) ||
+            !hash_equals($_SESSION['wpsl_oauth_state'], $_GET['state'])
         ) {
             $this->storeErrorAndRedirect('invalid_state');
             return;
         }
 
-        unset($_SESSION['glo_oauth_state']);
+        unset($_SESSION['wpsl_oauth_state']);
 
         // 1. Exchange authorization code for an access token
         $token_response = wp_remote_post('https://oauth2.googleapis.com/token', [
@@ -306,7 +306,7 @@ class GLO_GoogleAuth
     private function removeUserFromSettings($email)
     {
         $email = strtolower(trim($email));
-        $current_settings = get_option('glo_settings', []);
+        $current_settings = get_option('wpsl_settings', []);
         $allowed_users = $current_settings['allowed_users'] ?? [];
 
         $updated_users = array_filter($allowed_users, function ($user) use ($email) {
@@ -315,7 +315,7 @@ class GLO_GoogleAuth
 
         if (count($updated_users) !== count($allowed_users)) {
             $current_settings['allowed_users'] = array_values($updated_users); // Reset array indexes
-            update_option('glo_settings', $current_settings);
+            update_option('wpsl_settings', $current_settings);
 
             if (function_exists('wp_cache_flush')) {
                 wp_cache_flush();
@@ -350,15 +350,15 @@ class GLO_GoogleAuth
      */
     private function storeErrorAndRedirect($error_code)
     {
-        $message = GLO_ErrorHandler::getMessage($error_code);
+        $message = WPSL_ErrorHandler::getMessage($error_code);
 
         // Format the error message with styling
-        $formatted_message = '<div class="glo-error-message"><strong>' .
-            __('Google Authentication Error:', 'google-login-only') .
+        $formatted_message = '<div class="wpsl-error-message"><strong>' .
+            __('Google Authentication Error:', 'wp-social-login') .
             '</strong><br>' . $message . '</div>';
 
         // Store error in transient using session ID as key
-        $transient_key = 'glo_login_error_' . session_id();
+        $transient_key = 'wpsl_login_error_' . session_id();
         set_transient($transient_key, $formatted_message, 5 * MINUTE_IN_SECONDS);
 
         // Redirect to login page without error parameters in URL

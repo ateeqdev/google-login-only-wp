@@ -9,16 +9,16 @@ document.addEventListener("DOMContentLoaded", function () {
   initApiFormValidation();
 
   if (new URLSearchParams(window.location.search).has("updated")) {
-    showNotification(glo_admin.strings.saved, "success");
+    showNotification(wpsl_admin.strings.saved, "success");
   }
 });
 
 function initWizardProgress() {
   const completedSteps = document.querySelectorAll(
-    ".glo-step.completed"
+    ".wpsl-step.completed"
   ).length;
-  const totalSteps = document.querySelectorAll(".glo-step").length;
-  const progressBar = document.querySelector(".glo-progress-fill");
+  const totalSteps = document.querySelectorAll(".wpsl-step").length;
+  const progressBar = document.querySelector(".wpsl-progress-fill");
   if (progressBar) {
     progressBar.style.width = `${(completedSteps / totalSteps) * 100}%`;
   }
@@ -26,10 +26,10 @@ function initWizardProgress() {
 
 function initSecurityToggles() {
   document
-    .querySelectorAll(".glo-security-card .glo-security-toggle")
+    .querySelectorAll(".wpsl-security-card .wpsl-security-toggle")
     .forEach((checkbox) => {
       checkbox.addEventListener("change", function () {
-        this.closest(".glo-security-card").classList.toggle(
+        this.closest(".wpsl-security-card").classList.toggle(
           "enabled",
           this.checked
         );
@@ -38,13 +38,13 @@ function initSecurityToggles() {
 }
 
 function initCopyButtons() {
-  document.querySelectorAll(".glo-copy-btn").forEach((button) => {
+  document.querySelectorAll(".wpsl-copy-btn").forEach((button) => {
     button.addEventListener("click", () => copyToClipboard(button));
   });
 }
 
 function initTestConnectionButton() {
-  const testButton = document.getElementById("glo-test-connection-btn");
+  const testButton = document.getElementById("wpsl-test-connection-btn");
   if (testButton) {
     testButton.addEventListener("click", testGoogleConnection);
   }
@@ -54,22 +54,22 @@ function initUserManagement() {
   const userList = document.getElementById("user-list");
   if (!userList) return;
 
-  userIndex = glo_admin.initial_user_count;
+  userIndex = wpsl_admin.initial_user_count;
 
-  const addUserBtn = document.getElementById("glo-add-user-btn");
+  const addUserBtn = document.getElementById("wpsl-add-user-btn");
   if (addUserBtn) {
     addUserBtn.addEventListener("click", addUser);
   }
 
   userList.addEventListener("click", function (e) {
-    if (e.target && e.target.classList.contains("glo-remove-user")) {
+    if (e.target && e.target.classList.contains("wpsl-remove-user")) {
       removeUser(e.target);
     }
   });
 }
 
 function initApiFormValidation() {
-  const form = document.getElementById("google-api-form");
+  const form = document.getElementById("wpsl-google-api-form");
   if (form) {
     form.addEventListener("submit", function (e) {
       if (
@@ -77,7 +77,7 @@ function initApiFormValidation() {
         !document.getElementById("client_secret").value
       ) {
         e.preventDefault();
-        alert(glo_admin.strings.fill_both_fields);
+        alert(wpsl_admin.strings.fill_both_fields);
       }
     });
   }
@@ -90,19 +90,19 @@ function testGoogleConnection(event) {
   const clientSecret = document.getElementById("client_secret").value;
 
   if (!clientId || !clientSecret) {
-    showNotification(glo_admin.strings.fill_both_fields, "error");
+    showNotification(wpsl_admin.strings.fill_both_fields, "error");
     return;
   }
 
-  button.innerHTML = `<span class="glo-loading"></span> ${glo_admin.strings.testing}`;
+  button.innerHTML = `<span class="wpsl-loading"></span> ${wpsl_admin.strings.testing}`;
   button.disabled = true;
 
-  fetch(glo_admin.ajax_url, {
+  fetch(wpsl_admin.ajax_url, {
     method: "POST",
     headers: { "Content-Type": "application/x-www-form-urlencoded" },
     body: new URLSearchParams({
-      action: "glo_test_connection",
-      nonce: glo_admin.nonce,
+      action: "wpsl_test_connection",
+      nonce: wpsl_admin.nonce,
       client_id: clientId,
       client_secret: clientSecret,
     }),
@@ -113,12 +113,14 @@ function testGoogleConnection(event) {
         showNotification(data.data.message, "success");
       } else {
         showNotification(
-          `${glo_admin.strings.connection_failed}: ${data.data}`,
+          `${wpsl_admin.strings.connection_failed}: ${data.data}`,
           "error"
         );
       }
     })
-    .catch(() => showNotification(glo_admin.strings.connection_failed, "error"))
+    .catch(() =>
+      showNotification(wpsl_admin.strings.connection_failed, "error")
+    )
     .finally(() => {
       button.textContent = originalText;
       button.disabled = false;
@@ -128,15 +130,15 @@ function testGoogleConnection(event) {
 function addUser() {
   const userList = document.getElementById("user-list");
   const newUser = document.createElement("div");
-  newUser.className = "glo-user-item";
-  newUser.innerHTML = glo_admin.user_template.replace(/__INDEX__/g, userIndex);
+  newUser.className = "wpsl-user-item";
+  newUser.innerHTML = wpsl_admin.user_template.replace(/__INDEX__/g, userIndex);
   userList.appendChild(newUser);
   userIndex++;
 }
 
 function removeUser(button) {
-  if (confirm(glo_admin.strings.confirm_remove_user)) {
-    button.closest(".glo-user-item").remove();
+  if (confirm(wpsl_admin.strings.confirm_remove_user)) {
+    button.closest(".wpsl-user-item").remove();
   }
 }
 
@@ -144,13 +146,13 @@ function copyToClipboard(button) {
   const input = button.previousElementSibling;
   navigator.clipboard.writeText(input.value).then(
     () => showCopySuccess(button),
-    () => showNotification(glo_admin.strings.copy_failed, "error")
+    () => showNotification(wpsl_admin.strings.copy_failed, "error")
   );
 }
 
 function showCopySuccess(button) {
   const originalText = button.textContent;
-  button.textContent = glo_admin.strings.copied;
+  button.textContent = wpsl_admin.strings.copied;
   button.style.backgroundColor = "#28a745";
   setTimeout(() => {
     button.textContent = originalText;
@@ -160,7 +162,7 @@ function showCopySuccess(button) {
 
 function showNotification(message, type = "info") {
   const notification = document.createElement("div");
-  notification.className = `glo-notification glo-notification-${type}`;
+  notification.className = `wpsl-notification wpsl-notification-${type}`;
   notification.textContent = message;
   notification.style.cssText = `
         position: fixed; top: 40px; right: 20px; z-index: 9999;
