@@ -4,17 +4,16 @@
  * Plugin Name:       WP Social Login
  * Plugin URI:        https://hardtoskip.com/
  * Description:       Replaces standard WordPress password authentication with Social Sign-In (currently Google) and One Tap. Features beautiful UI, automatic user management, and enhanced security options. Born from necessity after a successful brute-force attack on hardtoskip, this plugin enforces Google-only authentication to keep your site secure.
- * Version:           2.1.0
+ * Version:           2.1.1
  * Author:            HardToSkip
  * Author URI:        https://hardtoskip.com/
  * License:           GPL v2 or later
  * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
  * Text Domain:       wp-social-login
- * Domain Path:       /languages
+ * Domain Path:       /languages/
  * Requires at least: 5.0
- * Tested up to:      6.4
+ * Tested up to:      6.8
  * Requires PHP:      7.4
- * Network:           false
  * 
  * @package WPSL_WpSocialLogin
  */
@@ -27,7 +26,7 @@ if (!defined('WPINC')) {
 /**
  * Plugin version.
  */
-define('WPSL_VERSION', '2.1.0');
+define('WPSL_VERSION', '2.1.1');
 
 /**
  * Plugin paths and URLs.
@@ -68,10 +67,6 @@ function wpsl_activate()
     }
 
     add_option('wpsl_show_setup_notice', true);
-
-    if (function_exists('error_log')) {
-        error_log('WP Social Login: Plugin activated - Version ' . WPSL_VERSION);
-    }
 }
 
 /**
@@ -81,10 +76,6 @@ function wpsl_activate()
 function wpsl_deactivate()
 {
     delete_option('wpsl_show_setup_notice');
-
-    if (function_exists('error_log')) {
-        error_log('WP Social Login: Plugin deactivated');
-    }
 }
 
 /**
@@ -97,7 +88,11 @@ function wpsl_uninstall()
     delete_option('wpsl_show_setup_notice');
     delete_option('wpsl_wizard_progress');
 
-    $users = get_users(['meta_key' => 'google_profile_picture']);
+    $users = get_users([
+        'meta_key' => 'google_profile_picture',
+        'meta_value'   => '',
+        'meta_compare' => '!=',
+    ]);
     foreach ($users as $user) {
         delete_user_meta($user->ID, 'google_profile_picture');
     }
@@ -176,18 +171,6 @@ function wpsl_plugin_row_meta($links, $file)
 
 
 /**
- * Load plugin textdomain for translations.
- */
-function wpsl_load_plugin_textdomain()
-{
-    load_plugin_textdomain(
-        'wp-social-login',
-        false,
-        dirname(plugin_basename(__FILE__)) . '/languages/'
-    );
-}
-
-/**
  * Handle plugin errors gracefully.
  */
 function wpsl_handle_fatal_error()
@@ -195,16 +178,6 @@ function wpsl_handle_fatal_error()
     $error = error_get_last();
 
     if ($error && strpos($error['file'], WPSL_PLUGIN_PATH) !== false) {
-        if (function_exists('error_log')) {
-            error_log(
-                sprintf(
-                    '[WP Social Login] Fatal error: %s in %s on line %d',
-                    $error['message'],
-                    $error['file'],
-                    $error['line']
-                )
-            );
-        }
         set_transient('wpsl_plugin_last_error', $error, 60);
     }
 }
@@ -234,9 +207,6 @@ function run_wp_social_login()
         $plugin = new WPSL_WpSocialLogin();
         $plugin->run();
     } catch (Exception $e) {
-        if (function_exists('error_log')) {
-            error_log(sprintf('[WP Social Login] Initialization error: %s', $e->getMessage()));
-        }
         add_action('admin_notices', function () use ($e) {
         ?>
             <div class="notice notice-error is-dismissible">
@@ -253,7 +223,6 @@ function run_wp_social_login()
 // Register hooks
 register_activation_hook(__FILE__, 'wpsl_activate');
 register_deactivation_hook(__FILE__, 'wpsl_deactivate');
-add_action('plugins_loaded', 'wpsl_load_plugin_textdomain');
 
 // Admin hooks
 add_action('admin_notices', 'wpsl_admin_notices');

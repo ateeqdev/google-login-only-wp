@@ -131,7 +131,7 @@ class WPSL_WpSocialLogin
      */
     private function blockSensitiveFiles()
     {
-        $request_uri = $_SERVER['REQUEST_URI'] ?? '';
+        $request_uri = isset($_SERVER['REQUEST_URI']) ? esc_url_raw(wp_unslash($_SERVER['REQUEST_URI'])) : '';
         $sensitive_files = ['wp-config.php', '.htaccess', 'readme.html'];
         foreach ($sensitive_files as $file) {
             if (stripos($request_uri, $file) !== false) {

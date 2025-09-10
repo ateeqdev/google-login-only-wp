@@ -41,17 +41,23 @@ class WPSL_GoogleAuth
     public function handleOneTapCallback()
     {
         if (!isset($_GET['action']) || $_GET['action'] !== 'google_one_tap_callback') return;
+
+        if (!isset($_POST['nonce']) || !wp_verify_nonce(sanitize_text_field(wp_unslash($_POST['nonce'])), 'google_one_tap_nonce')) {
+            $this->storeErrorAndRedirect('invalid_state');
+        }
+
         if (!isset($_POST['credential'])) $this->storeErrorAndRedirect('invalid_credential');
 
         if (
             !isset($_POST['wpsl_csrf_token'], $_COOKIE['wpsl_csrf_token']) ||
-            !hash_equals($_COOKIE['wpsl_csrf_token'], $_POST['wpsl_csrf_token'])
+            !hash_equals(wp_unslash($_COOKIE['wpsl_csrf_token']), wp_unslash($_POST['wpsl_csrf_token']))
         ) {
             $this->storeErrorAndRedirect('invalid_state');
         }
 
         setcookie('wpsl_csrf_token', '', time() - 3600, '/', COOKIE_DOMAIN);
-        $user_data = $this->decodeAndVerifyJwt($_POST['credential']);
+        $credential = isset($_POST['credential']) ? sanitize_text_field(wp_unslash($_POST['credential'])) : '';
+        $user_data = $this->decodeAndVerifyJwt($credential);
 
         if (!$user_data || empty($user_data['email'])) $this->storeErrorAndRedirect('invalid_credential');
         $this->loginOrRegisterUser($user_data);
@@ -64,19 +70,16 @@ class WPSL_GoogleAuth
         $response = wp_remote_get('https://oauth2.googleapis.com/tokeninfo?id_token=' . urlencode($jwt));
 
         if (is_wp_error($response) || wp_remote_retrieve_response_code($response) !== 200) {
-            error_log('[WPSL] Failed to verify JWT with Google tokeninfo endpoint.');
             return false;
         }
 
         $payload = json_decode(wp_remote_retrieve_body($response), true);
 
         if (empty($payload['aud']) || $payload['aud'] !== $this->settings['client_id']) {
-            error_log('[WPSL] JWT verification failed: Audience (aud) does not match Client ID.');
             return false;
         }
 
         if (empty($payload['iss']) || !in_array($payload['iss'], ['accounts.google.com', 'https://accounts.google.com'])) {
-            error_log('[WPSL] JWT verification failed: Invalid issuer (iss).');
             return false;
         }
 
@@ -85,16 +88,23 @@ class WPSL_GoogleAuth
 
     public function handleGoogleCallback()
     {
+        // phpcs:disable WordPress.Security.NonceVerification.Recommended
         if (!isset($_GET['action']) || $_GET['action'] !== 'google_login_callback' || !isset($_GET['code'])) return;
 
-        if (empty($_GET['state']) || empty($_COOKIE['wpsl_oauth_state']) || !hash_equals($_COOKIE['wpsl_oauth_state'], $_GET['state'])) {
+        $state = isset($_GET['state']) ? sanitize_text_field(wp_unslash($_GET['state'])) : '';
+        $cookie_state = isset($_COOKIE['wpsl_oauth_state']) ? sanitize_text_field(wp_unslash($_COOKIE['wpsl_oauth_state'])) : '';
+
+        if (empty($state) || empty($cookie_state) || !hash_equals($cookie_state, $state)) {
             $this->storeErrorAndRedirect('invalid_state');
         }
         setcookie('wpsl_oauth_state', '', time() - 3600, '/', COOKIE_DOMAIN);
 
+        $code = isset($_GET['code']) ? sanitize_text_field(wp_unslash($_GET['code'])) : '';
+        // phpcs:enable
+
         $token_response = wp_remote_post('https://oauth2.googleapis.com/token', [
             'body' => [
-                'code' => sanitize_text_field($_GET['code']),
+                'code' => $code,
                 'client_id' => $this->settings['client_id'],
                 'client_secret' => $this->settings['client_secret'],
                 'redirect_uri' => home_url('?action=google_login_callback'),

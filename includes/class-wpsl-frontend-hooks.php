@@ -44,6 +44,7 @@ class WPSL_FrontendHooks
         $client_id = $this->settings['client_id'] ?? '';
         if (empty($client_id)) return;
 
+        // phpcs:ignore WordPress.WP.EnqueuedResourceParameters.MissingVersion
         wp_enqueue_script('google-gsi', 'https://accounts.google.com/gsi/client', [], null, true);
         wp_enqueue_script('wpsl-login', WPSL_PLUGIN_URL . 'assets/js/login.js', ['google-gsi'], WPSL_VERSION, true);
 
@@ -111,7 +112,9 @@ class WPSL_FrontendHooks
 
     public function displayLoginErrors($errors)
     {
+        // phpcs:ignore WordPress.Security.NonceVerification.Recommended
         if (isset($_GET['wpsl_error_key'])) {
+            // phpcs:ignore WordPress.Security.NonceVerification.Recommended
             $error_key = sanitize_key($_GET['wpsl_error_key']);
             $message = get_transient($error_key);
             if ($message) {

@@ -34,7 +34,7 @@ class WPSL_AdminSettings
             <div class="wpsl-user-item">
                 <input type="email" name="' . esc_attr($this->option_name) . '[allowed_users][__INDEX__][email]" placeholder="' . esc_attr__('user@example.com', 'wp-social-login') . '" required>
                 <select name="' . esc_attr($this->option_name) . '[allowed_users][__INDEX__][role]">' .
-            $this->getRoleOptions('subscriber') .
+            wp_kses_post($this->getRoleOptions('subscriber')) .
             '</select>
                 <button type="button" class="wpsl-remove-user"><span class="dashicons dashicons-trash"></span></button>
             </div>';
@@ -83,6 +83,7 @@ class WPSL_AdminSettings
 
     public function createAdminPage()
     {
+        // phpcs:ignore WordPress.Security.NonceVerification.Recommended
         $current_step = isset($_GET['step']) ? sanitize_key($_GET['step']) : 'overview';
         $progress = get_option($this->wizard_progress_option, []);
 ?>
@@ -175,7 +176,7 @@ class WPSL_AdminSettings
         <div class="wpsl-sidebar-card">
             <h3><?php esc_html_e('Quick Links', 'wp-social-login'); ?></h3>
             <div class="wpsl-quick-links">
-                <a href="<?php echo wp_login_url(); ?>" target="_blank" class="wpsl-quick-link">
+                <a href="<?php echo esc_url(wp_login_url()); ?>" target="_blank" class="wpsl-quick-link">
                     <span class="dashicons dashicons-external"></span>
                     <?php esc_html_e('Test Login Page', 'wp-social-login'); ?>
                 </a>
@@ -287,7 +288,17 @@ class WPSL_AdminSettings
                 <div class="wpsl-setup-instructions">
                     <h3><?php esc_html_e('Setup Instructions', 'wp-social-login'); ?></h3>
                     <ol>
-                        <li><?php printf(__('Visit the %s', 'wp-social-login'), '<a href="https://console.cloud.google.com/apis/credentials" target="_blank" class="wpsl-external-link">' . esc_html__('Google Cloud Console', 'wp-social-login') . ' <span class="dashicons dashicons-external"></span></a>'); ?></li>
+                        <li>
+                            <?php
+                            echo wp_kses_post(
+                                sprintf(
+                                    /* translators: %s: link to Google Cloud Console. */
+                                    __('Visit the %s', 'wp-social-login'),
+                                    '<a href="https://console.cloud.google.com/apis/credentials" target="_blank" class="wpsl-external-link">' . esc_html__('Google Cloud Console', 'wp-social-login') . ' <span class="dashicons dashicons-external"></span></a>'
+                                )
+                            );
+                            ?>
+                        </li>
                         <li><?php esc_html_e('Create a new project or select an existing one.', 'wp-social-login'); ?></li>
                         <li><?php esc_html_e('Navigate to "APIs & Services" → "Credentials".', 'wp-social-login'); ?></li>
                         <li><?php esc_html_e('Click "+ CREATE CREDENTIALS" → "OAuth client ID".', 'wp-social-login'); ?></li>
@@ -423,14 +434,14 @@ class WPSL_AdminSettings
                         <?php if (empty($allowed_users)) : ?>
                             <div class="wpsl-user-item">
                                 <input type="email" name="<?php echo esc_attr($this->option_name); ?>[allowed_users][0][email]" placeholder="<?php esc_attr_e('user@example.com', 'wp-social-login'); ?>" required>
-                                <select name="<?php echo esc_attr($this->option_name); ?>[allowed_users][0][role]"><?php echo $this->getRoleOptions('subscriber'); ?></select>
+                                <select name="<?php echo esc_attr($this->option_name); ?>[allowed_users][0][role]"><?php echo wp_kses_post($this->getRoleOptions('subscriber')); ?></select>
                                 <button type="button" class="wpsl-remove-user"><span class="dashicons dashicons-trash"></span></button>
                             </div>
                         <?php else : ?>
                             <?php foreach ($allowed_users as $index => $user) : ?>
                                 <div class="wpsl-user-item">
                                     <input type="email" name="<?php echo esc_attr($this->option_name); ?>[allowed_users][<?php echo esc_attr($index); ?>][email]" value="<?php echo esc_attr($user['email']); ?>" required>
-                                    <select name="<?php echo esc_attr($this->option_name); ?>[allowed_users][<?php echo esc_attr($index); ?>][role]"><?php echo $this->getRoleOptions($user['role']); ?></select>
+                                    <select name="<?php echo esc_attr($this->option_name); ?>[allowed_users][<?php echo esc_attr($index); ?>][role]"><?php echo wp_kses_post($this->getRoleOptions($user['role'])); ?></select>
                                     <button type="button" class="wpsl-remove-user"><span class="dashicons dashicons-trash"></span></button>
                                 </div>
                             <?php endforeach; ?>
@@ -453,7 +464,7 @@ class WPSL_AdminSettings
                         <div class="wpsl-form-group">
                             <label for="default_signup_role"><?php esc_html_e('Default Role for New Users', 'wp-social-login'); ?></label>
                             <select id="default_signup_role" name="<?php echo esc_attr($this->option_name); ?>[default_signup_role]">
-                                <?php echo $this->getRoleOptions($settings['default_signup_role'] ?? 'subscriber', false); ?>
+                                <?php echo wp_kses_post($this->getRoleOptions($settings['default_signup_role'] ?? 'subscriber', false)); ?>
                             </select>
                             <p class="wpsl-field-description"><?php esc_html_e('Subscriber is the safest and recommended option for new public registrations.', 'wp-social-login'); ?></p>
                         </div>
@@ -527,14 +538,14 @@ class WPSL_AdminSettings
             </div>
 
             <div class="wpsl-action-cards">
-                <a href="<?php echo wp_login_url(); ?>" target="_blank" class="wpsl-action-card primary">
+                <a href="<?php echo esc_url(wp_login_url()); ?>" target="_blank" class="wpsl-action-card primary">
                     <div class="wpsl-action-icon"><span class="dashicons dashicons-external"></span></div>
                     <div class="wpsl-action-content">
                         <h4><?php esc_html_e('Test Login', 'wp-social-login'); ?></h4>
                         <p><?php esc_html_e('Try the new login experience', 'wp-social-login'); ?></p>
                     </div>
                 </a>
-                <a href="<?php echo admin_url('users.php'); ?>" class="wpsl-action-card">
+                <a href="<?php echo esc_url(admin_url('users.php')); ?>" class="wpsl-action-card">
                     <div class="wpsl-action-icon"><span class="dashicons dashicons-admin-users"></span></div>
                     <div class="wpsl-action-content">
                         <h4><?php esc_html_e('Manage Users', 'wp-social-login'); ?></h4>
@@ -565,6 +576,8 @@ class WPSL_AdminSettings
 
     public function sanitize($input)
     {
+        check_admin_referer($this->plugin_name . '-options');
+
         $old_settings = get_option($this->option_name, []);
         $sanitized_input = $old_settings;
 
@@ -604,7 +617,19 @@ class WPSL_AdminSettings
         $this->updateWizardProgress($sanitized_input);
 
         if (isset($_POST['submit'])) {
-            $current_step = isset($_GET['step']) ? sanitize_key($_GET['step']) : 'overview';
+            $current_step = 'overview';
+            if (!empty($_POST['_wp_http_referer'])) {
+                // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
+                $referer_url = wp_unslash($_POST['_wp_http_referer']);
+                $referer_query = wp_parse_url($referer_url, PHP_URL_QUERY);
+                if ($referer_query) {
+                    wp_parse_str($referer_query, $query_args);
+                    if (!empty($query_args['step'])) {
+                        $current_step = sanitize_key($query_args['step']);
+                    }
+                }
+            }
+
             $next_step = $this->getNextStep($current_step);
             if ($next_step) {
                 wp_redirect(admin_url('admin.php?page=' . $this->plugin_name . '&step=' . $next_step . '&settings-updated=true'));
@@ -639,8 +664,8 @@ class WPSL_AdminSettings
         check_ajax_referer('wpsl_admin_nonce', 'nonce');
         if (!current_user_can('manage_options')) wp_send_json_error(__('Insufficient permissions.', 'wp-social-login'));
 
-        $client_id = sanitize_text_field($_POST['client_id'] ?? '');
-        $client_secret = sanitize_text_field($_POST['client_secret'] ?? '');
+        $client_id = isset($_POST['client_id']) ? sanitize_text_field(wp_unslash($_POST['client_id'])) : '';
+        $client_secret = isset($_POST['client_secret']) ? sanitize_text_field(wp_unslash($_POST['client_secret'])) : '';
 
         if (empty($client_id) || empty($client_secret)) wp_send_json_error(__('Please enter both Client ID and Client Secret.', 'wp-social-login'));
         if (strpos($client_id, '.apps.googleusercontent.com') === false) wp_send_json_error(__('The Client ID does not appear to be in the correct format.', 'wp-social-login'));
