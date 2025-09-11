@@ -1,0 +1,628 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-09-11 04:24+0000\n"
+"PO-Revision-Date: 2025-09-11 04:24+0000\n"
+"Last-Translator: AI Translator <ai@example.com>\n"
+"Language-Team: Chinese (Simplified) <zh_CN@example.com>\n"
+"Language: zh_CN\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Laravel Artisan Command\n"
+#. Plugin Name of the plugin
+#: wp-social-login.php
+#: includes/class-wpsl-admin-settings.php:120
+msgid "WP Social Login"
+msgstr "WP 社交登录"
+
+#. Plugin URI of the plugin
+#. Author URI of the plugin
+#: wp-social-login.php
+msgid "https://hardtoskip.com/"
+msgstr "https://hardtoskip.com/"
+
+#. Description of the plugin
+#: wp-social-login.php
+msgid "Replaces standard WordPress password authentication with Social Sign-In (currently Google) and One Tap. Features beautiful UI, automatic user management, and enhanced security options. Born from necessity after a successful brute-force attack on hardtoskip, this plugin enforces Google-only authentication to keep your site secure."
+msgstr "用社交登录（当前为 Google）和 One Tap 替代标准的 WordPress 密码认证。具有精美的界面、自动用户管理和增强的安全选项。该插件源于在 hardtoskip 遭受成功暴力破解攻击后的必要性，强制仅允许 Google 认证以保护您的站点安全。"
+
+#. Author of the plugin
+#: wp-social-login.php
+#: includes/class-wpsl-frontend-hooks.php:101
+msgid "HardToSkip"
+msgstr "HardToSkip"
+
+#: includes/class-wpsl-admin-settings.php:35
+#: includes/class-wpsl-admin-settings.php:436
+msgid "user@example.com"
+msgstr "user@example.com"
+
+#: includes/class-wpsl-admin-settings.php:48
+msgid "Saving..."
+msgstr "保存中..."
+
+#: includes/class-wpsl-admin-settings.php:49
+msgid "Settings Saved!"
+msgstr "设置已保存！"
+
+#: includes/class-wpsl-admin-settings.php:50
+msgid "An error occurred."
+msgstr "发生错误。"
+
+#: includes/class-wpsl-admin-settings.php:51
+msgid "Testing..."
+msgstr "测试中..."
+
+#: includes/class-wpsl-admin-settings.php:52
+msgid "Validation successful!"
+msgstr "验证成功！"
+
+#: includes/class-wpsl-admin-settings.php:53
+msgid "Validation failed"
+msgstr "验证失败"
+
+#: includes/class-wpsl-admin-settings.php:54
+msgid "Are you sure you want to remove this user?"
+msgstr "您确定要移除此用户吗？"
+
+#: includes/class-wpsl-admin-settings.php:55
+msgid "Please fill in both Client ID and Client Secret."
+msgstr "请同时填写客户端 ID 和客户端密钥。"
+
+#: includes/class-wpsl-admin-settings.php:56
+msgid "Copied!"
+msgstr "已复制！"
+
+#: includes/class-wpsl-admin-settings.php:57
+msgid "Failed to copy."
+msgstr "复制失败。"
+
+#: includes/class-wpsl-admin-settings.php:65
+msgid "WP Social Login Settings"
+msgstr "WP 社交登录 设置"
+
+#: includes/class-wpsl-admin-settings.php:66
+msgid "Social Login"
+msgstr "社交登录"
+
+#: includes/class-wpsl-admin-settings.php:121
+msgid "Secure Google Authentication for WordPress"
+msgstr "为 WordPress 提供安全的 Google 认证"
+
+#: includes/class-wpsl-admin-settings.php:159
+msgid "Quick Status"
+msgstr "快速状态"
+
+#: includes/class-wpsl-admin-settings.php:161
+msgid "Configuration:"
+msgstr "配置："
+
+#: includes/class-wpsl-admin-settings.php:163
+#: includes/class-wpsl-admin-settings.php:573
+msgid "Complete"
+msgstr "已完成"
+
+#: includes/class-wpsl-admin-settings.php:163
+msgid "Pending"
+msgstr "待定"
+
+#: includes/class-wpsl-admin-settings.php:167
+msgid "Authorized Users:"
+msgstr "授权用户："
+
+#: includes/class-wpsl-admin-settings.php:171
+msgid "Security Features:"
+msgstr "安全功能："
+
+#: includes/class-wpsl-admin-settings.php:177
+msgid "Quick Links"
+msgstr "快速链接"
+
+#: includes/class-wpsl-admin-settings.php:181
+msgid "Test Login Page"
+msgstr "测试登录页面"
+
+#: includes/class-wpsl-admin-settings.php:185
+#: includes/class-wpsl-admin-settings.php:297
+msgid "Google Cloud Console"
+msgstr "Google Cloud 控制台"
+
+#: includes/class-wpsl-admin-settings.php:189
+#: wp-social-login.php:164
+msgid "Plugin Creator"
+msgstr "插件作者"
+
+#: includes/class-wpsl-admin-settings.php:193
+msgid "Hire Developer"
+msgstr "雇佣开发者"
+
+#: includes/class-wpsl-admin-settings.php:231
+msgid "Welcome to WP Social Login"
+msgstr "欢迎使用 WP 社交登录"
+
+#: includes/class-wpsl-admin-settings.php:232
+msgid "Transform your WordPress authentication with secure Google Sign-In. This setup wizard will guide you through each step to ensure optimal security and user experience."
+msgstr "使用安全的 Google 登录改造您的 WordPress 身份验证。本设置向导将引导您完成每一步，以确保最佳的安全性和用户体验。"
+
+#: includes/class-wpsl-admin-settings.php:238
+msgid "Enhanced Security"
+msgstr "增强的安全性"
+
+#: includes/class-wpsl-admin-settings.php:239
+msgid "Eliminate password-based vulnerabilities with Google's robust OAuth authentication system."
+msgstr "利用 Google 强大的 OAuth 认证系统消除基于密码的漏洞。"
+
+#: includes/class-wpsl-admin-settings.php:243
+#: includes/class-wpsl-admin-settings.php:418
+msgid "User Management"
+msgstr "用户管理"
+
+#: includes/class-wpsl-admin-settings.php:244
+msgid "Control exactly who can access your site with email-based authorization and role assignment."
+msgstr "通过基于邮箱的授权和角色分配精确控制谁可以访问您的站点。"
+
+#: includes/class-wpsl-admin-settings.php:248
+msgid "Seamless Experience"
+msgstr "无缝体验"
+
+#: includes/class-wpsl-admin-settings.php:249
+msgid "Google One Tap provides instant authentication for users already signed into Google."
+msgstr "Google One Tap 为已登录 Google 的用户提供即时认证。"
+
+#: includes/class-wpsl-admin-settings.php:256
+msgid "Your plugin is not yet configured. Users cannot log in until you complete the Google API setup."
+msgstr "您的插件尚未配置。在您完成 Google API 设置之前，用户无法登录。"
+
+#: includes/class-wpsl-admin-settings.php:261
+msgid "WP Social Login is configured and working. You can modify settings or enable additional features anytime."
+msgstr "WP 社交登录已配置并正常工作。您可以随时修改设置或启用附加功能。"
+
+#: includes/class-wpsl-admin-settings.php:268
+msgid "Start Configuration"
+msgstr "开始配置"
+
+#: includes/class-wpsl-admin-settings.php:282
+msgid "Google API Configuration"
+msgstr "Google API 配置"
+
+#: includes/class-wpsl-admin-settings.php:283
+msgid "Set up your Google OAuth credentials to enable secure authentication. This is the most important step."
+msgstr "设置您的 Google OAuth 凭据以启用安全认证。这是最重要的一步。"
+
+#: includes/class-wpsl-admin-settings.php:289
+msgid "Setup Instructions"
+msgstr "设置说明"
+
+#. translators: %s: link to Google Cloud Console.
+#: includes/class-wpsl-admin-settings.php:296
+#, php-format
+msgid "Visit the %s"
+msgstr "访问 %s"
+
+#: includes/class-wpsl-admin-settings.php:302
+msgid "Create a new project or select an existing one."
+msgstr "创建一个新项目或选择现有项目。"
+
+#: includes/class-wpsl-admin-settings.php:303
+msgid "Navigate to \\"
+msgstr "导航至："
+
+#: includes/class-wpsl-admin-settings.php:304
+msgid "Click \\"
+msgstr "点击："
+
+#: includes/class-wpsl-admin-settings.php:305
+msgid "Choose \\"
+msgstr "选择："
+
+#: includes/class-wpsl-admin-settings.php:306
+msgid "Add the redirect URIs and origins provided below."
+msgstr "添加下方提供的重定向 URI 和来源。"
+
+#: includes/class-wpsl-admin-settings.php:311
+msgid "Required URLs for Google Console"
+msgstr "Google 控制台所需的 URL"
+
+#: includes/class-wpsl-admin-settings.php:313
+msgid "Authorized redirect URIs (add both)"
+msgstr "授权的重定向 URI（请添加两项）"
+
+#: includes/class-wpsl-admin-settings.php:316
+#: includes/class-wpsl-admin-settings.php:322
+#: includes/class-wpsl-admin-settings.php:329
+msgid "Copy"
+msgstr "复制"
+
+#: includes/class-wpsl-admin-settings.php:326
+msgid "Authorized JavaScript origins"
+msgstr "授权的 JavaScript 来源"
+
+#: includes/class-wpsl-admin-settings.php:335
+msgid "Google OAuth Credentials"
+msgstr "Google OAuth 凭据"
+
+#: includes/class-wpsl-admin-settings.php:337
+msgid "Google Client ID"
+msgstr "Google 客户端 ID"
+
+#: includes/class-wpsl-admin-settings.php:338
+msgid "e.g., 123456789.apps.googleusercontent.com"
+msgstr "例如：123456789.apps.googleusercontent.com"
+
+#: includes/class-wpsl-admin-settings.php:341
+msgid "Google Client Secret"
+msgstr "Google 客户端密钥"
+
+#: includes/class-wpsl-admin-settings.php:342
+msgid "e.g., GOCSPX-xxxxxxxxxx"
+msgstr "例如：GOCSPX-xxxxxxxxxx"
+
+#: includes/class-wpsl-admin-settings.php:347
+#: includes/class-wpsl-admin-settings.php:403
+#: includes/class-wpsl-admin-settings.php:475
+#: includes/class-wpsl-admin-settings.php:514
+#: includes/class-wpsl-admin-settings.php:558
+msgid "Back"
+msgstr "返回"
+
+#: includes/class-wpsl-admin-settings.php:349
+msgid "Test Connection"
+msgstr "测试连接"
+
+#: includes/class-wpsl-admin-settings.php:350
+#: includes/class-wpsl-admin-settings.php:404
+#: includes/class-wpsl-admin-settings.php:476
+#: includes/class-wpsl-admin-settings.php:515
+msgid "Save & Continue"
+msgstr "保存并继续"
+
+#: includes/class-wpsl-admin-settings.php:365
+msgid "Security Features"
+msgstr "安全功能"
+
+#: includes/class-wpsl-admin-settings.php:366
+msgid "Enable additional security measures to protect your site from common attack vectors."
+msgstr "启用额外的安全措施以防护常见攻击向量。"
+
+#: includes/class-wpsl-admin-settings.php:373
+msgid "Important Note:"
+msgstr "重要说明："
+
+#: includes/class-wpsl-admin-settings.php:373
+msgid "This plugin was developed in response to real brute-force attacks. These features help reduce common risks but should be part of a comprehensive security strategy."
+msgstr "该插件是为应对真实的暴力破解攻击而开发的。这些功能有助于降低常见风险，但应作为全面安全策略的一部分。"
+
+#: includes/class-wpsl-admin-settings.php:379
+msgid "Disable XML-RPC"
+msgstr "禁用 XML-RPC"
+
+#: includes/class-wpsl-admin-settings.php:379
+msgid "Prevents brute-force attacks via XML-RPC. May affect mobile apps or Jetpack."
+msgstr "防止通过 XML-RPC 的暴力破解攻击。可能会影响移动应用或 Jetpack。"
+
+#: includes/class-wpsl-admin-settings.php:380
+msgid "Disable File Editing"
+msgstr "禁用文件编辑"
+
+#: includes/class-wpsl-admin-settings.php:380
+msgid "Prevents code injection via the admin dashboard if an account is compromised."
+msgstr "如果账户被入侵，可防止通过管理面板注入代码。"
+
+#: includes/class-wpsl-admin-settings.php:381
+msgid "Hide WordPress Version"
+msgstr "隐藏 WordPress 版本"
+
+#: includes/class-wpsl-admin-settings.php:381
+msgid "Makes it harder for attackers to identify vulnerabilities for a specific WP version."
+msgstr "使攻击者更难识别针对特定 WordPress 版本的漏洞。"
+
+#: includes/class-wpsl-admin-settings.php:382
+msgid "Restrict REST API"
+msgstr "限制 REST API"
+
+#: includes/class-wpsl-admin-settings.php:382
+msgid "Prevents unauthorized data access via REST API. May affect some plugins."
+msgstr "防止通过 REST API 的未授权数据访问。可能会影响某些插件。"
+
+#: includes/class-wpsl-admin-settings.php:383
+msgid "Block Sensitive Files"
+msgstr "阻止敏感文件访问"
+
+#: includes/class-wpsl-admin-settings.php:383
+msgid "Attempts to block direct public access to wp-config.php and other sensitive files."
+msgstr "尝试阻止对 wp-config.php 等敏感文件的直接公开访问。"
+
+#: includes/class-wpsl-admin-settings.php:419
+msgid "Control who can access your site. Add Google email addresses and assign roles for authorized users."
+msgstr "控制谁可以访问您的站点。添加 Google 邮箱地址并为授权用户分配角色。"
+
+#: includes/class-wpsl-admin-settings.php:426
+msgid "Authorized Users"
+msgstr "授权用户"
+
+#: includes/class-wpsl-admin-settings.php:427
+msgid "Add User"
+msgstr "添加用户"
+
+#: includes/class-wpsl-admin-settings.php:430
+msgid "Email Address"
+msgstr "电子邮件地址"
+
+#: includes/class-wpsl-admin-settings.php:431
+msgid "Role"
+msgstr "角色"
+
+#: includes/class-wpsl-admin-settings.php:453
+msgid "New User Registration"
+msgstr "新用户注册"
+
+#: includes/class-wpsl-admin-settings.php:458
+msgid "Allow New User Sign-Ups"
+msgstr "允许新用户注册"
+
+#: includes/class-wpsl-admin-settings.php:459
+msgid "Allow any Google user to create an account. This bypasses the authorized user list above."
+msgstr "允许任何 Google 用户创建账户。这将绕过上面的授权用户列表。"
+
+#: includes/class-wpsl-admin-settings.php:465
+msgid "Default Role for New Users"
+msgstr "新用户默认角色"
+
+#: includes/class-wpsl-admin-settings.php:469
+msgid "Subscriber is the safest and recommended option for new public registrations."
+msgstr "订阅者（Subscriber）是对新公开注册最安全且推荐的选项。"
+
+#: includes/class-wpsl-admin-settings.php:489
+msgid "Google One Tap"
+msgstr "Google One Tap"
+
+#: includes/class-wpsl-admin-settings.php:490
+msgid "Configure Google One Tap for a seamless, one-click user authentication experience."
+msgstr "配置 Google One Tap，以实现无缝的一键用户认证体验。"
+
+#: includes/class-wpsl-admin-settings.php:497
+msgid "What is Google One Tap?"
+msgstr "什么是 Google One Tap？"
+
+#: includes/class-wpsl-admin-settings.php:498
+msgid "One Tap displays a non-intrusive prompt that allows users already signed into Google to authenticate instantly. It is automatically enabled on the WordPress login page."
+msgstr "One Tap 会显示一个不侵入的提示，允许已登录 Google 的用户即时进行认证。它会在 WordPress 登录页面上自动启用。"
+
+#: includes/class-wpsl-admin-settings.php:506
+msgid "Enable One Tap on Homepage"
+msgstr "在首页启用 One Tap"
+
+#: includes/class-wpsl-admin-settings.php:507
+msgid "Show the One Tap prompt to logged-out visitors on your homepage and other public pages."
+msgstr "在首页及其他公共页面向未登录访客显示 One Tap 提示。"
+
+#: includes/class-wpsl-admin-settings.php:528
+msgid "Setup Complete!"
+msgstr "设置完成！"
+
+#: includes/class-wpsl-admin-settings.php:529
+msgid "Congratulations! Your WP Social Login plugin is now configured and ready to secure your WordPress site."
+msgstr "恭喜！您的 WP 社交登录插件现已配置完毕，准备好保护您的 WordPress 网站。"
+
+#: includes/class-wpsl-admin-settings.php:535
+msgid "Your Site is Now Secured"
+msgstr "您的站点现已受保护"
+
+#: includes/class-wpsl-admin-settings.php:536
+msgid "Password-based authentication has been disabled. Users must now authenticate through Google, significantly reducing security risks."
+msgstr "基于密码的认证已被禁用。用户现在必须通过 Google 认证，从而显著降低安全风险。"
+
+#: includes/class-wpsl-admin-settings.php:544
+msgid "Test Login"
+msgstr "测试登录"
+
+#: includes/class-wpsl-admin-settings.php:545
+msgid "Try the new login experience"
+msgstr "体验新的登录方式"
+
+#: includes/class-wpsl-admin-settings.php:551
+msgid "Manage Users"
+msgstr "管理用户"
+
+#: includes/class-wpsl-admin-settings.php:552
+msgid "View your WordPress users"
+msgstr "查看您的 WordPress 用户"
+
+#: includes/class-wpsl-admin-settings.php:559
+msgid "Return to Overview"
+msgstr "返回概览"
+
+#: includes/class-wpsl-admin-settings.php:568
+msgid "Overview"
+msgstr "概览"
+
+#: includes/class-wpsl-admin-settings.php:569
+msgid "Google API"
+msgstr "Google API"
+
+#: includes/class-wpsl-admin-settings.php:570
+msgid "Security"
+msgstr "安全"
+
+#: includes/class-wpsl-admin-settings.php:571
+msgid "Users"
+msgstr "用户"
+
+#: includes/class-wpsl-admin-settings.php:572
+msgid "One Tap"
+msgstr "One Tap"
+
+#: includes/class-wpsl-admin-settings.php:665
+msgid "Insufficient permissions."
+msgstr "权限不足。"
+
+#: includes/class-wpsl-admin-settings.php:670
+msgid "Please enter both Client ID and Client Secret."
+msgstr "请同时输入客户端 ID 和客户端密钥。"
+
+#: includes/class-wpsl-admin-settings.php:671
+msgid "The Client ID does not appear to be in the correct format."
+msgstr "客户端 ID 的格式似乎不正确。"
+
+#: includes/class-wpsl-admin-settings.php:672
+msgid "The Client Secret appears to be too short."
+msgstr "客户端密钥似乎过短。"
+
+#: includes/class-wpsl-admin-settings.php:674
+msgid "Credentials format validation passed. Save your settings to apply them."
+msgstr "凭据格式验证通过。保存设置以应用它们。"
+
+#: includes/class-wpsl-error-handler.php:16
+msgid "Your Google account is not authorized to access this site. Please contact an administrator to request access."
+msgstr "您的 Google 帐户未被授权访问此站点。请联系管理员以申请访问权限。"
+
+#: includes/class-wpsl-error-handler.php:17
+msgid "Authentication failed: Could not connect to Google servers. Please try again in a moment."
+msgstr "认证失败：无法连接到 Google 服务器。请稍后再试。"
+
+#: includes/class-wpsl-error-handler.php:18
+msgid "Authentication failed: No access token received from Google. Please try again."
+msgstr "认证失败：未从 Google 收到访问令牌。请重试。"
+
+#: includes/class-wpsl-error-handler.php:19
+msgid "Authentication successful, but account creation failed. Please contact an administrator for assistance."
+msgstr "认证成功，但创建帐户失败。请联系管理员寻求帮助。"
+
+#: includes/class-wpsl-error-handler.php:20
+msgid "Invalid authentication data received from Google. Please try signing in again."
+msgstr "从 Google 收到的认证数据无效。请尝试重新登录。"
+
+#: includes/class-wpsl-error-handler.php:21
+msgid "Could not retrieve your user information from Google. Please check your Google account permissions and try again."
+msgstr "无法从 Google 检索您的用户信息。请检查您的 Google 帐户权限并重试。"
+
+#: includes/class-wpsl-error-handler.php:22
+msgid "No email address was provided by Google. Please ensure your Google account has a verified email address."
+msgstr "Google 未提供电子邮件地址。请确保您的 Google 帐户具有已验证的电子邮件地址。"
+
+#: includes/class-wpsl-error-handler.php:23
+msgid "Authentication session expired or invalid. Please try logging in again."
+msgstr "认证会话已过期或无效。请尝试重新登录。"
+
+#: includes/class-wpsl-error-handler.php:38
+msgid "An unknown authentication error occurred. Please try again."
+msgstr "发生未知的认证错误。请重试。"
+
+#: includes/class-wpsl-frontend-hooks.php:68
+msgid "Authenticating with Google..."
+msgstr "正在使用 Google 认证..."
+
+#: includes/class-wpsl-frontend-hooks.php:78
+msgid "Welcome Back"
+msgstr "欢迎回来"
+
+#: includes/class-wpsl-frontend-hooks.php:79
+msgid "Sign in with your Google account to continue."
+msgstr "使用您的 Google 帐户登录以继续。"
+
+#: includes/class-wpsl-frontend-hooks.php:91
+msgid "Continue with Google"
+msgstr "使用 Google 继续"
+
+#: includes/class-wpsl-frontend-hooks.php:99
+msgid "Login experience by"
+msgstr "登录体验由"
+
+#: includes/class-wpsl-frontend-hooks.php:103
+msgid "- Viral Content Generator"
+msgstr "- Viral Content Generator"
+
+#: includes/class-wpsl-frontend-hooks.php:111
+msgid "Signing you in..."
+msgstr "正在为您登录..."
+
+#: includes/class-wpsl-frontend-hooks.php:122
+msgid "Login Disabled:"
+msgstr "登录已禁用："
+
+#: includes/class-wpsl-frontend-hooks.php:123
+msgid "Password-based login is disabled. Please use Google Sign-In."
+msgstr "基于密码的登录已被禁用。请使用 Google 登录。"
+
+#: includes/class-wpsl-wp-social-login.php:50
+msgid "Google Account Information"
+msgstr "Google 帐户信息"
+
+#: includes/class-wpsl-wp-social-login.php:53
+#: includes/class-wpsl-wp-social-login.php:55
+msgid "Google Profile Picture"
+msgstr "Google 头像"
+
+#: includes/class-wpsl-wp-social-login.php:56
+msgid "This profile picture is synced from your Google account."
+msgstr "此头像与您的 Google 帐户同步。"
+
+#: includes/class-wpsl-wp-social-login.php:60
+msgid "Authentication Method"
+msgstr "认证方式"
+
+#: includes/class-wpsl-wp-social-login.php:69
+msgid "Google Sign-In"
+msgstr "Google 登录"
+
+#: includes/class-wpsl-wp-social-login.php:71
+msgid "This user authenticates via Google OAuth."
+msgstr "该用户通过 Google OAuth 进行认证。"
+
+#: includes/class-wpsl-wp-social-login.php:139
+msgid "Access Denied"
+msgstr "拒绝访问"
+
+#: includes/class-wpsl-wp-social-login.php:154
+msgid "You are not currently logged in."
+msgstr "您当前未登录。"
+
+#: wp-social-login.php:111
+msgid "WP Social Login:"
+msgstr "WP 社交登录："
+
+#. translators: 1: Opening anchor tag, 2: Closing anchor tag
+#: wp-social-login.php:114
+#, php-format
+msgid "Please %1$sconfigure your Google OAuth credentials%2$s to enable secure sign-in. This plugin is maintained by HardToSkip."
+msgstr "请%1$s配置您的 Google OAuth 凭据%2$s以启用安全登录。该插件由 HardToSkip 维护。"
+
+#: wp-social-login.php:125
+msgid "Warning:"
+msgstr "警告："
+
+#: wp-social-login.php:125
+msgid "WP Social Login is not fully configured. Users may not be able to log in until you complete the setup."
+msgstr "WP 社交登录尚未完全配置。在您完成设置之前，用户可能无法登录。"
+
+#: wp-social-login.php:135
+msgid "New user sign-ups are enabled with elevated permissions. Monitor your site for unauthorized content."
+msgstr "新用户注册已启用并具有较高权限。请监控您的站点是否有未授权内容。"
+
+#: wp-social-login.php:136
+msgid "New user sign-ups are enabled. Monitor your user registrations for potential spam accounts."
+msgstr "已启用新用户注册。请监控用户注册以防潜在垃圾帐号。"
+
+#: wp-social-login.php:139
+msgid "Security Notice:"
+msgstr "安全提示："
+
+#: wp-social-login.php:150
+msgid "Settings"
+msgstr "设置"
+
+#: wp-social-login.php:165
+msgid "Rate Plugin ★★★★★"
+msgstr "为插件评分 ★★★★★"
+
+#: wp-social-login.php:193
+#: wp-social-login.php:214
+msgid "WP Social Login Error:"
+msgstr "WP 社交登录 错误："
+
+#: wp-social-login.php:194
+msgid "A fatal error was detected and logged. Please check your PHP error log for details."
+msgstr "检测到致命错误并已记录。请查看您的 PHP 错误日志以获取详细信息。"
+

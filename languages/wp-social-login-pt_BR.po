@@ -1,0 +1,628 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-09-11 04:06+0000\n"
+"PO-Revision-Date: 2025-09-11 04:06+0000\n"
+"Last-Translator: AI Translator <ai@example.com>\n"
+"Language-Team: Portuguese (Brazil) <pt_BR@example.com>\n"
+"Language: pt_BR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Laravel Artisan Command\n"
+#. Plugin Name of the plugin
+#: wp-social-login.php
+#: includes/class-wpsl-admin-settings.php:120
+msgid "WP Social Login"
+msgstr "WP Social Login"
+
+#. Plugin URI of the plugin
+#. Author URI of the plugin
+#: wp-social-login.php
+msgid "https://hardtoskip.com/"
+msgstr "https://hardtoskip.com/"
+
+#. Description of the plugin
+#: wp-social-login.php
+msgid "Replaces standard WordPress password authentication with Social Sign-In (currently Google) and One Tap. Features beautiful UI, automatic user management, and enhanced security options. Born from necessity after a successful brute-force attack on hardtoskip, this plugin enforces Google-only authentication to keep your site secure."
+msgstr "Substitui a autenticação padrão por senha do WordPress por Login Social (atualmente Google) e One Tap. Possui interface bonita, gerenciamento automático de usuários e opções de segurança aprimoradas. Criado por necessidade após um ataque de força bruta bem-sucedido ao hardtoskip, este plugin impõe autenticação exclusiva via Google para manter seu site seguro."
+
+#. Author of the plugin
+#: wp-social-login.php
+#: includes/class-wpsl-frontend-hooks.php:101
+msgid "HardToSkip"
+msgstr "HardToSkip"
+
+#: includes/class-wpsl-admin-settings.php:35
+#: includes/class-wpsl-admin-settings.php:436
+msgid "user@example.com"
+msgstr "user@example.com"
+
+#: includes/class-wpsl-admin-settings.php:48
+msgid "Saving..."
+msgstr "Salvando..."
+
+#: includes/class-wpsl-admin-settings.php:49
+msgid "Settings Saved!"
+msgstr "Configurações salvas!"
+
+#: includes/class-wpsl-admin-settings.php:50
+msgid "An error occurred."
+msgstr "Ocorreu um erro."
+
+#: includes/class-wpsl-admin-settings.php:51
+msgid "Testing..."
+msgstr "Testando..."
+
+#: includes/class-wpsl-admin-settings.php:52
+msgid "Validation successful!"
+msgstr "Validação bem-sucedida!"
+
+#: includes/class-wpsl-admin-settings.php:53
+msgid "Validation failed"
+msgstr "Validação falhou"
+
+#: includes/class-wpsl-admin-settings.php:54
+msgid "Are you sure you want to remove this user?"
+msgstr "Tem certeza de que deseja remover este usuário?"
+
+#: includes/class-wpsl-admin-settings.php:55
+msgid "Please fill in both Client ID and Client Secret."
+msgstr "Por favor, preencha tanto o Client ID quanto o Client Secret."
+
+#: includes/class-wpsl-admin-settings.php:56
+msgid "Copied!"
+msgstr "Copiado!"
+
+#: includes/class-wpsl-admin-settings.php:57
+msgid "Failed to copy."
+msgstr "Falha ao copiar."
+
+#: includes/class-wpsl-admin-settings.php:65
+msgid "WP Social Login Settings"
+msgstr "Configurações do WP Social Login"
+
+#: includes/class-wpsl-admin-settings.php:66
+msgid "Social Login"
+msgstr "Login Social"
+
+#: includes/class-wpsl-admin-settings.php:121
+msgid "Secure Google Authentication for WordPress"
+msgstr "Autenticação segura do Google para WordPress"
+
+#: includes/class-wpsl-admin-settings.php:159
+msgid "Quick Status"
+msgstr "Status rápido"
+
+#: includes/class-wpsl-admin-settings.php:161
+msgid "Configuration:"
+msgstr "Configuração:"
+
+#: includes/class-wpsl-admin-settings.php:163
+#: includes/class-wpsl-admin-settings.php:573
+msgid "Complete"
+msgstr "Concluída"
+
+#: includes/class-wpsl-admin-settings.php:163
+msgid "Pending"
+msgstr "Pendente"
+
+#: includes/class-wpsl-admin-settings.php:167
+msgid "Authorized Users:"
+msgstr "Usuários autorizados:"
+
+#: includes/class-wpsl-admin-settings.php:171
+msgid "Security Features:"
+msgstr "Recursos de segurança:"
+
+#: includes/class-wpsl-admin-settings.php:177
+msgid "Quick Links"
+msgstr "Links rápidos"
+
+#: includes/class-wpsl-admin-settings.php:181
+msgid "Test Login Page"
+msgstr "Testar página de login"
+
+#: includes/class-wpsl-admin-settings.php:185
+#: includes/class-wpsl-admin-settings.php:297
+msgid "Google Cloud Console"
+msgstr "Console do Google Cloud"
+
+#: includes/class-wpsl-admin-settings.php:189
+#: wp-social-login.php:164
+msgid "Plugin Creator"
+msgstr "Criador do plugin"
+
+#: includes/class-wpsl-admin-settings.php:193
+msgid "Hire Developer"
+msgstr "Contratar desenvolvedor"
+
+#: includes/class-wpsl-admin-settings.php:231
+msgid "Welcome to WP Social Login"
+msgstr "Bem-vindo ao WP Social Login"
+
+#: includes/class-wpsl-admin-settings.php:232
+msgid "Transform your WordPress authentication with secure Google Sign-In. This setup wizard will guide you through each step to ensure optimal security and user experience."
+msgstr "Transforme a autenticação do seu WordPress com o login seguro do Google. Este assistente de configuração irá orientá-lo em cada etapa para garantir segurança e experiência do usuário ideais."
+
+#: includes/class-wpsl-admin-settings.php:238
+msgid "Enhanced Security"
+msgstr "Segurança aprimorada"
+
+#: includes/class-wpsl-admin-settings.php:239
+msgid "Eliminate password-based vulnerabilities with Google's robust OAuth authentication system."
+msgstr "Elimine vulnerabilidades baseadas em senha com o robusto sistema de autenticação OAuth do Google."
+
+#: includes/class-wpsl-admin-settings.php:243
+#: includes/class-wpsl-admin-settings.php:418
+msgid "User Management"
+msgstr "Gerenciamento de usuários"
+
+#: includes/class-wpsl-admin-settings.php:244
+msgid "Control exactly who can access your site with email-based authorization and role assignment."
+msgstr "Controle exatamente quem pode acessar seu site com autorização por e-mail e atribuição de funções."
+
+#: includes/class-wpsl-admin-settings.php:248
+msgid "Seamless Experience"
+msgstr "Experiência perfeita"
+
+#: includes/class-wpsl-admin-settings.php:249
+msgid "Google One Tap provides instant authentication for users already signed into Google."
+msgstr "O Google One Tap oferece autenticação instantânea para usuários já conectados ao Google."
+
+#: includes/class-wpsl-admin-settings.php:256
+msgid "Your plugin is not yet configured. Users cannot log in until you complete the Google API setup."
+msgstr "Seu plugin ainda não está configurado. Os usuários não poderão fazer login até que você conclua a configuração da API do Google."
+
+#: includes/class-wpsl-admin-settings.php:261
+msgid "WP Social Login is configured and working. You can modify settings or enable additional features anytime."
+msgstr "O WP Social Login está configurado e funcionando. Você pode modificar as configurações ou habilitar recursos adicionais a qualquer momento."
+
+#: includes/class-wpsl-admin-settings.php:268
+msgid "Start Configuration"
+msgstr "Iniciar configuração"
+
+#: includes/class-wpsl-admin-settings.php:282
+msgid "Google API Configuration"
+msgstr "Configuração da API do Google"
+
+#: includes/class-wpsl-admin-settings.php:283
+msgid "Set up your Google OAuth credentials to enable secure authentication. This is the most important step."
+msgstr "Configure suas credenciais OAuth do Google para habilitar a autenticação segura. Esta é a etapa mais importante."
+
+#: includes/class-wpsl-admin-settings.php:289
+msgid "Setup Instructions"
+msgstr "Instruções de configuração"
+
+#. translators: %s: link to Google Cloud Console.
+#: includes/class-wpsl-admin-settings.php:296
+#, php-format
+msgid "Visit the %s"
+msgstr "Visite o %s"
+
+#: includes/class-wpsl-admin-settings.php:302
+msgid "Create a new project or select an existing one."
+msgstr "Crie um novo projeto ou selecione um existente."
+
+#: includes/class-wpsl-admin-settings.php:303
+msgid "Navigate to \\"
+msgstr "Navegue para \\"
+
+#: includes/class-wpsl-admin-settings.php:304
+msgid "Click \\"
+msgstr "Clique em \\"
+
+#: includes/class-wpsl-admin-settings.php:305
+msgid "Choose \\"
+msgstr "Escolha \\"
+
+#: includes/class-wpsl-admin-settings.php:306
+msgid "Add the redirect URIs and origins provided below."
+msgstr "Adicione os URIs de redirecionamento e as origens fornecidas abaixo."
+
+#: includes/class-wpsl-admin-settings.php:311
+msgid "Required URLs for Google Console"
+msgstr "URLs obrigatórias para o Console do Google"
+
+#: includes/class-wpsl-admin-settings.php:313
+msgid "Authorized redirect URIs (add both)"
+msgstr "URIs de redirecionamento autorizadas (adicione ambos)"
+
+#: includes/class-wpsl-admin-settings.php:316
+#: includes/class-wpsl-admin-settings.php:322
+#: includes/class-wpsl-admin-settings.php:329
+msgid "Copy"
+msgstr "Copiar"
+
+#: includes/class-wpsl-admin-settings.php:326
+msgid "Authorized JavaScript origins"
+msgstr "Origens JavaScript autorizadas"
+
+#: includes/class-wpsl-admin-settings.php:335
+msgid "Google OAuth Credentials"
+msgstr "Credenciais OAuth do Google"
+
+#: includes/class-wpsl-admin-settings.php:337
+msgid "Google Client ID"
+msgstr "Google Client ID"
+
+#: includes/class-wpsl-admin-settings.php:338
+msgid "e.g., 123456789.apps.googleusercontent.com"
+msgstr "ex.: 123456789.apps.googleusercontent.com"
+
+#: includes/class-wpsl-admin-settings.php:341
+msgid "Google Client Secret"
+msgstr "Google Client Secret"
+
+#: includes/class-wpsl-admin-settings.php:342
+msgid "e.g., GOCSPX-xxxxxxxxxx"
+msgstr "ex.: GOCSPX-xxxxxxxxxx"
+
+#: includes/class-wpsl-admin-settings.php:347
+#: includes/class-wpsl-admin-settings.php:403
+#: includes/class-wpsl-admin-settings.php:475
+#: includes/class-wpsl-admin-settings.php:514
+#: includes/class-wpsl-admin-settings.php:558
+msgid "Back"
+msgstr "Voltar"
+
+#: includes/class-wpsl-admin-settings.php:349
+msgid "Test Connection"
+msgstr "Testar conexão"
+
+#: includes/class-wpsl-admin-settings.php:350
+#: includes/class-wpsl-admin-settings.php:404
+#: includes/class-wpsl-admin-settings.php:476
+#: includes/class-wpsl-admin-settings.php:515
+msgid "Save & Continue"
+msgstr "Salvar e continuar"
+
+#: includes/class-wpsl-admin-settings.php:365
+msgid "Security Features"
+msgstr "Recursos de segurança"
+
+#: includes/class-wpsl-admin-settings.php:366
+msgid "Enable additional security measures to protect your site from common attack vectors."
+msgstr "Ative medidas de segurança adicionais para proteger seu site contra vetores de ataque comuns."
+
+#: includes/class-wpsl-admin-settings.php:373
+msgid "Important Note:"
+msgstr "Nota importante:"
+
+#: includes/class-wpsl-admin-settings.php:373
+msgid "This plugin was developed in response to real brute-force attacks. These features help reduce common risks but should be part of a comprehensive security strategy."
+msgstr "Este plugin foi desenvolvido em resposta a ataques reais de força bruta. Esses recursos ajudam a reduzir riscos comuns, mas devem fazer parte de uma estratégia de segurança abrangente."
+
+#: includes/class-wpsl-admin-settings.php:379
+msgid "Disable XML-RPC"
+msgstr "Desativar XML-RPC"
+
+#: includes/class-wpsl-admin-settings.php:379
+msgid "Prevents brute-force attacks via XML-RPC. May affect mobile apps or Jetpack."
+msgstr "Previne ataques de força bruta via XML-RPC. Pode afetar apps móveis ou Jetpack."
+
+#: includes/class-wpsl-admin-settings.php:380
+msgid "Disable File Editing"
+msgstr "Desativar edição de arquivos"
+
+#: includes/class-wpsl-admin-settings.php:380
+msgid "Prevents code injection via the admin dashboard if an account is compromised."
+msgstr "Evita injeção de código pelo painel administrativo caso uma conta seja comprometida."
+
+#: includes/class-wpsl-admin-settings.php:381
+msgid "Hide WordPress Version"
+msgstr "Ocultar versão do WordPress"
+
+#: includes/class-wpsl-admin-settings.php:381
+msgid "Makes it harder for attackers to identify vulnerabilities for a specific WP version."
+msgstr "Torna mais difícil para invasores identificarem vulnerabilidades de uma versão específica do WP."
+
+#: includes/class-wpsl-admin-settings.php:382
+msgid "Restrict REST API"
+msgstr "Restringir API REST"
+
+#: includes/class-wpsl-admin-settings.php:382
+msgid "Prevents unauthorized data access via REST API. May affect some plugins."
+msgstr "Evita acesso não autorizado a dados via API REST. Pode afetar alguns plugins."
+
+#: includes/class-wpsl-admin-settings.php:383
+msgid "Block Sensitive Files"
+msgstr "Bloquear arquivos sensíveis"
+
+#: includes/class-wpsl-admin-settings.php:383
+msgid "Attempts to block direct public access to wp-config.php and other sensitive files."
+msgstr "Tenta bloquear o acesso público direto ao wp-config.php e a outros arquivos sensíveis."
+
+#: includes/class-wpsl-admin-settings.php:419
+msgid "Control who can access your site. Add Google email addresses and assign roles for authorized users."
+msgstr "Controle quem pode acessar seu site. Adicione endereços de e-mail do Google e atribua funções aos usuários autorizados."
+
+#: includes/class-wpsl-admin-settings.php:426
+msgid "Authorized Users"
+msgstr "Usuários autorizados"
+
+#: includes/class-wpsl-admin-settings.php:427
+msgid "Add User"
+msgstr "Adicionar usuário"
+
+#: includes/class-wpsl-admin-settings.php:430
+msgid "Email Address"
+msgstr "Endereço de e-mail"
+
+#: includes/class-wpsl-admin-settings.php:431
+msgid "Role"
+msgstr "Função"
+
+#: includes/class-wpsl-admin-settings.php:453
+msgid "New User Registration"
+msgstr "Registro de novo usuário"
+
+#: includes/class-wpsl-admin-settings.php:458
+msgid "Allow New User Sign-Ups"
+msgstr "Permitir novos cadastros de usuário"
+
+#: includes/class-wpsl-admin-settings.php:459
+msgid "Allow any Google user to create an account. This bypasses the authorized user list above."
+msgstr "Permitir que qualquer usuário do Google crie uma conta. Isso ignora a lista de usuários autorizados acima."
+
+#: includes/class-wpsl-admin-settings.php:465
+msgid "Default Role for New Users"
+msgstr "Função padrão para novos usuários"
+
+#: includes/class-wpsl-admin-settings.php:469
+msgid "Subscriber is the safest and recommended option for new public registrations."
+msgstr "Assinante é a opção mais segura e recomendada para novos registros públicos."
+
+#: includes/class-wpsl-admin-settings.php:489
+msgid "Google One Tap"
+msgstr "Google One Tap"
+
+#: includes/class-wpsl-admin-settings.php:490
+msgid "Configure Google One Tap for a seamless, one-click user authentication experience."
+msgstr "Configure o Google One Tap para uma experiência de autenticação de usuário contínua e com um clique."
+
+#: includes/class-wpsl-admin-settings.php:497
+msgid "What is Google One Tap?"
+msgstr "O que é o Google One Tap?"
+
+#: includes/class-wpsl-admin-settings.php:498
+msgid "One Tap displays a non-intrusive prompt that allows users already signed into Google to authenticate instantly. It is automatically enabled on the WordPress login page."
+msgstr "O One Tap exibe um prompt não intrusivo que permite que usuários já conectados ao Google se autentiquem instantaneamente. Ele é habilitado automaticamente na página de login do WordPress."
+
+#: includes/class-wpsl-admin-settings.php:506
+msgid "Enable One Tap on Homepage"
+msgstr "Ativar One Tap na página inicial"
+
+#: includes/class-wpsl-admin-settings.php:507
+msgid "Show the One Tap prompt to logged-out visitors on your homepage and other public pages."
+msgstr "Exibir o prompt do One Tap para visitantes desconectados na sua página inicial e em outras páginas públicas."
+
+#: includes/class-wpsl-admin-settings.php:528
+msgid "Setup Complete!"
+msgstr "Configuração concluída!"
+
+#: includes/class-wpsl-admin-settings.php:529
+msgid "Congratulations! Your WP Social Login plugin is now configured and ready to secure your WordPress site."
+msgstr "Parabéns! Seu plugin WP Social Login está agora configurado e pronto para proteger seu site WordPress."
+
+#: includes/class-wpsl-admin-settings.php:535
+msgid "Your Site is Now Secured"
+msgstr "Seu site agora está protegido"
+
+#: includes/class-wpsl-admin-settings.php:536
+msgid "Password-based authentication has been disabled. Users must now authenticate through Google, significantly reducing security risks."
+msgstr "A autenticação baseada em senha foi desativada. Os usuários agora devem se autenticar via Google, reduzindo significativamente os riscos de segurança."
+
+#: includes/class-wpsl-admin-settings.php:544
+msgid "Test Login"
+msgstr "Testar login"
+
+#: includes/class-wpsl-admin-settings.php:545
+msgid "Try the new login experience"
+msgstr "Experimente a nova experiência de login"
+
+#: includes/class-wpsl-admin-settings.php:551
+msgid "Manage Users"
+msgstr "Gerenciar usuários"
+
+#: includes/class-wpsl-admin-settings.php:552
+msgid "View your WordPress users"
+msgstr "Ver seus usuários do WordPress"
+
+#: includes/class-wpsl-admin-settings.php:559
+msgid "Return to Overview"
+msgstr "Voltar para visão geral"
+
+#: includes/class-wpsl-admin-settings.php:568
+msgid "Overview"
+msgstr "Visão geral"
+
+#: includes/class-wpsl-admin-settings.php:569
+msgid "Google API"
+msgstr "API do Google"
+
+#: includes/class-wpsl-admin-settings.php:570
+msgid "Security"
+msgstr "Segurança"
+
+#: includes/class-wpsl-admin-settings.php:571
+msgid "Users"
+msgstr "Usuários"
+
+#: includes/class-wpsl-admin-settings.php:572
+msgid "One Tap"
+msgstr "One Tap"
+
+#: includes/class-wpsl-admin-settings.php:665
+msgid "Insufficient permissions."
+msgstr "Permissões insuficientes."
+
+#: includes/class-wpsl-admin-settings.php:670
+msgid "Please enter both Client ID and Client Secret."
+msgstr "Por favor, insira tanto o Client ID quanto o Client Secret."
+
+#: includes/class-wpsl-admin-settings.php:671
+msgid "The Client ID does not appear to be in the correct format."
+msgstr "O Client ID não parece estar no formato correto."
+
+#: includes/class-wpsl-admin-settings.php:672
+msgid "The Client Secret appears to be too short."
+msgstr "O Client Secret parece ser muito curto."
+
+#: includes/class-wpsl-admin-settings.php:674
+msgid "Credentials format validation passed. Save your settings to apply them."
+msgstr "A validação do formato das credenciais foi bem-sucedida. Salve suas configurações para aplicá-las."
+
+#: includes/class-wpsl-error-handler.php:16
+msgid "Your Google account is not authorized to access this site. Please contact an administrator to request access."
+msgstr "Sua conta do Google não está autorizada a acessar este site. Entre em contato com um administrador para solicitar acesso."
+
+#: includes/class-wpsl-error-handler.php:17
+msgid "Authentication failed: Could not connect to Google servers. Please try again in a moment."
+msgstr "Autenticação falhou: não foi possível conectar aos servidores do Google. Por favor, tente novamente em instantes."
+
+#: includes/class-wpsl-error-handler.php:18
+msgid "Authentication failed: No access token received from Google. Please try again."
+msgstr "Autenticação falhou: nenhum token de acesso recebido do Google. Por favor, tente novamente."
+
+#: includes/class-wpsl-error-handler.php:19
+msgid "Authentication successful, but account creation failed. Please contact an administrator for assistance."
+msgstr "Autenticação bem-sucedida, mas a criação da conta falhou. Por favor, contate um administrador para assistência."
+
+#: includes/class-wpsl-error-handler.php:20
+msgid "Invalid authentication data received from Google. Please try signing in again."
+msgstr "Dados de autenticação inválidos recebidos do Google. Por favor, tente entrar novamente."
+
+#: includes/class-wpsl-error-handler.php:21
+msgid "Could not retrieve your user information from Google. Please check your Google account permissions and try again."
+msgstr "Não foi possível recuperar suas informações de usuário do Google. Verifique as permissões da sua conta Google e tente novamente."
+
+#: includes/class-wpsl-error-handler.php:22
+msgid "No email address was provided by Google. Please ensure your Google account has a verified email address."
+msgstr "Nenhum endereço de e-mail foi fornecido pelo Google. Certifique-se de que sua conta Google tenha um e-mail verificado."
+
+#: includes/class-wpsl-error-handler.php:23
+msgid "Authentication session expired or invalid. Please try logging in again."
+msgstr "Sessão de autenticação expirada ou inválida. Por favor, tente entrar novamente."
+
+#: includes/class-wpsl-error-handler.php:38
+msgid "An unknown authentication error occurred. Please try again."
+msgstr "Ocorreu um erro de autenticação desconhecido. Por favor, tente novamente."
+
+#: includes/class-wpsl-frontend-hooks.php:68
+msgid "Authenticating with Google..."
+msgstr "Autenticando com o Google..."
+
+#: includes/class-wpsl-frontend-hooks.php:78
+msgid "Welcome Back"
+msgstr "Bem-vindo de volta"
+
+#: includes/class-wpsl-frontend-hooks.php:79
+msgid "Sign in with your Google account to continue."
+msgstr "Faça login com sua conta Google para continuar."
+
+#: includes/class-wpsl-frontend-hooks.php:91
+msgid "Continue with Google"
+msgstr "Continuar com o Google"
+
+#: includes/class-wpsl-frontend-hooks.php:99
+msgid "Login experience by"
+msgstr "Experiência de login por"
+
+#: includes/class-wpsl-frontend-hooks.php:103
+msgid "- Viral Content Generator"
+msgstr "- Viral Content Generator"
+
+#: includes/class-wpsl-frontend-hooks.php:111
+msgid "Signing you in..."
+msgstr "Entrando..."
+
+#: includes/class-wpsl-frontend-hooks.php:122
+msgid "Login Disabled:"
+msgstr "Login desativado:"
+
+#: includes/class-wpsl-frontend-hooks.php:123
+msgid "Password-based login is disabled. Please use Google Sign-In."
+msgstr "O login por senha está desativado. Por favor, use o Login com o Google."
+
+#: includes/class-wpsl-wp-social-login.php:50
+msgid "Google Account Information"
+msgstr "Informações da conta Google"
+
+#: includes/class-wpsl-wp-social-login.php:53
+#: includes/class-wpsl-wp-social-login.php:55
+msgid "Google Profile Picture"
+msgstr "Foto de perfil do Google"
+
+#: includes/class-wpsl-wp-social-login.php:56
+msgid "This profile picture is synced from your Google account."
+msgstr "Esta foto de perfil é sincronizada da sua conta Google."
+
+#: includes/class-wpsl-wp-social-login.php:60
+msgid "Authentication Method"
+msgstr "Método de autenticação"
+
+#: includes/class-wpsl-wp-social-login.php:69
+msgid "Google Sign-In"
+msgstr "Login com o Google"
+
+#: includes/class-wpsl-wp-social-login.php:71
+msgid "This user authenticates via Google OAuth."
+msgstr "Este usuário autentica via Google OAuth."
+
+#: includes/class-wpsl-wp-social-login.php:139
+msgid "Access Denied"
+msgstr "Acesso negado"
+
+#: includes/class-wpsl-wp-social-login.php:154
+msgid "You are not currently logged in."
+msgstr "Você não está conectado no momento."
+
+#: wp-social-login.php:111
+msgid "WP Social Login:"
+msgstr "WP Social Login:"
+
+#. translators: 1: Opening anchor tag, 2: Closing anchor tag
+#: wp-social-login.php:114
+#, php-format
+msgid "Please %1$sconfigure your Google OAuth credentials%2$s to enable secure sign-in. This plugin is maintained by HardToSkip."
+msgstr "Por favor, %1$sconfigure suas credenciais OAuth do Google%2$s para habilitar o login seguro. Este plugin é mantido por HardToSkip."
+
+#: wp-social-login.php:125
+msgid "Warning:"
+msgstr "Aviso:"
+
+#: wp-social-login.php:125
+msgid "WP Social Login is not fully configured. Users may not be able to log in until you complete the setup."
+msgstr "O WP Social Login não está totalmente configurado. Os usuários podem não conseguir fazer login até que você conclua a configuração."
+
+#: wp-social-login.php:135
+msgid "New user sign-ups are enabled with elevated permissions. Monitor your site for unauthorized content."
+msgstr "Novos cadastros de usuários estão habilitados com permissões elevadas. Monitore seu site para conteúdo não autorizado."
+
+#: wp-social-login.php:136
+msgid "New user sign-ups are enabled. Monitor your user registrations for potential spam accounts."
+msgstr "Novos cadastros de usuários estão habilitados. Monitore os registros de usuários para possíveis contas de spam."
+
+#: wp-social-login.php:139
+msgid "Security Notice:"
+msgstr "Aviso de segurança:"
+
+#: wp-social-login.php:150
+msgid "Settings"
+msgstr "Configurações"
+
+#: wp-social-login.php:165
+msgid "Rate Plugin ★★★★★"
+msgstr "Avaliar plugin ★★★★★"
+
+#: wp-social-login.php:193
+#: wp-social-login.php:214
+msgid "WP Social Login Error:"
+msgstr "Erro do WP Social Login:"
+
+#: wp-social-login.php:194
+msgid "A fatal error was detected and logged. Please check your PHP error log for details."
+msgstr "Um erro fatal foi detectado e registrado. Verifique o log de erros do PHP para mais detalhes."
+
