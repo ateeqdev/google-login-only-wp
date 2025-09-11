@@ -1,26 +1,34 @@
 :root {
-  --wpsl-bg-start: #f3f4f6;
-  --wpsl-bg-end: #e5e7eb;
-  --wpsl-box-bg: #ffffff;
-  --wpsl-text-primary: #111827;
-  --wpsl-text-secondary: #4b5563;
-  --wpsl-border-color: #d1d5db;
-  --wpsl-button-hover-bg: #f9fafb;
-  --wpsl-brand-color: #4f46e5;
-  --wpsl-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
-    0 4px 6px -2px rgba(0, 0, 0, 0.05);
-  --wpsl-radius: 12px;
+  --wpsl-bg: #f8fafc;
+  --wpsl-card-bg: #ffffff;
+  --wpsl-text-primary: #1f2937;
+  --wpsl-text-secondary: #6b7280;
+  --wpsl-text-muted: #9ca3af;
+  --wpsl-border: #e5e7eb;
+  --wpsl-border-hover: #d1d5db;
+  --wpsl-accent: #3b82f6;
+  --wpsl-accent-hover: #2563eb;
+  --wpsl-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --wpsl-radius: 8px;
 }
 
-/* Base and Hiding WP UI */
+/* Base styling */
 body.login {
-  background: linear-gradient(135deg, var(--wpsl-bg-start), var(--wpsl-bg-end));
+  background-color: var(--wpsl-bg);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  min-height: 100vh;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
+  margin: 0;
+  padding: 20px;
+  box-sizing: border-box;
+  padding-bottom: 20px;
 }
 
-#loginform p,
+#loginform > p,
 #loginform .user-pass-wrap,
 #loginform .forgetmenot,
 #loginform .submit,
@@ -31,11 +39,11 @@ body.login {
   display: none !important;
 }
 
-/* Main Container */
+/* Main container */
 #login {
   width: 100%;
   max-width: 400px;
-  padding: 20px;
+  padding: 0;
 }
 
 #loginform {
@@ -43,119 +51,144 @@ body.login {
   border: none !important;
   background: none !important;
   box-shadow: none !important;
+  margin: 0 !important;
 }
 
+/* Login card */
 .wpsl-login-container {
-  background: var(--wpsl-box-bg);
-  padding: 2.5rem;
+  background: var(--wpsl-card-bg);
+  border: 1px solid var(--wpsl-border);
   border-radius: var(--wpsl-radius);
   box-shadow: var(--wpsl-shadow);
+  padding: 32px;
   text-align: center;
-  border: 1px solid var(--wpsl-border-color);
-  animation: wpsl-fade-in 0.5s ease-out;
+  animation: wpsl-fade-in 0.6s ease-out;
 }
 
-/* Header */
+/* Header section */
 .wpsl-login-header {
-  margin-bottom: 2rem;
+  margin-bottom: 32px;
 }
+
 .wpsl-login-header h2 {
-  font-size: 1.75rem;
-  font-weight: 700;
+  font-size: 24px;
+  font-weight: 600;
   color: var(--wpsl-text-primary);
-  margin: 0 0 0.5rem 0;
+  margin: 0 0 8px 0;
+  line-height: 1.25;
 }
+
 .wpsl-login-header p {
-  font-size: 1rem;
+  font-size: 16px;
   color: var(--wpsl-text-secondary);
   margin: 0;
+  line-height: 1.5;
 }
 
-/* Google Button */
 .wpsl-google-button {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 0.75rem;
+  gap: 12px;
   width: 100%;
-  padding: 0.75rem 1rem;
-  border: 1px solid var(--wpsl-border-color);
-  border-radius: 8px;
-  background-color: var(--wpsl-box-bg);
+  padding: 12px 20px;
+  border: 1px solid var(--wpsl-border);
+  border-radius: var(--wpsl-radius);
+  background-color: var(--wpsl-card-bg);
   color: var(--wpsl-text-primary);
-  font-size: 1rem;
+  font-size: 16px;
   font-weight: 500;
   text-decoration: none;
   cursor: pointer;
-  transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease;
   position: relative;
-  min-height: 50px;
+  min-height: 48px;
+  box-sizing: border-box;
 }
+
 .wpsl-google-button:hover {
-  background-color: var(--wpsl-button-hover-bg);
-  border-color: #9ca3af;
+  border-color: var(--wpsl-border-hover);
+  background-color: #f9fafb;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 12px -2px rgba(0, 0, 0, 0.1);
 }
+
 .wpsl-google-button:focus {
-  outline: 2px solid transparent;
+  outline: 2px solid var(--wpsl-accent);
   outline-offset: 2px;
-  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.3);
 }
+
+.wpsl-google-button:active {
+  transform: translateY(0);
+}
+
+/* Google logo */
 .wpsl-google-logo {
   width: 20px;
   height: 20px;
-  fill: currentColor;
+  flex-shrink: 0;
+  transition: opacity 0.3s ease;
 }
 
-/* Loading state for button */
-.wpsl-google-button .wpsl-spinner {
-  display: none;
+.wpsl-google-button span {
+  transition: opacity 0.3s ease;
 }
+
+.wpsl-spinner {
+  width: 20px;
+  height: 20px;
+  border: 2px solid var(--wpsl-border);
+  border-top-color: var(--wpsl-accent);
+  border-radius: 50%;
+  animation: wpsl-spin 1s linear infinite;
+  display: none;
+  transition: opacity 0.3s ease;
+}
+
+.wpsl-google-button.loading {
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
 .wpsl-google-button.loading .wpsl-spinner {
   display: block;
 }
-.wpsl-google-button.loading .wpsl-google-logo,
+
+.wpsl-google-button.loading .wpsl-google-logo {
+  opacity: 0.3;
+}
+
 .wpsl-google-button.loading span {
-  opacity: 0;
+  opacity: 0.3;
 }
 
-/* Footer */
-.wpsl-footer {
-  margin-top: 2rem;
-  padding-top: 1rem;
-  border-top: 1px solid #f3f4f6;
-}
-.wpsl-footer p {
-  margin: 0;
-  font-size: 0.875rem;
-  color: #6b7280;
-}
-.wpsl-footer a {
-  color: var(--wpsl-brand-color);
-  text-decoration: none;
-  font-weight: 500;
-}
-.wpsl-footer a:hover {
-  text-decoration: underline;
-}
-
-/* Error Message */
+/* Error messages */
 #login_error,
 .message {
-  border-radius: var(--wpsl-radius);
-  border-width: 1px !important;
+  border-radius: var(--wpsl-radius) !important;
+  border: 1px solid #fca5a5 !important;
+  background-color: #fef2f2 !important;
+  color: #991b1b !important;
   box-shadow: none !important;
-  margin-bottom: 1.5rem !important;
+  margin-bottom: 20px !important;
+  padding: 12px 16px !important;
 }
 
-/* Loading Overlay */
+.message {
+  border-color: #93c5fd !important;
+  background-color: #eff6ff !important;
+  color: #1d4ed8 !important;
+}
+
+/* Loading overlay */
 #wpsl-auth-loading {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(255, 255, 255, 0.8);
-  backdrop-filter: blur(8px);
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(4px);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -164,55 +197,115 @@ body.login {
   transition: opacity 0.3s ease;
   pointer-events: none;
 }
+
 #wpsl-auth-loading.show {
   opacity: 1;
   pointer-events: auto;
 }
+
 .wpsl-auth-content {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 1rem;
+  gap: 16px;
+  background: var(--wpsl-card-bg);
+  padding: 32px;
+  border-radius: var(--wpsl-radius);
+  box-shadow: var(--wpsl-shadow);
 }
+
 .wpsl-auth-content p {
-  font-size: 1rem;
+  font-size: 16px;
   font-weight: 500;
   color: var(--wpsl-text-primary);
   margin: 0;
 }
 
-/* Spinner Animation */
-.wpsl-spinner {
-  width: 24px;
-  height: 24px;
-  border: 3px solid #e5e7eb;
-  border-top-color: var(--wpsl-brand-color);
-  border-radius: 50%;
-  animation: wpsl-spin 1s linear infinite;
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-}
 .wpsl-auth-content .wpsl-spinner {
   position: static;
   transform: none;
+  display: block;
+  width: 32px;
+  height: 32px;
+  border-width: 3px;
 }
+
+.wpsl-footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: var(--wpsl-card-bg);
+  border-top: 1px solid var(--wpsl-border);
+  padding: 16px 20px;
+  text-align: center;
+  z-index: 1000;
+  box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.wpsl-footer p {
+  margin: 0;
+  font-size: 14px;
+  color: var(--wpsl-text-muted);
+  line-height: 1.4;
+}
+
+.wpsl-footer a {
+  color: var(--wpsl-accent);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.wpsl-footer a:hover {
+  color: var(--wpsl-accent-hover);
+  text-decoration: underline;
+}
+
+body.login {
+  margin-bottom: 80px;
+}
+
+/* Animations */
 @keyframes wpsl-spin {
   to {
     transform: rotate(360deg);
   }
 }
-.wpsl-auth-content .wpsl-spinner {
-  border-top-color: var(--wpsl-brand-color);
-}
+
 @keyframes wpsl-fade-in {
   from {
     opacity: 0;
-    transform: translateY(10px);
+    transform: translateY(20px);
   }
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+@media (max-width: 480px) {
+  body.login {
+    padding: 16px;
+    margin-bottom: 100px;
+  }
+
+  .wpsl-login-container {
+    padding: 24px;
+  }
+
+  .wpsl-login-header h2 {
+    font-size: 22px;
+  }
+
+  .wpsl-login-header p {
+    font-size: 15px;
+  }
+
+  .wpsl-footer {
+    padding: 12px 16px;
+  }
+
+  .wpsl-footer p {
+    font-size: 13px;
   }
 }
