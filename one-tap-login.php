@@ -2,7 +2,6 @@
 
 /**
  * Plugin Name:       One Tap Login
- * Plugin URI:        https://hardtoskip.com/
  * Description:       Replaces standard WordPress password authentication with Social Sign-In (currently Google) and One Tap. Features beautiful UI, automatic user management, and enhanced security options. Born from necessity after a successful brute-force attack on hardtoskip, this plugin enforces Google-only authentication to keep your site secure.
  * Version:           2.1.1
  * Author:            HardToSkip

@@ -30,7 +30,6 @@ class OTL_FrontendHooks
     public function enqueueLoginAssets()
     {
         wp_enqueue_style('otl-login', OTL_PLUGIN_URL . 'assets/css/login.css', [], OTL_VERSION);
-        wp_style_add_data('otl-login', 'rtl', 'replace');
         $this->prepareGoogleSignInScripts('signin', true);
     }
 

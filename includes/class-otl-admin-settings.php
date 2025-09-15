@@ -25,7 +25,6 @@ class OTL_AdminSettings
         }
 
         wp_enqueue_style('otl-admin', OTL_PLUGIN_URL . 'assets/css/admin.css', [], $this->version);
-        wp_style_add_data('otl-admin', 'rtl', 'replace');
         wp_enqueue_script('otl-admin', OTL_PLUGIN_URL . 'assets/js/admin.js', [], $this->version, true);
 
         $settings = get_option($this->option_name, []);
