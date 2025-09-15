@@ -1,21 +1,21 @@
 :root {
-  --wpsl-bg: #f8fafc;
-  --wpsl-card-bg: #ffffff;
-  --wpsl-text-primary: #1f2937;
-  --wpsl-text-secondary: #6b7280;
-  --wpsl-text-muted: #9ca3af;
-  --wpsl-border: #e5e7eb;
-  --wpsl-border-hover: #d1d5db;
-  --wpsl-accent: #3b82f6;
-  --wpsl-accent-hover: #2563eb;
-  --wpsl-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+  --otl-bg: #f8fafc;
+  --otl-card-bg: #ffffff;
+  --otl-text-primary: #1f2937;
+  --otl-text-secondary: #6b7280;
+  --otl-text-muted: #9ca3af;
+  --otl-border: #e5e7eb;
+  --otl-border-hover: #d1d5db;
+  --otl-accent: #3b82f6;
+  --otl-accent-hover: #2563eb;
+  --otl-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
     0 2px 4px -1px rgba(0, 0, 0, 0.06);
-  --wpsl-radius: 8px;
+  --otl-radius: 8px;
 }
 
 /* Base styling */
 body.login {
-  background-color: var(--wpsl-bg);
+  background-color: var(--otl-bg);
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   min-height: 100vh;
   display: flex;
@@ -55,47 +55,47 @@ body.login {
 }
 
 /* Login card */
-.wpsl-login-container {
-  background: var(--wpsl-card-bg);
-  border: 1px solid var(--wpsl-border);
-  border-radius: var(--wpsl-radius);
-  box-shadow: var(--wpsl-shadow);
+.otl-login-container {
+  background: var(--otl-card-bg);
+  border: 1px solid var(--otl-border);
+  border-radius: var(--otl-radius);
+  box-shadow: var(--otl-shadow);
   padding: 32px;
   text-align: center;
-  animation: wpsl-fade-in 0.6s ease-out;
+  animation: otl-fade-in 0.6s ease-out;
 }
 
 /* Header section */
-.wpsl-login-header {
+.otl-login-header {
   margin-bottom: 32px;
 }
 
-.wpsl-login-header h2 {
+.otl-login-header h2 {
   font-size: 24px;
   font-weight: 600;
-  color: var(--wpsl-text-primary);
+  color: var(--otl-text-primary);
   margin: 0 0 8px 0;
   line-height: 1.25;
 }
 
-.wpsl-login-header p {
+.otl-login-header p {
   font-size: 16px;
-  color: var(--wpsl-text-secondary);
+  color: var(--otl-text-secondary);
   margin: 0;
   line-height: 1.5;
 }
 
-.wpsl-google-button {
+.otl-google-button {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 12px;
   width: 100%;
   padding: 12px 20px;
-  border: 1px solid var(--wpsl-border);
-  border-radius: var(--wpsl-radius);
-  background-color: var(--wpsl-card-bg);
-  color: var(--wpsl-text-primary);
+  border: 1px solid var(--otl-border);
+  border-radius: var(--otl-radius);
+  background-color: var(--otl-card-bg);
+  color: var(--otl-text-primary);
   font-size: 16px;
   font-weight: 500;
   text-decoration: none;
@@ -106,66 +106,66 @@ body.login {
   box-sizing: border-box;
 }
 
-.wpsl-google-button:hover {
-  border-color: var(--wpsl-border-hover);
+.otl-google-button:hover {
+  border-color: var(--otl-border-hover);
   background-color: #f9fafb;
   transform: translateY(-1px);
   box-shadow: 0 6px 12px -2px rgba(0, 0, 0, 0.1);
 }
 
-.wpsl-google-button:focus {
-  outline: 2px solid var(--wpsl-accent);
+.otl-google-button:focus {
+  outline: 2px solid var(--otl-accent);
   outline-offset: 2px;
 }
 
-.wpsl-google-button:active {
+.otl-google-button:active {
   transform: translateY(0);
 }
 
 /* Google logo */
-.wpsl-google-logo {
+.otl-google-logo {
   width: 20px;
   height: 20px;
   flex-shrink: 0;
   transition: opacity 0.3s ease;
 }
 
-.wpsl-google-button span {
+.otl-google-button span {
   transition: opacity 0.3s ease;
 }
 
-.wpsl-spinner {
+.otl-spinner {
   width: 20px;
   height: 20px;
-  border: 2px solid var(--wpsl-border);
-  border-top-color: var(--wpsl-accent);
+  border: 2px solid var(--otl-border);
+  border-top-color: var(--otl-accent);
   border-radius: 50%;
-  animation: wpsl-spin 1s linear infinite;
+  animation: otl-spin 1s linear infinite;
   display: none;
   transition: opacity 0.3s ease;
 }
 
-.wpsl-google-button.loading {
+.otl-google-button.loading {
   cursor: not-allowed;
   pointer-events: none;
 }
 
-.wpsl-google-button.loading .wpsl-spinner {
+.otl-google-button.loading .otl-spinner {
   display: block;
 }
 
-.wpsl-google-button.loading .wpsl-google-logo {
+.otl-google-button.loading .otl-google-logo {
   opacity: 0.3;
 }
 
-.wpsl-google-button.loading span {
+.otl-google-button.loading span {
   opacity: 0.3;
 }
 
 /* Error messages */
 #login_error,
 .message {
-  border-radius: var(--wpsl-radius) !important;
+  border-radius: var(--otl-radius) !important;
   border: 1px solid #fca5a5 !important;
   background-color: #fef2f2 !important;
   color: #991b1b !important;
@@ -181,7 +181,7 @@ body.login {
 }
 
 /* Loading overlay */
-#wpsl-auth-loading {
+#otl-auth-loading {
   position: fixed;
   top: 0;
   left: 0;
@@ -198,30 +198,30 @@ body.login {
   pointer-events: none;
 }
 
-#wpsl-auth-loading.show {
+#otl-auth-loading.show {
   opacity: 1;
   pointer-events: auto;
 }
 
-.wpsl-auth-content {
+.otl-auth-content {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 16px;
-  background: var(--wpsl-card-bg);
+  background: var(--otl-card-bg);
   padding: 32px;
-  border-radius: var(--wpsl-radius);
-  box-shadow: var(--wpsl-shadow);
+  border-radius: var(--otl-radius);
+  box-shadow: var(--otl-shadow);
 }
 
-.wpsl-auth-content p {
+.otl-auth-content p {
   font-size: 16px;
   font-weight: 500;
-  color: var(--wpsl-text-primary);
+  color: var(--otl-text-primary);
   margin: 0;
 }
 
-.wpsl-auth-content .wpsl-spinner {
+.otl-auth-content .otl-spinner {
   position: static;
   transform: none;
   display: block;
@@ -230,34 +230,34 @@ body.login {
   border-width: 3px;
 }
 
-.wpsl-footer {
+.otl-footer {
   position: fixed;
   bottom: 0;
   left: 0;
   right: 0;
-  background: var(--wpsl-card-bg);
-  border-top: 1px solid var(--wpsl-border);
+  background: var(--otl-card-bg);
+  border-top: 1px solid var(--otl-border);
   padding: 16px 20px;
   text-align: center;
   z-index: 1000;
   box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.wpsl-footer p {
+.otl-footer p {
   margin: 0;
   font-size: 14px;
-  color: var(--wpsl-text-muted);
+  color: var(--otl-text-muted);
   line-height: 1.4;
 }
 
-.wpsl-footer a {
-  color: var(--wpsl-accent);
+.otl-footer a {
+  color: var(--otl-accent);
   text-decoration: none;
   font-weight: 500;
 }
 
-.wpsl-footer a:hover {
-  color: var(--wpsl-accent-hover);
+.otl-footer a:hover {
+  color: var(--otl-accent-hover);
   text-decoration: underline;
 }
 
@@ -266,13 +266,13 @@ body.login {
 }
 
 /* Animations */
-@keyframes wpsl-spin {
+@keyframes otl-spin {
   to {
     transform: rotate(360deg);
   }
 }
 
-@keyframes wpsl-fade-in {
+@keyframes otl-fade-in {
   from {
     opacity: 0;
     transform: translateY(20px);
@@ -289,23 +289,23 @@ body.login {
     margin-bottom: 100px;
   }
 
-  .wpsl-login-container {
+  .otl-login-container {
     padding: 24px;
   }
 
-  .wpsl-login-header h2 {
+  .otl-login-header h2 {
     font-size: 22px;
   }
 
-  .wpsl-login-header p {
+  .otl-login-header p {
     font-size: 15px;
   }
 
-  .wpsl-footer {
+  .otl-footer {
     padding: 12px 16px;
   }
 
-  .wpsl-footer p {
+  .otl-footer p {
     font-size: 13px;
   }
 }

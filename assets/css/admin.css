@@ -1,37 +1,37 @@
 :root {
-  --wpsl-bg: #f9fafb;
-  --wpsl-panel-bg: #ffffff;
-  --wpsl-border: #e5e7eb;
-  --wpsl-text-header: #111827;
-  --wpsl-text-body: #374151;
-  --wpsl-text-muted: #6b7280;
-  --wpsl-primary: #4f46e5;
-  --wpsl-primary-hover: #4338ca;
-  --wpsl-secondary: #4b5563;
-  --wpsl-secondary-hover: #374151;
-  --wpsl-success: #10b981;
-  --wpsl-warning: #f59e0b;
-  --wpsl-error: #ef4444;
-  --wpsl-radius-lg: 1rem;
-  --wpsl-radius-md: 0.5rem;
-  --wpsl-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+  --otl-bg: #f9fafb;
+  --otl-panel-bg: #ffffff;
+  --otl-border: #e5e7eb;
+  --otl-text-header: #111827;
+  --otl-text-body: #374151;
+  --otl-text-muted: #6b7280;
+  --otl-primary: #4f46e5;
+  --otl-primary-hover: #4338ca;
+  --otl-secondary: #4b5563;
+  --otl-secondary-hover: #374151;
+  --otl-success: #10b981;
+  --otl-warning: #f59e0b;
+  --otl-error: #ef4444;
+  --otl-radius-lg: 1rem;
+  --otl-radius-md: 0.5rem;
+  --otl-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
     0 2px 4px -1px rgba(0, 0, 0, 0.06);
 }
 
 /* Main Wrapper */
-.wpsl-admin-wrap {
+.otl-admin-wrap {
   margin: 0 0 0 -20px;
-  background-color: var(--wpsl-bg);
+  background-color: var(--otl-bg);
   min-height: calc(100vh - 32px);
 }
 
 /* Header */
-.wpsl-header {
-  background: var(--wpsl-panel-bg);
-  border-bottom: 1px solid var(--wpsl-border);
+.otl-header {
+  background: var(--otl-panel-bg);
+  border-bottom: 1px solid var(--otl-border);
   padding: 1.5rem 0;
 }
-.wpsl-header-content {
+.otl-header-content {
   max-width: 1400px;
   margin: 0 auto;
   padding: 0 2rem;
@@ -39,34 +39,34 @@
   align-items: center;
   gap: 1rem;
 }
-.wpsl-header-icon {
+.otl-header-icon {
   width: 48px;
   height: 48px;
-  background: var(--wpsl-primary);
-  border-radius: var(--wpsl-radius-md);
+  background: var(--otl-primary);
+  border-radius: var(--otl-radius-md);
   display: flex;
   align-items: center;
   justify-content: center;
 }
-.wpsl-header-icon svg {
+.otl-header-icon svg {
   width: 24px;
   height: 24px;
   fill: white;
 }
-.wpsl-header-text h1 {
+.otl-header-text h1 {
   font-size: 1.5rem;
   font-weight: 600;
-  color: var(--wpsl-text-header);
+  color: var(--otl-text-header);
   margin: 0;
 }
-.wpsl-header-text p {
+.otl-header-text p {
   font-size: 0.875rem;
-  color: var(--wpsl-text-muted);
+  color: var(--otl-text-muted);
   margin: 0;
 }
 
 /* Content Layout */
-.wpsl-content-wrapper {
+.otl-content-wrapper {
   max-width: 1400px;
   margin: 2rem auto;
   padding: 0 2rem;
@@ -76,40 +76,40 @@
   align-items: start;
 }
 
-.wpsl-main-content {
-  background: var(--wpsl-panel-bg);
-  border-radius: var(--wpsl-radius-lg);
-  box-shadow: var(--wpsl-shadow);
-  border: 1px solid var(--wpsl-border);
+.otl-main-content {
+  background: var(--otl-panel-bg);
+  border-radius: var(--otl-radius-lg);
+  box-shadow: var(--otl-shadow);
+  border: 1px solid var(--otl-border);
   overflow: hidden;
 }
 
 /* Progress Bar & Tabs */
-.wpsl-progress-container {
+.otl-progress-container {
   padding: 1.5rem;
-  border-bottom: 1px solid var(--wpsl-border);
+  border-bottom: 1px solid var(--otl-border);
 }
-.wpsl-steps-nav {
+.otl-steps-nav {
   display: flex;
   gap: 0.5rem;
   flex-wrap: wrap;
 }
-.wpsl-step-nav {
+.otl-step-nav {
   display: flex;
   align-items: center;
   gap: 0.5rem;
   padding: 0.5rem 1rem;
-  border-radius: var(--wpsl-radius-md);
+  border-radius: var(--otl-radius-md);
   text-decoration: none;
   font-size: 0.875rem;
   font-weight: 500;
   transition: all 0.2s ease;
-  color: var(--wpsl-text-body);
+  color: var(--otl-text-body);
 }
-.wpsl-step-nav:hover {
-  background-color: var(--wpsl-bg);
+.otl-step-nav:hover {
+  background-color: var(--otl-bg);
 }
-.wpsl-step-number {
+.otl-step-number {
   width: 20px;
   height: 20px;
   border-radius: 50%;
@@ -118,176 +118,176 @@
   justify-content: center;
   font-size: 0.75rem;
   font-weight: 600;
-  background-color: var(--wpsl-border);
-  color: var(--wpsl-text-muted);
+  background-color: var(--otl-border);
+  color: var(--otl-text-muted);
 }
-.wpsl-step-nav.completed .wpsl-step-number {
-  background-color: var(--wpsl-success);
+.otl-step-nav.completed .otl-step-number {
+  background-color: var(--otl-success);
   color: white;
 }
-.wpsl-step-nav.current {
-  color: var(--wpsl-primary);
+.otl-step-nav.current {
+  color: var(--otl-primary);
   font-weight: 600;
 }
-.wpsl-step-nav.current .wpsl-step-number {
-  background-color: var(--wpsl-primary);
+.otl-step-nav.current .otl-step-number {
+  background-color: var(--otl-primary);
   color: white;
 }
 
 /* Step Content */
-.wpsl-step-content {
+.otl-step-content {
   padding: 2rem;
 }
-.wpsl-step-header {
+.otl-step-header {
   margin-bottom: 2rem;
   text-align: left;
 }
-.wpsl-step-header h2 {
+.otl-step-header h2 {
   font-size: 1.5rem;
   font-weight: 600;
-  color: var(--wpsl-text-header);
+  color: var(--otl-text-header);
   margin: 0 0 0.5rem 0;
 }
-.wpsl-step-header p {
+.otl-step-header p {
   font-size: 1rem;
-  color: var(--wpsl-text-muted);
+  color: var(--otl-text-muted);
   margin: 0;
   line-height: 1.6;
 }
-.wpsl-step-actions {
+.otl-step-actions {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-top: 2rem;
   padding-top: 1.5rem;
-  border-top: 1px solid var(--wpsl-border);
+  border-top: 1px solid var(--otl-border);
 }
 
 /* Sidebar */
-.wpsl-sidebar {
+.otl-sidebar {
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
 }
-.wpsl-sidebar-card {
-  background: var(--wpsl-panel-bg);
-  border-radius: var(--wpsl-radius-lg);
+.otl-sidebar-card {
+  background: var(--otl-panel-bg);
+  border-radius: var(--otl-radius-lg);
   padding: 1.5rem;
-  box-shadow: var(--wpsl-shadow);
-  border: 1px solid var(--wpsl-border);
+  box-shadow: var(--otl-shadow);
+  border: 1px solid var(--otl-border);
 }
-.wpsl-sidebar-card h3 {
+.otl-sidebar-card h3 {
   font-size: 1rem;
   font-weight: 600;
-  color: var(--wpsl-text-header);
+  color: var(--otl-text-header);
   margin: 0 0 1rem 0;
 }
-.wpsl-status-item {
+.otl-status-item {
   display: flex;
   justify-content: space-between;
   align-items: center;
   font-size: 0.875rem;
   padding: 0.5rem 0;
 }
-.wpsl-status-label {
-  color: var(--wpsl-text-muted);
+.otl-status-label {
+  color: var(--otl-text-muted);
 }
-.wpsl-status-value {
+.otl-status-value {
   font-weight: 500;
-  color: var(--wpsl-text-body);
+  color: var(--otl-text-body);
 }
-.wpsl-status-value.success {
-  color: var(--wpsl-success);
+.otl-status-value.success {
+  color: var(--otl-success);
 }
-.wpsl-status-value.warning {
-  color: var(--wpsl-warning);
+.otl-status-value.warning {
+  color: var(--otl-warning);
 }
-.wpsl-quick-links {
+.otl-quick-links {
   display: flex;
   flex-direction: column;
   gap: 0.25rem;
 }
-.wpsl-quick-link {
+.otl-quick-link {
   display: flex;
   align-items: center;
   gap: 0.75rem;
   padding: 0.5rem;
-  color: var(--wpsl-text-body);
+  color: var(--otl-text-body);
   text-decoration: none;
-  border-radius: var(--wpsl-radius-md);
+  border-radius: var(--otl-radius-md);
   transition: all 0.2s ease;
   font-size: 0.875rem;
 }
-.wpsl-quick-link:hover {
-  background: var(--wpsl-bg);
-  color: var(--wpsl-primary);
+.otl-quick-link:hover {
+  background: var(--otl-bg);
+  color: var(--otl-primary);
 }
-.wpsl-quick-link .dashicons {
-  color: var(--wpsl-text-muted);
+.otl-quick-link .dashicons {
+  color: var(--otl-text-muted);
 }
-.wpsl-quick-link:hover .dashicons {
-  color: var(--wpsl-primary);
+.otl-quick-link:hover .dashicons {
+  color: var(--otl-primary);
 }
 
 /* Forms */
-.wpsl-form {
+.otl-form {
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
 }
-.wpsl-form-section {
-  border: 1px solid var(--wpsl-border);
-  border-radius: var(--wpsl-radius-md);
+.otl-form-section {
+  border: 1px solid var(--otl-border);
+  border-radius: var(--otl-radius-md);
   padding: 1.5rem;
 }
-.wpsl-form-section h3 {
+.otl-form-section h3 {
   font-size: 1.125rem;
   font-weight: 600;
-  color: var(--wpsl-text-header);
+  color: var(--otl-text-header);
   margin: 0 0 1rem 0;
 }
-.wpsl-form-group {
+.otl-form-group {
   margin-bottom: 1rem;
 }
-.wpsl-form-group label {
+.otl-form-group label {
   display: block;
   font-weight: 500;
-  color: var(--wpsl-text-body);
+  color: var(--otl-text-body);
   margin-bottom: 0.5rem;
   font-size: 0.875rem;
 }
-.wpsl-form-group input[type="text"],
-.wpsl-form-group input[type="email"],
-.wpsl-form-group input[type="password"],
-.wpsl-form-group select {
+.otl-form-group input[type="text"],
+.otl-form-group input[type="email"],
+.otl-form-group input[type="password"],
+.otl-form-group select {
   width: 100%;
   padding: 0.625rem 0.75rem;
-  border: 1px solid var(--wpsl-border);
-  border-radius: var(--wpsl-radius-md);
+  border: 1px solid var(--otl-border);
+  border-radius: var(--otl-radius-md);
   font-size: 0.875rem;
   transition: all 0.2s ease;
   background: white;
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
 }
-.wpsl-form-group input:focus,
-.wpsl-form-group select:focus {
+.otl-form-group input:focus,
+.otl-form-group select:focus {
   outline: none;
-  border-color: var(--wpsl-primary);
+  border-color: var(--otl-primary);
   box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
 }
-.wpsl-field-description {
+.otl-field-description {
   font-size: 0.875rem;
-  color: var(--wpsl-text-muted);
+  color: var(--otl-text-muted);
   margin-top: 0.5rem;
 }
 
 /* Buttons */
-.wpsl-btn {
+.otl-btn {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
   padding: 0.625rem 1.25rem;
-  border-radius: var(--wpsl-radius-md);
+  border-radius: var(--otl-radius-md);
   text-decoration: none;
   font-weight: 500;
   font-size: 0.875rem;
@@ -296,74 +296,74 @@
   cursor: pointer;
   white-space: nowrap;
 }
-.wpsl-btn.primary {
-  background-color: var(--wpsl-primary);
+.otl-btn.primary {
+  background-color: var(--otl-primary);
   color: white;
-  border-color: var(--wpsl-primary);
+  border-color: var(--otl-primary);
 }
-.wpsl-btn.primary:hover {
-  background-color: var(--wpsl-primary-hover);
-  border-color: var(--wpsl-primary-hover);
+.otl-btn.primary:hover {
+  background-color: var(--otl-primary-hover);
+  border-color: var(--otl-primary-hover);
 }
-.wpsl-btn.secondary {
-  background-color: var(--wpsl-secondary);
+.otl-btn.secondary {
+  background-color: var(--otl-secondary);
   color: white;
 }
-.wpsl-btn.secondary:hover {
-  background-color: var(--wpsl-secondary-hover);
+.otl-btn.secondary:hover {
+  background-color: var(--otl-secondary-hover);
 }
-.wpsl-btn.outline {
+.otl-btn.outline {
   background-color: transparent;
-  color: var(--wpsl-text-body);
-  border-color: var(--wpsl-border);
+  color: var(--otl-text-body);
+  border-color: var(--otl-border);
 }
-.wpsl-btn.outline:hover {
-  background-color: var(--wpsl-bg);
+.otl-btn.outline:hover {
+  background-color: var(--otl-bg);
   border-color: #d1d5db;
 }
-.wpsl-btn .dashicons {
+.otl-btn .dashicons {
   font-size: 1rem;
   line-height: inherit;
 }
 
 /* User Management */
-.wpsl-section-header {
+.otl-section-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 1rem;
 }
-.wpsl-section-header h3 {
+.otl-section-header h3 {
   margin: 0;
 }
-.wpsl-user-list-header {
+.otl-user-list-header {
   display: grid;
   grid-template-columns: 2fr 1fr 50px;
   gap: 1rem;
   padding: 0 1rem;
   margin-bottom: 0.5rem;
 }
-.wpsl-user-list-header label {
+.otl-user-list-header label {
   font-size: 0.75rem;
   font-weight: 500;
-  color: var(--wpsl-text-muted);
+  color: var(--otl-text-muted);
   text-transform: uppercase;
 }
-.wpsl-user-list {
+.otl-user-list {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
 }
-.wpsl-user-item {
+.otl-user-item {
   display: grid;
   grid-template-columns: 2fr 1fr 50px;
   gap: 1rem;
   align-items: center;
 }
-.wpsl-remove-user {
+.otl-remove-user {
   background: transparent;
   border: none;
-  color: var(--wpsl-text-muted);
+  color: var(--otl-text-muted);
   cursor: pointer;
   border-radius: 50%;
   width: 36px;
@@ -373,89 +373,89 @@
   justify-content: center;
   transition: all 0.2s ease;
 }
-.wpsl-remove-user:hover {
-  background: var(--wpsl-bg);
-  color: var(--wpsl-error);
+.otl-remove-user:hover {
+  background: var(--otl-bg);
+  color: var(--otl-error);
 }
 
 /* Toggle Switch & Groups */
-.wpsl-toggle-group {
+.otl-toggle-group {
   margin-bottom: 1rem;
 }
-.wpsl-toggle-label {
+.otl-toggle-label {
   display: flex;
   align-items: flex-start;
   gap: 1rem;
   cursor: pointer;
 }
-.wpsl-toggle-label input {
+.otl-toggle-label input {
   margin-top: 2px;
   flex-shrink: 0;
 }
-.wpsl-toggle-title {
+.otl-toggle-title {
   font-weight: 500;
-  color: var(--wpsl-text-body);
+  color: var(--otl-text-body);
 }
-.wpsl-toggle-description {
+.otl-toggle-description {
   font-size: 0.875rem;
-  color: var(--wpsl-text-muted);
+  color: var(--otl-text-muted);
 }
-.wpsl-signup-role-section {
+.otl-signup-role-section {
   margin-top: 1rem;
   padding-top: 1rem;
-  border-top: 1px solid var(--wpsl-border);
+  border-top: 1px solid var(--otl-border);
 }
 
 /* Security Cards */
-.wpsl-security-grid {
+.otl-security-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 1rem;
 }
-.wpsl-security-card {
-  border: 1px solid var(--wpsl-border);
-  border-radius: var(--wpsl-radius-md);
+.otl-security-card {
+  border: 1px solid var(--otl-border);
+  border-radius: var(--otl-radius-md);
   padding: 1rem;
   transition: all 0.2s ease;
 }
-.wpsl-security-card.enabled {
-  border-left: 4px solid var(--wpsl-success);
+.otl-security-card.enabled {
+  border-left: 4px solid var(--otl-success);
 }
-.wpsl-security-header {
+.otl-security-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 0.5rem;
 }
-.wpsl-security-icon {
-  color: var(--wpsl-text-muted);
+.otl-security-icon {
+  color: var(--otl-text-muted);
 }
-.wpsl-security-card.enabled .wpsl-security-icon {
-  color: var(--wpsl-success);
+.otl-security-card.enabled .otl-security-icon {
+  color: var(--otl-success);
 }
-.wpsl-security-card h4 {
+.otl-security-card h4 {
   font-size: 1rem;
   font-weight: 500;
   margin: 0;
-  color: var(--wpsl-text-header);
+  color: var(--otl-text-header);
 }
-.wpsl-security-description {
+.otl-security-description {
   font-size: 0.875rem;
-  color: var(--wpsl-text-muted);
+  color: var(--otl-text-muted);
   line-height: 1.5;
 }
-.wpsl-toggle {
+.otl-toggle {
   position: relative;
   display: inline-block;
   width: 36px;
   height: 20px;
 }
-.wpsl-toggle-input {
+.otl-toggle-input {
   opacity: 0;
   width: 0;
   height: 0;
 }
-.wpsl-toggle-slider {
+.otl-toggle-slider {
   position: absolute;
   cursor: pointer;
   top: 0;
@@ -466,7 +466,7 @@
   border-radius: 20px;
   transition: 0.3s;
 }
-.wpsl-toggle-slider:before {
+.otl-toggle-slider:before {
   position: absolute;
   content: "";
   height: 16px;
@@ -477,55 +477,55 @@
   border-radius: 50%;
   transition: 0.3s;
 }
-.wpsl-toggle-input:checked + .wpsl-toggle-slider {
-  background-color: var(--wpsl-success);
+.otl-toggle-input:checked + .otl-toggle-slider {
+  background-color: var(--otl-success);
 }
-.wpsl-toggle-input:checked + .wpsl-toggle-slider:before {
+.otl-toggle-input:checked + .otl-toggle-slider:before {
   transform: translateX(16px);
 }
 
 /* Other Components & Responsive */
-.wpsl-alert {
+.otl-alert {
   display: flex;
   gap: 0.75rem;
   padding: 1rem;
-  border-radius: var(--wpsl-radius-md);
+  border-radius: var(--otl-radius-md);
   font-size: 0.875rem;
 }
-.wpsl-alert.success {
+.otl-alert.success {
   background-color: #f0fdf4;
   color: #15803d;
 }
-.wpsl-alert.warning {
+.otl-alert.warning {
   background-color: #fffbeb;
   color: #b45309;
 }
-.wpsl-alert.info {
+.otl-alert.info {
   background-color: #eff6ff;
   color: #1d4ed8;
 }
-.wpsl-cards-grid {
+.otl-cards-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 1.5rem;
   margin: 2rem 0;
 }
-.wpsl-feature-card {
-  background: var(--wpsl-bg);
+.otl-feature-card {
+  background: var(--otl-bg);
   padding: 1.5rem;
-  border-radius: var(--wpsl-radius-md);
+  border-radius: var(--otl-radius-md);
   text-align: center;
 }
-.wpsl-feature-icon {
+.otl-feature-icon {
   margin-bottom: 1rem;
 }
-.wpsl-completion-header {
+.otl-completion-header {
   text-align: center;
 }
-.wpsl-completion-icon {
+.otl-completion-icon {
   width: 64px;
   height: 64px;
-  background: var(--wpsl-success);
+  background: var(--otl-success);
   color: white;
   border-radius: 50%;
   display: flex;
@@ -533,85 +533,85 @@
   justify-content: center;
   margin: 0 auto 1.5rem;
 }
-.wpsl-action-cards {
+.otl-action-cards {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 1rem;
   margin: 2rem 0;
 }
-.wpsl-action-card {
+.otl-action-card {
   display: flex;
   gap: 1rem;
   padding: 1rem;
-  background: var(--wpsl-panel-bg);
-  border: 1px solid var(--wpsl-border);
-  border-radius: var(--wpsl-radius-md);
+  background: var(--otl-panel-bg);
+  border: 1px solid var(--otl-border);
+  border-radius: var(--otl-radius-md);
   text-decoration: none;
   transition: all 0.2s;
 }
-.wpsl-action-card:hover {
-  border-color: var(--wpsl-primary);
-  box-shadow: var(--wpsl-shadow);
+.otl-action-card:hover {
+  border-color: var(--otl-primary);
+  box-shadow: var(--otl-shadow);
 }
-.wpsl-action-card h4 {
+.otl-action-card h4 {
   margin: 0;
-  color: var(--wpsl-text-header);
+  color: var(--otl-text-header);
 }
-.wpsl-action-card p {
+.otl-action-card p {
   margin: 0;
-  color: var(--wpsl-text-muted);
+  color: var(--otl-text-muted);
   font-size: 0.875rem;
 }
 @media (max-width: 1024px) {
-  .wpsl-content-wrapper {
+  .otl-content-wrapper {
     grid-template-columns: 1fr;
   }
-  .wpsl-sidebar {
+  .otl-sidebar {
     order: -1;
   }
 }
 @media (max-width: 768px) {
-  .wpsl-header-content,
-  .wpsl-content-wrapper {
+  .otl-header-content,
+  .otl-content-wrapper {
     padding: 0 1rem;
   }
-  .wpsl-cards-grid,
-  .wpsl-action-cards {
+  .otl-cards-grid,
+  .otl-action-cards {
     grid-template-columns: 1fr;
   }
 }
 
 /* User Profile Styles in WP Admin */
-.wpsl-profile-picture {
+.otl-profile-picture {
   width: 96px;
   height: 96px;
   border-radius: 50%;
 }
-.wpsl-auth-badge {
+.otl-auth-badge {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  background: var(--wpsl-primary);
+  background: var(--otl-primary);
   color: white;
   padding: 0.25rem 0.75rem;
   border-radius: 99px;
   font-size: 0.75rem;
   font-weight: 500;
 }
-.wpsl-auth-badge svg {
+.otl-auth-badge svg {
   width: 14px;
   height: 14px;
   fill: currentColor;
 }
 
 /* Notification */
-.wpsl-notification {
+.otl-notification {
   position: fixed;
   top: 40px;
   right: 20px;
   z-index: 99999;
-  border-radius: var(--wpsl-radius-md);
-  box-shadow: var(--wpsl-shadow);
+  border-radius: var(--otl-radius-md);
+  box-shadow: var(--otl-shadow);
   min-width: 300px;
   opacity: 0;
   transform: translateX(20px);
@@ -621,19 +621,19 @@
   gap: 0.75rem;
   padding: 1rem;
 }
-.wpsl-notification.show {
+.otl-notification.show {
   opacity: 1;
   transform: translateX(0);
 }
-.wpsl-notification-success {
-  background: var(--wpsl-success);
+.otl-notification-success {
+  background: var(--otl-success);
   color: white;
 }
-.wpsl-notification-error {
-  background: var(--wpsl-error);
+.otl-notification-error {
+  background: var(--otl-error);
   color: white;
 }
-.wpsl-notification-close {
+.otl-notification-close {
   background: none;
   border: none;
   color: inherit;
@@ -641,25 +641,25 @@
   cursor: pointer;
   margin-left: auto;
 }
-.wpsl-url-group {
+.otl-url-group {
   margin-bottom: 1.5rem;
 }
-.wpsl-url-group:last-child {
+.otl-url-group:last-child {
   margin-bottom: 0;
 }
-.wpsl-url-group label {
+.otl-url-group label {
   display: block;
   font-weight: 500;
   color: #374151;
   margin-bottom: 0.5rem;
   font-size: 0.875rem;
 }
-.wpsl-copy-input {
+.otl-copy-input {
   display: flex;
   align-items: center;
   position: relative;
 }
-.wpsl-copy-input input[readonly] {
+.otl-copy-input input[readonly] {
   width: 100%;
   padding: 0.625rem 6rem 0.625rem 0.75rem;
   border: 1px solid #e5e7eb;
@@ -673,7 +673,7 @@
   -moz-appearance: none;
   appearance: none;
 }
-.wpsl-copy-input .wpsl-copy-btn {
+.otl-copy-input .otl-copy-btn {
   position: absolute;
   right: 0.5rem;
   top: 50%;
@@ -688,11 +688,11 @@
   cursor: pointer;
   transition: all 0.2s ease;
 }
-.wpsl-copy-input .wpsl-copy-btn:hover {
+.otl-copy-input .otl-copy-btn:hover {
   background-color: #f3f4f6;
   border-color: #9ca3af;
 }
-.wpsl-copy-input .wpsl-copy-btn.success {
+.otl-copy-input .otl-copy-btn.success {
   background-color: #10b981;
   border-color: #10b981;
   color: white;

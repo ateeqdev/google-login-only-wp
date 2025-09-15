@@ -2,11 +2,11 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-09-14 23:49+0000\n"
-"PO-Revision-Date: 2025-09-14 23:49+0000\n"
+"POT-Creation-Date: 2025-09-15 00:03+0000\n"
+"PO-Revision-Date: 2025-09-15 00:03+0000\n"
 "Last-Translator: AI Translator <ai@example.com>\n"
-"Language-Team: Swedish <sv_SE@example.com>\n"
-"Language: sv_SE\n"
+"Language-Team: Greek <el@example.com>\n"
+"Language: el\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -15,7 +15,7 @@ msgstr ""
 #: one-tap-login.php
 #: includes/class-otl-admin-settings.php:120
 msgid "One Tap Login"
-msgstr "One Tap-inloggning"
+msgstr "Σύνδεση με One Tap"
 
 #. Plugin URI of the plugin
 #. Author URI of the plugin
@@ -26,7 +26,7 @@ msgstr "https://hardtoskip.com/"
 #. Description of the plugin
 #: one-tap-login.php
 msgid "Replaces standard WordPress password authentication with Social Sign-In (currently Google) and One Tap. Features beautiful UI, automatic user management, and enhanced security options. Born from necessity after a successful brute-force attack on hardtoskip, this plugin enforces Google-only authentication to keep your site secure."
-msgstr "Ersätter standard WordPress-lösenordsautentisering med Social Sign-In (för närvarande Google) och One Tap. Fungerar med ett snyggt gränssnitt, automatisk användarhantering och förbättrade säkerhetsalternativ. Skapat av nödvändighet efter en lyckad brute-force-attack mot hardtoskip; detta tillägg kräver Google-enda autentisering för att hålla din webbplats säker."
+msgstr "Αντικαθιστά την προεπιλεγμένη πιστοποίηση με κωδικό του WordPress με Σύνδεση μέσω Κοινωνικών Δικτύων (προς το παρόν Google) και One Tap. Διαθέτει όμορφο UI, αυτόματη διαχείριση χρηστών και ενισχυμένες επιλογές ασφαλείας. Δημιουργήθηκε από ανάγκη μετά από μια επιτυχημένη επίθεση brute-force στο hardtoskip· αυτό το πρόσθετο επιβάλλει πιστοποίηση μόνο μέσω Google για να διατηρεί τον ιστότοπό σας ασφαλή."
 
 #. Author of the plugin
 #: one-tap-login.php
@@ -41,223 +41,223 @@ msgstr "user@example.com"
 
 #: includes/class-otl-admin-settings.php:48
 msgid "Saving..."
-msgstr "Sparar..."
+msgstr "Αποθηκεύεται..."
 
 #: includes/class-otl-admin-settings.php:49
 msgid "Settings Saved!"
-msgstr "Inställningar sparade!"
+msgstr "Οι ρυθμίσεις αποθηκεύτηκαν!"
 
 #: includes/class-otl-admin-settings.php:50
 msgid "An error occurred."
-msgstr "Ett fel uppstod."
+msgstr "Παρουσιάστηκε σφάλμα."
 
 #: includes/class-otl-admin-settings.php:51
 msgid "Testing..."
-msgstr "Testar..."
+msgstr "Δοκιμή..."
 
 #: includes/class-otl-admin-settings.php:52
 msgid "Validation successful!"
-msgstr "Validering lyckades!"
+msgstr "Η επικύρωση ήταν επιτυχής!"
 
 #: includes/class-otl-admin-settings.php:53
 msgid "Validation failed"
-msgstr "Validering misslyckades"
+msgstr "Η επικύρωση απέτυχε"
 
 #: includes/class-otl-admin-settings.php:54
 msgid "Are you sure you want to remove this user?"
-msgstr "Är du säker på att du vill ta bort den här användaren?"
+msgstr "Είστε βέβαιοι ότι θέλετε να αφαιρέσετε αυτόν τον χρήστη;"
 
 #: includes/class-otl-admin-settings.php:55
 msgid "Please fill in both Client ID and Client Secret."
-msgstr "Fyll i både Client ID och Client Secret."
+msgstr "Παρακαλώ συμπληρώστε τόσο το Client ID όσο και το Client Secret."
 
 #: includes/class-otl-admin-settings.php:56
 msgid "Copied!"
-msgstr "Kopierat!"
+msgstr "Αντιγράφηκε!"
 
 #: includes/class-otl-admin-settings.php:57
 msgid "Failed to copy."
-msgstr "Kunde inte kopiera."
+msgstr "Αποτυχία αντιγραφής."
 
 #: includes/class-otl-admin-settings.php:65
 msgid "One Tap Login Settings"
-msgstr "One Tap-inloggningsinställningar"
+msgstr "Ρυθμίσεις One Tap Login"
 
 #: includes/class-otl-admin-settings.php:66
 msgid "Social Login"
-msgstr "Social inloggning"
+msgstr "Σύνδεση μέσω κοινωνικών δικτύων"
 
 #: includes/class-otl-admin-settings.php:121
 msgid "Secure Google Authentication for WordPress"
-msgstr "Säker Google-autentisering för WordPress"
+msgstr "Ασφαλής πιστοποίηση Google για το WordPress"
 
 #: includes/class-otl-admin-settings.php:159
 msgid "Quick Status"
-msgstr "Snabbstatus"
+msgstr "Γρήγορη κατάσταση"
 
 #: includes/class-otl-admin-settings.php:161
 msgid "Configuration:"
-msgstr "Konfiguration:"
+msgstr "Διαμόρφωση:"
 
 #: includes/class-otl-admin-settings.php:163
 #: includes/class-otl-admin-settings.php:573
 msgid "Complete"
-msgstr "Slutförd"
+msgstr "Ολοκληρωμένο"
 
 #: includes/class-otl-admin-settings.php:163
 msgid "Pending"
-msgstr "Väntande"
+msgstr "Σε εκκρεμότητα"
 
 #: includes/class-otl-admin-settings.php:167
 msgid "Authorized Users:"
-msgstr "Auktoriserade användare:"
+msgstr "Εξουσιοδοτημένοι χρήστες:"
 
 #: includes/class-otl-admin-settings.php:171
 msgid "Security Features:"
-msgstr "Säkerhetsfunktioner:"
+msgstr "Λειτουργίες ασφαλείας:"
 
 #: includes/class-otl-admin-settings.php:177
 msgid "Quick Links"
-msgstr "Snabblänkar"
+msgstr "Γρήγοροι σύνδεσμοι"
 
 #: includes/class-otl-admin-settings.php:181
 msgid "Test Login Page"
-msgstr "Testa inloggningssida"
+msgstr "Δοκιμαστική σελίδα σύνδεσης"
 
 #: includes/class-otl-admin-settings.php:185
 #: includes/class-otl-admin-settings.php:297
 msgid "Google Cloud Console"
-msgstr "Google Cloud Console"
+msgstr "Κονσόλα Google Cloud"
 
 #: includes/class-otl-admin-settings.php:189
 #: one-tap-login.php:164
 msgid "Plugin Creator"
-msgstr "Plugin-skapare"
+msgstr "Δημιουργός πρόσθετου"
 
 #: includes/class-otl-admin-settings.php:193
 msgid "Hire Developer"
-msgstr "Anlita utvecklare"
+msgstr "Προσλάβετε προγραμματιστή"
 
 #: includes/class-otl-admin-settings.php:231
 msgid "Welcome to One Tap Login"
-msgstr "Välkommen till One Tap-inloggning"
+msgstr "Καλώς ήρθατε στο One Tap Login"
 
 #: includes/class-otl-admin-settings.php:232
 msgid "Transform your WordPress authentication with secure Google Sign-In. This setup wizard will guide you through each step to ensure optimal security and user experience."
-msgstr "Förvandla din WordPress-autentisering med säker Google-inloggning. Denna installationsguide leder dig genom varje steg för att säkerställa optimal säkerhet och användarupplevelse."
+msgstr "Μεταμορφώστε την πιστοποίηση του WordPress σας με ασφαλή Σύνδεση μέσω Google. Αυτός ο οδηγός ρύθμισης θα σας καθοδηγήσει σε κάθε βήμα για να εξασφαλίσει τη βέλτιστη ασφάλεια και εμπειρία χρήστη."
 
 #: includes/class-otl-admin-settings.php:238
 msgid "Enhanced Security"
-msgstr "Förbättrad säkerhet"
+msgstr "Ενισχυμένη ασφάλεια"
 
 #: includes/class-otl-admin-settings.php:239
 msgid "Eliminate password-based vulnerabilities with Google's robust OAuth authentication system."
-msgstr "Eliminera lösenordsbaserade sårbarheter med Googles robusta OAuth-autentiseringssystem."
+msgstr "Εξαλείψτε τις ευπάθειες που βασίζονται σε κωδικούς με το ανθεκτικό σύστημα OAuth της Google."
 
 #: includes/class-otl-admin-settings.php:243
 #: includes/class-otl-admin-settings.php:418
 msgid "User Management"
-msgstr "Användarhantering"
+msgstr "Διαχείριση χρηστών"
 
 #: includes/class-otl-admin-settings.php:244
 msgid "Control exactly who can access your site with email-based authorization and role assignment."
-msgstr "Bestäm exakt vem som kan komma åt din webbplats med e-postbaserad auktorisation och rolltilldelning."
+msgstr "Ελέγξτε ακριβώς ποιος μπορεί να έχει πρόσβαση στον ιστότοπό σας με εξουσιοδότηση βάσει email και ανάθεση ρόλων."
 
 #: includes/class-otl-admin-settings.php:248
 msgid "Seamless Experience"
-msgstr "Sömlös upplevelse"
+msgstr "Απρόσκοπτη εμπειρία"
 
 #: includes/class-otl-admin-settings.php:249
 msgid "Google One Tap provides instant authentication for users already signed into Google."
-msgstr "Google One Tap erbjuder omedelbar autentisering för användare som redan är inloggade på Google."
+msgstr "Το Google One Tap προσφέρει άμεση πιστοποίηση για χρήστες που έχουν ήδη συνδεθεί στο Google."
 
 #: includes/class-otl-admin-settings.php:256
 msgid "Your plugin is not yet configured. Users cannot log in until you complete the Google API setup."
-msgstr "Ditt tillägg är ännu inte konfigurerat. Användare kan inte logga in förrän du slutfört Google API-inställningarna."
+msgstr "Το πρόσθετό σας δεν έχει ρυθμιστεί ακόμη. Οι χρήστες δεν μπορούν να συνδεθούν μέχρι να ολοκληρώσετε τη ρύθμιση του Google API."
 
 #: includes/class-otl-admin-settings.php:261
 msgid "One Tap Login is configured and working. You can modify settings or enable additional features anytime."
-msgstr "One Tap-inloggning är konfigurerad och fungerar. Du kan ändra inställningar eller aktivera ytterligare funktioner när som helst."
+msgstr "Το One Tap Login έχει ρυθμιστεί και λειτουργεί. Μπορείτε να τροποποιήσετε τις ρυθμίσεις ή να ενεργοποιήσετε επιπλέον δυνατότητες οποιαδήποτε στιγμή."
 
 #: includes/class-otl-admin-settings.php:268
 msgid "Start Configuration"
-msgstr "Starta konfiguration"
+msgstr "Έναρξη ρύθμισης"
 
 #: includes/class-otl-admin-settings.php:282
 msgid "Google API Configuration"
-msgstr "Google API-konfiguration"
+msgstr "Διαμόρφωση Google API"
 
 #: includes/class-otl-admin-settings.php:283
 msgid "Set up your Google OAuth credentials to enable secure authentication. This is the most important step."
-msgstr "Ställ in dina Google OAuth-referenser för att möjliggöra säker autentisering. Detta är det viktigaste steget."
+msgstr "Ρυθμίστε τα διαπιστευτήρια OAuth της Google για να ενεργοποιήσετε την ασφαλή πιστοποίηση. Αυτό είναι το πιο σημαντικό βήμα."
 
 #: includes/class-otl-admin-settings.php:289
 msgid "Setup Instructions"
-msgstr "Installationsinstruktioner"
+msgstr "Οδηγίες ρύθμισης"
 
 #. translators: %s: link to Google Cloud Console.
 #: includes/class-otl-admin-settings.php:296
 #, php-format
 msgid "Visit the %s"
-msgstr "Besök %s"
+msgstr "Επισκεφθείτε το %s"
 
 #: includes/class-otl-admin-settings.php:302
 msgid "Create a new project or select an existing one."
-msgstr "Skapa ett nytt projekt eller välj ett befintligt."
+msgstr "Δημιουργήστε ένα νέο έργο ή επιλέξτε ένα υπάρχον."
 
 #: includes/class-otl-admin-settings.php:303
 msgid "Navigate to \\"
-msgstr "Navigera till \\"
+msgstr "Μεταβείτε στο \\"
 
 #: includes/class-otl-admin-settings.php:304
 msgid "Click \\"
-msgstr "Klicka \\"
+msgstr "Κάντε κλικ στο \\"
 
 #: includes/class-otl-admin-settings.php:305
 msgid "Choose \\"
-msgstr "Välj \\"
+msgstr "Επιλέξτε \\"
 
 #: includes/class-otl-admin-settings.php:306
 msgid "Add the redirect URIs and origins provided below."
-msgstr "Lägg till de omdirigerings-URI:er och ursprung som anges nedan."
+msgstr "Προσθέστε τις URI ανακατεύθυνσης και τις διευθύνσεις προέλευσης (origins) που παρέχονται παρακάτω."
 
 #: includes/class-otl-admin-settings.php:311
 msgid "Required URLs for Google Console"
-msgstr "Nödvändiga URL:er för Google Console"
+msgstr "Απαιτούμενες διευθύνσεις URL για την Κονσόλα Google"
 
 #: includes/class-otl-admin-settings.php:313
 msgid "Authorized redirect URIs (add both)"
-msgstr "Auktoriserade omdirigerings-URI:er (lägg till båda)"
+msgstr "Εξουσιοδοτημένα URI ανακατεύθυνσης (προσθέστε και τα δύο)"
 
 #: includes/class-otl-admin-settings.php:316
 #: includes/class-otl-admin-settings.php:322
 #: includes/class-otl-admin-settings.php:329
 msgid "Copy"
-msgstr "Kopiera"
+msgstr "Αντιγραφή"
 
 #: includes/class-otl-admin-settings.php:326
 msgid "Authorized JavaScript origins"
-msgstr "Auktoriserade JavaScript-ursprung"
+msgstr "Εξουσιοδοτημένες προελεύσεις JavaScript"
 
 #: includes/class-otl-admin-settings.php:335
 msgid "Google OAuth Credentials"
-msgstr "Google OAuth-referenser"
+msgstr "Διαπιστευτήρια OAuth της Google"
 
 #: includes/class-otl-admin-settings.php:337
 msgid "Google Client ID"
-msgstr "Google klient-ID"
+msgstr "Google Client ID"
 
 #: includes/class-otl-admin-settings.php:338
 msgid "e.g., 123456789.apps.googleusercontent.com"
-msgstr "t.ex. 123456789.apps.googleusercontent.com"
+msgstr "π.χ., 123456789.apps.googleusercontent.com"
 
 #: includes/class-otl-admin-settings.php:341
 msgid "Google Client Secret"
-msgstr "Google klienthemlighet"
+msgstr "Google Client Secret"
 
 #: includes/class-otl-admin-settings.php:342
 msgid "e.g., GOCSPX-xxxxxxxxxx"
-msgstr "t.ex. GOCSPX-xxxxxxxxxx"
+msgstr "π.χ., GOCSPX-xxxxxxxxxx"
 
 #: includes/class-otl-admin-settings.php:347
 #: includes/class-otl-admin-settings.php:403
@@ -265,114 +265,114 @@ msgstr "t.ex. GOCSPX-xxxxxxxxxx"
 #: includes/class-otl-admin-settings.php:514
 #: includes/class-otl-admin-settings.php:558
 msgid "Back"
-msgstr "Tillbaka"
+msgstr "Επιστροφή"
 
 #: includes/class-otl-admin-settings.php:349
 msgid "Test Connection"
-msgstr "Testa anslutning"
+msgstr "Δοκιμή σύνδεσης"
 
 #: includes/class-otl-admin-settings.php:350
 #: includes/class-otl-admin-settings.php:404
 #: includes/class-otl-admin-settings.php:476
 #: includes/class-otl-admin-settings.php:515
 msgid "Save & Continue"
-msgstr "Spara och fortsätt"
+msgstr "Αποθήκευση και συνέχεια"
 
 #: includes/class-otl-admin-settings.php:365
 msgid "Security Features"
-msgstr "Säkerhetsfunktioner"
+msgstr "Λειτουργίες ασφαλείας"
 
 #: includes/class-otl-admin-settings.php:366
 msgid "Enable additional security measures to protect your site from common attack vectors."
-msgstr "Aktivera ytterligare säkerhetsåtgärder för att skydda din webbplats mot vanliga angreppsvägar."
+msgstr "Ενεργοποιήστε επιπλέον μέτρα ασφαλείας για να προστατεύσετε τον ιστότοπό σας από συνήθεις τύπους επίθεσης."
 
 #: includes/class-otl-admin-settings.php:373
 msgid "Important Note:"
-msgstr "Viktigt meddelande:"
+msgstr "Σημαντική σημείωση:"
 
 #: includes/class-otl-admin-settings.php:373
 msgid "This plugin was developed in response to real brute-force attacks. These features help reduce common risks but should be part of a comprehensive security strategy."
-msgstr "Detta tillägg utvecklades som svar på verkliga brute-force-attacker. Dessa funktioner hjälper till att minska vanliga risker men bör vara en del av en övergripande säkerhetsstrategi."
+msgstr "Αυτό το πρόσθετο αναπτύχθηκε ως απάντηση σε πραγματικές επιθέσεις brute-force. Αυτές οι λειτουργίες βοηθούν στη μείωση κοινών κινδύνων αλλά πρέπει να αποτελούν μέρος μιας ολοκληρωμένης στρατηγικής ασφάλειας."
 
 #: includes/class-otl-admin-settings.php:379
 msgid "Disable XML-RPC"
-msgstr "Inaktivera XML-RPC"
+msgstr "Απενεργοποίηση XML-RPC"
 
 #: includes/class-otl-admin-settings.php:379
 msgid "Prevents brute-force attacks via XML-RPC. May affect mobile apps or Jetpack."
-msgstr "Förhindrar brute-force-attacker via XML-RPC. Kan påverka mobilappar eller Jetpack."
+msgstr "Αποτρέπει επιθέσεις brute-force μέσω XML-RPC. Ενδέχεται να επηρεάσει εφαρμογές κινητών ή το Jetpack."
 
 #: includes/class-otl-admin-settings.php:380
 msgid "Disable File Editing"
-msgstr "Inaktivera filredigering"
+msgstr "Απενεργοποίηση επεξεργασίας αρχείων"
 
 #: includes/class-otl-admin-settings.php:380
 msgid "Prevents code injection via the admin dashboard if an account is compromised."
-msgstr "Förhindrar kodinjektion via administrationspanelen om ett konto blir komprometterat."
+msgstr "Αποτρέπει εισαγωγή κώδικα μέσω του πίνακα διαχείρισης εάν ένας λογαριασμός έχει παραβιαστεί."
 
 #: includes/class-otl-admin-settings.php:381
 msgid "Hide WordPress Version"
-msgstr "Dölj WordPress-version"
+msgstr "Απόκρυψη έκδοσης WordPress"
 
 #: includes/class-otl-admin-settings.php:381
 msgid "Makes it harder for attackers to identify vulnerabilities for a specific WP version."
-msgstr "Gör det svårare för angripare att identifiera sårbarheter i en viss WordPress-version."
+msgstr "Δυσκολεύει τους επιτιθέμενους να εντοπίσουν ευπάθειες για συγκεκριμένη έκδοση του WP."
 
 #: includes/class-otl-admin-settings.php:382
 msgid "Restrict REST API"
-msgstr "Begränsa REST API"
+msgstr "Περιορισμός REST API"
 
 #: includes/class-otl-admin-settings.php:382
 msgid "Prevents unauthorized data access via REST API. May affect some plugins."
-msgstr "Förhindrar obehörig åtkomst till data via REST API. Kan påverka vissa tillägg."
+msgstr "Αποτρέπει μη εξουσιοδοτημένη πρόσβαση σε δεδομένα μέσω του REST API. Ενδέχεται να επηρεάσει κάποια πρόσθετα."
 
 #: includes/class-otl-admin-settings.php:383
 msgid "Block Sensitive Files"
-msgstr "Blockera känsliga filer"
+msgstr "Αποκλεισμός ευαίσθητων αρχείων"
 
 #: includes/class-otl-admin-settings.php:383
 msgid "Attempts to block direct public access to wp-config.php and other sensitive files."
-msgstr "Försöker blockera direkt publik åtkomst till wp-config.php och andra känsliga filer."
+msgstr "Προσπαθεί να μπλοκάρει την άμεση δημόσια πρόσβαση στο wp-config.php και άλλα ευαίσθητα αρχεία."
 
 #: includes/class-otl-admin-settings.php:419
 msgid "Control who can access your site. Add Google email addresses and assign roles for authorized users."
-msgstr "Kontrollera vem som kan komma åt din webbplats. Lägg till Google-e-postadresser och tilldela roller för auktoriserade användare."
+msgstr "Ελέγξτε ποιος έχει πρόσβαση στον ιστότοπό σας. Προσθέστε διευθύνσεις email Google και εκχωρήστε ρόλους για εξουσιοδοτημένους χρήστες."
 
 #: includes/class-otl-admin-settings.php:426
 msgid "Authorized Users"
-msgstr "Auktoriserade användare"
+msgstr "Εξουσιοδοτημένοι χρήστες"
 
 #: includes/class-otl-admin-settings.php:427
 msgid "Add User"
-msgstr "Lägg till användare"
+msgstr "Προσθήκη χρήστη"
 
 #: includes/class-otl-admin-settings.php:430
 msgid "Email Address"
-msgstr "E-postadress"
+msgstr "Διεύθυνση email"
 
 #: includes/class-otl-admin-settings.php:431
 msgid "Role"
-msgstr "Roll"
+msgstr "Ρόλος"
 
 #: includes/class-otl-admin-settings.php:453
 msgid "New User Registration"
-msgstr "Ny användarregistrering"
+msgstr "Εγγραφή νέου χρήστη"
 
 #: includes/class-otl-admin-settings.php:458
 msgid "Allow New User Sign-Ups"
-msgstr "Tillåt nya användarregistreringar"
+msgstr "Επιτρέψτε νέες εγγραφές χρηστών"
 
 #: includes/class-otl-admin-settings.php:459
 msgid "Allow any Google user to create an account. This bypasses the authorized user list above."
-msgstr "Tillåt att vilken Google-användare som helst skapar ett konto. Detta kringgår listan över auktoriserade användare ovan."
+msgstr "Επιτρέψτε σε οποιονδήποτε χρήστη Google να δημιουργήσει λογαριασμό. Αυτό παρακάμπτει τη λίστα εξουσιοδοτημένων χρηστών παραπάνω."
 
 #: includes/class-otl-admin-settings.php:465
 msgid "Default Role for New Users"
-msgstr "Standardroll för nya användare"
+msgstr "Προεπιλεγμένος ρόλος για νέους χρήστες"
 
 #: includes/class-otl-admin-settings.php:469
 msgid "Subscriber is the safest and recommended option for new public registrations."
-msgstr "Subscriber är det säkraste och rekommenderade alternativet för nya offentliga registreringar."
+msgstr "Ο ρόλος «Συνδρομητής» είναι η πιο ασφαλής και συνιστώμενη επιλογή για νέες δημόσιες εγγραφές."
 
 #: includes/class-otl-admin-settings.php:489
 msgid "Google One Tap"
@@ -380,63 +380,63 @@ msgstr "Google One Tap"
 
 #: includes/class-otl-admin-settings.php:490
 msgid "Configure Google One Tap for a seamless, one-click user authentication experience."
-msgstr "Konfigurera Google One Tap för en sömlös, en-klicks autentiseringsupplevelse för användare."
+msgstr "Ρυθμίστε το Google One Tap για μια απρόσκοπτη εμπειρία πιστοποίησης με ένα κλικ."
 
 #: includes/class-otl-admin-settings.php:497
 msgid "What is Google One Tap?"
-msgstr "Vad är Google One Tap?"
+msgstr "Τι είναι το Google One Tap;"
 
 #: includes/class-otl-admin-settings.php:498
 msgid "One Tap displays a non-intrusive prompt that allows users already signed into Google to authenticate instantly. It is automatically enabled on the WordPress login page."
-msgstr "One Tap visar en icke-påträngande uppmaning som låter användare som redan är inloggade på Google autentisera sig omedelbart. Den är automatiskt aktiverad på WordPress inloggningssida."
+msgstr "Το One Tap εμφανίζει μια μη ενοχλητική προτροπή που επιτρέπει σε χρήστες που έχουν ήδη συνδεθεί στο Google να πιστοποιηθούν αμέσως. Ενεργοποιείται αυτόματα στη σελίδα σύνδεσης του WordPress."
 
 #: includes/class-otl-admin-settings.php:506
 msgid "Enable One Tap on Homepage"
-msgstr "Aktivera One Tap på startsidan"
+msgstr "Ενεργοποίηση One Tap στην αρχική σελίδα"
 
 #: includes/class-otl-admin-settings.php:507
 msgid "Show the One Tap prompt to logged-out visitors on your homepage and other public pages."
-msgstr "Visa One Tap-uppmaningen för utloggade besökare på din startsida och andra publika sidor."
+msgstr "Εμφανίστε την προτροπή One Tap σε επισκέπτες που δεν έχουν συνδεθεί στην αρχική σας σελίδα και σε άλλες δημόσιες σελίδες."
 
 #: includes/class-otl-admin-settings.php:528
 msgid "Setup Complete!"
-msgstr "Installation slutförd!"
+msgstr "Η ρύθμιση ολοκληρώθηκε!"
 
 #: includes/class-otl-admin-settings.php:529
 msgid "Congratulations! Your One Tap Login plugin is now configured and ready to secure your WordPress site."
-msgstr "Grattis! Ditt One Tap Login-tillägg är nu konfigurerat och redo att skydda din WordPress-webbplats."
+msgstr "Συγχαρητήρια! Το πρόσθετο One Tap Login έχει πλέον ρυθμιστεί και είναι έτοιμο να προστατεύσει τον ιστότοπο WordPress σας."
 
 #: includes/class-otl-admin-settings.php:535
 msgid "Your Site is Now Secured"
-msgstr "Din webbplats är nu säker"
+msgstr "Ο ιστότοπός σας είναι πλέον ασφαλής"
 
 #: includes/class-otl-admin-settings.php:536
 msgid "Password-based authentication has been disabled. Users must now authenticate through Google, significantly reducing security risks."
-msgstr "Lösenordsbaserad autentisering har inaktiverats. Användare måste nu autentisera sig via Google, vilket minskar säkerhetsriskerna avsevärt."
+msgstr "Η πιστοποίηση με κωδικό απενεργοποιήθηκε. Οι χρήστες πρέπει πλέον να πιστοποιούνται μέσω Google, μειώνοντας σημαντικά τους κινδύνους ασφάλειας."
 
 #: includes/class-otl-admin-settings.php:544
 msgid "Test Login"
-msgstr "Testa inloggning"
+msgstr "Δοκιμή σύνδεσης"
 
 #: includes/class-otl-admin-settings.php:545
 msgid "Try the new login experience"
-msgstr "Prova den nya inloggningsupplevelsen"
+msgstr "Δοκιμάστε τη νέα εμπειρία σύνδεσης"
 
 #: includes/class-otl-admin-settings.php:551
 msgid "Manage Users"
-msgstr "Hantera användare"
+msgstr "Διαχείριση χρηστών"
 
 #: includes/class-otl-admin-settings.php:552
 msgid "View your WordPress users"
-msgstr "Visa dina WordPress-användare"
+msgstr "Δείτε τους χρήστες του WordPress σας"
 
 #: includes/class-otl-admin-settings.php:559
 msgid "Return to Overview"
-msgstr "Återgå till översikten"
+msgstr "Επιστροφή στην επισκόπηση"
 
 #: includes/class-otl-admin-settings.php:568
 msgid "Overview"
-msgstr "Översikt"
+msgstr "Επισκόπηση"
 
 #: includes/class-otl-admin-settings.php:569
 msgid "Google API"
@@ -444,11 +444,11 @@ msgstr "Google API"
 
 #: includes/class-otl-admin-settings.php:570
 msgid "Security"
-msgstr "Säkerhet"
+msgstr "Ασφάλεια"
 
 #: includes/class-otl-admin-settings.php:571
 msgid "Users"
-msgstr "Användare"
+msgstr "Χρήστες"
 
 #: includes/class-otl-admin-settings.php:572
 msgid "One Tap"
@@ -456,79 +456,79 @@ msgstr "One Tap"
 
 #: includes/class-otl-admin-settings.php:665
 msgid "Insufficient permissions."
-msgstr "Otillräckliga behörigheter."
+msgstr "Ανεπαρκή δικαιώματα."
 
 #: includes/class-otl-admin-settings.php:670
 msgid "Please enter both Client ID and Client Secret."
-msgstr "Ange både Client ID och Client Secret."
+msgstr "Παρακαλώ εισάγετε τόσο το Client ID όσο και το Client Secret."
 
 #: includes/class-otl-admin-settings.php:671
 msgid "The Client ID does not appear to be in the correct format."
-msgstr "Client ID verkar inte vara i korrekt format."
+msgstr "Το Client ID φαίνεται να μην έχει το σωστό μορφότυπο."
 
 #: includes/class-otl-admin-settings.php:672
 msgid "The Client Secret appears to be too short."
-msgstr "Client Secret verkar vara för kort."
+msgstr "Το Client Secret φαίνεται πολύ σύντομο."
 
 #: includes/class-otl-admin-settings.php:674
 msgid "Credentials format validation passed. Save your settings to apply them."
-msgstr "Validering av referensernas format godkänd. Spara dina inställningar för att tillämpa dem."
+msgstr "Η επαλήθευση της μορφής των διαπιστευτηρίων ήταν επιτυχής. Αποθηκεύστε τις ρυθμίσεις για να τις εφαρμόσετε."
 
 #: includes/class-otl-error-handler.php:16
 msgid "Your Google account is not authorized to access this site. Please contact an administrator to request access."
-msgstr "Ditt Google-konto är inte auktoriserat att komma åt den här webbplatsen. Kontakta en administratör för att begära åtkomst."
+msgstr "Ο λογαριασμός Google σας δεν έχει εξουσιοδότηση για πρόσβαση σε αυτόν τον ιστότοπο. Επικοινωνήστε με έναν διαχειριστή για να ζητήσετε πρόσβαση."
 
 #: includes/class-otl-error-handler.php:17
 msgid "Authentication failed: Could not connect to Google servers. Please try again in a moment."
-msgstr "Autentisering misslyckades: Kunde inte ansluta till Googles servrar. Försök igen om en stund."
+msgstr "Η πιστοποίηση απέτυχε: Αδύνατη η σύνδεση με τους διακομιστές της Google. Παρακαλώ προσπαθήστε ξανά σε λίγο."
 
 #: includes/class-otl-error-handler.php:18
 msgid "Authentication failed: No access token received from Google. Please try again."
-msgstr "Autentisering misslyckades: Ingen åtkomsttoken mottogs från Google. Försök igen."
+msgstr "Η πιστοποίηση απέτυχε: Δεν λήφθηκε access token από την Google. Παρακαλώ προσπαθήστε ξανά."
 
 #: includes/class-otl-error-handler.php:19
 msgid "Authentication successful, but account creation failed. Please contact an administrator for assistance."
-msgstr "Autentisering lyckades, men kontoskapandet misslyckades. Kontakta en administratör för hjälp."
+msgstr "Η πιστοποίηση ήταν επιτυχής, αλλά η δημιουργία λογαριασμού απέτυχε. Επικοινωνήστε με έναν διαχειριστή για βοήθεια."
 
 #: includes/class-otl-error-handler.php:20
 msgid "Invalid authentication data received from Google. Please try signing in again."
-msgstr "Ogiltig autentiseringsdata mottagen från Google. Försök logga in igen."
+msgstr "Λανθασμένα δεδομένα πιστοποίησης λήφθηκαν από την Google. Προσπαθήστε να συνδεθείτε ξανά."
 
 #: includes/class-otl-error-handler.php:21
 msgid "Could not retrieve your user information from Google. Please check your Google account permissions and try again."
-msgstr "Kunde inte hämta din användarinformation från Google. Kontrollera dina Google-kontotillstånd och försök igen."
+msgstr "Αδυναμία ανάκτησης πληροφοριών χρήστη από την Google. Ελέγξτε τα δικαιώματα του λογαριασμού Google και δοκιμάστε ξανά."
 
 #: includes/class-otl-error-handler.php:22
 msgid "No email address was provided by Google. Please ensure your Google account has a verified email address."
-msgstr "Ingen e-postadress tillhandahölls av Google. Säkerställ att ditt Google-konto har en verifierad e-postadress."
+msgstr "Η Google δεν παρείχε διεύθυνση email. Βεβαιωθείτε ότι ο λογαριασμός Google διαθέτει επιβεβαιωμένη διεύθυνση email."
 
 #: includes/class-otl-error-handler.php:23
 msgid "Authentication session expired or invalid. Please try logging in again."
-msgstr "Autentiseringssessionen har gått ut eller är ogiltig. Försök logga in igen."
+msgstr "Η συνεδρία πιστοποίησης έχει λήξει ή δεν είναι έγκυρη. Παρακαλώ προσπαθήστε να συνδεθείτε ξανά."
 
 #: includes/class-otl-error-handler.php:38
 msgid "An unknown authentication error occurred. Please try again."
-msgstr "Ett okänt autentiseringsfel inträffade. Försök igen."
+msgstr "Παρουσιάστηκε άγνωστο σφάλμα πιστοποίησης. Παρακαλώ δοκιμάστε ξανά."
 
 #: includes/class-otl-frontend-hooks.php:68
 msgid "Authenticating with Google..."
-msgstr "Autentiserar mot Google..."
+msgstr "Πιστοποίηση με Google..."
 
 #: includes/class-otl-frontend-hooks.php:78
 msgid "Welcome Back"
-msgstr "Välkommen tillbaka"
+msgstr "Καλώς ήρθατε ξανά"
 
 #: includes/class-otl-frontend-hooks.php:79
 msgid "Sign in with your Google account to continue."
-msgstr "Logga in med ditt Google-konto för att fortsätta."
+msgstr "Συνδεθείτε με τον λογαριασμό Google για να συνεχίσετε."
 
 #: includes/class-otl-frontend-hooks.php:91
 msgid "Continue with Google"
-msgstr "Fortsätt med Google"
+msgstr "Συνέχεια με Google"
 
 #: includes/class-otl-frontend-hooks.php:99
 msgid "Login experience by"
-msgstr "Inloggningsupplevelse av"
+msgstr "Εμπειρία σύνδεσης από"
 
 #: includes/class-otl-frontend-hooks.php:103
 msgid "- Viral Content Generator"
@@ -536,93 +536,93 @@ msgstr "- Viral Content Generator"
 
 #: includes/class-otl-frontend-hooks.php:111
 msgid "Signing you in..."
-msgstr "Loggar in dig..."
+msgstr "Συνδέεστε..."
 
 #: includes/class-otl-frontend-hooks.php:122
 msgid "Login Disabled:"
-msgstr "Inloggning inaktiverad:"
+msgstr "Σύνδεση απενεργοποιημένη:"
 
 #: includes/class-otl-frontend-hooks.php:123
 msgid "Password-based login is disabled. Please use Google Sign-In."
-msgstr "Lösenordsbaserad inloggning är inaktiverad. Använd Google-inloggning."
+msgstr "Η σύνδεση με κωδικό έχει απενεργοποιηθεί. Χρησιμοποιήστε το Google Sign-In."
 
 #: includes/class-otl-one-tap-login.php:50
 msgid "Google Account Information"
-msgstr "Information om Google-konto"
+msgstr "Πληροφορίες λογαριασμού Google"
 
 #: includes/class-otl-one-tap-login.php:53
 #: includes/class-otl-one-tap-login.php:55
 msgid "Google Profile Picture"
-msgstr "Google-profilbild"
+msgstr "Εικόνα προφίλ Google"
 
 #: includes/class-otl-one-tap-login.php:56
 msgid "This profile picture is synced from your Google account."
-msgstr "Denna profilbild synkroniseras från ditt Google-konto."
+msgstr "Αυτή η εικόνα προφίλ συγχρονίζεται από τον λογαριασμό Google σας."
 
 #: includes/class-otl-one-tap-login.php:60
 msgid "Authentication Method"
-msgstr "Autentiseringsmetod"
+msgstr "Μέθοδος πιστοποίησης"
 
 #: includes/class-otl-one-tap-login.php:69
 msgid "Google Sign-In"
-msgstr "Google-inloggning"
+msgstr "Σύνδεση με Google"
 
 #: includes/class-otl-one-tap-login.php:71
 msgid "This user authenticates via Google OAuth."
-msgstr "Denna användare autentiserar via Google OAuth."
+msgstr "Αυτός ο χρήστης πιστοποιείται μέσω Google OAuth."
 
 #: includes/class-otl-one-tap-login.php:139
 msgid "Access Denied"
-msgstr "Åtkomst nekad"
+msgstr "Πρόσβαση απορρίφθηκε"
 
 #: includes/class-otl-one-tap-login.php:154
 msgid "You are not currently logged in."
-msgstr "Du är för närvarande inte inloggad."
+msgstr "Δεν έχετε συνδεθεί αυτή τη στιγμή."
 
 #: one-tap-login.php:111
 msgid "One Tap Login:"
-msgstr "One Tap-inloggning:"
+msgstr "One Tap Login:"
 
 #. translators: 1: Opening anchor tag, 2: Closing anchor tag
 #: one-tap-login.php:114
 #, php-format
 msgid "Please %1$sconfigure your Google OAuth credentials%2$s to enable secure sign-in."
-msgstr "Vänligen %1$skonfigurera dina Google OAuth-referenser%2$s för att möjliggöra säker inloggning."
+msgstr "Παρακαλώ %1$sρυθμίστε τα διαπιστευτήρια OAuth της Google%2$s για να ενεργοποιήσετε την ασφαλή σύνδεση."
 
 #: one-tap-login.php:125
 msgid "Warning:"
-msgstr "Varning:"
+msgstr "Προειδοποίηση:"
 
 #: one-tap-login.php:125
 msgid "One Tap Login is not fully configured. Users may not be able to log in until you complete the setup."
-msgstr "One Tap-inloggning är inte fullständigt konfigurerad. Användare kanske inte kan logga in förrän du slutfört installationen."
+msgstr "Το One Tap Login δεν είναι πλήρως ρυθμισμένο. Οι χρήστες ενδέχεται να μην μπορούν να συνδεθούν μέχρι να ολοκληρώσετε τη ρύθμιση."
 
 #: one-tap-login.php:135
 msgid "New user sign-ups are enabled with elevated permissions. Monitor your site for unauthorized content."
-msgstr "Nya användarregistreringar är aktiverade med förhöjda behörigheter. Övervaka din webbplats för obehörigt innehåll."
+msgstr "Οι νέες εγγραφές χρηστών είναι ενεργοποιημένες με αυξημένα δικαιώματα. Παρακολουθήστε τον ιστότοπό σας για μη εξουσιοδοτημένο περιεχόμενο."
 
 #: one-tap-login.php:136
 msgid "New user sign-ups are enabled. Monitor your user registrations for potential spam accounts."
-msgstr "Nya användarregistreringar är aktiverade. Övervaka dina användarregistreringar för potentiella spamkonton."
+msgstr "Οι νέες εγγραφές χρηστών είναι ενεργοποιημένες. Ελέγχετε τις εγγραφές για πιθανούς λογαριασμούς spam."
 
 #: one-tap-login.php:139
 msgid "Security Notice:"
-msgstr "Säkerhetsmeddelande:"
+msgstr "Ειδοποίηση ασφάλειας:"
 
 #: one-tap-login.php:150
 msgid "Settings"
-msgstr "Inställningar"
+msgstr "Ρυθμίσεις"
 
 #: one-tap-login.php:165
 msgid "Rate Plugin ★★★★★"
-msgstr "Betygsätt tillägget ★★★★★"
+msgstr "Βαθμολογήστε το πρόσθετο ★★★★★"
 
 #: one-tap-login.php:193
 #: one-tap-login.php:214
 msgid "One Tap Login Error:"
-msgstr "One Tap-inloggningsfel:"
+msgstr "Σφάλμα One Tap Login:"
 
 #: one-tap-login.php:194
 msgid "A fatal error was detected and logged. Please check your PHP error log for details."
-msgstr "Ett allvarligt fel upptäcktes och loggades. Kontrollera din PHP-fellogg för detaljer."
+msgstr "Εντοπίστηκε και καταγράφηκε ένα κρίσιμο σφάλμα. Ελέγξτε το αρχείο καταγραφής σφαλμάτων PHP για λεπτομέρειες."
 

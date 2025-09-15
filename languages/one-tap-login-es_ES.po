@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-09-11 03:58+0000\n"
-"PO-Revision-Date: 2025-09-11 03:58+0000\n"
+"POT-Creation-Date: 2025-09-14 23:23+0000\n"
+"PO-Revision-Date: 2025-09-14 23:23+0000\n"
 "Last-Translator: AI Translator <ai@example.com>\n"
 "Language-Team: Spanish (Spain) <es_ES@example.com>\n"
 "Language: es_ES\n"
@@ -12,617 +12,617 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Laravel Artisan Command\n"
 #. Plugin Name of the plugin
-#: wp-social-login.php
-#: includes/class-wpsl-admin-settings.php:120
-msgid "WP Social Login"
-msgstr "WP Social Login"
+#: one-tap-login.php
+#: includes/class-otl-admin-settings.php:120
+msgid "One Tap Login"
+msgstr "Inicio de sesión con One Tap"
 
 #. Plugin URI of the plugin
 #. Author URI of the plugin
-#: wp-social-login.php
+#: one-tap-login.php
 msgid "https://hardtoskip.com/"
 msgstr "https://hardtoskip.com/"
 
 #. Description of the plugin
-#: wp-social-login.php
+#: one-tap-login.php
 msgid "Replaces standard WordPress password authentication with Social Sign-In (currently Google) and One Tap. Features beautiful UI, automatic user management, and enhanced security options. Born from necessity after a successful brute-force attack on hardtoskip, this plugin enforces Google-only authentication to keep your site secure."
-msgstr "Sustituye la autenticación estándar por contraseña de WordPress por Inicio de sesión social (actualmente Google) y One Tap. Ofrece una interfaz atractiva, gestión automática de usuarios y opciones de seguridad mejoradas. Nació por necesidad tras un ataque de fuerza bruta exitoso a hardtoskip; este plugin fuerza la autenticación únicamente mediante Google para mantener su sitio seguro."
+msgstr "Sustituye la autenticación estándar por contraseña de WordPress por inicio de sesión social (actualmente Google) y One Tap. Incluye una interfaz atractiva, gestión automática de usuarios y opciones de seguridad mejoradas. Nació por necesidad tras un ataque de fuerza bruta exitoso a hardtoskip; este plugin impone la autenticación exclusiva con Google para mantener su sitio seguro."
 
 #. Author of the plugin
-#: wp-social-login.php
-#: includes/class-wpsl-frontend-hooks.php:101
+#: one-tap-login.php
+#: includes/class-otl-frontend-hooks.php:101
 msgid "HardToSkip"
 msgstr "HardToSkip"
 
-#: includes/class-wpsl-admin-settings.php:35
-#: includes/class-wpsl-admin-settings.php:436
+#: includes/class-otl-admin-settings.php:35
+#: includes/class-otl-admin-settings.php:436
 msgid "user@example.com"
 msgstr "user@example.com"
 
-#: includes/class-wpsl-admin-settings.php:48
+#: includes/class-otl-admin-settings.php:48
 msgid "Saving..."
 msgstr "Guardando..."
 
-#: includes/class-wpsl-admin-settings.php:49
+#: includes/class-otl-admin-settings.php:49
 msgid "Settings Saved!"
 msgstr "¡Ajustes guardados!"
 
-#: includes/class-wpsl-admin-settings.php:50
+#: includes/class-otl-admin-settings.php:50
 msgid "An error occurred."
-msgstr "Se produjo un error."
+msgstr "Ocurrió un error."
 
-#: includes/class-wpsl-admin-settings.php:51
+#: includes/class-otl-admin-settings.php:51
 msgid "Testing..."
 msgstr "Probando..."
 
-#: includes/class-wpsl-admin-settings.php:52
+#: includes/class-otl-admin-settings.php:52
 msgid "Validation successful!"
 msgstr "¡Validación exitosa!"
 
-#: includes/class-wpsl-admin-settings.php:53
+#: includes/class-otl-admin-settings.php:53
 msgid "Validation failed"
 msgstr "Validación fallida"
 
-#: includes/class-wpsl-admin-settings.php:54
+#: includes/class-otl-admin-settings.php:54
 msgid "Are you sure you want to remove this user?"
 msgstr "¿Está seguro de que desea eliminar a este usuario?"
 
-#: includes/class-wpsl-admin-settings.php:55
+#: includes/class-otl-admin-settings.php:55
 msgid "Please fill in both Client ID and Client Secret."
-msgstr "Por favor, rellene tanto el ID de cliente como el secreto de cliente."
+msgstr "Por favor, rellene tanto el ID de cliente como el Secreto de cliente."
 
-#: includes/class-wpsl-admin-settings.php:56
+#: includes/class-otl-admin-settings.php:56
 msgid "Copied!"
 msgstr "¡Copiado!"
 
-#: includes/class-wpsl-admin-settings.php:57
+#: includes/class-otl-admin-settings.php:57
 msgid "Failed to copy."
-msgstr "No se pudo copiar."
+msgstr "Error al copiar."
 
-#: includes/class-wpsl-admin-settings.php:65
-msgid "WP Social Login Settings"
-msgstr "Ajustes de WP Social Login"
+#: includes/class-otl-admin-settings.php:65
+msgid "One Tap Login Settings"
+msgstr "Ajustes de One Tap Login"
 
-#: includes/class-wpsl-admin-settings.php:66
+#: includes/class-otl-admin-settings.php:66
 msgid "Social Login"
 msgstr "Inicio de sesión social"
 
-#: includes/class-wpsl-admin-settings.php:121
+#: includes/class-otl-admin-settings.php:121
 msgid "Secure Google Authentication for WordPress"
 msgstr "Autenticación segura de Google para WordPress"
 
-#: includes/class-wpsl-admin-settings.php:159
+#: includes/class-otl-admin-settings.php:159
 msgid "Quick Status"
-msgstr "Resumen rápido"
+msgstr "Estado rápido"
 
-#: includes/class-wpsl-admin-settings.php:161
+#: includes/class-otl-admin-settings.php:161
 msgid "Configuration:"
 msgstr "Configuración:"
 
-#: includes/class-wpsl-admin-settings.php:163
-#: includes/class-wpsl-admin-settings.php:573
+#: includes/class-otl-admin-settings.php:163
+#: includes/class-otl-admin-settings.php:573
 msgid "Complete"
 msgstr "Completado"
 
-#: includes/class-wpsl-admin-settings.php:163
+#: includes/class-otl-admin-settings.php:163
 msgid "Pending"
 msgstr "Pendiente"
 
-#: includes/class-wpsl-admin-settings.php:167
+#: includes/class-otl-admin-settings.php:167
 msgid "Authorized Users:"
 msgstr "Usuarios autorizados:"
 
-#: includes/class-wpsl-admin-settings.php:171
+#: includes/class-otl-admin-settings.php:171
 msgid "Security Features:"
 msgstr "Funciones de seguridad:"
 
-#: includes/class-wpsl-admin-settings.php:177
+#: includes/class-otl-admin-settings.php:177
 msgid "Quick Links"
 msgstr "Enlaces rápidos"
 
-#: includes/class-wpsl-admin-settings.php:181
+#: includes/class-otl-admin-settings.php:181
 msgid "Test Login Page"
 msgstr "Probar página de inicio de sesión"
 
-#: includes/class-wpsl-admin-settings.php:185
-#: includes/class-wpsl-admin-settings.php:297
+#: includes/class-otl-admin-settings.php:185
+#: includes/class-otl-admin-settings.php:297
 msgid "Google Cloud Console"
 msgstr "Consola de Google Cloud"
 
-#: includes/class-wpsl-admin-settings.php:189
-#: wp-social-login.php:164
+#: includes/class-otl-admin-settings.php:189
+#: one-tap-login.php:164
 msgid "Plugin Creator"
-msgstr "Autor del plugin"
+msgstr "Creador del plugin"
 
-#: includes/class-wpsl-admin-settings.php:193
+#: includes/class-otl-admin-settings.php:193
 msgid "Hire Developer"
 msgstr "Contratar desarrollador"
 
-#: includes/class-wpsl-admin-settings.php:231
-msgid "Welcome to WP Social Login"
-msgstr "Bienvenido a WP Social Login"
+#: includes/class-otl-admin-settings.php:231
+msgid "Welcome to One Tap Login"
+msgstr "Bienvenido a One Tap Login"
 
-#: includes/class-wpsl-admin-settings.php:232
+#: includes/class-otl-admin-settings.php:232
 msgid "Transform your WordPress authentication with secure Google Sign-In. This setup wizard will guide you through each step to ensure optimal security and user experience."
-msgstr "Transforme la autenticación de su sitio WordPress con el inicio de sesión seguro de Google. Este asistente de configuración le guiará en cada paso para garantizar la seguridad y la mejor experiencia de usuario."
+msgstr "Transforme la autenticación de su WordPress con el inicio de sesión seguro de Google. Este asistente de configuración le guiará paso a paso para garantizar la seguridad óptima y una buena experiencia de usuario."
 
-#: includes/class-wpsl-admin-settings.php:238
+#: includes/class-otl-admin-settings.php:238
 msgid "Enhanced Security"
 msgstr "Seguridad mejorada"
 
-#: includes/class-wpsl-admin-settings.php:239
+#: includes/class-otl-admin-settings.php:239
 msgid "Eliminate password-based vulnerabilities with Google's robust OAuth authentication system."
 msgstr "Elimine las vulnerabilidades basadas en contraseñas con el robusto sistema de autenticación OAuth de Google."
 
-#: includes/class-wpsl-admin-settings.php:243
-#: includes/class-wpsl-admin-settings.php:418
+#: includes/class-otl-admin-settings.php:243
+#: includes/class-otl-admin-settings.php:418
 msgid "User Management"
 msgstr "Gestión de usuarios"
 
-#: includes/class-wpsl-admin-settings.php:244
+#: includes/class-otl-admin-settings.php:244
 msgid "Control exactly who can access your site with email-based authorization and role assignment."
 msgstr "Controle exactamente quién puede acceder a su sitio mediante autorización por correo electrónico y asignación de roles."
 
-#: includes/class-wpsl-admin-settings.php:248
+#: includes/class-otl-admin-settings.php:248
 msgid "Seamless Experience"
 msgstr "Experiencia fluida"
 
-#: includes/class-wpsl-admin-settings.php:249
+#: includes/class-otl-admin-settings.php:249
 msgid "Google One Tap provides instant authentication for users already signed into Google."
 msgstr "Google One Tap ofrece autenticación instantánea para usuarios que ya han iniciado sesión en Google."
 
-#: includes/class-wpsl-admin-settings.php:256
+#: includes/class-otl-admin-settings.php:256
 msgid "Your plugin is not yet configured. Users cannot log in until you complete the Google API setup."
 msgstr "Su plugin aún no está configurado. Los usuarios no podrán iniciar sesión hasta que complete la configuración de la API de Google."
 
-#: includes/class-wpsl-admin-settings.php:261
-msgid "WP Social Login is configured and working. You can modify settings or enable additional features anytime."
-msgstr "WP Social Login está configurado y funcionando. Puede modificar los ajustes o habilitar funciones adicionales en cualquier momento."
+#: includes/class-otl-admin-settings.php:261
+msgid "One Tap Login is configured and working. You can modify settings or enable additional features anytime."
+msgstr "One Tap Login está configurado y funcionando. Puede modificar los ajustes o activar características adicionales en cualquier momento."
 
-#: includes/class-wpsl-admin-settings.php:268
+#: includes/class-otl-admin-settings.php:268
 msgid "Start Configuration"
 msgstr "Iniciar configuración"
 
-#: includes/class-wpsl-admin-settings.php:282
+#: includes/class-otl-admin-settings.php:282
 msgid "Google API Configuration"
 msgstr "Configuración de la API de Google"
 
-#: includes/class-wpsl-admin-settings.php:283
+#: includes/class-otl-admin-settings.php:283
 msgid "Set up your Google OAuth credentials to enable secure authentication. This is the most important step."
 msgstr "Configure sus credenciales OAuth de Google para habilitar la autenticación segura. Este es el paso más importante."
 
-#: includes/class-wpsl-admin-settings.php:289
+#: includes/class-otl-admin-settings.php:289
 msgid "Setup Instructions"
 msgstr "Instrucciones de configuración"
 
 #. translators: %s: link to Google Cloud Console.
-#: includes/class-wpsl-admin-settings.php:296
+#: includes/class-otl-admin-settings.php:296
 #, php-format
 msgid "Visit the %s"
 msgstr "Visite %s"
 
-#: includes/class-wpsl-admin-settings.php:302
+#: includes/class-otl-admin-settings.php:302
 msgid "Create a new project or select an existing one."
 msgstr "Cree un nuevo proyecto o seleccione uno existente."
 
-#: includes/class-wpsl-admin-settings.php:303
+#: includes/class-otl-admin-settings.php:303
 msgid "Navigate to \\"
-msgstr "Navegue a"
+msgstr "Navegar a \\"
 
-#: includes/class-wpsl-admin-settings.php:304
+#: includes/class-otl-admin-settings.php:304
 msgid "Click \\"
-msgstr "Haga clic en"
+msgstr "Haga clic en \\"
 
-#: includes/class-wpsl-admin-settings.php:305
+#: includes/class-otl-admin-settings.php:305
 msgid "Choose \\"
-msgstr "Elija"
+msgstr "Seleccione \\"
 
-#: includes/class-wpsl-admin-settings.php:306
+#: includes/class-otl-admin-settings.php:306
 msgid "Add the redirect URIs and origins provided below."
-msgstr "Añada las URIs de redirección y los orígenes que se indican más abajo."
+msgstr "Añada las URIs de redirección y los orígenes indicados a continuación."
 
-#: includes/class-wpsl-admin-settings.php:311
+#: includes/class-otl-admin-settings.php:311
 msgid "Required URLs for Google Console"
-msgstr "URLs necesarias para la Consola de Google"
+msgstr "URLs requeridas para la consola de Google"
 
-#: includes/class-wpsl-admin-settings.php:313
+#: includes/class-otl-admin-settings.php:313
 msgid "Authorized redirect URIs (add both)"
 msgstr "URIs de redirección autorizadas (añada ambas)"
 
-#: includes/class-wpsl-admin-settings.php:316
-#: includes/class-wpsl-admin-settings.php:322
-#: includes/class-wpsl-admin-settings.php:329
+#: includes/class-otl-admin-settings.php:316
+#: includes/class-otl-admin-settings.php:322
+#: includes/class-otl-admin-settings.php:329
 msgid "Copy"
 msgstr "Copiar"
 
-#: includes/class-wpsl-admin-settings.php:326
+#: includes/class-otl-admin-settings.php:326
 msgid "Authorized JavaScript origins"
 msgstr "Orígenes autorizados de JavaScript"
 
-#: includes/class-wpsl-admin-settings.php:335
+#: includes/class-otl-admin-settings.php:335
 msgid "Google OAuth Credentials"
 msgstr "Credenciales OAuth de Google"
 
-#: includes/class-wpsl-admin-settings.php:337
+#: includes/class-otl-admin-settings.php:337
 msgid "Google Client ID"
 msgstr "ID de cliente de Google"
 
-#: includes/class-wpsl-admin-settings.php:338
+#: includes/class-otl-admin-settings.php:338
 msgid "e.g., 123456789.apps.googleusercontent.com"
 msgstr "p. ej., 123456789.apps.googleusercontent.com"
 
-#: includes/class-wpsl-admin-settings.php:341
+#: includes/class-otl-admin-settings.php:341
 msgid "Google Client Secret"
 msgstr "Secreto de cliente de Google"
 
-#: includes/class-wpsl-admin-settings.php:342
+#: includes/class-otl-admin-settings.php:342
 msgid "e.g., GOCSPX-xxxxxxxxxx"
 msgstr "p. ej., GOCSPX-xxxxxxxxxx"
 
-#: includes/class-wpsl-admin-settings.php:347
-#: includes/class-wpsl-admin-settings.php:403
-#: includes/class-wpsl-admin-settings.php:475
-#: includes/class-wpsl-admin-settings.php:514
-#: includes/class-wpsl-admin-settings.php:558
+#: includes/class-otl-admin-settings.php:347
+#: includes/class-otl-admin-settings.php:403
+#: includes/class-otl-admin-settings.php:475
+#: includes/class-otl-admin-settings.php:514
+#: includes/class-otl-admin-settings.php:558
 msgid "Back"
 msgstr "Atrás"
 
-#: includes/class-wpsl-admin-settings.php:349
+#: includes/class-otl-admin-settings.php:349
 msgid "Test Connection"
 msgstr "Probar conexión"
 
-#: includes/class-wpsl-admin-settings.php:350
-#: includes/class-wpsl-admin-settings.php:404
-#: includes/class-wpsl-admin-settings.php:476
-#: includes/class-wpsl-admin-settings.php:515
+#: includes/class-otl-admin-settings.php:350
+#: includes/class-otl-admin-settings.php:404
+#: includes/class-otl-admin-settings.php:476
+#: includes/class-otl-admin-settings.php:515
 msgid "Save & Continue"
 msgstr "Guardar y continuar"
 
-#: includes/class-wpsl-admin-settings.php:365
+#: includes/class-otl-admin-settings.php:365
 msgid "Security Features"
-msgstr "Funciones de seguridad"
+msgstr "Características de seguridad"
 
-#: includes/class-wpsl-admin-settings.php:366
+#: includes/class-otl-admin-settings.php:366
 msgid "Enable additional security measures to protect your site from common attack vectors."
-msgstr "Habilite medidas de seguridad adicionales para proteger su sitio contra vectores de ataque comunes."
+msgstr "Active medidas de seguridad adicionales para proteger su sitio frente a vectores de ataque comunes."
 
-#: includes/class-wpsl-admin-settings.php:373
+#: includes/class-otl-admin-settings.php:373
 msgid "Important Note:"
 msgstr "Nota importante:"
 
-#: includes/class-wpsl-admin-settings.php:373
+#: includes/class-otl-admin-settings.php:373
 msgid "This plugin was developed in response to real brute-force attacks. These features help reduce common risks but should be part of a comprehensive security strategy."
-msgstr "Este plugin fue desarrollado en respuesta a ataques de fuerza bruta reales. Estas funciones ayudan a reducir riesgos comunes, pero deberían formar parte de una estrategia de seguridad integral."
+msgstr "Este plugin se desarrolló en respuesta a ataques de fuerza bruta reales. Estas funciones ayudan a reducir riesgos comunes, pero deben ser parte de una estrategia de seguridad integral."
 
-#: includes/class-wpsl-admin-settings.php:379
+#: includes/class-otl-admin-settings.php:379
 msgid "Disable XML-RPC"
 msgstr "Desactivar XML-RPC"
 
-#: includes/class-wpsl-admin-settings.php:379
+#: includes/class-otl-admin-settings.php:379
 msgid "Prevents brute-force attacks via XML-RPC. May affect mobile apps or Jetpack."
-msgstr "Evita ataques de fuerza bruta a través de XML-RPC. Puede afectar aplicaciones móviles o Jetpack."
+msgstr "Evita ataques de fuerza bruta a través de XML-RPC. Puede afectar a apps móviles o a Jetpack."
 
-#: includes/class-wpsl-admin-settings.php:380
+#: includes/class-otl-admin-settings.php:380
 msgid "Disable File Editing"
 msgstr "Desactivar edición de archivos"
 
-#: includes/class-wpsl-admin-settings.php:380
+#: includes/class-otl-admin-settings.php:380
 msgid "Prevents code injection via the admin dashboard if an account is compromised."
 msgstr "Evita la inyección de código a través del panel de administración si una cuenta se ve comprometida."
 
-#: includes/class-wpsl-admin-settings.php:381
+#: includes/class-otl-admin-settings.php:381
 msgid "Hide WordPress Version"
 msgstr "Ocultar la versión de WordPress"
 
-#: includes/class-wpsl-admin-settings.php:381
+#: includes/class-otl-admin-settings.php:381
 msgid "Makes it harder for attackers to identify vulnerabilities for a specific WP version."
 msgstr "Dificulta que los atacantes identifiquen vulnerabilidades de una versión específica de WP."
 
-#: includes/class-wpsl-admin-settings.php:382
+#: includes/class-otl-admin-settings.php:382
 msgid "Restrict REST API"
 msgstr "Restringir la API REST"
 
-#: includes/class-wpsl-admin-settings.php:382
+#: includes/class-otl-admin-settings.php:382
 msgid "Prevents unauthorized data access via REST API. May affect some plugins."
-msgstr "Evita el acceso no autorizado a datos a través de la API REST. Puede afectar a algunos plugins."
+msgstr "Evita el acceso no autorizado a datos mediante la API REST. Puede afectar a algunos plugins."
 
-#: includes/class-wpsl-admin-settings.php:383
+#: includes/class-otl-admin-settings.php:383
 msgid "Block Sensitive Files"
 msgstr "Bloquear archivos sensibles"
 
-#: includes/class-wpsl-admin-settings.php:383
+#: includes/class-otl-admin-settings.php:383
 msgid "Attempts to block direct public access to wp-config.php and other sensitive files."
 msgstr "Intenta bloquear el acceso público directo a wp-config.php y otros archivos sensibles."
 
-#: includes/class-wpsl-admin-settings.php:419
+#: includes/class-otl-admin-settings.php:419
 msgid "Control who can access your site. Add Google email addresses and assign roles for authorized users."
-msgstr "Controle quién puede acceder a su sitio. Agregue direcciones de correo de Google y asigne roles a los usuarios autorizados."
+msgstr "Controle quién puede acceder a su sitio. Añada direcciones de correo de Google y asigne roles a los usuarios autorizados."
 
-#: includes/class-wpsl-admin-settings.php:426
+#: includes/class-otl-admin-settings.php:426
 msgid "Authorized Users"
 msgstr "Usuarios autorizados"
 
-#: includes/class-wpsl-admin-settings.php:427
+#: includes/class-otl-admin-settings.php:427
 msgid "Add User"
 msgstr "Añadir usuario"
 
-#: includes/class-wpsl-admin-settings.php:430
+#: includes/class-otl-admin-settings.php:430
 msgid "Email Address"
-msgstr "Dirección de correo electrónico"
+msgstr "Dirección de correo"
 
-#: includes/class-wpsl-admin-settings.php:431
+#: includes/class-otl-admin-settings.php:431
 msgid "Role"
 msgstr "Rol"
 
-#: includes/class-wpsl-admin-settings.php:453
+#: includes/class-otl-admin-settings.php:453
 msgid "New User Registration"
-msgstr "Registro de nuevo usuario"
+msgstr "Registro de nuevos usuarios"
 
-#: includes/class-wpsl-admin-settings.php:458
+#: includes/class-otl-admin-settings.php:458
 msgid "Allow New User Sign-Ups"
 msgstr "Permitir registros de nuevos usuarios"
 
-#: includes/class-wpsl-admin-settings.php:459
+#: includes/class-otl-admin-settings.php:459
 msgid "Allow any Google user to create an account. This bypasses the authorized user list above."
-msgstr "Permitir que cualquier usuario de Google cree una cuenta. Esto elude la lista de usuarios autorizados anterior."
+msgstr "Permite que cualquier usuario de Google cree una cuenta. Esto omite la lista de usuarios autorizados anterior."
 
-#: includes/class-wpsl-admin-settings.php:465
+#: includes/class-otl-admin-settings.php:465
 msgid "Default Role for New Users"
 msgstr "Rol predeterminado para nuevos usuarios"
 
-#: includes/class-wpsl-admin-settings.php:469
+#: includes/class-otl-admin-settings.php:469
 msgid "Subscriber is the safest and recommended option for new public registrations."
 msgstr "Suscriptor es la opción más segura y recomendada para nuevos registros públicos."
 
-#: includes/class-wpsl-admin-settings.php:489
+#: includes/class-otl-admin-settings.php:489
 msgid "Google One Tap"
 msgstr "Google One Tap"
 
-#: includes/class-wpsl-admin-settings.php:490
+#: includes/class-otl-admin-settings.php:490
 msgid "Configure Google One Tap for a seamless, one-click user authentication experience."
-msgstr "Configure Google One Tap para una experiencia de autenticación de usuario fluida con un solo clic."
+msgstr "Configure Google One Tap para una experiencia de autenticación sin fricciones y con un solo clic."
 
-#: includes/class-wpsl-admin-settings.php:497
+#: includes/class-otl-admin-settings.php:497
 msgid "What is Google One Tap?"
 msgstr "¿Qué es Google One Tap?"
 
-#: includes/class-wpsl-admin-settings.php:498
+#: includes/class-otl-admin-settings.php:498
 msgid "One Tap displays a non-intrusive prompt that allows users already signed into Google to authenticate instantly. It is automatically enabled on the WordPress login page."
-msgstr "One Tap muestra un aviso no intrusivo que permite a los usuarios ya conectados a Google autenticarse al instante. Está habilitado automáticamente en la página de inicio de sesión de WordPress."
+msgstr "One Tap muestra un aviso no intrusivo que permite a los usuarios ya conectados a Google autenticarse al instante. Se habilita automáticamente en la página de acceso de WordPress."
 
-#: includes/class-wpsl-admin-settings.php:506
+#: includes/class-otl-admin-settings.php:506
 msgid "Enable One Tap on Homepage"
-msgstr "Habilitar One Tap en la página principal"
+msgstr "Activar One Tap en la página principal"
 
-#: includes/class-wpsl-admin-settings.php:507
+#: includes/class-otl-admin-settings.php:507
 msgid "Show the One Tap prompt to logged-out visitors on your homepage and other public pages."
-msgstr "Mostrar el aviso One Tap a los visitantes no conectados en su página principal y otras páginas públicas."
+msgstr "Mostrar el aviso de One Tap a los visitantes desconectados en la página principal y en otras páginas públicas."
 
-#: includes/class-wpsl-admin-settings.php:528
+#: includes/class-otl-admin-settings.php:528
 msgid "Setup Complete!"
 msgstr "¡Configuración completada!"
 
-#: includes/class-wpsl-admin-settings.php:529
-msgid "Congratulations! Your WP Social Login plugin is now configured and ready to secure your WordPress site."
-msgstr "¡Felicidades! Su plugin WP Social Login ya está configurado y listo para proteger su sitio WordPress."
+#: includes/class-otl-admin-settings.php:529
+msgid "Congratulations! Your One Tap Login plugin is now configured and ready to secure your WordPress site."
+msgstr "¡Enhorabuena! Su plugin One Tap Login ya está configurado y listo para proteger su sitio WordPress."
 
-#: includes/class-wpsl-admin-settings.php:535
+#: includes/class-otl-admin-settings.php:535
 msgid "Your Site is Now Secured"
-msgstr "Su sitio ya está protegido"
+msgstr "Su sitio ahora está protegido"
 
-#: includes/class-wpsl-admin-settings.php:536
+#: includes/class-otl-admin-settings.php:536
 msgid "Password-based authentication has been disabled. Users must now authenticate through Google, significantly reducing security risks."
-msgstr "La autenticación basada en contraseñas ha sido desactivada. Los usuarios deben autenticarse ahora mediante Google, reduciendo significativamente los riesgos de seguridad."
+msgstr "La autenticación basada en contraseña ha sido desactivada. Ahora los usuarios deben autenticarse mediante Google, lo que reduce significativamente los riesgos de seguridad."
 
-#: includes/class-wpsl-admin-settings.php:544
+#: includes/class-otl-admin-settings.php:544
 msgid "Test Login"
 msgstr "Probar inicio de sesión"
 
-#: includes/class-wpsl-admin-settings.php:545
+#: includes/class-otl-admin-settings.php:545
 msgid "Try the new login experience"
 msgstr "Pruebe la nueva experiencia de inicio de sesión"
 
-#: includes/class-wpsl-admin-settings.php:551
+#: includes/class-otl-admin-settings.php:551
 msgid "Manage Users"
 msgstr "Gestionar usuarios"
 
-#: includes/class-wpsl-admin-settings.php:552
+#: includes/class-otl-admin-settings.php:552
 msgid "View your WordPress users"
-msgstr "Ver los usuarios de su WordPress"
+msgstr "Ver los usuarios de WordPress"
 
-#: includes/class-wpsl-admin-settings.php:559
+#: includes/class-otl-admin-settings.php:559
 msgid "Return to Overview"
 msgstr "Volver al resumen"
 
-#: includes/class-wpsl-admin-settings.php:568
+#: includes/class-otl-admin-settings.php:568
 msgid "Overview"
 msgstr "Resumen"
 
-#: includes/class-wpsl-admin-settings.php:569
+#: includes/class-otl-admin-settings.php:569
 msgid "Google API"
 msgstr "API de Google"
 
-#: includes/class-wpsl-admin-settings.php:570
+#: includes/class-otl-admin-settings.php:570
 msgid "Security"
 msgstr "Seguridad"
 
-#: includes/class-wpsl-admin-settings.php:571
+#: includes/class-otl-admin-settings.php:571
 msgid "Users"
 msgstr "Usuarios"
 
-#: includes/class-wpsl-admin-settings.php:572
+#: includes/class-otl-admin-settings.php:572
 msgid "One Tap"
 msgstr "One Tap"
 
-#: includes/class-wpsl-admin-settings.php:665
+#: includes/class-otl-admin-settings.php:665
 msgid "Insufficient permissions."
 msgstr "Permisos insuficientes."
 
-#: includes/class-wpsl-admin-settings.php:670
+#: includes/class-otl-admin-settings.php:670
 msgid "Please enter both Client ID and Client Secret."
-msgstr "Por favor, introduzca tanto el ID de cliente como el secreto de cliente."
+msgstr "Por favor, introduzca tanto el ID de cliente como el Secreto de cliente."
 
-#: includes/class-wpsl-admin-settings.php:671
+#: includes/class-otl-admin-settings.php:671
 msgid "The Client ID does not appear to be in the correct format."
 msgstr "El ID de cliente no parece tener el formato correcto."
 
-#: includes/class-wpsl-admin-settings.php:672
+#: includes/class-otl-admin-settings.php:672
 msgid "The Client Secret appears to be too short."
-msgstr "El secreto de cliente parece ser demasiado corto."
+msgstr "El Secreto de cliente parece ser demasiado corto."
 
-#: includes/class-wpsl-admin-settings.php:674
+#: includes/class-otl-admin-settings.php:674
 msgid "Credentials format validation passed. Save your settings to apply them."
-msgstr "La validación del formato de las credenciales fue correcta. Guarde sus ajustes para aplicarlos."
+msgstr "La validación del formato de las credenciales se ha superado. Guarde sus ajustes para aplicarlos."
 
-#: includes/class-wpsl-error-handler.php:16
+#: includes/class-otl-error-handler.php:16
 msgid "Your Google account is not authorized to access this site. Please contact an administrator to request access."
 msgstr "Su cuenta de Google no está autorizada para acceder a este sitio. Póngase en contacto con un administrador para solicitar acceso."
 
-#: includes/class-wpsl-error-handler.php:17
+#: includes/class-otl-error-handler.php:17
 msgid "Authentication failed: Could not connect to Google servers. Please try again in a moment."
-msgstr "Autenticación fallida: no se pudo conectar con los servidores de Google. Por favor, inténtelo de nuevo en un momento."
+msgstr "Autenticación fallida: No se pudo conectar con los servidores de Google. Por favor, inténtelo de nuevo en un momento."
 
-#: includes/class-wpsl-error-handler.php:18
+#: includes/class-otl-error-handler.php:18
 msgid "Authentication failed: No access token received from Google. Please try again."
-msgstr "Autenticación fallida: no se recibió token de acceso de Google. Por favor, inténtelo de nuevo."
+msgstr "Autenticación fallida: No se recibió token de acceso de Google. Por favor, inténtelo de nuevo."
 
-#: includes/class-wpsl-error-handler.php:19
+#: includes/class-otl-error-handler.php:19
 msgid "Authentication successful, but account creation failed. Please contact an administrator for assistance."
-msgstr "Autenticación correcta, pero la creación de la cuenta falló. Por favor, contacte con un administrador para obtener ayuda."
+msgstr "Autenticación correcta, pero la creación de la cuenta falló. Póngase en contacto con un administrador para obtener ayuda."
 
-#: includes/class-wpsl-error-handler.php:20
+#: includes/class-otl-error-handler.php:20
 msgid "Invalid authentication data received from Google. Please try signing in again."
-msgstr "Datos de autenticación inválidos recibidos de Google. Por favor, inténtelo de nuevo."
+msgstr "Datos de autenticación inválidos recibidos de Google. Por favor, intente iniciar sesión de nuevo."
 
-#: includes/class-wpsl-error-handler.php:21
+#: includes/class-otl-error-handler.php:21
 msgid "Could not retrieve your user information from Google. Please check your Google account permissions and try again."
-msgstr "No se pudo recuperar la información de usuario desde Google. Compruebe los permisos de su cuenta de Google e inténtelo de nuevo."
+msgstr "No se pudo recuperar su información de usuario desde Google. Compruebe los permisos de su cuenta de Google e inténtelo de nuevo."
 
-#: includes/class-wpsl-error-handler.php:22
+#: includes/class-otl-error-handler.php:22
 msgid "No email address was provided by Google. Please ensure your Google account has a verified email address."
-msgstr "Google no proporcionó una dirección de correo electrónico. Asegúrese de que su cuenta de Google tiene una dirección de correo electrónico verificada."
+msgstr "Google no proporcionó una dirección de correo. Asegúrese de que su cuenta de Google tenga una dirección de correo verificada."
 
-#: includes/class-wpsl-error-handler.php:23
+#: includes/class-otl-error-handler.php:23
 msgid "Authentication session expired or invalid. Please try logging in again."
-msgstr "La sesión de autenticación ha caducado o es inválida. Por favor, intente iniciar sesión de nuevo."
+msgstr "La sesión de autenticación ha expirado o es inválida. Por favor, intente iniciar sesión de nuevo."
 
-#: includes/class-wpsl-error-handler.php:38
+#: includes/class-otl-error-handler.php:38
 msgid "An unknown authentication error occurred. Please try again."
-msgstr "Ocurrió un error de autenticación desconocido. Por favor, inténtelo de nuevo."
+msgstr "Se produjo un error de autenticación desconocido. Por favor, inténtelo de nuevo."
 
-#: includes/class-wpsl-frontend-hooks.php:68
+#: includes/class-otl-frontend-hooks.php:68
 msgid "Authenticating with Google..."
 msgstr "Autenticando con Google..."
 
-#: includes/class-wpsl-frontend-hooks.php:78
+#: includes/class-otl-frontend-hooks.php:78
 msgid "Welcome Back"
 msgstr "Bienvenido de nuevo"
 
-#: includes/class-wpsl-frontend-hooks.php:79
+#: includes/class-otl-frontend-hooks.php:79
 msgid "Sign in with your Google account to continue."
 msgstr "Inicie sesión con su cuenta de Google para continuar."
 
-#: includes/class-wpsl-frontend-hooks.php:91
+#: includes/class-otl-frontend-hooks.php:91
 msgid "Continue with Google"
 msgstr "Continuar con Google"
 
-#: includes/class-wpsl-frontend-hooks.php:99
+#: includes/class-otl-frontend-hooks.php:99
 msgid "Login experience by"
 msgstr "Experiencia de inicio de sesión por"
 
-#: includes/class-wpsl-frontend-hooks.php:103
+#: includes/class-otl-frontend-hooks.php:103
 msgid "- Viral Content Generator"
 msgstr "- Viral Content Generator"
 
-#: includes/class-wpsl-frontend-hooks.php:111
+#: includes/class-otl-frontend-hooks.php:111
 msgid "Signing you in..."
 msgstr "Iniciando sesión..."
 
-#: includes/class-wpsl-frontend-hooks.php:122
+#: includes/class-otl-frontend-hooks.php:122
 msgid "Login Disabled:"
 msgstr "Inicio de sesión deshabilitado:"
 
-#: includes/class-wpsl-frontend-hooks.php:123
+#: includes/class-otl-frontend-hooks.php:123
 msgid "Password-based login is disabled. Please use Google Sign-In."
-msgstr "El inicio de sesión con contraseña está deshabilitado. Por favor, utilice el inicio de sesión de Google."
+msgstr "El inicio de sesión con contraseña está deshabilitado. Use el inicio de sesión de Google."
 
-#: includes/class-wpsl-wp-social-login.php:50
+#: includes/class-otl-one-tap-login.php:50
 msgid "Google Account Information"
 msgstr "Información de la cuenta de Google"
 
-#: includes/class-wpsl-wp-social-login.php:53
-#: includes/class-wpsl-wp-social-login.php:55
+#: includes/class-otl-one-tap-login.php:53
+#: includes/class-otl-one-tap-login.php:55
 msgid "Google Profile Picture"
 msgstr "Foto de perfil de Google"
 
-#: includes/class-wpsl-wp-social-login.php:56
+#: includes/class-otl-one-tap-login.php:56
 msgid "This profile picture is synced from your Google account."
-msgstr "Esta foto de perfil se sincroniza desde su cuenta de Google."
+msgstr "Esta foto de perfil está sincronizada desde su cuenta de Google."
 
-#: includes/class-wpsl-wp-social-login.php:60
+#: includes/class-otl-one-tap-login.php:60
 msgid "Authentication Method"
 msgstr "Método de autenticación"
 
-#: includes/class-wpsl-wp-social-login.php:69
+#: includes/class-otl-one-tap-login.php:69
 msgid "Google Sign-In"
 msgstr "Inicio de sesión con Google"
 
-#: includes/class-wpsl-wp-social-login.php:71
+#: includes/class-otl-one-tap-login.php:71
 msgid "This user authenticates via Google OAuth."
 msgstr "Este usuario se autentica mediante Google OAuth."
 
-#: includes/class-wpsl-wp-social-login.php:139
+#: includes/class-otl-one-tap-login.php:139
 msgid "Access Denied"
 msgstr "Acceso denegado"
 
-#: includes/class-wpsl-wp-social-login.php:154
+#: includes/class-otl-one-tap-login.php:154
 msgid "You are not currently logged in."
 msgstr "Actualmente no ha iniciado sesión."
 
-#: wp-social-login.php:111
-msgid "WP Social Login:"
-msgstr "WP Social Login:"
+#: one-tap-login.php:111
+msgid "One Tap Login:"
+msgstr "One Tap Login:"
 
 #. translators: 1: Opening anchor tag, 2: Closing anchor tag
-#: wp-social-login.php:114
+#: one-tap-login.php:114
 #, php-format
-msgid "Please %1$sconfigure your Google OAuth credentials%2$s to enable secure sign-in. This plugin is maintained by HardToSkip."
-msgstr "Por favor, %1$sconfigure sus credenciales OAuth de Google%2$s para habilitar el inicio de sesión seguro. Este plugin es mantenido por HardToSkip."
+msgid "Please %1$sconfigure your Google OAuth credentials%2$s to enable secure sign-in."
+msgstr "Por favor, %1$sconfigure sus credenciales OAuth de Google%2$s para habilitar el inicio de sesión seguro."
 
-#: wp-social-login.php:125
+#: one-tap-login.php:125
 msgid "Warning:"
 msgstr "Advertencia:"
 
-#: wp-social-login.php:125
-msgid "WP Social Login is not fully configured. Users may not be able to log in until you complete the setup."
-msgstr "WP Social Login no está completamente configurado. Los usuarios podrían no poder iniciar sesión hasta que complete la configuración."
+#: one-tap-login.php:125
+msgid "One Tap Login is not fully configured. Users may not be able to log in until you complete the setup."
+msgstr "One Tap Login no está completamente configurado. Es posible que los usuarios no puedan iniciar sesión hasta que complete la configuración."
 
-#: wp-social-login.php:135
+#: one-tap-login.php:135
 msgid "New user sign-ups are enabled with elevated permissions. Monitor your site for unauthorized content."
-msgstr "Los registros de nuevos usuarios están habilitados con permisos elevados. Controle su sitio en busca de contenido no autorizado."
+msgstr "Los registros de nuevos usuarios están habilitados con permisos elevados. Vigile su sitio por contenido no autorizado."
 
-#: wp-social-login.php:136
+#: one-tap-login.php:136
 msgid "New user sign-ups are enabled. Monitor your user registrations for potential spam accounts."
-msgstr "Los registros de nuevos usuarios están habilitados. Vigile los registros para detectar posibles cuentas de spam."
+msgstr "Los registros de nuevos usuarios están habilitados. Controle los registros por posibles cuentas de spam."
 
-#: wp-social-login.php:139
+#: one-tap-login.php:139
 msgid "Security Notice:"
 msgstr "Aviso de seguridad:"
 
-#: wp-social-login.php:150
+#: one-tap-login.php:150
 msgid "Settings"
 msgstr "Ajustes"
 
-#: wp-social-login.php:165
+#: one-tap-login.php:165
 msgid "Rate Plugin ★★★★★"
 msgstr "Valorar el plugin ★★★★★"
 
-#: wp-social-login.php:193
-#: wp-social-login.php:214
-msgid "WP Social Login Error:"
-msgstr "Error de WP Social Login:"
+#: one-tap-login.php:193
+#: one-tap-login.php:214
+msgid "One Tap Login Error:"
+msgstr "Error de One Tap Login:"
 
-#: wp-social-login.php:194
+#: one-tap-login.php:194
 msgid "A fatal error was detected and logged. Please check your PHP error log for details."
-msgstr "Se detectó y registró un error fatal. Por favor, consulte el registro de errores PHP para más detalles."
+msgstr "Se detectó y registró un error fatal. Compruebe el registro de errores de PHP para más detalles."
 

@@ -1,0 +1,628 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-09-15 00:18+0000\n"
+"PO-Revision-Date: 2025-09-15 00:18+0000\n"
+"Last-Translator: AI Translator <ai@example.com>\n"
+"Language-Team: Hindi <hi_IN@example.com>\n"
+"Language: hi_IN\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Laravel Artisan Command\n"
+#. Plugin Name of the plugin
+#: one-tap-login.php
+#: includes/class-otl-admin-settings.php:120
+msgid "One Tap Login"
+msgstr "वन-टैप लॉगिन"
+
+#. Plugin URI of the plugin
+#. Author URI of the plugin
+#: one-tap-login.php
+msgid "https://hardtoskip.com/"
+msgstr "https://hardtoskip.com/"
+
+#. Description of the plugin
+#: one-tap-login.php
+msgid "Replaces standard WordPress password authentication with Social Sign-In (currently Google) and One Tap. Features beautiful UI, automatic user management, and enhanced security options. Born from necessity after a successful brute-force attack on hardtoskip, this plugin enforces Google-only authentication to keep your site secure."
+msgstr "मानक WordPress पासवर्ड प्रमाणीकरण को Social Sign-In (वर्तमान में Google) और One Tap से बदलता है। इसमें सुंदर UI, स्वचालित उपयोगकर्ता प्रबंधन और उन्नत सुरक्षा विकल्प शामिल हैं। hardtoskip पर सफल ब्रूट-फोर्स हमले के जवाब में विकसित, यह प्लगइन केवल Google प्रमाणीकरण लागू करता है ताकि आपकी साइट सुरक्षित रहे।"
+
+#. Author of the plugin
+#: one-tap-login.php
+#: includes/class-otl-frontend-hooks.php:101
+msgid "HardToSkip"
+msgstr "HardToSkip"
+
+#: includes/class-otl-admin-settings.php:35
+#: includes/class-otl-admin-settings.php:436
+msgid "user@example.com"
+msgstr "user@example.com"
+
+#: includes/class-otl-admin-settings.php:48
+msgid "Saving..."
+msgstr "सहेजा जा रहा है..."
+
+#: includes/class-otl-admin-settings.php:49
+msgid "Settings Saved!"
+msgstr "सेटिंग्स सहेज ली गईं!"
+
+#: includes/class-otl-admin-settings.php:50
+msgid "An error occurred."
+msgstr "एक त्रुटि हुई।"
+
+#: includes/class-otl-admin-settings.php:51
+msgid "Testing..."
+msgstr "परीक्षण चल रहा है..."
+
+#: includes/class-otl-admin-settings.php:52
+msgid "Validation successful!"
+msgstr "सत्यापन सफल!"
+
+#: includes/class-otl-admin-settings.php:53
+msgid "Validation failed"
+msgstr "सत्यापन विफल"
+
+#: includes/class-otl-admin-settings.php:54
+msgid "Are you sure you want to remove this user?"
+msgstr "क्या आप सुनिश्चित हैं कि आप इस उपयोगकर्ता को हटाना चाहते हैं?"
+
+#: includes/class-otl-admin-settings.php:55
+msgid "Please fill in both Client ID and Client Secret."
+msgstr "कृपया दोनों क्लाइंट ID और क्लाइंट सीक्रेट भरें।"
+
+#: includes/class-otl-admin-settings.php:56
+msgid "Copied!"
+msgstr "कॉपी हो गया!"
+
+#: includes/class-otl-admin-settings.php:57
+msgid "Failed to copy."
+msgstr "कॉपी करने में विफल।"
+
+#: includes/class-otl-admin-settings.php:65
+msgid "One Tap Login Settings"
+msgstr "वन-टैप लॉगिन सेटिंग्स"
+
+#: includes/class-otl-admin-settings.php:66
+msgid "Social Login"
+msgstr "सोशल लॉगिन"
+
+#: includes/class-otl-admin-settings.php:121
+msgid "Secure Google Authentication for WordPress"
+msgstr "WordPress के लिए सुरक्षित Google प्रमाणीकरण"
+
+#: includes/class-otl-admin-settings.php:159
+msgid "Quick Status"
+msgstr "त्वरित स्थिति"
+
+#: includes/class-otl-admin-settings.php:161
+msgid "Configuration:"
+msgstr "कॉन्फ़िगरेशन:"
+
+#: includes/class-otl-admin-settings.php:163
+#: includes/class-otl-admin-settings.php:573
+msgid "Complete"
+msgstr "पूर्ण"
+
+#: includes/class-otl-admin-settings.php:163
+msgid "Pending"
+msgstr "लंबित"
+
+#: includes/class-otl-admin-settings.php:167
+msgid "Authorized Users:"
+msgstr "अधिकृत उपयोगकर्ता:"
+
+#: includes/class-otl-admin-settings.php:171
+msgid "Security Features:"
+msgstr "सुरक्षा सुविधाएँ:"
+
+#: includes/class-otl-admin-settings.php:177
+msgid "Quick Links"
+msgstr "त्वरित लिंक"
+
+#: includes/class-otl-admin-settings.php:181
+msgid "Test Login Page"
+msgstr "लॉगिन पृष्ठ का परीक्षण"
+
+#: includes/class-otl-admin-settings.php:185
+#: includes/class-otl-admin-settings.php:297
+msgid "Google Cloud Console"
+msgstr "Google क्लाउड कंसोल"
+
+#: includes/class-otl-admin-settings.php:189
+#: one-tap-login.php:164
+msgid "Plugin Creator"
+msgstr "प्लगइन निर्माता"
+
+#: includes/class-otl-admin-settings.php:193
+msgid "Hire Developer"
+msgstr "डेवलपर हायर करें"
+
+#: includes/class-otl-admin-settings.php:231
+msgid "Welcome to One Tap Login"
+msgstr "वन-टैप लॉगिन में आपका स्वागत है"
+
+#: includes/class-otl-admin-settings.php:232
+msgid "Transform your WordPress authentication with secure Google Sign-In. This setup wizard will guide you through each step to ensure optimal security and user experience."
+msgstr "सुरक्षित Google साइन-इन के साथ अपने WordPress प्रमाणीकरण को बदलें। यह सेटअप विज़ार्ड प्रत्येक चरण में आपका मार्गदर्शन करेगा ताकि सर्वोत्तम सुरक्षा और उपयोगकर्ता अनुभव सुनिश्चित हो सके।"
+
+#: includes/class-otl-admin-settings.php:238
+msgid "Enhanced Security"
+msgstr "बेहतर सुरक्षा"
+
+#: includes/class-otl-admin-settings.php:239
+msgid "Eliminate password-based vulnerabilities with Google's robust OAuth authentication system."
+msgstr "Google के मजबूत OAuth प्रमाणीकरण सिस्टम के साथ पासवर्ड-आधारित कमजोरियों को समाप्त करें।"
+
+#: includes/class-otl-admin-settings.php:243
+#: includes/class-otl-admin-settings.php:418
+msgid "User Management"
+msgstr "उपयोगकर्ता प्रबंधन"
+
+#: includes/class-otl-admin-settings.php:244
+msgid "Control exactly who can access your site with email-based authorization and role assignment."
+msgstr "ईमेल-आधारित अनुमति और भूमिका असाइनमेंट के माध्यम से ठीक-ठीक नियंत्रित करें कि आपकी साइट तक कौन पहुँच सकता है।"
+
+#: includes/class-otl-admin-settings.php:248
+msgid "Seamless Experience"
+msgstr "सुगम अनुभव"
+
+#: includes/class-otl-admin-settings.php:249
+msgid "Google One Tap provides instant authentication for users already signed into Google."
+msgstr "Google One Tap उन उपयोगकर्ताओं के लिए तात्कालिक प्रमाणीकरण प्रदान करता है जो पहले से Google में साइन-इन हैं।"
+
+#: includes/class-otl-admin-settings.php:256
+msgid "Your plugin is not yet configured. Users cannot log in until you complete the Google API setup."
+msgstr "आपका प्लगइन अभी तक कॉन्फ़िगर नहीं है। जब तक आप Google API सेटअप पूरा नहीं करते, उपयोगकर्ता लॉगिन नहीं कर पाएँगे।"
+
+#: includes/class-otl-admin-settings.php:261
+msgid "One Tap Login is configured and working. You can modify settings or enable additional features anytime."
+msgstr "वन-टैप लॉगिन कॉन्फ़िगर और कार्यरत है। आप कभी भी सेटिंग्स बदल सकते हैं या अतिरिक्त सुविधाएँ सक्षम कर सकते हैं।"
+
+#: includes/class-otl-admin-settings.php:268
+msgid "Start Configuration"
+msgstr "कॉन्फ़िगरेशन शुरू करें"
+
+#: includes/class-otl-admin-settings.php:282
+msgid "Google API Configuration"
+msgstr "Google API कॉन्फ़िगरेशन"
+
+#: includes/class-otl-admin-settings.php:283
+msgid "Set up your Google OAuth credentials to enable secure authentication. This is the most important step."
+msgstr "सुरक्षित प्रमाणीकरण सक्षम करने के लिए अपने Google OAuth क्रेडेंशियल सेट करें। यह सबसे महत्वपूर्ण कदम है।"
+
+#: includes/class-otl-admin-settings.php:289
+msgid "Setup Instructions"
+msgstr "सेटअप निर्देश"
+
+#. translators: %s: link to Google Cloud Console.
+#: includes/class-otl-admin-settings.php:296
+#, php-format
+msgid "Visit the %s"
+msgstr "%s पर जाएँ"
+
+#: includes/class-otl-admin-settings.php:302
+msgid "Create a new project or select an existing one."
+msgstr "एक नया प्रोजेक्ट बनाएँ या किसी मौजूदा प्रोजेक्ट का चयन करें।"
+
+#: includes/class-otl-admin-settings.php:303
+msgid "Navigate to \\"
+msgstr "पर जाएँ \\"
+
+#: includes/class-otl-admin-settings.php:304
+msgid "Click \\"
+msgstr "क्लिक करें \\"
+
+#: includes/class-otl-admin-settings.php:305
+msgid "Choose \\"
+msgstr "चुनें \\"
+
+#: includes/class-otl-admin-settings.php:306
+msgid "Add the redirect URIs and origins provided below."
+msgstr "नीचे दिए गए रीडायरेक्ट URI और ओरिजिन जोड़ें।"
+
+#: includes/class-otl-admin-settings.php:311
+msgid "Required URLs for Google Console"
+msgstr "Google कंसोल के लिए आवश्यक URL"
+
+#: includes/class-otl-admin-settings.php:313
+msgid "Authorized redirect URIs (add both)"
+msgstr "अधिकृत रीडायरेक्ट URI (दोनों जोड़ें)"
+
+#: includes/class-otl-admin-settings.php:316
+#: includes/class-otl-admin-settings.php:322
+#: includes/class-otl-admin-settings.php:329
+msgid "Copy"
+msgstr "कॉपी करें"
+
+#: includes/class-otl-admin-settings.php:326
+msgid "Authorized JavaScript origins"
+msgstr "अधिकृत JavaScript ओरिजिन"
+
+#: includes/class-otl-admin-settings.php:335
+msgid "Google OAuth Credentials"
+msgstr "Google OAuth क्रेडेंशियल"
+
+#: includes/class-otl-admin-settings.php:337
+msgid "Google Client ID"
+msgstr "Google क्लाइंट ID"
+
+#: includes/class-otl-admin-settings.php:338
+msgid "e.g., 123456789.apps.googleusercontent.com"
+msgstr "उदा., 123456789.apps.googleusercontent.com"
+
+#: includes/class-otl-admin-settings.php:341
+msgid "Google Client Secret"
+msgstr "Google क्लाइंट सीक्रेट"
+
+#: includes/class-otl-admin-settings.php:342
+msgid "e.g., GOCSPX-xxxxxxxxxx"
+msgstr "उदा., GOCSPX-xxxxxxxxxx"
+
+#: includes/class-otl-admin-settings.php:347
+#: includes/class-otl-admin-settings.php:403
+#: includes/class-otl-admin-settings.php:475
+#: includes/class-otl-admin-settings.php:514
+#: includes/class-otl-admin-settings.php:558
+msgid "Back"
+msgstr "वापस"
+
+#: includes/class-otl-admin-settings.php:349
+msgid "Test Connection"
+msgstr "कनेक्शन का परीक्षण"
+
+#: includes/class-otl-admin-settings.php:350
+#: includes/class-otl-admin-settings.php:404
+#: includes/class-otl-admin-settings.php:476
+#: includes/class-otl-admin-settings.php:515
+msgid "Save & Continue"
+msgstr "सहेजें और जारी रखें"
+
+#: includes/class-otl-admin-settings.php:365
+msgid "Security Features"
+msgstr "सुरक्षा सुविधाएँ"
+
+#: includes/class-otl-admin-settings.php:366
+msgid "Enable additional security measures to protect your site from common attack vectors."
+msgstr "सामान्य आक्रमण तरीकों से अपनी साइट की सुरक्षा के लिए अतिरिक्त उपाय सक्षम करें।"
+
+#: includes/class-otl-admin-settings.php:373
+msgid "Important Note:"
+msgstr "महत्वपूर्ण नोट:"
+
+#: includes/class-otl-admin-settings.php:373
+msgid "This plugin was developed in response to real brute-force attacks. These features help reduce common risks but should be part of a comprehensive security strategy."
+msgstr "यह प्लगइन वास्तविक ब्रूट-फोर्स हमलों के जवाब में विकसित किया गया था। ये सुविधाएँ सामान्य जोखिम कम करने में मदद करती हैं, लेकिन इन्हें एक व्यापक सुरक्षा रणनीति का हिस्सा होना चाहिए।"
+
+#: includes/class-otl-admin-settings.php:379
+msgid "Disable XML-RPC"
+msgstr "XML-RPC अक्षम करें"
+
+#: includes/class-otl-admin-settings.php:379
+msgid "Prevents brute-force attacks via XML-RPC. May affect mobile apps or Jetpack."
+msgstr "XML-RPC के माध्यम से ब्रूट-फोर्स हमलों को रोकता है। इससे मोबाइल ऐप्स या Jetpack प्रभावित हो सकते हैं।"
+
+#: includes/class-otl-admin-settings.php:380
+msgid "Disable File Editing"
+msgstr "फ़ाइल संपादन अक्षम करें"
+
+#: includes/class-otl-admin-settings.php:380
+msgid "Prevents code injection via the admin dashboard if an account is compromised."
+msgstr "यदि कोई अकाउंट समझौता हो जाए तो एडमिन डैशबोर्ड के माध्यम से कोड इंजेक्शन को रोकता है।"
+
+#: includes/class-otl-admin-settings.php:381
+msgid "Hide WordPress Version"
+msgstr "WordPress संस्करण छिपाएँ"
+
+#: includes/class-otl-admin-settings.php:381
+msgid "Makes it harder for attackers to identify vulnerabilities for a specific WP version."
+msgstr "हमलावरों के लिए किसी विशेष WP संस्करण की कमजोरियों की पहचान करना कठिन बनाता है।"
+
+#: includes/class-otl-admin-settings.php:382
+msgid "Restrict REST API"
+msgstr "REST API प्रतिबंधित करें"
+
+#: includes/class-otl-admin-settings.php:382
+msgid "Prevents unauthorized data access via REST API. May affect some plugins."
+msgstr "REST API के माध्यम से अनधिकृत डेटा एक्सेस को रोकता है। इससे कुछ प्लगइन्स प्रभावित हो सकते हैं।"
+
+#: includes/class-otl-admin-settings.php:383
+msgid "Block Sensitive Files"
+msgstr "संवेदनशील फाइलें अवरुद्ध करें"
+
+#: includes/class-otl-admin-settings.php:383
+msgid "Attempts to block direct public access to wp-config.php and other sensitive files."
+msgstr "wp-config.php और अन्य संवेदनशील फाइलों तक सीधे सार्वजनिक पहुँच को ब्लॉक करने का प्रयास करता है।"
+
+#: includes/class-otl-admin-settings.php:419
+msgid "Control who can access your site. Add Google email addresses and assign roles for authorized users."
+msgstr "नियंत्रण करें कि आपकी साइट तक कौन पहुँच सकता है। अधिकृत उपयोगकर्ताओं के लिए Google ईमेल पते जोड़ें और भूमिका असाइन करें।"
+
+#: includes/class-otl-admin-settings.php:426
+msgid "Authorized Users"
+msgstr "अधिकृत उपयोगकर्ता"
+
+#: includes/class-otl-admin-settings.php:427
+msgid "Add User"
+msgstr "उपयोगकर्ता जोड़ें"
+
+#: includes/class-otl-admin-settings.php:430
+msgid "Email Address"
+msgstr "ईमेल पता"
+
+#: includes/class-otl-admin-settings.php:431
+msgid "Role"
+msgstr "भूमिका"
+
+#: includes/class-otl-admin-settings.php:453
+msgid "New User Registration"
+msgstr "नया उपयोगकर्ता पंजीकरण"
+
+#: includes/class-otl-admin-settings.php:458
+msgid "Allow New User Sign-Ups"
+msgstr "नए उपयोगकर्ता साइन-अप की अनुमति दें"
+
+#: includes/class-otl-admin-settings.php:459
+msgid "Allow any Google user to create an account. This bypasses the authorized user list above."
+msgstr "किसी भी Google उपयोगकर्ता को खाता बनाने की अनुमति दें। यह ऊपर दी गई अधिकृत उपयोगकर्ता सूची को बाइपास करता है।"
+
+#: includes/class-otl-admin-settings.php:465
+msgid "Default Role for New Users"
+msgstr "नए उपयोगकर्ताओं के लिए डिफ़ॉल्ट भूमिका"
+
+#: includes/class-otl-admin-settings.php:469
+msgid "Subscriber is the safest and recommended option for new public registrations."
+msgstr "सार्वजनिक नए पंजीकरण के लिए Subscriber सबसे सुरक्षित और अनुशंसित विकल्प है।"
+
+#: includes/class-otl-admin-settings.php:489
+msgid "Google One Tap"
+msgstr "Google One Tap"
+
+#: includes/class-otl-admin-settings.php:490
+msgid "Configure Google One Tap for a seamless, one-click user authentication experience."
+msgstr "एक सुगम, एक-क्लिक उपयोगकर्ता प्रमाणीकरण अनुभव के लिए Google One Tap कॉन्फ़िगर करें।"
+
+#: includes/class-otl-admin-settings.php:497
+msgid "What is Google One Tap?"
+msgstr "Google One Tap क्या है?"
+
+#: includes/class-otl-admin-settings.php:498
+msgid "One Tap displays a non-intrusive prompt that allows users already signed into Google to authenticate instantly. It is automatically enabled on the WordPress login page."
+msgstr "One Tap एक गैर-हस्तक्षेपात्मक प्रॉम्प्ट दिखाता है जो पहले से Google में साइन-इन किए उपयोगकर्ताओं को तात्कालिक रूप से प्रमाणीकरण करने देता है। यह WordPress लॉगिन पृष्ठ पर स्वचालित रूप से सक्षम होता है।"
+
+#: includes/class-otl-admin-settings.php:506
+msgid "Enable One Tap on Homepage"
+msgstr "हॉमपेज पर One Tap सक्षम करें"
+
+#: includes/class-otl-admin-settings.php:507
+msgid "Show the One Tap prompt to logged-out visitors on your homepage and other public pages."
+msgstr "अपने होमपेज और अन्य सार्वजनिक पृष्ठों पर लॉग-आउट आगंतुकों को One Tap प्रॉम्प्ट दिखाएँ।"
+
+#: includes/class-otl-admin-settings.php:528
+msgid "Setup Complete!"
+msgstr "सेटअप पूरा हुआ!"
+
+#: includes/class-otl-admin-settings.php:529
+msgid "Congratulations! Your One Tap Login plugin is now configured and ready to secure your WordPress site."
+msgstr "बधाई हो! आपका One Tap Login प्लगइन अब कॉन्फ़िगर हो गया है और आपकी WordPress साइट को सुरक्षित करने के लिए तैयार है।"
+
+#: includes/class-otl-admin-settings.php:535
+msgid "Your Site is Now Secured"
+msgstr "आपकी साइट अब सुरक्षित है"
+
+#: includes/class-otl-admin-settings.php:536
+msgid "Password-based authentication has been disabled. Users must now authenticate through Google, significantly reducing security risks."
+msgstr "पासवर्ड-आधारित प्रमाणीकरण अक्षम कर दिया गया है। उपयोगकर्ताओं को अब Google के माध्यम से प्रमाणीकरण करना होगा, जिससे सुरक्षा जोखिम काफी कम हो जाते हैं।"
+
+#: includes/class-otl-admin-settings.php:544
+msgid "Test Login"
+msgstr "लॉगिन का परीक्षण करें"
+
+#: includes/class-otl-admin-settings.php:545
+msgid "Try the new login experience"
+msgstr "नए लॉगिन अनुभव को आज़माएँ"
+
+#: includes/class-otl-admin-settings.php:551
+msgid "Manage Users"
+msgstr "उपयोगकर्ताओं का प्रबंधन करें"
+
+#: includes/class-otl-admin-settings.php:552
+msgid "View your WordPress users"
+msgstr "अपने WordPress उपयोगकर्ताओं को देखें"
+
+#: includes/class-otl-admin-settings.php:559
+msgid "Return to Overview"
+msgstr "ओवरव्यू पर वापस जाएँ"
+
+#: includes/class-otl-admin-settings.php:568
+msgid "Overview"
+msgstr "सारांश"
+
+#: includes/class-otl-admin-settings.php:569
+msgid "Google API"
+msgstr "Google API"
+
+#: includes/class-otl-admin-settings.php:570
+msgid "Security"
+msgstr "सुरक्षा"
+
+#: includes/class-otl-admin-settings.php:571
+msgid "Users"
+msgstr "उपयोगकर्ता"
+
+#: includes/class-otl-admin-settings.php:572
+msgid "One Tap"
+msgstr "One Tap"
+
+#: includes/class-otl-admin-settings.php:665
+msgid "Insufficient permissions."
+msgstr "पर्याप्त अनुमतियाँ नहीं हैं।"
+
+#: includes/class-otl-admin-settings.php:670
+msgid "Please enter both Client ID and Client Secret."
+msgstr "कृपया क्लाइंट ID और क्लाइंट सीक्रेट दोनों दर्ज करें।"
+
+#: includes/class-otl-admin-settings.php:671
+msgid "The Client ID does not appear to be in the correct format."
+msgstr "क्लाइंट ID सही फ़ॉर्मेट में प्रतीत नहीं होता।"
+
+#: includes/class-otl-admin-settings.php:672
+msgid "The Client Secret appears to be too short."
+msgstr "क्लाइंट सीक्रेट बहुत छोटा प्रतीत होता है।"
+
+#: includes/class-otl-admin-settings.php:674
+msgid "Credentials format validation passed. Save your settings to apply them."
+msgstr "क्रेडेंशियल के फ़ॉर्मेट का सत्यापन पास हो गया। उन्हें लागू करने के लिए अपनी सेटिंग्स सहेजें।"
+
+#: includes/class-otl-error-handler.php:16
+msgid "Your Google account is not authorized to access this site. Please contact an administrator to request access."
+msgstr "आपका Google खाता इस साइट तक पहुँचने के लिए अधिकृत नहीं है। पहुँच के लिए अनुरोध करने हेतु कृपया किसी प्रशासक से संपर्क करें।"
+
+#: includes/class-otl-error-handler.php:17
+msgid "Authentication failed: Could not connect to Google servers. Please try again in a moment."
+msgstr "प्रमाणीकरण विफल: Google सर्वरों से कनेक्ट नहीं हो पाया। कृपया कुछ क्षण बाद पुनः प्रयास करें।"
+
+#: includes/class-otl-error-handler.php:18
+msgid "Authentication failed: No access token received from Google. Please try again."
+msgstr "प्रमाणीकरण विफल: Google से कोई एक्सेस टोकन प्राप्त नहीं हुआ। कृपया पुनः प्रयास करें।"
+
+#: includes/class-otl-error-handler.php:19
+msgid "Authentication successful, but account creation failed. Please contact an administrator for assistance."
+msgstr "प्रमाणीकरण सफल हुआ, लेकिन खाता निर्माण विफल रहा। सहायता के लिए कृपया किसी प्रशासक से संपर्क करें।"
+
+#: includes/class-otl-error-handler.php:20
+msgid "Invalid authentication data received from Google. Please try signing in again."
+msgstr "Google से अमान्य प्रमाणीकरण डेटा प्राप्त हुआ। कृपया पुनः साइन-इन करने का प्रयास करें।"
+
+#: includes/class-otl-error-handler.php:21
+msgid "Could not retrieve your user information from Google. Please check your Google account permissions and try again."
+msgstr "Google से आपकी उपयोगकर्ता जानकारी प्राप्त नहीं हो सकी। कृपया अपनी Google खाता अनुमतियाँ जाँचें और पुनः प्रयास करें।"
+
+#: includes/class-otl-error-handler.php:22
+msgid "No email address was provided by Google. Please ensure your Google account has a verified email address."
+msgstr "Google द्वारा कोई ईमेल पता प्रदान नहीं किया गया। कृपया सुनिश्चित करें कि आपके Google खाते में सत्यापित ईमेल पता है।"
+
+#: includes/class-otl-error-handler.php:23
+msgid "Authentication session expired or invalid. Please try logging in again."
+msgstr "प्रमाणीकरण सत्र समाप्त या अमान्य है। कृपया पुनः लॉगिन करने का प्रयास करें।"
+
+#: includes/class-otl-error-handler.php:38
+msgid "An unknown authentication error occurred. Please try again."
+msgstr "एक अज्ञात प्रमाणीकरण त्रुटि हुई। कृपया पुनः प्रयास करें।"
+
+#: includes/class-otl-frontend-hooks.php:68
+msgid "Authenticating with Google..."
+msgstr "Google के साथ प्रमाणीकृत किया जा रहा है..."
+
+#: includes/class-otl-frontend-hooks.php:78
+msgid "Welcome Back"
+msgstr "फिर से स्वागत है"
+
+#: includes/class-otl-frontend-hooks.php:79
+msgid "Sign in with your Google account to continue."
+msgstr "जारी रखने के लिए अपने Google खाते से साइन इन करें।"
+
+#: includes/class-otl-frontend-hooks.php:91
+msgid "Continue with Google"
+msgstr "Google के साथ जारी रखें"
+
+#: includes/class-otl-frontend-hooks.php:99
+msgid "Login experience by"
+msgstr "लॉगिन अनुभव:"
+
+#: includes/class-otl-frontend-hooks.php:103
+msgid "- Viral Content Generator"
+msgstr "- Viral Content Generator"
+
+#: includes/class-otl-frontend-hooks.php:111
+msgid "Signing you in..."
+msgstr "आपको साइन-इन किया जा रहा है..."
+
+#: includes/class-otl-frontend-hooks.php:122
+msgid "Login Disabled:"
+msgstr "लॉगिन अक्षम:"
+
+#: includes/class-otl-frontend-hooks.php:123
+msgid "Password-based login is disabled. Please use Google Sign-In."
+msgstr "पासवर्ड-आधारित लॉगिन अक्षम है। कृपया Google Sign-In का उपयोग करें।"
+
+#: includes/class-otl-one-tap-login.php:50
+msgid "Google Account Information"
+msgstr "Google खाता जानकारी"
+
+#: includes/class-otl-one-tap-login.php:53
+#: includes/class-otl-one-tap-login.php:55
+msgid "Google Profile Picture"
+msgstr "Google प्रोफ़ाइल चित्र"
+
+#: includes/class-otl-one-tap-login.php:56
+msgid "This profile picture is synced from your Google account."
+msgstr "यह प्रोफ़ाइल चित्र आपके Google खाते से सिंक किया गया है।"
+
+#: includes/class-otl-one-tap-login.php:60
+msgid "Authentication Method"
+msgstr "प्रमाणीकरण विधि"
+
+#: includes/class-otl-one-tap-login.php:69
+msgid "Google Sign-In"
+msgstr "Google साइन-इन"
+
+#: includes/class-otl-one-tap-login.php:71
+msgid "This user authenticates via Google OAuth."
+msgstr "यह उपयोगकर्ता Google OAuth के माध्यम से प्रमाणीकरण करता है।"
+
+#: includes/class-otl-one-tap-login.php:139
+msgid "Access Denied"
+msgstr "पहुंच अस्वीकृत"
+
+#: includes/class-otl-one-tap-login.php:154
+msgid "You are not currently logged in."
+msgstr "आप वर्तमान में लॉग इन नहीं हैं।"
+
+#: one-tap-login.php:111
+msgid "One Tap Login:"
+msgstr "वन-टैप लॉगिन:"
+
+#. translators: 1: Opening anchor tag, 2: Closing anchor tag
+#: one-tap-login.php:114
+#, php-format
+msgid "Please %1$sconfigure your Google OAuth credentials%2$s to enable secure sign-in."
+msgstr "कृपया %1$sअपने Google OAuth क्रेडेंशियल कॉन्फ़िगर करें%2$s ताकि सुरक्षित साइन-इन सक्षम हो सके।"
+
+#: one-tap-login.php:125
+msgid "Warning:"
+msgstr "चेतावनी:"
+
+#: one-tap-login.php:125
+msgid "One Tap Login is not fully configured. Users may not be able to log in until you complete the setup."
+msgstr "वन-टैप लॉगिन पूरी तरह कॉन्फ़िगर नहीं है। जब तक आप सेटअप पूरा नहीं करते, उपयोगकर्ता लॉग इन नहीं कर पाएँगे।"
+
+#: one-tap-login.php:135
+msgid "New user sign-ups are enabled with elevated permissions. Monitor your site for unauthorized content."
+msgstr "नए उपयोगकर्ता साइन-अप उच्च अनुमतियों के साथ सक्षम हैं। अनधिकृत सामग्री के लिए अपनी साइट पर निगरानी रखें।"
+
+#: one-tap-login.php:136
+msgid "New user sign-ups are enabled. Monitor your user registrations for potential spam accounts."
+msgstr "नए उपयोगकर्ता साइन-अप सक्षम हैं। संभावित स्पैम खातों के लिए अपने उपयोगकर्ता पंजीकरणों की निगरानी करें।"
+
+#: one-tap-login.php:139
+msgid "Security Notice:"
+msgstr "सुरक्षा सूचना:"
+
+#: one-tap-login.php:150
+msgid "Settings"
+msgstr "सेटिंग्स"
+
+#: one-tap-login.php:165
+msgid "Rate Plugin ★★★★★"
+msgstr "प्लगइन को रेट करें ★★★★★"
+
+#: one-tap-login.php:193
+#: one-tap-login.php:214
+msgid "One Tap Login Error:"
+msgstr "वन-टैप लॉगिन त्रुटि:"
+
+#: one-tap-login.php:194
+msgid "A fatal error was detected and logged. Please check your PHP error log for details."
+msgstr "एक घातक त्रुटि का पता चला और लॉग किया गया। विवरण के लिए कृपया अपने PHP त्रुटि लॉग की जाँच करें।"
+

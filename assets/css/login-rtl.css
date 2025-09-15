@@ -1,0 +1,25 @@
+/* RTL Overrides for One Tap Login Styles */
+
+/* Base styling */
+body.login,
+.otl-auth-content p {
+  direction: rtl;
+}
+
+/* Loading overlay */
+#otl-auth-loading {
+  left: auto;
+  right: 0;
+}
+
+/* Animations */
+@keyframes otl-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

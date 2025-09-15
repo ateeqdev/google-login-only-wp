@@ -24,7 +24,7 @@ function handleCredentialResponse(response) {
 
   const form = document.createElement("form");
   form.method = "POST";
-  form.action = wpsl_login_params.callback_url;
+  form.action = otl_login_params.callback_url;
   form.style.display = "none";
 
   const createInput = (name, value) => {
@@ -37,23 +37,23 @@ function handleCredentialResponse(response) {
 
   form.appendChild(createInput("credential", response.credential));
   form.appendChild(
-    createInput("wpsl_csrf_token", wpsl_login_params.csrf_token)
+    createInput("otl_csrf_token", otl_login_params.csrf_token)
   );
-  form.appendChild(createInput("nonce", wpsl_login_params.nonce));
+  form.appendChild(createInput("nonce", otl_login_params.nonce));
 
   document.body.appendChild(form);
   form.submit();
 }
 
 function showAuthenticationLoading() {
-  let overlay = document.getElementById("wpsl-auth-loading");
+  let overlay = document.getElementById("otl-auth-loading");
   if (!overlay) {
     overlay = document.createElement("div");
-    overlay.id = "wpsl-auth-loading";
+    overlay.id = "otl-auth-loading";
     overlay.innerHTML = `
-      <div class="wpsl-auth-content">
-        <div class="wpsl-spinner"></div>
-        <p>${wpsl_login_params.authenticating}</p>
+      <div class="otl-auth-content">
+        <div class="otl-spinner"></div>
+        <p>${otl_login_params.authenticating}</p>
       </div>
     `;
     document.body.appendChild(overlay);
@@ -65,28 +65,28 @@ window.onload = function () {
   if (
     typeof google === "undefined" ||
     !google.accounts ||
-    typeof wpsl_login_params === "undefined"
+    typeof otl_login_params === "undefined"
   ) {
     return;
   }
 
   google.accounts.id.initialize({
-    client_id: wpsl_login_params.client_id,
+    client_id: otl_login_params.client_id,
     callback: handleCredentialResponse,
     auto_select: false,
     cancel_on_tap_outside: true,
-    context: wpsl_login_params.context,
+    context: otl_login_params.context,
   });
 
   const hasLoginError =
     document.getElementById("login_error") !== null ||
-    window.location.search.includes("wpsl_error_key");
+    window.location.search.includes("otl_error_key");
 
-  if (wpsl_login_params.show_prompt && !hasLoginError) {
+  if (otl_login_params.show_prompt && !hasLoginError) {
     google.accounts.id.prompt((notification) => {
       if (notification.isNotDisplayed() || notification.isSkippedMoment()) {
         console.log(
-          "WPSL: Google One Tap prompt was not displayed or was skipped."
+          "OTL: Google One Tap prompt was not displayed or was skipped."
         );
       }
     });

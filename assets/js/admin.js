@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", function () {
   "use strict";
 
   // Global state
-  let userIndex = wpsl_admin.initial_user_count || 0;
+  let userIndex = otl_admin.initial_user_count || 0;
 
   // Initializers
   const init = () => {
@@ -14,19 +14,19 @@ document.addEventListener("DOMContentLoaded", function () {
     initSecurityCards();
 
     if (new URLSearchParams(window.location.search).has("settings-updated")) {
-      showNotification(wpsl_admin.strings.saved, "success");
+      showNotification(otl_admin.strings.saved, "success");
     }
   };
 
   const initUserManagement = () => {
     const userList = document.getElementById("user-list");
-    const addUserBtn = document.getElementById("wpsl-add-user-btn");
+    const addUserBtn = document.getElementById("otl-add-user-btn");
     if (!userList || !addUserBtn) return;
 
     addUserBtn.addEventListener("click", addUser);
 
     userList.addEventListener("click", (e) => {
-      const removeBtn = e.target.closest(".wpsl-remove-user");
+      const removeBtn = e.target.closest(".otl-remove-user");
       if (removeBtn) {
         removeUser(removeBtn);
       }
@@ -34,20 +34,20 @@ document.addEventListener("DOMContentLoaded", function () {
   };
 
   const initCopyButtons = () => {
-    document.querySelectorAll(".wpsl-copy-btn").forEach((button) => {
+    document.querySelectorAll(".otl-copy-btn").forEach((button) => {
       button.addEventListener("click", () => copyToClipboard(button));
     });
   };
 
   const initTestConnection = () => {
-    const testBtn = document.getElementById("wpsl-test-connection-btn");
+    const testBtn = document.getElementById("otl-test-connection-btn");
     if (testBtn) {
       testBtn.addEventListener("click", testGoogleConnection);
     }
   };
 
   const initFormSubmissions = () => {
-    document.querySelectorAll(".wpsl-form").forEach((form) => {
+    document.querySelectorAll(".otl-form").forEach((form) => {
       form.addEventListener("submit", (e) => {
         const submitBtn = e.submitter;
         if (submitBtn) {
@@ -59,8 +59,8 @@ document.addEventListener("DOMContentLoaded", function () {
   };
 
   const initConditionalFields = () => {
-    const allowSignupsToggle = document.getElementById("wpsl-allow-signups");
-    const roleSection = document.getElementById("wpsl-signup-role-section");
+    const allowSignupsToggle = document.getElementById("otl-allow-signups");
+    const roleSection = document.getElementById("otl-signup-role-section");
 
     if (allowSignupsToggle && roleSection) {
       allowSignupsToggle.addEventListener("change", () => {
@@ -73,11 +73,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
   const initSecurityCards = () => {
     document
-      .querySelectorAll(".wpsl-security-card .wpsl-toggle-input")
+      .querySelectorAll(".otl-security-card .otl-toggle-input")
       .forEach((checkbox) => {
         checkbox.addEventListener("change", (e) => {
           e.target
-            .closest(".wpsl-security-card")
+            .closest(".otl-security-card")
             .classList.toggle("enabled", e.target.checked);
         });
       });
@@ -86,7 +86,7 @@ document.addEventListener("DOMContentLoaded", function () {
   // Functions
   const addUser = () => {
     const userList = document.getElementById("user-list");
-    const template = wpsl_admin.user_template.replace(
+    const template = otl_admin.user_template.replace(
       /__INDEX__/g,
       userIndex++
     );
@@ -95,8 +95,8 @@ document.addEventListener("DOMContentLoaded", function () {
   };
 
   const removeUser = (button) => {
-    if (confirm(wpsl_admin.strings.confirm_remove_user)) {
-      const userItem = button.closest(".wpsl-user-item");
+    if (confirm(otl_admin.strings.confirm_remove_user)) {
+      const userItem = button.closest(".otl-user-item");
       userItem.remove();
       const userList = document.getElementById("user-list");
       if (userList.children.length === 0) {
@@ -112,19 +112,19 @@ document.addEventListener("DOMContentLoaded", function () {
     const clientSecret = document.getElementById("client_secret")?.value;
 
     if (!clientId || !clientSecret) {
-      return showNotification(wpsl_admin.strings.fill_both_fields, "error");
+      return showNotification(otl_admin.strings.fill_both_fields, "error");
     }
 
-    button.innerHTML = `<span class="wpsl-loading"></span> ${wpsl_admin.strings.testing}`;
+    button.innerHTML = `<span class="otl-loading"></span> ${otl_admin.strings.testing}`;
     button.disabled = true;
 
     try {
-      const response = await fetch(wpsl_admin.ajax_url, {
+      const response = await fetch(otl_admin.ajax_url, {
         method: "POST",
         headers: { "Content-Type": "application/x-www-form-urlencoded" },
         body: new URLSearchParams({
-          action: "wpsl_test_connection",
-          nonce: wpsl_admin.nonce,
+          action: "otl_test_connection",
+          nonce: otl_admin.nonce,
           client_id: clientId,
           client_secret: clientSecret,
         }),
@@ -137,7 +137,7 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     } catch (error) {
       showNotification(
-        `${wpsl_admin.strings.connection_failed}: ${error.message}`,
+        `${otl_admin.strings.connection_failed}: ${error.message}`,
         "error"
       );
     } finally {
@@ -151,10 +151,10 @@ document.addEventListener("DOMContentLoaded", function () {
     const originalText = button.textContent;
     try {
       await navigator.clipboard.writeText(input.value);
-      button.textContent = wpsl_admin.strings.copied;
+      button.textContent = otl_admin.strings.copied;
       button.classList.add("success");
     } catch (err) {
-      showNotification(wpsl_admin.strings.copy_failed, "error");
+      showNotification(otl_admin.strings.copy_failed, "error");
     } finally {
       setTimeout(() => {
         button.textContent = originalText;
@@ -164,16 +164,16 @@ document.addEventListener("DOMContentLoaded", function () {
   };
 
   const showNotification = (message, type = "info") => {
-    document.querySelectorAll(".wpsl-notification").forEach((n) => n.remove());
+    document.querySelectorAll(".otl-notification").forEach((n) => n.remove());
 
     const notification = document.createElement("div");
-    notification.className = `wpsl-notification wpsl-notification-${type}`;
+    notification.className = `otl-notification otl-notification-${type}`;
     const iconMap = { success: "✓", error: "✗", warning: "!", info: "ℹ" };
 
     notification.innerHTML = `
-      <span class="wpsl-notification-icon">${iconMap[type]}</span>
-      <span class="wpsl-notification-message">${message}</span>
-      <button class="wpsl-notification-close">&times;</button>
+      <span class="otl-notification-icon">${iconMap[type]}</span>
+      <span class="otl-notification-message">${message}</span>
+      <button class="otl-notification-close">&times;</button>
     `;
 
     document.body.appendChild(notification);
@@ -186,7 +186,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const timer = setTimeout(removeNotif, 5000);
     notification
-      .querySelector(".wpsl-notification-close")
+      .querySelector(".otl-notification-close")
       .addEventListener("click", () => {
         clearTimeout(timer);
         removeNotif();
