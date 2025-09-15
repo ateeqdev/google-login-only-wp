@@ -85,7 +85,7 @@ msgstr "वन-टैप लॉगिन सेटिंग्स"
 
 #: includes/class-otl-admin-settings.php:66
 msgid "Social Login"
-msgstr "सोशल लॉगिन"
+msgstr "वन टैप लॉगिन"
 
 #: includes/class-otl-admin-settings.php:121
 msgid "Secure Google Authentication for WordPress"

@@ -85,7 +85,7 @@ msgstr "원탭 로그인 설정"
 
 #: includes/class-otl-admin-settings.php:66
 msgid "Social Login"
-msgstr "소셜 로그인"
+msgstr "원탭 로그인"
 
 #: includes/class-otl-admin-settings.php:121
 msgid "Secure Google Authentication for WordPress"

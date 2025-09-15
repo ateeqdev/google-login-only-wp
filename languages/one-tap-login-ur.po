@@ -85,7 +85,7 @@ msgstr "ون ٹیپ لاگ ان سیٹنگز"
 
 #: includes/class-otl-admin-settings.php:66
 msgid "Social Login"
-msgstr "سوشل لاگ ان"
+msgstr "ون ٹپ لاگ ان"
 
 #: includes/class-otl-admin-settings.php:121
 msgid "Secure Google Authentication for WordPress"

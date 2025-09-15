@@ -85,7 +85,7 @@ msgstr "Egyérintéses bejelentkezés beállításai"
 
 #: includes/class-otl-admin-settings.php:66
 msgid "Social Login"
-msgstr "Közösségi bejelentkezés"
+msgstr "Egyérintéses bejelentkezés"
 
 #: includes/class-otl-admin-settings.php:121
 msgid "Secure Google Authentication for WordPress"

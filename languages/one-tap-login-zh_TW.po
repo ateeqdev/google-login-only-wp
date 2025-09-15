@@ -85,7 +85,7 @@ msgstr "一鍵登入 設定"
 
 #: includes/class-otl-admin-settings.php:66
 msgid "Social Login"
-msgstr "社群登入"
+msgstr "一鍵登入"
 
 #: includes/class-otl-admin-settings.php:121
 msgid "Secure Google Authentication for WordPress"

@@ -85,7 +85,7 @@ msgstr "Nastavení Přihlášení jedním klepnutím"
 
 #: includes/class-otl-admin-settings.php:66
 msgid "Social Login"
-msgstr "Sociální přihlášení"
+msgstr "Přihlášení jedním klepnutím"
 
 #: includes/class-otl-admin-settings.php:121
 msgid "Secure Google Authentication for WordPress"

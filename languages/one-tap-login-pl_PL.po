@@ -85,7 +85,7 @@ msgstr "Ustawienia Logowania One Tap"
 
 #: includes/class-otl-admin-settings.php:66
 msgid "Social Login"
-msgstr "Logowanie społecznościowe"
+msgstr "Logowanie jednym stuknięciem"
 
 #: includes/class-otl-admin-settings.php:121
 msgid "Secure Google Authentication for WordPress"

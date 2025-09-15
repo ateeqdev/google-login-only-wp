@@ -85,7 +85,7 @@ msgstr "One Tap -kirjautumisen asetukset"
 
 #: includes/class-otl-admin-settings.php:66
 msgid "Social Login"
-msgstr "Sosiaalinen kirjautuminen"
+msgstr "Yhden napautuksen kirjautuminen"
 
 #: includes/class-otl-admin-settings.php:121
 msgid "Secure Google Authentication for WordPress"

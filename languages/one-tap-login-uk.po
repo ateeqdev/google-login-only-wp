@@ -85,7 +85,7 @@ msgstr "Налаштування входу одним дотиком"
 
 #: includes/class-otl-admin-settings.php:66
 msgid "Social Login"
-msgstr "Соціальний вхід"
+msgstr "Вхід в один дотик"
 
 #: includes/class-otl-admin-settings.php:121
 msgid "Secure Google Authentication for WordPress"

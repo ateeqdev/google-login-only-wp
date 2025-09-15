@@ -87,7 +87,7 @@ msgid "One Tap Login Settings"
 msgstr ""
 
 #: includes/class-otl-admin-settings.php:66
-msgid "Social Login"
+msgid "One Tap Login""
 msgstr ""
 
 #: includes/class-otl-admin-settings.php:121

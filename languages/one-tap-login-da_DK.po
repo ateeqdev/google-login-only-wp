@@ -85,7 +85,7 @@ msgstr "One Tap-login-indstillinger"
 
 #: includes/class-otl-admin-settings.php:66
 msgid "Social Login"
-msgstr "Social login"
+msgstr "Én tryk login"
 
 #: includes/class-otl-admin-settings.php:121
 msgid "Secure Google Authentication for WordPress"
