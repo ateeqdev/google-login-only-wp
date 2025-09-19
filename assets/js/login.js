@@ -24,7 +24,7 @@ function handleCredentialResponse(response) {
 
   const form = document.createElement("form");
   form.method = "POST";
-  form.action = otl_login_params.callback_url;
+  form.action = esl_login_params.callback_url;
   form.style.display = "none";
 
   const createInput = (name, value) => {
@@ -37,23 +37,23 @@ function handleCredentialResponse(response) {
 
   form.appendChild(createInput("credential", response.credential));
   form.appendChild(
-    createInput("otl_csrf_token", otl_login_params.csrf_token)
+    createInput("esl_csrf_token", esl_login_params.csrf_token)
   );
-  form.appendChild(createInput("nonce", otl_login_params.nonce));
+  form.appendChild(createInput("nonce", esl_login_params.nonce));
 
   document.body.appendChild(form);
   form.submit();
 }
 
 function showAuthenticationLoading() {
-  let overlay = document.getElementById("otl-auth-loading");
+  let overlay = document.getElementById("esl-auth-loading");
   if (!overlay) {
     overlay = document.createElement("div");
-    overlay.id = "otl-auth-loading";
+    overlay.id = "esl-auth-loading";
     overlay.innerHTML = `
-      <div class="otl-auth-content">
-        <div class="otl-spinner"></div>
-        <p>${otl_login_params.authenticating}</p>
+      <div class="esl-auth-content">
+        <div class="esl-spinner"></div>
+        <p>${esl_login_params.authenticating}</p>
       </div>
     `;
     document.body.appendChild(overlay);
@@ -65,24 +65,24 @@ window.onload = function () {
   if (
     typeof google === "undefined" ||
     !google.accounts ||
-    typeof otl_login_params === "undefined"
+    typeof esl_login_params === "undefined"
   ) {
     return;
   }
 
   google.accounts.id.initialize({
-    client_id: otl_login_params.client_id,
+    client_id: esl_login_params.client_id,
     callback: handleCredentialResponse,
     auto_select: false,
     cancel_on_tap_outside: true,
-    context: otl_login_params.context,
+    context: esl_login_params.context,
   });
 
   const hasLoginError =
     document.getElementById("login_error") !== null ||
-    window.location.search.includes("otl_error_key");
+    window.location.search.includes("esl_error_key");
 
-  if (otl_login_params.show_prompt && !hasLoginError) {
+  if (esl_login_params.show_prompt && !hasLoginError) {
     google.accounts.id.prompt((notification) => {
       if (notification.isNotDisplayed() || notification.isSkippedMoment()) {
         console.log(

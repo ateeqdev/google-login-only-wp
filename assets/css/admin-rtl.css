@@ -1,68 +1,68 @@
-/* RTL Overrides for One Tap Login Admin Styles */
+/* RTL Overrides for Easy Secure Login Admin Styles */
 
 /* Main Wrapper */
-.otl-admin-wrap {
+.esl-admin-wrap {
   margin: 0 -20px 0 0;
 }
 
 /* Step Header */
-.otl-step-header {
+.esl-step-header {
   text-align: right;
 }
 
 /* Step Actions */
-.otl-step-actions .otl-btn .dashicons-arrow-right-alt {
+.esl-step-actions .esl-btn .dashicons-arrow-right-alt {
   transform: rotate(180deg);
 }
-.otl-step-actions .otl-btn .dashicons-arrow-left-alt {
+.esl-step-actions .esl-btn .dashicons-arrow-left-alt {
   transform: rotate(180deg);
 }
 
 /* Security Cards */
-.otl-security-card.enabled {
-  border-left: 1px solid var(--otl-border);
-  border-right: 4px solid var(--otl-success);
+.esl-security-card.enabled {
+  border-left: 1px solid var(--esl-border);
+  border-right: 4px solid var(--esl-success);
 }
 
 /* Toggle Switch */
-.otl-toggle-slider {
+.esl-toggle-slider {
   left: auto;
   right: 0;
 }
-.otl-toggle-slider:before {
+.esl-toggle-slider:before {
   left: auto;
   right: 2px;
 }
-.otl-toggle-input:checked + .otl-toggle-slider:before {
+.esl-toggle-input:checked + .esl-toggle-slider:before {
   transform: translateX(-16px);
 }
 
 /* Notification */
-.otl-notification {
+.esl-notification {
   right: auto;
   left: 20px;
   transform: translateX(-20px);
 }
-.otl-notification.show {
+.esl-notification.show {
   transform: translateX(0);
 }
-.otl-notification-close {
+.esl-notification-close {
   margin-left: 0;
   margin-right: auto;
 }
 
 /* Copy Input Group */
-.otl-copy-input input[readonly] {
+.esl-copy-input input[readonly] {
   padding-left: 6rem;
   padding-right: 0.75rem;
 }
-.otl-copy-input .otl-copy-btn {
+.esl-copy-input .esl-copy-btn {
   right: auto;
   left: 0.5rem;
 }
 
 /* User List Header */
-.otl-user-list-header,
-.otl-user-item {
+.esl-user-list-header,
+.esl-user-item {
   direction: rtl; /* Ensure grid items flow correctly */
 }

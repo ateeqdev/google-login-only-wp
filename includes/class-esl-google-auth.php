@@ -1,12 +1,12 @@
 <?php
 
-class OTL_GoogleAuth
+class ESL_GoogleAuth
 {
     private $settings;
 
     public function __construct($plugin_name, $version)
     {
-        $this->settings = get_option('otl_settings');
+        $this->settings = get_option('esl_settings');
         add_action('init', [$this, 'handleGoogleCallback']);
         add_action('init', [$this, 'handleOneTapCallback']);
     }
@@ -24,7 +24,7 @@ class OTL_GoogleAuth
             'httponly' => true,
             'samesite' => 'Lax'
         ];
-        setcookie('otl_oauth_state', $state_token, $cookie_options);
+        setcookie('esl_oauth_state', $state_token, $cookie_options);
 
         $params = [
             'response_type' => 'code',
@@ -49,13 +49,13 @@ class OTL_GoogleAuth
         if (!isset($_POST['credential'])) $this->storeErrorAndRedirect('invalid_credential');
 
         if (
-            !isset($_POST['otl_csrf_token'], $_COOKIE['otl_csrf_token']) ||
-            !hash_equals(wp_unslash($_COOKIE['otl_csrf_token']), wp_unslash($_POST['otl_csrf_token']))
+            !isset($_POST['esl_csrf_token'], $_COOKIE['esl_csrf_token']) ||
+            !hash_equals(wp_unslash($_COOKIE['esl_csrf_token']), wp_unslash($_POST['esl_csrf_token']))
         ) {
             $this->storeErrorAndRedirect('invalid_state');
         }
 
-        setcookie('otl_csrf_token', '', time() - 3600, '/', COOKIE_DOMAIN);
+        setcookie('esl_csrf_token', '', time() - 3600, '/', COOKIE_DOMAIN);
         $credential = isset($_POST['credential']) ? sanitize_text_field(wp_unslash($_POST['credential'])) : '';
         $user_data = $this->decodeAndVerifyJwt($credential);
 
@@ -92,12 +92,12 @@ class OTL_GoogleAuth
         if (!isset($_GET['action']) || $_GET['action'] !== 'google_login_callback' || !isset($_GET['code'])) return;
 
         $state = isset($_GET['state']) ? sanitize_text_field(wp_unslash($_GET['state'])) : '';
-        $cookie_state = isset($_COOKIE['otl_oauth_state']) ? sanitize_text_field(wp_unslash($_COOKIE['otl_oauth_state'])) : '';
+        $cookie_state = isset($_COOKIE['esl_oauth_state']) ? sanitize_text_field(wp_unslash($_COOKIE['esl_oauth_state'])) : '';
 
         if (empty($state) || empty($cookie_state) || !hash_equals($cookie_state, $state)) {
             $this->storeErrorAndRedirect('invalid_state');
         }
-        setcookie('otl_oauth_state', '', time() - 3600, '/', COOKIE_DOMAIN);
+        setcookie('esl_oauth_state', '', time() - 3600, '/', COOKIE_DOMAIN);
 
         $code = isset($_GET['code']) ? sanitize_text_field(wp_unslash($_GET['code'])) : '';
         // phpcs:enable
@@ -211,23 +211,23 @@ class OTL_GoogleAuth
     private function removeUserFromSettings($email)
     {
         $email = strtolower(trim($email));
-        $current_settings = get_option('otl_settings', []);
+        $current_settings = get_option('esl_settings', []);
         $allowed_users = $current_settings['allowed_users'] ?? [];
 
         $updated_users = array_filter($allowed_users, fn($user) => strtolower(trim($user['email'])) !== $email);
 
         if (count($updated_users) < count($allowed_users)) {
             $current_settings['allowed_users'] = array_values($updated_users);
-            update_option('otl_settings', $current_settings);
+            update_option('esl_settings', $current_settings);
         }
     }
 
     private function storeErrorAndRedirect($error_code)
     {
-        $message = OTL_ErrorHandler::getMessage($error_code);
-        $transient_key = 'otl_login_error_' . uniqid();
+        $message = ESL_ErrorHandler::getMessage($error_code);
+        $transient_key = 'esl_login_error_' . uniqid();
         set_transient($transient_key, $message, 5 * MINUTE_IN_SECONDS);
-        wp_safe_redirect(add_query_arg('otl_error_key', $transient_key, wp_login_url()));
+        wp_safe_redirect(add_query_arg('esl_error_key', $transient_key, wp_login_url()));
         exit;
     }
 }

@@ -12,617 +12,617 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Laravel Artisan Command\n"
 #. Plugin Name of the plugin
-#: one-tap-login.php
-#: includes/class-otl-admin-settings.php:120
-msgid "One Tap Login"
-msgstr "Connexion One Tap"
+#: easy-secure-login.php
+#: includes/class-esl-admin-settings.php:120
+msgid "Easy Secure Login"
+msgstr "Easy Secure Login"
 
 #. Plugin URI of the plugin
 #. Author URI of the plugin
-#: one-tap-login.php
+#: easy-secure-login.php
 msgid "https://hardtoskip.com/"
 msgstr "https://hardtoskip.com/"
 
 #. Description of the plugin
-#: one-tap-login.php
+#: easy-secure-login.php
 msgid "Replaces standard WordPress password authentication with Social Sign-In (currently Google) and One Tap. Features beautiful UI, automatic user management, and enhanced security options. Born from necessity after a successful brute-force attack on hardtoskip, this plugin enforces Google-only authentication to keep your site secure."
 msgstr "Remplace l'authentification par mot de passe standard de WordPress par la connexion sociale (actuellement Google) et One Tap. Propose une interface soignée, une gestion automatique des utilisateurs et des options de sécurité renforcées. Né d'une nécessité après une attaque par force brute réussie sur hardtoskip, ce plugin impose une authentification exclusivement Google pour sécuriser votre site."
 
 #. Author of the plugin
-#: one-tap-login.php
-#: includes/class-otl-frontend-hooks.php:101
+#: easy-secure-login.php
+#: includes/class-esl-frontend-hooks.php:101
 msgid "HardToSkip"
 msgstr "HardToSkip"
 
-#: includes/class-otl-admin-settings.php:35
-#: includes/class-otl-admin-settings.php:436
+#: includes/class-esl-admin-settings.php:35
+#: includes/class-esl-admin-settings.php:436
 msgid "user@example.com"
 msgstr "user@example.com"
 
-#: includes/class-otl-admin-settings.php:48
+#: includes/class-esl-admin-settings.php:48
 msgid "Saving..."
 msgstr "Enregistrement..."
 
-#: includes/class-otl-admin-settings.php:49
+#: includes/class-esl-admin-settings.php:49
 msgid "Settings Saved!"
 msgstr "Paramètres enregistrés !"
 
-#: includes/class-otl-admin-settings.php:50
+#: includes/class-esl-admin-settings.php:50
 msgid "An error occurred."
 msgstr "Une erreur est survenue."
 
-#: includes/class-otl-admin-settings.php:51
+#: includes/class-esl-admin-settings.php:51
 msgid "Testing..."
 msgstr "Test en cours..."
 
-#: includes/class-otl-admin-settings.php:52
+#: includes/class-esl-admin-settings.php:52
 msgid "Validation successful!"
 msgstr "Validation réussie !"
 
-#: includes/class-otl-admin-settings.php:53
+#: includes/class-esl-admin-settings.php:53
 msgid "Validation failed"
 msgstr "Échec de la validation"
 
-#: includes/class-otl-admin-settings.php:54
+#: includes/class-esl-admin-settings.php:54
 msgid "Are you sure you want to remove this user?"
 msgstr "Êtes-vous sûr de vouloir supprimer cet utilisateur ?"
 
-#: includes/class-otl-admin-settings.php:55
+#: includes/class-esl-admin-settings.php:55
 msgid "Please fill in both Client ID and Client Secret."
 msgstr "Veuillez renseigner à la fois l'ID client et le secret client."
 
-#: includes/class-otl-admin-settings.php:56
+#: includes/class-esl-admin-settings.php:56
 msgid "Copied!"
 msgstr "Copié !"
 
-#: includes/class-otl-admin-settings.php:57
+#: includes/class-esl-admin-settings.php:57
 msgid "Failed to copy."
 msgstr "Échec de la copie."
 
-#: includes/class-otl-admin-settings.php:65
-msgid "One Tap Login Settings"
-msgstr "Paramètres One Tap Login"
+#: includes/class-esl-admin-settings.php:65
+msgid "Easy Secure Login Settings"
+msgstr "Paramètres Easy Secure Login"
 
-#: includes/class-otl-admin-settings.php:66
-msgid "Social Login"
-msgstr "Connexion en un clic"
+#: includes/class-esl-admin-settings.php:66
+msgid "Easy Secure Login"
+msgstr "Easy Secure Login"
 
-#: includes/class-otl-admin-settings.php:121
+#: includes/class-esl-admin-settings.php:121
 msgid "Secure Google Authentication for WordPress"
 msgstr "Authentification Google sécurisée pour WordPress"
 
-#: includes/class-otl-admin-settings.php:159
+#: includes/class-esl-admin-settings.php:159
 msgid "Quick Status"
 msgstr "Statut rapide"
 
-#: includes/class-otl-admin-settings.php:161
+#: includes/class-esl-admin-settings.php:161
 msgid "Configuration:"
 msgstr "Configuration :"
 
-#: includes/class-otl-admin-settings.php:163
-#: includes/class-otl-admin-settings.php:573
+#: includes/class-esl-admin-settings.php:163
+#: includes/class-esl-admin-settings.php:573
 msgid "Complete"
 msgstr "Terminé"
 
-#: includes/class-otl-admin-settings.php:163
+#: includes/class-esl-admin-settings.php:163
 msgid "Pending"
 msgstr "En attente"
 
-#: includes/class-otl-admin-settings.php:167
+#: includes/class-esl-admin-settings.php:167
 msgid "Authorized Users:"
 msgstr "Utilisateurs autorisés :"
 
-#: includes/class-otl-admin-settings.php:171
+#: includes/class-esl-admin-settings.php:171
 msgid "Security Features:"
 msgstr "Fonctions de sécurité :"
 
-#: includes/class-otl-admin-settings.php:177
+#: includes/class-esl-admin-settings.php:177
 msgid "Quick Links"
 msgstr "Liens rapides"
 
-#: includes/class-otl-admin-settings.php:181
+#: includes/class-esl-admin-settings.php:181
 msgid "Test Login Page"
 msgstr "Page de test de connexion"
 
-#: includes/class-otl-admin-settings.php:185
-#: includes/class-otl-admin-settings.php:297
+#: includes/class-esl-admin-settings.php:185
+#: includes/class-esl-admin-settings.php:297
 msgid "Google Cloud Console"
 msgstr "Console Google Cloud"
 
-#: includes/class-otl-admin-settings.php:189
-#: one-tap-login.php:164
+#: includes/class-esl-admin-settings.php:189
+#: easy-secure-login.php:164
 msgid "Plugin Creator"
 msgstr "Créateur du plugin"
 
-#: includes/class-otl-admin-settings.php:193
+#: includes/class-esl-admin-settings.php:193
 msgid "Hire Developer"
 msgstr "Engager un développeur"
 
-#: includes/class-otl-admin-settings.php:231
-msgid "Welcome to One Tap Login"
-msgstr "Bienvenue sur One Tap Login"
+#: includes/class-esl-admin-settings.php:231
+msgid "Welcome to Easy Secure Login"
+msgstr "Bienvenue sur Easy Secure Login"
 
-#: includes/class-otl-admin-settings.php:232
+#: includes/class-esl-admin-settings.php:232
 msgid "Transform your WordPress authentication with secure Google Sign-In. This setup wizard will guide you through each step to ensure optimal security and user experience."
 msgstr "Transformez l'authentification de votre WordPress avec la connexion Google sécurisée. Cet assistant d'installation vous guidera à chaque étape pour garantir une sécurité et une expérience utilisateur optimales."
 
-#: includes/class-otl-admin-settings.php:238
+#: includes/class-esl-admin-settings.php:238
 msgid "Enhanced Security"
 msgstr "Sécurité renforcée"
 
-#: includes/class-otl-admin-settings.php:239
+#: includes/class-esl-admin-settings.php:239
 msgid "Eliminate password-based vulnerabilities with Google's robust OAuth authentication system."
 msgstr "Éliminez les vulnérabilités liées aux mots de passe grâce au système d'authentification OAuth robuste de Google."
 
-#: includes/class-otl-admin-settings.php:243
-#: includes/class-otl-admin-settings.php:418
+#: includes/class-esl-admin-settings.php:243
+#: includes/class-esl-admin-settings.php:418
 msgid "User Management"
 msgstr "Gestion des utilisateurs"
 
-#: includes/class-otl-admin-settings.php:244
+#: includes/class-esl-admin-settings.php:244
 msgid "Control exactly who can access your site with email-based authorization and role assignment."
 msgstr "Contrôlez précisément qui peut accéder à votre site grâce à l'autorisation par e-mail et à l'attribution de rôles."
 
-#: includes/class-otl-admin-settings.php:248
+#: includes/class-esl-admin-settings.php:248
 msgid "Seamless Experience"
 msgstr "Expérience transparente"
 
-#: includes/class-otl-admin-settings.php:249
+#: includes/class-esl-admin-settings.php:249
 msgid "Google One Tap provides instant authentication for users already signed into Google."
 msgstr "Google One Tap fournit une authentification instantanée pour les utilisateurs déjà connectés à Google."
 
-#: includes/class-otl-admin-settings.php:256
+#: includes/class-esl-admin-settings.php:256
 msgid "Your plugin is not yet configured. Users cannot log in until you complete the Google API setup."
 msgstr "Votre plugin n'est pas encore configuré. Les utilisateurs ne peuvent pas se connecter tant que vous n'avez pas terminé la configuration de l'API Google."
 
-#: includes/class-otl-admin-settings.php:261
-msgid "One Tap Login is configured and working. You can modify settings or enable additional features anytime."
-msgstr "One Tap Login est configuré et opérationnel. Vous pouvez modifier les paramètres ou activer des fonctionnalités supplémentaires à tout moment."
+#: includes/class-esl-admin-settings.php:261
+msgid "Easy Secure Login is configured and working. You can modify settings or enable additional features anytime."
+msgstr "Easy Secure Login est configuré et opérationnel. Vous pouvez modifier les paramètres ou activer des fonctionnalités supplémentaires à tout moment."
 
-#: includes/class-otl-admin-settings.php:268
+#: includes/class-esl-admin-settings.php:268
 msgid "Start Configuration"
 msgstr "Commencer la configuration"
 
-#: includes/class-otl-admin-settings.php:282
+#: includes/class-esl-admin-settings.php:282
 msgid "Google API Configuration"
 msgstr "Configuration de l'API Google"
 
-#: includes/class-otl-admin-settings.php:283
+#: includes/class-esl-admin-settings.php:283
 msgid "Set up your Google OAuth credentials to enable secure authentication. This is the most important step."
 msgstr "Configurez vos identifiants OAuth Google pour activer une authentification sécurisée. C'est l'étape la plus importante."
 
-#: includes/class-otl-admin-settings.php:289
+#: includes/class-esl-admin-settings.php:289
 msgid "Setup Instructions"
 msgstr "Instructions de configuration"
 
 #. translators: %s: link to Google Cloud Console.
-#: includes/class-otl-admin-settings.php:296
+#: includes/class-esl-admin-settings.php:296
 #, php-format
 msgid "Visit the %s"
 msgstr "Rendez-vous sur %s"
 
-#: includes/class-otl-admin-settings.php:302
+#: includes/class-esl-admin-settings.php:302
 msgid "Create a new project or select an existing one."
 msgstr "Créez un nouveau projet ou sélectionnez-en un existant."
 
-#: includes/class-otl-admin-settings.php:303
+#: includes/class-esl-admin-settings.php:303
 msgid "Navigate to \\"
 msgstr "Accédez à \\"
 
-#: includes/class-otl-admin-settings.php:304
+#: includes/class-esl-admin-settings.php:304
 msgid "Click \\"
 msgstr "Cliquez \\"
 
-#: includes/class-otl-admin-settings.php:305
+#: includes/class-esl-admin-settings.php:305
 msgid "Choose \\"
 msgstr "Choisissez \\"
 
-#: includes/class-otl-admin-settings.php:306
+#: includes/class-esl-admin-settings.php:306
 msgid "Add the redirect URIs and origins provided below."
 msgstr "Ajoutez les URI de redirection et les origines fournies ci-dessous."
 
-#: includes/class-otl-admin-settings.php:311
+#: includes/class-esl-admin-settings.php:311
 msgid "Required URLs for Google Console"
 msgstr "URL requises pour la console Google"
 
-#: includes/class-otl-admin-settings.php:313
+#: includes/class-esl-admin-settings.php:313
 msgid "Authorized redirect URIs (add both)"
 msgstr "URI de redirection autorisées (ajoutez les deux)"
 
-#: includes/class-otl-admin-settings.php:316
-#: includes/class-otl-admin-settings.php:322
-#: includes/class-otl-admin-settings.php:329
+#: includes/class-esl-admin-settings.php:316
+#: includes/class-esl-admin-settings.php:322
+#: includes/class-esl-admin-settings.php:329
 msgid "Copy"
 msgstr "Copier"
 
-#: includes/class-otl-admin-settings.php:326
+#: includes/class-esl-admin-settings.php:326
 msgid "Authorized JavaScript origins"
 msgstr "Origines JavaScript autorisées"
 
-#: includes/class-otl-admin-settings.php:335
+#: includes/class-esl-admin-settings.php:335
 msgid "Google OAuth Credentials"
 msgstr "Identifiants OAuth Google"
 
-#: includes/class-otl-admin-settings.php:337
+#: includes/class-esl-admin-settings.php:337
 msgid "Google Client ID"
 msgstr "ID client Google"
 
-#: includes/class-otl-admin-settings.php:338
+#: includes/class-esl-admin-settings.php:338
 msgid "e.g., 123456789.apps.googleusercontent.com"
 msgstr "p. ex., 123456789.apps.googleusercontent.com"
 
-#: includes/class-otl-admin-settings.php:341
+#: includes/class-esl-admin-settings.php:341
 msgid "Google Client Secret"
 msgstr "Secret client Google"
 
-#: includes/class-otl-admin-settings.php:342
+#: includes/class-esl-admin-settings.php:342
 msgid "e.g., GOCSPX-xxxxxxxxxx"
 msgstr "p. ex., GOCSPX-xxxxxxxxxx"
 
-#: includes/class-otl-admin-settings.php:347
-#: includes/class-otl-admin-settings.php:403
-#: includes/class-otl-admin-settings.php:475
-#: includes/class-otl-admin-settings.php:514
-#: includes/class-otl-admin-settings.php:558
+#: includes/class-esl-admin-settings.php:347
+#: includes/class-esl-admin-settings.php:403
+#: includes/class-esl-admin-settings.php:475
+#: includes/class-esl-admin-settings.php:514
+#: includes/class-esl-admin-settings.php:558
 msgid "Back"
 msgstr "Retour"
 
-#: includes/class-otl-admin-settings.php:349
+#: includes/class-esl-admin-settings.php:349
 msgid "Test Connection"
 msgstr "Tester la connexion"
 
-#: includes/class-otl-admin-settings.php:350
-#: includes/class-otl-admin-settings.php:404
-#: includes/class-otl-admin-settings.php:476
-#: includes/class-otl-admin-settings.php:515
+#: includes/class-esl-admin-settings.php:350
+#: includes/class-esl-admin-settings.php:404
+#: includes/class-esl-admin-settings.php:476
+#: includes/class-esl-admin-settings.php:515
 msgid "Save & Continue"
 msgstr "Enregistrer et continuer"
 
-#: includes/class-otl-admin-settings.php:365
+#: includes/class-esl-admin-settings.php:365
 msgid "Security Features"
 msgstr "Fonctions de sécurité"
 
-#: includes/class-otl-admin-settings.php:366
+#: includes/class-esl-admin-settings.php:366
 msgid "Enable additional security measures to protect your site from common attack vectors."
 msgstr "Activez des mesures de sécurité supplémentaires pour protéger votre site contre les vecteurs d'attaque courants."
 
-#: includes/class-otl-admin-settings.php:373
+#: includes/class-esl-admin-settings.php:373
 msgid "Important Note:"
 msgstr "Note importante :"
 
-#: includes/class-otl-admin-settings.php:373
+#: includes/class-esl-admin-settings.php:373
 msgid "This plugin was developed in response to real brute-force attacks. These features help reduce common risks but should be part of a comprehensive security strategy."
 msgstr "Ce plugin a été développé en réponse à de réelles attaques par force brute. Ces fonctionnalités aident à réduire les risques courants mais doivent faire partie d'une stratégie de sécurité globale."
 
-#: includes/class-otl-admin-settings.php:379
+#: includes/class-esl-admin-settings.php:379
 msgid "Disable XML-RPC"
 msgstr "Désactiver XML-RPC"
 
-#: includes/class-otl-admin-settings.php:379
+#: includes/class-esl-admin-settings.php:379
 msgid "Prevents brute-force attacks via XML-RPC. May affect mobile apps or Jetpack."
 msgstr "Empêche les attaques par force brute via XML-RPC. Peut affecter les applications mobiles ou Jetpack."
 
-#: includes/class-otl-admin-settings.php:380
+#: includes/class-esl-admin-settings.php:380
 msgid "Disable File Editing"
 msgstr "Désactiver l'édition de fichiers"
 
-#: includes/class-otl-admin-settings.php:380
+#: includes/class-esl-admin-settings.php:380
 msgid "Prevents code injection via the admin dashboard if an account is compromised."
 msgstr "Empêche l'injection de code via le tableau de bord admin si un compte est compromis."
 
-#: includes/class-otl-admin-settings.php:381
+#: includes/class-esl-admin-settings.php:381
 msgid "Hide WordPress Version"
 msgstr "Masquer la version de WordPress"
 
-#: includes/class-otl-admin-settings.php:381
+#: includes/class-esl-admin-settings.php:381
 msgid "Makes it harder for attackers to identify vulnerabilities for a specific WP version."
 msgstr "Rend plus difficile pour les attaquants d'identifier les vulnérabilités d'une version spécifique de WordPress."
 
-#: includes/class-otl-admin-settings.php:382
+#: includes/class-esl-admin-settings.php:382
 msgid "Restrict REST API"
 msgstr "Restreindre l'API REST"
 
-#: includes/class-otl-admin-settings.php:382
+#: includes/class-esl-admin-settings.php:382
 msgid "Prevents unauthorized data access via REST API. May affect some plugins."
 msgstr "Empêche l'accès non autorisé aux données via l'API REST. Peut affecter certains plugins."
 
-#: includes/class-otl-admin-settings.php:383
+#: includes/class-esl-admin-settings.php:383
 msgid "Block Sensitive Files"
 msgstr "Bloquer les fichiers sensibles"
 
-#: includes/class-otl-admin-settings.php:383
+#: includes/class-esl-admin-settings.php:383
 msgid "Attempts to block direct public access to wp-config.php and other sensitive files."
 msgstr "Tente de bloquer l'accès public direct à wp-config.php et à d'autres fichiers sensibles."
 
-#: includes/class-otl-admin-settings.php:419
+#: includes/class-esl-admin-settings.php:419
 msgid "Control who can access your site. Add Google email addresses and assign roles for authorized users."
 msgstr "Contrôlez qui peut accéder à votre site. Ajoutez les adresses e-mail Google et assignez des rôles aux utilisateurs autorisés."
 
-#: includes/class-otl-admin-settings.php:426
+#: includes/class-esl-admin-settings.php:426
 msgid "Authorized Users"
 msgstr "Utilisateurs autorisés"
 
-#: includes/class-otl-admin-settings.php:427
+#: includes/class-esl-admin-settings.php:427
 msgid "Add User"
 msgstr "Ajouter un utilisateur"
 
-#: includes/class-otl-admin-settings.php:430
+#: includes/class-esl-admin-settings.php:430
 msgid "Email Address"
 msgstr "Adresse e-mail"
 
-#: includes/class-otl-admin-settings.php:431
+#: includes/class-esl-admin-settings.php:431
 msgid "Role"
 msgstr "Rôle"
 
-#: includes/class-otl-admin-settings.php:453
+#: includes/class-esl-admin-settings.php:453
 msgid "New User Registration"
 msgstr "Inscription de nouveaux utilisateurs"
 
-#: includes/class-otl-admin-settings.php:458
+#: includes/class-esl-admin-settings.php:458
 msgid "Allow New User Sign-Ups"
 msgstr "Autoriser les nouvelles inscriptions"
 
-#: includes/class-otl-admin-settings.php:459
+#: includes/class-esl-admin-settings.php:459
 msgid "Allow any Google user to create an account. This bypasses the authorized user list above."
 msgstr "Autoriser tout utilisateur Google à créer un compte. Cela contourne la liste des utilisateurs autorisés ci-dessus."
 
-#: includes/class-otl-admin-settings.php:465
+#: includes/class-esl-admin-settings.php:465
 msgid "Default Role for New Users"
 msgstr "Rôle par défaut pour les nouveaux utilisateurs"
 
-#: includes/class-otl-admin-settings.php:469
+#: includes/class-esl-admin-settings.php:469
 msgid "Subscriber is the safest and recommended option for new public registrations."
 msgstr "Le rôle d'abonné est l'option la plus sûre et recommandée pour les nouvelles inscriptions publiques."
 
-#: includes/class-otl-admin-settings.php:489
+#: includes/class-esl-admin-settings.php:489
 msgid "Google One Tap"
 msgstr "Google One Tap"
 
-#: includes/class-otl-admin-settings.php:490
+#: includes/class-esl-admin-settings.php:490
 msgid "Configure Google One Tap for a seamless, one-click user authentication experience."
 msgstr "Configurez Google One Tap pour une expérience d'authentification utilisateur fluide en un clic."
 
-#: includes/class-otl-admin-settings.php:497
+#: includes/class-esl-admin-settings.php:497
 msgid "What is Google One Tap?"
 msgstr "Qu'est-ce que Google One Tap ?"
 
-#: includes/class-otl-admin-settings.php:498
+#: includes/class-esl-admin-settings.php:498
 msgid "One Tap displays a non-intrusive prompt that allows users already signed into Google to authenticate instantly. It is automatically enabled on the WordPress login page."
 msgstr "One Tap affiche une fenêtre non intrusive qui permet aux utilisateurs déjà connectés à Google de s'authentifier instantanément. Il est activé automatiquement sur la page de connexion WordPress."
 
-#: includes/class-otl-admin-settings.php:506
+#: includes/class-esl-admin-settings.php:506
 msgid "Enable One Tap on Homepage"
 msgstr "Activer One Tap sur la page d'accueil"
 
-#: includes/class-otl-admin-settings.php:507
+#: includes/class-esl-admin-settings.php:507
 msgid "Show the One Tap prompt to logged-out visitors on your homepage and other public pages."
 msgstr "Afficher l'invite One Tap aux visiteurs non connectés sur votre page d'accueil et autres pages publiques."
 
-#: includes/class-otl-admin-settings.php:528
+#: includes/class-esl-admin-settings.php:528
 msgid "Setup Complete!"
 msgstr "Configuration terminée !"
 
-#: includes/class-otl-admin-settings.php:529
-msgid "Congratulations! Your One Tap Login plugin is now configured and ready to secure your WordPress site."
-msgstr "Félicitations ! Votre plugin One Tap Login est maintenant configuré et prêt à sécuriser votre site WordPress."
+#: includes/class-esl-admin-settings.php:529
+msgid "Congratulations! Your Easy Secure Login plugin is now configured and ready to secure your WordPress site."
+msgstr "Félicitations ! Votre plugin Easy Secure Login est maintenant configuré et prêt à sécuriser votre site WordPress."
 
-#: includes/class-otl-admin-settings.php:535
+#: includes/class-esl-admin-settings.php:535
 msgid "Your Site is Now Secured"
 msgstr "Votre site est désormais sécurisé"
 
-#: includes/class-otl-admin-settings.php:536
+#: includes/class-esl-admin-settings.php:536
 msgid "Password-based authentication has been disabled. Users must now authenticate through Google, significantly reducing security risks."
 msgstr "L'authentification par mot de passe a été désactivée. Les utilisateurs doivent désormais s'authentifier via Google, réduisant considérablement les risques de sécurité."
 
-#: includes/class-otl-admin-settings.php:544
+#: includes/class-esl-admin-settings.php:544
 msgid "Test Login"
 msgstr "Tester la connexion"
 
-#: includes/class-otl-admin-settings.php:545
+#: includes/class-esl-admin-settings.php:545
 msgid "Try the new login experience"
 msgstr "Essayez la nouvelle expérience de connexion"
 
-#: includes/class-otl-admin-settings.php:551
+#: includes/class-esl-admin-settings.php:551
 msgid "Manage Users"
 msgstr "Gérer les utilisateurs"
 
-#: includes/class-otl-admin-settings.php:552
+#: includes/class-esl-admin-settings.php:552
 msgid "View your WordPress users"
 msgstr "Voir vos utilisateurs WordPress"
 
-#: includes/class-otl-admin-settings.php:559
+#: includes/class-esl-admin-settings.php:559
 msgid "Return to Overview"
 msgstr "Retour à l'aperçu"
 
-#: includes/class-otl-admin-settings.php:568
+#: includes/class-esl-admin-settings.php:568
 msgid "Overview"
 msgstr "Aperçu"
 
-#: includes/class-otl-admin-settings.php:569
+#: includes/class-esl-admin-settings.php:569
 msgid "Google API"
 msgstr "API Google"
 
-#: includes/class-otl-admin-settings.php:570
+#: includes/class-esl-admin-settings.php:570
 msgid "Security"
 msgstr "Sécurité"
 
-#: includes/class-otl-admin-settings.php:571
+#: includes/class-esl-admin-settings.php:571
 msgid "Users"
 msgstr "Utilisateurs"
 
-#: includes/class-otl-admin-settings.php:572
+#: includes/class-esl-admin-settings.php:572
 msgid "One Tap"
 msgstr "One Tap"
 
-#: includes/class-otl-admin-settings.php:665
+#: includes/class-esl-admin-settings.php:665
 msgid "Insufficient permissions."
 msgstr "Permissions insuffisantes."
 
-#: includes/class-otl-admin-settings.php:670
+#: includes/class-esl-admin-settings.php:670
 msgid "Please enter both Client ID and Client Secret."
 msgstr "Veuillez saisir à la fois l'ID client et le secret client."
 
-#: includes/class-otl-admin-settings.php:671
+#: includes/class-esl-admin-settings.php:671
 msgid "The Client ID does not appear to be in the correct format."
 msgstr "L'ID client ne semble pas être au bon format."
 
-#: includes/class-otl-admin-settings.php:672
+#: includes/class-esl-admin-settings.php:672
 msgid "The Client Secret appears to be too short."
 msgstr "Le secret client semble être trop court."
 
-#: includes/class-otl-admin-settings.php:674
+#: includes/class-esl-admin-settings.php:674
 msgid "Credentials format validation passed. Save your settings to apply them."
 msgstr "La validation du format des identifiants a réussi. Enregistrez vos paramètres pour les appliquer."
 
-#: includes/class-otl-error-handler.php:16
+#: includes/class-esl-error-handler.php:16
 msgid "Your Google account is not authorized to access this site. Please contact an administrator to request access."
 msgstr "Votre compte Google n'est pas autorisé à accéder à ce site. Veuillez contacter un administrateur pour demander l'accès."
 
-#: includes/class-otl-error-handler.php:17
+#: includes/class-esl-error-handler.php:17
 msgid "Authentication failed: Could not connect to Google servers. Please try again in a moment."
 msgstr "Échec de l'authentification : impossible de se connecter aux serveurs Google. Veuillez réessayer dans un instant."
 
-#: includes/class-otl-error-handler.php:18
+#: includes/class-esl-error-handler.php:18
 msgid "Authentication failed: No access token received from Google. Please try again."
 msgstr "Échec de l'authentification : aucun jeton d'accès reçu de Google. Veuillez réessayer."
 
-#: includes/class-otl-error-handler.php:19
+#: includes/class-esl-error-handler.php:19
 msgid "Authentication successful, but account creation failed. Please contact an administrator for assistance."
 msgstr "Authentification réussie, mais la création du compte a échoué. Veuillez contacter un administrateur pour obtenir de l'aide."
 
-#: includes/class-otl-error-handler.php:20
+#: includes/class-esl-error-handler.php:20
 msgid "Invalid authentication data received from Google. Please try signing in again."
 msgstr "Données d'authentification invalides reçues de Google. Veuillez réessayer de vous connecter."
 
-#: includes/class-otl-error-handler.php:21
+#: includes/class-esl-error-handler.php:21
 msgid "Could not retrieve your user information from Google. Please check your Google account permissions and try again."
 msgstr "Impossible de récupérer vos informations utilisateur depuis Google. Veuillez vérifier les autorisations de votre compte Google et réessayer."
 
-#: includes/class-otl-error-handler.php:22
+#: includes/class-esl-error-handler.php:22
 msgid "No email address was provided by Google. Please ensure your Google account has a verified email address."
 msgstr "Aucune adresse e-mail fournie par Google. Veuillez vous assurer que votre compte Google possède une adresse e-mail vérifiée."
 
-#: includes/class-otl-error-handler.php:23
+#: includes/class-esl-error-handler.php:23
 msgid "Authentication session expired or invalid. Please try logging in again."
 msgstr "La session d'authentification a expiré ou est invalide. Veuillez essayer de vous reconnecter."
 
-#: includes/class-otl-error-handler.php:38
+#: includes/class-esl-error-handler.php:38
 msgid "An unknown authentication error occurred. Please try again."
 msgstr "Une erreur d'authentification inconnue est survenue. Veuillez réessayer."
 
-#: includes/class-otl-frontend-hooks.php:68
+#: includes/class-esl-frontend-hooks.php:68
 msgid "Authenticating with Google..."
 msgstr "Authentification avec Google en cours..."
 
-#: includes/class-otl-frontend-hooks.php:78
+#: includes/class-esl-frontend-hooks.php:78
 msgid "Welcome Back"
 msgstr "Content de vous revoir"
 
-#: includes/class-otl-frontend-hooks.php:79
+#: includes/class-esl-frontend-hooks.php:79
 msgid "Sign in with your Google account to continue."
 msgstr "Connectez-vous avec votre compte Google pour continuer."
 
-#: includes/class-otl-frontend-hooks.php:91
+#: includes/class-esl-frontend-hooks.php:91
 msgid "Continue with Google"
 msgstr "Continuer avec Google"
 
-#: includes/class-otl-frontend-hooks.php:99
+#: includes/class-esl-frontend-hooks.php:99
 msgid "Login experience by"
 msgstr "Expérience de connexion par"
 
-#: includes/class-otl-frontend-hooks.php:103
+#: includes/class-esl-frontend-hooks.php:103
 msgid "- Viral Content Generator"
 msgstr "- Viral Content Generator"
 
-#: includes/class-otl-frontend-hooks.php:111
+#: includes/class-esl-frontend-hooks.php:111
 msgid "Signing you in..."
 msgstr "Connexion en cours..."
 
-#: includes/class-otl-frontend-hooks.php:122
+#: includes/class-esl-frontend-hooks.php:122
 msgid "Login Disabled:"
 msgstr "Connexion désactivée :"
 
-#: includes/class-otl-frontend-hooks.php:123
+#: includes/class-esl-frontend-hooks.php:123
 msgid "Password-based login is disabled. Please use Google Sign-In."
 msgstr "La connexion par mot de passe est désactivée. Veuillez utiliser la connexion Google."
 
-#: includes/class-otl-one-tap-login.php:50
+#: includes/class-esl-easy-secure-login.php:50
 msgid "Google Account Information"
 msgstr "Informations du compte Google"
 
-#: includes/class-otl-one-tap-login.php:53
-#: includes/class-otl-one-tap-login.php:55
+#: includes/class-esl-easy-secure-login.php:53
+#: includes/class-esl-easy-secure-login.php:55
 msgid "Google Profile Picture"
 msgstr "Photo de profil Google"
 
-#: includes/class-otl-one-tap-login.php:56
+#: includes/class-esl-easy-secure-login.php:56
 msgid "This profile picture is synced from your Google account."
 msgstr "Cette photo de profil est synchronisée depuis votre compte Google."
 
-#: includes/class-otl-one-tap-login.php:60
+#: includes/class-esl-easy-secure-login.php:60
 msgid "Authentication Method"
 msgstr "Méthode d'authentification"
 
-#: includes/class-otl-one-tap-login.php:69
+#: includes/class-esl-easy-secure-login.php:69
 msgid "Google Sign-In"
 msgstr "Connexion Google"
 
-#: includes/class-otl-one-tap-login.php:71
+#: includes/class-esl-easy-secure-login.php:71
 msgid "This user authenticates via Google OAuth."
 msgstr "Cet utilisateur s'authentifie via OAuth de Google."
 
-#: includes/class-otl-one-tap-login.php:139
+#: includes/class-esl-easy-secure-login.php:139
 msgid "Access Denied"
 msgstr "Accès refusé"
 
-#: includes/class-otl-one-tap-login.php:154
+#: includes/class-esl-easy-secure-login.php:154
 msgid "You are not currently logged in."
 msgstr "Vous n'êtes pas connecté actuellement."
 
-#: one-tap-login.php:111
-msgid "One Tap Login:"
-msgstr "One Tap Login :"
+#: easy-secure-login.php:111
+msgid "Easy Secure Login:"
+msgstr "Easy Secure Login :"
 
 #. translators: 1: Opening anchor tag, 2: Closing anchor tag
-#: one-tap-login.php:114
+#: easy-secure-login.php:114
 #, php-format
 msgid "Please %1$sconfigure your Google OAuth credentials%2$s to enable secure sign-in."
 msgstr "Veuillez %1$sconfigurer vos identifiants OAuth Google%2$s pour activer la connexion sécurisée."
 
-#: one-tap-login.php:125
+#: easy-secure-login.php:125
 msgid "Warning:"
 msgstr "Attention :"
 
-#: one-tap-login.php:125
-msgid "One Tap Login is not fully configured. Users may not be able to log in until you complete the setup."
-msgstr "One Tap Login n'est pas entièrement configuré. Les utilisateurs pourraient ne pas pouvoir se connecter tant que vous n'aurez pas terminé la configuration."
+#: easy-secure-login.php:125
+msgid "Easy Secure Login is not fully configured. Users may not be able to log in until you complete the setup."
+msgstr "Easy Secure Login n'est pas entièrement configuré. Les utilisateurs pourraient ne pas pouvoir se connecter tant que vous n'aurez pas terminé la configuration."
 
-#: one-tap-login.php:135
+#: easy-secure-login.php:135
 msgid "New user sign-ups are enabled with elevated permissions. Monitor your site for unauthorized content."
 msgstr "Les inscriptions de nouveaux utilisateurs sont activées avec des permissions élevées. Surveillez votre site pour détecter tout contenu non autorisé."
 
-#: one-tap-login.php:136
+#: easy-secure-login.php:136
 msgid "New user sign-ups are enabled. Monitor your user registrations for potential spam accounts."
 msgstr "Les inscriptions de nouveaux utilisateurs sont activées. Surveillez les enregistrements d'utilisateurs pour détecter d'éventuels comptes spam."
 
-#: one-tap-login.php:139
+#: easy-secure-login.php:139
 msgid "Security Notice:"
 msgstr "Avis de sécurité :"
 
-#: one-tap-login.php:150
+#: easy-secure-login.php:150
 msgid "Settings"
 msgstr "Paramètres"
 
-#: one-tap-login.php:165
+#: easy-secure-login.php:165
 msgid "Rate Plugin ★★★★★"
 msgstr "Évaluez le plugin ★★★★★"
 
-#: one-tap-login.php:193
-#: one-tap-login.php:214
-msgid "One Tap Login Error:"
-msgstr "Erreur One Tap Login :"
+#: easy-secure-login.php:193
+#: easy-secure-login.php:214
+msgid "Easy Secure Login Error:"
+msgstr "Erreur Easy Secure Login :"
 
-#: one-tap-login.php:194
+#: easy-secure-login.php:194
 msgid "A fatal error was detected and logged. Please check your PHP error log for details."
 msgstr "Une erreur fatale a été détectée et consignée. Veuillez vérifier votre journal d'erreurs PHP pour plus de détails."
 

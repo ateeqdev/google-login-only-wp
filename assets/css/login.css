@@ -1,21 +1,21 @@
 :root {
-  --otl-bg: #f8fafc;
-  --otl-card-bg: #ffffff;
-  --otl-text-primary: #1f2937;
-  --otl-text-secondary: #6b7280;
-  --otl-text-muted: #9ca3af;
-  --otl-border: #e5e7eb;
-  --otl-border-hover: #d1d5db;
-  --otl-accent: #3b82f6;
-  --otl-accent-hover: #2563eb;
-  --otl-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+  --esl-bg: #f8fafc;
+  --esl-card-bg: #ffffff;
+  --esl-text-primary: #1f2937;
+  --esl-text-secondary: #6b7280;
+  --esl-text-muted: #9ca3af;
+  --esl-border: #e5e7eb;
+  --esl-border-hover: #d1d5db;
+  --esl-accent: #3b82f6;
+  --esl-accent-hover: #2563eb;
+  --esl-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
     0 2px 4px -1px rgba(0, 0, 0, 0.06);
-  --otl-radius: 8px;
+  --esl-radius: 8px;
 }
 
 /* Base styling */
 body.login {
-  background-color: var(--otl-bg);
+  background-color: var(--esl-bg);
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   min-height: 100vh;
   display: flex;
@@ -55,47 +55,47 @@ body.login {
 }
 
 /* Login card */
-.otl-login-container {
-  background: var(--otl-card-bg);
-  border: 1px solid var(--otl-border);
-  border-radius: var(--otl-radius);
-  box-shadow: var(--otl-shadow);
+.esl-login-container {
+  background: var(--esl-card-bg);
+  border: 1px solid var(--esl-border);
+  border-radius: var(--esl-radius);
+  box-shadow: var(--esl-shadow);
   padding: 32px;
   text-align: center;
-  animation: otl-fade-in 0.6s ease-out;
+  animation: esl-fade-in 0.6s ease-out;
 }
 
 /* Header section */
-.otl-login-header {
+.esl-login-header {
   margin-bottom: 32px;
 }
 
-.otl-login-header h2 {
+.esl-login-header h2 {
   font-size: 24px;
   font-weight: 600;
-  color: var(--otl-text-primary);
+  color: var(--esl-text-primary);
   margin: 0 0 8px 0;
   line-height: 1.25;
 }
 
-.otl-login-header p {
+.esl-login-header p {
   font-size: 16px;
-  color: var(--otl-text-secondary);
+  color: var(--esl-text-secondary);
   margin: 0;
   line-height: 1.5;
 }
 
-.otl-google-button {
+.esl-google-button {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 12px;
   width: 100%;
   padding: 12px 20px;
-  border: 1px solid var(--otl-border);
-  border-radius: var(--otl-radius);
-  background-color: var(--otl-card-bg);
-  color: var(--otl-text-primary);
+  border: 1px solid var(--esl-border);
+  border-radius: var(--esl-radius);
+  background-color: var(--esl-card-bg);
+  color: var(--esl-text-primary);
   font-size: 16px;
   font-weight: 500;
   text-decoration: none;
@@ -106,66 +106,66 @@ body.login {
   box-sizing: border-box;
 }
 
-.otl-google-button:hover {
-  border-color: var(--otl-border-hover);
+.esl-google-button:hover {
+  border-color: var(--esl-border-hover);
   background-color: #f9fafb;
   transform: translateY(-1px);
   box-shadow: 0 6px 12px -2px rgba(0, 0, 0, 0.1);
 }
 
-.otl-google-button:focus {
-  outline: 2px solid var(--otl-accent);
+.esl-google-button:focus {
+  outline: 2px solid var(--esl-accent);
   outline-offset: 2px;
 }
 
-.otl-google-button:active {
+.esl-google-button:active {
   transform: translateY(0);
 }
 
 /* Google logo */
-.otl-google-logo {
+.esl-google-logo {
   width: 20px;
   height: 20px;
   flex-shrink: 0;
   transition: opacity 0.3s ease;
 }
 
-.otl-google-button span {
+.esl-google-button span {
   transition: opacity 0.3s ease;
 }
 
-.otl-spinner {
+.esl-spinner {
   width: 20px;
   height: 20px;
-  border: 2px solid var(--otl-border);
-  border-top-color: var(--otl-accent);
+  border: 2px solid var(--esl-border);
+  border-top-color: var(--esl-accent);
   border-radius: 50%;
-  animation: otl-spin 1s linear infinite;
+  animation: esl-spin 1s linear infinite;
   display: none;
   transition: opacity 0.3s ease;
 }
 
-.otl-google-button.loading {
+.esl-google-button.loading {
   cursor: not-allowed;
   pointer-events: none;
 }
 
-.otl-google-button.loading .otl-spinner {
+.esl-google-button.loading .esl-spinner {
   display: block;
 }
 
-.otl-google-button.loading .otl-google-logo {
+.esl-google-button.loading .esl-google-logo {
   opacity: 0.3;
 }
 
-.otl-google-button.loading span {
+.esl-google-button.loading span {
   opacity: 0.3;
 }
 
 /* Error messages */
 #login_error,
 .message {
-  border-radius: var(--otl-radius) !important;
+  border-radius: var(--esl-radius) !important;
   border: 1px solid #fca5a5 !important;
   background-color: #fef2f2 !important;
   color: #991b1b !important;
@@ -181,7 +181,7 @@ body.login {
 }
 
 /* Loading overlay */
-#otl-auth-loading {
+#esl-auth-loading {
   position: fixed;
   top: 0;
   left: 0;
@@ -198,30 +198,30 @@ body.login {
   pointer-events: none;
 }
 
-#otl-auth-loading.show {
+#esl-auth-loading.show {
   opacity: 1;
   pointer-events: auto;
 }
 
-.otl-auth-content {
+.esl-auth-content {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 16px;
-  background: var(--otl-card-bg);
+  background: var(--esl-card-bg);
   padding: 32px;
-  border-radius: var(--otl-radius);
-  box-shadow: var(--otl-shadow);
+  border-radius: var(--esl-radius);
+  box-shadow: var(--esl-shadow);
 }
 
-.otl-auth-content p {
+.esl-auth-content p {
   font-size: 16px;
   font-weight: 500;
-  color: var(--otl-text-primary);
+  color: var(--esl-text-primary);
   margin: 0;
 }
 
-.otl-auth-content .otl-spinner {
+.esl-auth-content .esl-spinner {
   position: static;
   transform: none;
   display: block;
@@ -230,34 +230,34 @@ body.login {
   border-width: 3px;
 }
 
-.otl-footer {
+.esl-footer {
   position: fixed;
   bottom: 0;
   left: 0;
   right: 0;
-  background: var(--otl-card-bg);
-  border-top: 1px solid var(--otl-border);
+  background: var(--esl-card-bg);
+  border-top: 1px solid var(--esl-border);
   padding: 16px 20px;
   text-align: center;
   z-index: 1000;
   box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.otl-footer p {
+.esl-footer p {
   margin: 0;
   font-size: 14px;
-  color: var(--otl-text-muted);
+  color: var(--esl-text-muted);
   line-height: 1.4;
 }
 
-.otl-footer a {
-  color: var(--otl-accent);
+.esl-footer a {
+  color: var(--esl-accent);
   text-decoration: none;
   font-weight: 500;
 }
 
-.otl-footer a:hover {
-  color: var(--otl-accent-hover);
+.esl-footer a:hover {
+  color: var(--esl-accent-hover);
   text-decoration: underline;
 }
 
@@ -266,13 +266,13 @@ body.login {
 }
 
 /* Animations */
-@keyframes otl-spin {
+@keyframes esl-spin {
   to {
     transform: rotate(360deg);
   }
 }
 
-@keyframes otl-fade-in {
+@keyframes esl-fade-in {
   from {
     opacity: 0;
     transform: translateY(20px);
@@ -289,23 +289,23 @@ body.login {
     margin-bottom: 100px;
   }
 
-  .otl-login-container {
+  .esl-login-container {
     padding: 24px;
   }
 
-  .otl-login-header h2 {
+  .esl-login-header h2 {
     font-size: 22px;
   }
 
-  .otl-login-header p {
+  .esl-login-header p {
     font-size: 15px;
   }
 
-  .otl-footer {
+  .esl-footer {
     padding: 12px 16px;
   }
 
-  .otl-footer p {
+  .esl-footer p {
     font-size: 13px;
   }
 }

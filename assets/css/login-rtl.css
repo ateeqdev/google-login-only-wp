@@ -1,19 +1,19 @@
-/* RTL Overrides for One Tap Login Styles */
+/* RTL Overrides for Easy Secure Login Styles */
 
 /* Base styling */
 body.login,
-.otl-auth-content p {
+.esl-auth-content p {
   direction: rtl;
 }
 
 /* Loading overlay */
-#otl-auth-loading {
+#esl-auth-loading {
   left: auto;
   right: 0;
 }
 
 /* Animations */
-@keyframes otl-fade-in {
+@keyframes esl-fade-in {
   from {
     opacity: 0;
     transform: translateY(20px);

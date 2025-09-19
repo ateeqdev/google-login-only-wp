@@ -1,4 +1,4 @@
-=== One Tap Login ===
+=== Easy Secure Login ===
 Contributors: hardtoskip
 Donate link: https://hardtoskip.com/
 Tags: google login, google one tap, oauth, authentication, security
@@ -13,7 +13,7 @@ Replaces the default WordPress login with secure Google Sign-In and Google One T
 
 == Description ==
 
-**One Tap Login** is a security-focused authentication plugin that eliminates WordPress passwords and replaces them with **Google-only authentication**. It provides both **Google Sign-In** and **Google One Tap**, offering users a fast, secure, and frictionless login experience.
+**Easy Secure Login** is a security-focused authentication plugin that eliminates WordPress passwords and replaces them with **Google-only authentication**. It provides both **Google Sign-In** and **Google One Tap**, offering users a fast, secure, and frictionless login experience.
 
 This plugin was born out of necessity after a brute-force attack, designed to ensure that **only verified Google accounts can access your site**. It integrates robust **security features**, automatic user management, and a user-friendly setup wizard.
 
@@ -38,7 +38,7 @@ This plugin ensures **maximum login security** while improving the **user experi
 
 1. Upload the plugin folder to `/wp-content/plugins/` or install via **Plugins → Add New** in WordPress.
 2. Activate the plugin through the **Plugins** menu.
-3. Go to **One Tap Login** in the WordPress admin sidebar.
+3. Go to **Easy Secure Login** in the WordPress admin sidebar.
 4. Follow the **setup wizard**:
    - Create a Google Cloud project and configure OAuth credentials.
    - Add redirect URIs and JavaScript origins (provided in the wizard).
