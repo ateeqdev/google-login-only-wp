@@ -1,68 +1,68 @@
 /* RTL Overrides for Easy Secure Login Admin Styles */
 
 /* Main Wrapper */
-.esl-admin-wrap {
+.eslgp-admin-wrap {
   margin: 0 -20px 0 0;
 }
 
 /* Step Header */
-.esl-step-header {
+.eslgp-step-header {
   text-align: right;
 }
 
 /* Step Actions */
-.esl-step-actions .esl-btn .dashicons-arrow-right-alt {
+.eslgp-step-actions .eslgp-btn .dashicons-arrow-right-alt {
   transform: rotate(180deg);
 }
-.esl-step-actions .esl-btn .dashicons-arrow-left-alt {
+.eslgp-step-actions .eslgp-btn .dashicons-arrow-left-alt {
   transform: rotate(180deg);
 }
 
 /* Security Cards */
-.esl-security-card.enabled {
-  border-left: 1px solid var(--esl-border);
-  border-right: 4px solid var(--esl-success);
+.eslgp-security-card.enabled {
+  border-left: 1px solid var(--eslgp-border);
+  border-right: 4px solid var(--eslgp-success);
 }
 
 /* Toggle Switch */
-.esl-toggle-slider {
+.eslgp-toggle-slider {
   left: auto;
   right: 0;
 }
-.esl-toggle-slider:before {
+.eslgp-toggle-slider:before {
   left: auto;
   right: 2px;
 }
-.esl-toggle-input:checked + .esl-toggle-slider:before {
+.eslgp-toggle-input:checked + .eslgp-toggle-slider:before {
   transform: translateX(-16px);
 }
 
 /* Notification */
-.esl-notification {
+.eslgp-notification {
   right: auto;
   left: 20px;
   transform: translateX(-20px);
 }
-.esl-notification.show {
+.eslgp-notification.show {
   transform: translateX(0);
 }
-.esl-notification-close {
+.eslgp-notification-close {
   margin-left: 0;
   margin-right: auto;
 }
 
 /* Copy Input Group */
-.esl-copy-input input[readonly] {
+.eslgp-copy-input input[readonly] {
   padding-left: 6rem;
   padding-right: 0.75rem;
 }
-.esl-copy-input .esl-copy-btn {
+.eslgp-copy-input .eslgp-copy-btn {
   right: auto;
   left: 0.5rem;
 }
 
 /* User List Header */
-.esl-user-list-header,
-.esl-user-item {
+.eslgp-user-list-header,
+.eslgp-user-item {
   direction: rtl; /* Ensure grid items flow correctly */
 }

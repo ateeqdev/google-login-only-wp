@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", function () {
   "use strict";
 
   // Global state
-  let userIndex = esl_admin.initial_user_count || 0;
+  let userIndex = eslgp_admin.initial_user_count || 0;
 
   // Initializers
   const init = () => {
@@ -14,19 +14,19 @@ document.addEventListener("DOMContentLoaded", function () {
     initSecurityCards();
 
     if (new URLSearchParams(window.location.search).has("settings-updated")) {
-      showNotification(esl_admin.strings.saved, "success");
+      showNotification(eslgp_admin.strings.saved, "success");
     }
   };
 
   const initUserManagement = () => {
     const userList = document.getElementById("user-list");
-    const addUserBtn = document.getElementById("esl-add-user-btn");
+    const addUserBtn = document.getElementById("eslgp-add-user-btn");
     if (!userList || !addUserBtn) return;
 
     addUserBtn.addEventListener("click", addUser);
 
     userList.addEventListener("click", (e) => {
-      const removeBtn = e.target.closest(".esl-remove-user");
+      const removeBtn = e.target.closest(".eslgp-remove-user");
       if (removeBtn) {
         removeUser(removeBtn);
       }
@@ -34,20 +34,20 @@ document.addEventListener("DOMContentLoaded", function () {
   };
 
   const initCopyButtons = () => {
-    document.querySelectorAll(".esl-copy-btn").forEach((button) => {
+    document.querySelectorAll(".eslgp-copy-btn").forEach((button) => {
       button.addEventListener("click", () => copyToClipboard(button));
     });
   };
 
   const initTestConnection = () => {
-    const testBtn = document.getElementById("esl-test-connection-btn");
+    const testBtn = document.getElementById("eslgp-test-connection-btn");
     if (testBtn) {
       testBtn.addEventListener("click", testGoogleConnection);
     }
   };
 
   const initFormSubmissions = () => {
-    document.querySelectorAll(".esl-form").forEach((form) => {
+    document.querySelectorAll(".eslgp-form").forEach((form) => {
       form.addEventListener("submit", (e) => {
         const submitBtn = e.submitter;
         if (submitBtn) {
@@ -59,8 +59,8 @@ document.addEventListener("DOMContentLoaded", function () {
   };
 
   const initConditionalFields = () => {
-    const allowSignupsToggle = document.getElementById("esl-allow-signups");
-    const roleSection = document.getElementById("esl-signup-role-section");
+    const allowSignupsToggle = document.getElementById("eslgp-allow-signups");
+    const roleSection = document.getElementById("eslgp-signup-role-section");
 
     if (allowSignupsToggle && roleSection) {
       allowSignupsToggle.addEventListener("change", () => {
@@ -73,11 +73,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
   const initSecurityCards = () => {
     document
-      .querySelectorAll(".esl-security-card .esl-toggle-input")
+      .querySelectorAll(".eslgp-security-card .eslgp-toggle-input")
       .forEach((checkbox) => {
         checkbox.addEventListener("change", (e) => {
           e.target
-            .closest(".esl-security-card")
+            .closest(".eslgp-security-card")
             .classList.toggle("enabled", e.target.checked);
         });
       });
@@ -86,7 +86,7 @@ document.addEventListener("DOMContentLoaded", function () {
   // Functions
   const addUser = () => {
     const userList = document.getElementById("user-list");
-    const template = esl_admin.user_template.replace(
+    const template = eslgp_admin.user_template.replace(
       /__INDEX__/g,
       userIndex++
     );
@@ -95,8 +95,8 @@ document.addEventListener("DOMContentLoaded", function () {
   };
 
   const removeUser = (button) => {
-    if (confirm(esl_admin.strings.confirm_remove_user)) {
-      const userItem = button.closest(".esl-user-item");
+    if (confirm(eslgp_admin.strings.confirm_remove_user)) {
+      const userItem = button.closest(".eslgp-user-item");
       userItem.remove();
       const userList = document.getElementById("user-list");
       if (userList.children.length === 0) {
@@ -112,19 +112,19 @@ document.addEventListener("DOMContentLoaded", function () {
     const clientSecret = document.getElementById("client_secret")?.value;
 
     if (!clientId || !clientSecret) {
-      return showNotification(esl_admin.strings.fill_both_fields, "error");
+      return showNotification(eslgp_admin.strings.fill_both_fields, "error");
     }
 
-    button.innerHTML = `<span class="esl-loading"></span> ${esl_admin.strings.testing}`;
+    button.innerHTML = `<span class="eslgp-loading"></span> ${eslgp_admin.strings.testing}`;
     button.disabled = true;
 
     try {
-      const response = await fetch(esl_admin.ajax_url, {
+      const response = await fetch(eslgp_admin.ajax_url, {
         method: "POST",
         headers: { "Content-Type": "application/x-www-form-urlencoded" },
         body: new URLSearchParams({
-          action: "esl_test_connection",
-          nonce: esl_admin.nonce,
+          action: "eslgp_test_connection",
+          nonce: eslgp_admin.nonce,
           client_id: clientId,
           client_secret: clientSecret,
         }),
@@ -137,7 +137,7 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     } catch (error) {
       showNotification(
-        `${esl_admin.strings.connection_failed}: ${error.message}`,
+        `${eslgp_admin.strings.connection_failed}: ${error.message}`,
         "error"
       );
     } finally {
@@ -151,10 +151,10 @@ document.addEventListener("DOMContentLoaded", function () {
     const originalText = button.textContent;
     try {
       await navigator.clipboard.writeText(input.value);
-      button.textContent = esl_admin.strings.copied;
+      button.textContent = eslgp_admin.strings.copied;
       button.classList.add("success");
     } catch (err) {
-      showNotification(esl_admin.strings.copy_failed, "error");
+      showNotification(eslgp_admin.strings.copy_failed, "error");
     } finally {
       setTimeout(() => {
         button.textContent = originalText;
@@ -164,16 +164,16 @@ document.addEventListener("DOMContentLoaded", function () {
   };
 
   const showNotification = (message, type = "info") => {
-    document.querySelectorAll(".esl-notification").forEach((n) => n.remove());
+    document.querySelectorAll(".eslgp-notification").forEach((n) => n.remove());
 
     const notification = document.createElement("div");
-    notification.className = `esl-notification esl-notification-${type}`;
+    notification.className = `eslgp-notification eslgp-notification-${type}`;
     const iconMap = { success: "✓", error: "✗", warning: "!", info: "ℹ" };
 
     notification.innerHTML = `
-      <span class="esl-notification-icon">${iconMap[type]}</span>
-      <span class="esl-notification-message">${message}</span>
-      <button class="esl-notification-close">&times;</button>
+      <span class="eslgp-notification-icon">${iconMap[type]}</span>
+      <span class="eslgp-notification-message">${message}</span>
+      <button class="eslgp-notification-close">&times;</button>
     `;
 
     document.body.appendChild(notification);
@@ -186,7 +186,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const timer = setTimeout(removeNotif, 5000);
     notification
-      .querySelector(".esl-notification-close")
+      .querySelector(".eslgp-notification-close")
       .addEventListener("click", () => {
         clearTimeout(timer);
         removeNotif();

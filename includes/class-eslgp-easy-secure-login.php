@@ -1,6 +1,6 @@
 <?php
 
-class ESL_EasySecureLogin
+class ESLGP_EasySecureLogin
 {
 
     protected $plugin_name;
@@ -9,7 +9,7 @@ class ESL_EasySecureLogin
     public function __construct()
     {
         $this->plugin_name = 'easy-secure-login';
-        $this->version = ESL_VERSION;
+        $this->version = ESLGP_VERSION;
     }
 
     public function run()
@@ -21,17 +21,17 @@ class ESL_EasySecureLogin
 
     private function loadDependencies()
     {
-        require_once ESL_PLUGIN_PATH . 'includes/class-esl-admin-settings.php';
-        require_once ESL_PLUGIN_PATH . 'includes/class-esl-google-auth.php';
-        require_once ESL_PLUGIN_PATH . 'includes/class-esl-frontend-hooks.php';
-        require_once ESL_PLUGIN_PATH . 'includes/class-esl-error-handler.php';
+        require_once ESLGP_PLUGIN_PATH . 'includes/class-eslgp-admin-settings.php';
+        require_once ESLGP_PLUGIN_PATH . 'includes/class-eslgp-google-auth.php';
+        require_once ESLGP_PLUGIN_PATH . 'includes/class-eslgp-frontend-hooks.php';
+        require_once ESLGP_PLUGIN_PATH . 'includes/class-eslgp-error-handler.php';
     }
 
     private function initializeClasses()
     {
-        new ESL_AdminSettings($this->plugin_name, $this->version);
-        new ESL_GoogleAuth($this->plugin_name, $this->version);
-        new ESL_FrontendHooks($this->plugin_name, $this->version);
+        new ESLGP_AdminSettings($this->plugin_name, $this->version);
+        new ESLGP_GoogleAuth($this->plugin_name, $this->version);
+        new ESLGP_FrontendHooks($this->plugin_name, $this->version);
     }
 
     private function defineHooks()
@@ -52,14 +52,14 @@ class ESL_EasySecureLogin
                 <tr>
                     <th><label><?php esc_html_e('Google Profile Picture', 'easy-secure-login'); ?></label></th>
                     <td>
-                        <img src="<?php echo esc_url(get_user_meta($user->ID, 'google_profile_picture', true)); ?>" alt="<?php esc_attr_e('Google Profile Picture', 'easy-secure-login'); ?>" class="esl-profile-picture">
+                        <img src="<?php echo esc_url(get_user_meta($user->ID, 'google_profile_picture', true)); ?>" alt="<?php esc_attr_e('Google Profile Picture', 'easy-secure-login'); ?>" class="eslgp-profile-picture">
                         <p class="description"><?php esc_html_e('This profile picture is synced from your Google account.', 'easy-secure-login'); ?></p>
                     </td>
                 </tr>
                 <tr>
                     <th><label><?php esc_html_e('Authentication Method', 'easy-secure-login'); ?></label></th>
                     <td>
-                        <span class="esl-auth-badge">
+                        <span class="eslgp-auth-badge">
                             <svg viewBox="0 0 24 24" fill="currentColor">
                                 <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" />
                                 <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" />
@@ -106,7 +106,7 @@ class ESL_EasySecureLogin
 
     public function securityEnhancements()
     {
-        $settings = get_option('esl_settings', []);
+        $settings = get_option('eslgp_settings', []);
         $security = $settings['security_features'] ?? [];
 
         if (!empty($security['disable_xmlrpc'])) {
@@ -143,7 +143,7 @@ class ESL_EasySecureLogin
 
     public function restrictRestApiAccess($result)
     {
-        $settings = get_option('esl_settings', []);
+        $settings = get_option('eslgp_settings', []);
         if (empty($settings['security_features']['restrict_rest_api'])) {
             return $result;
         }

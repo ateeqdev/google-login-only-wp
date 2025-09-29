@@ -1,6 +1,6 @@
 <?php
 
-class ESL_ErrorHandler
+class ESLGP_ErrorHandler
 {
     private static $error_messages = null;
 

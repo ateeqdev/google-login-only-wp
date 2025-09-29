@@ -14,7 +14,7 @@
  * Tested up to:      6.8
  * Requires PHP:      7.4
  * 
- * @package ESL_EasySecureLogin
+ * @package ESLGP_EasySecureLogin
  */
 
 // If this file is called directly, abort.
@@ -25,25 +25,25 @@ if (!defined('WPINC')) {
 /**
  * Plugin version.
  */
-define('ESL_VERSION', '2.1.1');
+define('ESLGP_VERSION', '2.1.1');
 
 /**
  * Plugin paths and URLs.
  */
-define('ESL_PLUGIN_PATH', plugin_dir_path(__FILE__));
-define('ESL_PLUGIN_URL', plugin_dir_url(__FILE__));
-define('ESL_PLUGIN_BASENAME', plugin_basename(__FILE__));
+define('ESLGP_PLUGIN_PATH', plugin_dir_path(__FILE__));
+define('ESLGP_PLUGIN_URL', plugin_dir_url(__FILE__));
+define('ESLGP_PLUGIN_BASENAME', plugin_basename(__FILE__));
 
 /**
  * Load the main plugin class.
  */
-require_once ESL_PLUGIN_PATH . 'includes/class-esl-easy-secure-login.php';
+require_once ESLGP_PLUGIN_PATH . 'includes/class-eslgp-easy-secure-login.php';
 
 /**
  * Plugin activation hook.
  * Sets up default options and creates initial configuration.
  */
-function esl_activate()
+function eslgp_activate()
 {
     $default_options = [
         'client_id' => '',
@@ -61,31 +61,31 @@ function esl_activate()
         ]
     ];
 
-    if (!get_option('esl_settings')) {
-        add_option('esl_settings', $default_options);
+    if (!get_option('eslgp_settings')) {
+        add_option('eslgp_settings', $default_options);
     }
 
-    add_option('esl_show_setup_notice', true);
+    add_option('eslgp_show_setup_notice', true);
 }
 
 /**
  * Plugin deactivation hook.
  * Cleans up temporary data but preserves settings.
  */
-function esl_deactivate()
+function eslgp_deactivate()
 {
-    delete_option('esl_show_setup_notice');
+    delete_option('eslgp_show_setup_notice');
 }
 
 /**
  * Plugin uninstall hook (defined in separate uninstall.php file).
  */
-register_uninstall_hook(__FILE__, 'esl_uninstall');
-function esl_uninstall()
+register_uninstall_hook(__FILE__, 'eslgp_uninstall');
+function eslgp_uninstall()
 {
-    delete_option('esl_settings');
-    delete_option('esl_show_setup_notice');
-    delete_option('esl_wizard_progress');
+    delete_option('eslgp_settings');
+    delete_option('eslgp_show_setup_notice');
+    delete_option('eslgp_wizard_progress');
 
     $users = get_users([
         'meta_key' => 'google_profile_picture',
@@ -100,11 +100,11 @@ function esl_uninstall()
 /**
  * Show admin notice for first-time setup and important warnings.
  */
-function esl_admin_notices()
+function eslgp_admin_notices()
 {
     $current_screen = get_current_screen();
 
-    if (get_option('esl_show_setup_notice') && $current_screen && $current_screen->id !== 'toplevel_page_easy-secure-login') {
+    if (get_option('eslgp_show_setup_notice') && $current_screen && $current_screen->id !== 'toplevel_page_easy-secure-login') {
         $settings_url = admin_url('admin.php?page=easy-secure-login');
         echo '<div class="notice notice-info is-dismissible">';
         echo '<p><strong>' . esc_html__('Easy Secure Login:', 'easy-secure-login') . '</strong> ';
@@ -118,7 +118,7 @@ function esl_admin_notices()
         echo '</div>';
     }
 
-    $settings = get_option('esl_settings', []);
+    $settings = get_option('eslgp_settings', []);
     if (empty($settings['client_id']) || empty($settings['client_secret'])) {
         echo '<div class="notice notice-warning">';
         echo '<p><strong>' . esc_html__('Warning:', 'easy-secure-login') . '</strong> ' . esc_html__('Easy Secure Login is not fully configured. Users may not be able to log in until you complete the setup.', 'easy-secure-login') . '</p>';
@@ -144,7 +144,7 @@ function esl_admin_notices()
 /**
  * Add plugin action links in the plugins list.
  */
-function esl_plugin_action_links($links)
+function eslgp_plugin_action_links($links)
 {
     $settings_link = '<a href="' . admin_url('admin.php?page=easy-secure-login') . '">' . esc_html__('Settings', 'easy-secure-login') . '</a>';
 
@@ -156,9 +156,9 @@ function esl_plugin_action_links($links)
 /**
  * Add plugin meta links in the plugins list.
  */
-function esl_plugin_row_meta($links, $file)
+function eslgp_plugin_row_meta($links, $file)
 {
-    if (ESL_PLUGIN_BASENAME === $file) {
+    if (ESLGP_PLUGIN_BASENAME === $file) {
         $meta_links = [
             'developer' => '<a href="https://linkedin.com/in/ateeqdev" target="_blank">' . esc_html__('Plugin Creator', 'easy-secure-login') . '</a>',
             'rate' => '<a href="https://wordpress.org/support/plugin/easy-secure-login/reviews/?filter=5#new-post" target="_blank" rel="nofollow">' . esc_html__('Rate Plugin ★★★★★', 'easy-secure-login') . '</a>',
@@ -172,28 +172,28 @@ function esl_plugin_row_meta($links, $file)
 /**
  * Handle plugin errors gracefully.
  */
-function esl_handle_fatal_error()
+function eslgp_handle_fatal_error()
 {
     $error = error_get_last();
 
-    if ($error && strpos($error['file'], ESL_PLUGIN_PATH) !== false) {
-        set_transient('esl_plugin_last_error', $error, 60);
+    if ($error && strpos($error['file'], ESLGP_PLUGIN_PATH) !== false) {
+        set_transient('eslgp_plugin_last_error', $error, 60);
     }
 }
 
 /**
  * Show an admin notice if the plugin caused a fatal error.
  */
-function esl_show_admin_error_notice()
+function eslgp_show_admin_error_notice()
 {
-    if (get_transient('esl_plugin_last_error')) {
+    if (get_transient('eslgp_plugin_last_error')) {
 ?>
         <div class="notice notice-error is-dismissible">
             <p><strong><?php esc_html_e('Easy Secure Login Error:', 'easy-secure-login'); ?></strong>
                 <?php esc_html_e('A fatal error was detected and logged. Please check your PHP error log for details.', 'easy-secure-login'); ?></p>
         </div>
         <?php
-        delete_transient('esl_plugin_last_error');
+        delete_transient('eslgp_plugin_last_error');
     }
 }
 
@@ -203,7 +203,7 @@ function esl_show_admin_error_notice()
 function run_easy_secure_login()
 {
     try {
-        $plugin = new ESL_EasySecureLogin();
+        $plugin = new ESLGP_EasySecureLogin();
         $plugin->run();
     } catch (Exception $e) {
         add_action('admin_notices', function () use ($e) {
@@ -220,19 +220,19 @@ function run_easy_secure_login()
 }
 
 // Register hooks
-register_activation_hook(__FILE__, 'esl_activate');
-register_deactivation_hook(__FILE__, 'esl_deactivate');
+register_activation_hook(__FILE__, 'eslgp_activate');
+register_deactivation_hook(__FILE__, 'eslgp_deactivate');
 
 // Admin hooks
-add_action('admin_notices', 'esl_admin_notices');
+add_action('admin_notices', 'eslgp_admin_notices');
 
 // Plugin list hooks
-add_filter('plugin_action_links_' . ESL_PLUGIN_BASENAME, 'esl_plugin_action_links');
-add_filter('plugin_row_meta', 'esl_plugin_row_meta', 10, 2);
+add_filter('plugin_action_links_' . ESLGP_PLUGIN_BASENAME, 'eslgp_plugin_action_links');
+add_filter('plugin_row_meta', 'eslgp_plugin_row_meta', 10, 2);
 
 // Error handling
-register_shutdown_function('esl_handle_fatal_error');
-add_action('admin_notices', 'esl_show_admin_error_notice');
+register_shutdown_function('eslgp_handle_fatal_error');
+add_action('admin_notices', 'eslgp_show_admin_error_notice');
 
 // Start the plugin
 run_easy_secure_login();

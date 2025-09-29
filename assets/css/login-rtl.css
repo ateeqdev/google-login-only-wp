@@ -2,18 +2,18 @@
 
 /* Base styling */
 body.login,
-.esl-auth-content p {
+.eslgp-auth-content p {
   direction: rtl;
 }
 
 /* Loading overlay */
-#esl-auth-loading {
+#eslgp-auth-loading {
   left: auto;
   right: 0;
 }
 
 /* Animations */
-@keyframes esl-fade-in {
+@keyframes eslgp-fade-in {
   from {
     opacity: 0;
     transform: translateY(20px);
