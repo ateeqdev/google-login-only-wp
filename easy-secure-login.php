@@ -161,7 +161,7 @@ function eslgp_plugin_row_meta($links, $file)
     if (ESLGP_PLUGIN_BASENAME === $file) {
         $meta_links = [
             'developer' => '<a href="https://linkedin.com/in/ateeqdev" target="_blank">' . esc_html__('Plugin Creator', 'easy-secure-login') . '</a>',
-            'rate' => '<a href="https://wordpress.org/support/plugin/easy-secure-login/reviews/?filter=5#new-post" target="_blank" rel="nofollow">' . esc_html__('Rate Plugin ★★★★★', 'easy-secure-login') . '</a>',
+            'rate' => '<a href="https://wordpress.org/support/plugin/easy-secure-login/reviews/#new-post" target="_blank" rel="nofollow">' . esc_html__('Rate Plugin ★★★★★', 'easy-secure-login') . '</a>',
         ];
         $links = array_merge($links, $meta_links);
     }
