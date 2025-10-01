@@ -229,8 +229,8 @@ class ESLGP_GoogleAuth
         set_transient($transient_key, $message, 5 * MINUTE_IN_SECONDS);
 
         $redirect_url = add_query_arg([
-            'eslpg_error_key' => $transient_key,
-            'eslpg_nonce' => wp_create_nonce('eslgp_login_error_nonce')
+            'eslgp_error_key' => $transient_key,
+            'eslgp_nonce' => wp_create_nonce('eslgp_login_error_nonce')
         ], wp_login_url());
 
         wp_safe_redirect($redirect_url);
