@@ -5,7 +5,7 @@ Tags: google login, google one tap, oauth, authentication, security
 Requires at least: 5.0
 Tested up to: 6.8
 Requires PHP: 7.4
-Stable tag: 2.1.1
+Stable tag: 2.1.2
 License: GPL v2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -91,6 +91,13 @@ This plugin uses Google's Identity Services to provide a secure authentication m
     *   Google APIs Terms of Service: https://developers.google.com/terms
 
 == Changelog ==
+
+= 2.1.2 =
+*   **Security:** Hardened security by adding nonce verification to the login error display and One Tap callback handlers to prevent Cross-Site Request Forgery (CSRF) vulnerabilities.
+*   **Security:** Implemented the recommended OAuth 2.0 `state` parameter validation during the standard Google Sign-In flow to protect against CSRF attacks.
+*   **Security:** Improved data sanitization on the admin settings page to ensure redirect URLs are handled securely.
+*   **Fix:** Corrected a bug where the "Please configure your Google OAuth credentials" admin notice would persist even after the plugin was fully configured.
+*   **Enhancement:** Updated the readme.txt to include a comprehensive "External Services" section, clearly documenting the use of Google APIs as required by WordPress plugin guidelines.
 
 = 2.1.1 =
 Initial Release

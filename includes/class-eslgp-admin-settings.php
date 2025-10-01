@@ -616,6 +616,10 @@ class ESLGP_AdminSettings
 
         $this->updateWizardProgress($sanitized_input);
 
+        if (!empty($sanitized_input['client_id']) && !empty($sanitized_input['client_secret'])) {
+            delete_option('eslgp_show_setup_notice');
+        }
+
         if (isset($_POST['submit'])) {
             $current_step = 'overview';
             if (!empty($_POST['_wp_http_referer'])) {

@@ -3,7 +3,7 @@
 /**
  * Plugin Name:       Easy Secure Login
  * Description:       Replaces standard WordPress password authentication with Social Sign-In (currently Google) and One Tap. Features beautiful UI, automatic user management, and enhanced security options. Born from necessity after a successful brute-force attack on hardtoskip, this plugin enforces Google-only authentication to keep your site secure.
- * Version:           2.1.1
+ * Version:           2.1.2
  * Author:            HardToSkip
  * Author URI:        https://hardtoskip.com/
  * License:           GPL v2 or later
@@ -25,7 +25,7 @@ if (!defined('WPINC')) {
 /**
  * Plugin version.
  */
-define('ESLGP_VERSION', '2.1.1');
+define('ESLGP_VERSION', '2.1.2');
 
 /**
  * Plugin paths and URLs.
