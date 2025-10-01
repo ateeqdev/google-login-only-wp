@@ -128,10 +128,11 @@ class ESLGP_FrontendHooks
 
     public function displayLoginErrors($errors)
     {
-        // phpcs:ignore WordPress.Security.NonceVerification.Recommended
-        if (isset($_GET['eslgp_error_key'])) {
-            // phpcs:ignore WordPress.Security.NonceVerification.Recommended
-            $error_key = sanitize_key($_GET['eslgp_error_key']);
+        if (
+            isset($_GET['eslgp_error_key'], $_GET['eslpg_nonce']) &&
+            wp_verify_nonce(sanitize_text_field(wp_unslash($_GET['eslpg_nonce'])), 'eslgp_login_error_nonce')
+        ) {
+            $error_key = sanitize_key($_GET['eslpg_error_key']);
             $message = get_transient($error_key);
             if ($message) {
                 $errors->add('google_auth_error', $message, 'error');

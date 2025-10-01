@@ -619,8 +619,7 @@ class ESLGP_AdminSettings
         if (isset($_POST['submit'])) {
             $current_step = 'overview';
             if (!empty($_POST['_wp_http_referer'])) {
-                // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
-                $referer_url = wp_unslash($_POST['_wp_http_referer']);
+                $referer_url = sanitize_url(wp_unslash($_POST['_wp_http_referer']));
                 $referer_query = wp_parse_url($referer_url, PHP_URL_QUERY);
                 if ($referer_query) {
                     wp_parse_str($referer_query, $query_args);

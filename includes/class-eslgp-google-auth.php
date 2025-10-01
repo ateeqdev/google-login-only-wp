@@ -227,7 +227,13 @@ class ESLGP_GoogleAuth
         $message = ESLGP_ErrorHandler::getMessage($error_code);
         $transient_key = 'eslgp_login_error_' . uniqid();
         set_transient($transient_key, $message, 5 * MINUTE_IN_SECONDS);
-        wp_safe_redirect(add_query_arg('eslgp_error_key', $transient_key, wp_login_url()));
+
+        $redirect_url = add_query_arg([
+            'eslpg_error_key' => $transient_key,
+            'eslpg_nonce' => wp_create_nonce('eslgp_login_error_nonce')
+        ], wp_login_url());
+
+        wp_safe_redirect($redirect_url);
         exit;
     }
 }

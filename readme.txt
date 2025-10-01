@@ -73,6 +73,23 @@ Since it **replaces WordPress authentication**, it may conflict with other login
 = How secure is this? =
 Very secure. Authentication happens entirely through Google OAuth, with state tokens, CSRF protection, and token verification. Additionally, extra security hardening is included.
 
+== External services ==
+
+This plugin uses Google's Identity Services to provide a secure authentication method (Google Sign-In and Google One Tap). To function, it connects to several Google APIs.
+
+*   **Service:** Google Identity Services (accounts.google.com)
+*   **Purpose:** This service is used to display the "Sign in with Google" button and the Google One Tap prompt. It handles the user authentication process directly in the user's browser.
+*   **Data Sent:** This plugin initiates the authentication flow, but user data (like email and password) is entered directly on Google's domain, not through this plugin. The plugin only receives a secure authentication token from Google after a successful login.
+*   **Terms and Policies:**
+    *   Google Terms of Service: https://policies.google.com/terms
+    *   Google Privacy Policy: https://policies.google.com/privacy
+
+*   **Service:** Google OAuth & People APIs (oauth2.googleapis.com, www.googleapis.com)
+*   **Purpose:** After a user authenticates, the plugin's server sends the received authentication token/code to these Google APIs to verify its authenticity and retrieve basic user profile information (email, name, profile picture).
+*   **Data Sent:** An authentication token/code provided by Google is sent from your server to Google's servers for validation.
+*   **Terms and Policies:**
+    *   Google APIs Terms of Service: https://developers.google.com/terms
+
 == Changelog ==
 
 = 2.1.1 =
